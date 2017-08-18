@@ -15,7 +15,7 @@ How slQuery can be used to Select single elements
 -------------------------------------------------
 
 Blocks are selected using block-selector expressions - they are a special syntax for
-find_system-calls. Here are some examples of what can be done - in order of increasing fun.
+`find_system`-calls. Here are some examples of what can be done - in order of increasing fun.
 
 ### Block-Type, Mask-Type
 
@@ -28,12 +28,12 @@ simplest of selectors.
 MaskType selectors can be specified by prefixing the desired mask type with a period.
 
 	>> slQuery('.TL_BlackBox')
-... finds blocks masked with 'TL_BlackBox'
+... finds blocks masked with `'TL_BlackBox'`
 
 Selector parts can be combined to form more specific conditions.
 
 	>> slQuery('SubSystem.Tl_SimFrame')
-... find all subsystems masked with 'TL_SimFrame', i.e. all TargetLink subsystems.
+... find all subsystems masked with `'TL_SimFrame'`, i.e. all TargetLink subsystems.
 
 ### Block Name and Special Blocks
 
@@ -268,7 +268,7 @@ computations totally vectorized and avoid looping over results.
 	>> slQuery('Inport -> SignalSpecification -> Outport')
 	>> ans(:,1).Name = strcat(ans(:,2).Name, '_in');
 	>> ans(:,3).Name = strcat(ans(:,2).Name, '_in');
-... rename inports to XYZ_in and outports to XYZ_out, this is the MATLAB-way!
+... rename inports to `XYZ_in` and outports to `XYZ_out`, this is the MATLAB-way!
 
 Interactive Convenience Features
 --------------------------------
