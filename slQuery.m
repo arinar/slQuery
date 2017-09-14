@@ -263,13 +263,13 @@ classdef slQuery < double
 						
 						switch attr.operator
 							case '=' % literal match "text"
-								attr.value = regexptranslate('escape', attr.value);
+								attr.value = ['^' regexptranslate('escape', attr.value) '$'];
 							case '^=' % literal match at beginning "text*"
-								attr.value = [regexptranslate('escape', attr.value) '.*'];
+								attr.value = ['^' regexptranslate('escape', attr.value)];
 							case '$=' % literal match at the end "*text"
-								attr.value = ['.*' regexptranslate('escape', attr.value)];
+								attr.value = [regexptranslate('escape', attr.value) '$'];
 							case '*=' % literal match anywhere "*text*"
-								attr.value = ['.*' regexptranslate('escape', attr.value) '.*'];
+								attr.value = regexptranslate('escape', attr.value);
 							case '~=' % regex match
 								% attr.value shall be a regexp already
 						end
