@@ -59,17 +59,17 @@ There are also special forms of this
 * `From[GotoTag*=Sig]` ... containing "Sig" anywhere`
 * `From[GotoTag~="[sS]ig(nal)?s?"]` ... matching regular expression `[sS]ig(nal)?s?`
 
-the `:Flag`-notation is euqivalent to specifying `[Flag=on]`. This way, you can easily filter
+the `+Flag`-notation is euqivalent to specifying `[Flag=on]`. This way, you can easily filter
 for any flag-parameter to be 'on' - only one such flag is allowed though.
 
-	>> slQuery(':Selected')
+	>> slQuery('+Selected')
 ... finds all currently selected blocks.
 
 ### General Selector
 
 the general form of a selector is this:
 
-	'BlockType#BlockName.MaskType:Flag[Param1=Value1,Param2=Value2,...]
+	'BlockType#BlockName.MaskType+Flag[Param1=Value1,Param2=Value2,...]
 ... where all parts are optional, but at least one part must be there. You can also use `*`
 instead of the block type if you simply want to match any block at all.
 

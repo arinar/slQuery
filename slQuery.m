@@ -228,8 +228,9 @@ classdef slQuery < double
 					new_handles = double.empty(0, size(handles, 2));
 					
 				else % selector is real ~> a real structure
-					% parse as selector:       ^(!)(*)(block type )...(   hash with id or special   )...(   period with class   )...(    brackets and qualifier list   )...( colon and pseudo-class )$
-					selector = regexp(row{2}, '^\!?\*?(?<type>\w+)?\s*(#)?(?<id>(?(2)(?:\w+|\.\.?)))?\s*(\.)?(?<class>(?(4)\w+))?\s*(\[)?(?<attributes>(?(6).+))(?(6)\])\s*(:)?(?<pseudo>(?(9)\w+))?$', 'names');
+					% parse as selector:       ^(!)(*)(block type )...(   hash with id or special   )...(   period with class   )...(    brackets and qualifier list   )...( plus and pseudo-class )$
+					selector = regexp(row{2}, '^\!?\*?(?<type>\w+)?\s*(#)?(?<id>(?(2)(?:\w+|\.\.?)))?\s*(\.)?(?<class>(?(4)\w+))?\s*(\[)?(?<attributes>(?(6).+))(?(6)\])\s*(\+)?(?<pseudo>(?(9)\w+))?$', 'names');
+					assert(~isempty(selector), 'malformed selector ''%s''', row{2});
 					% split the attribute qualifiers:                 '(attribute )...(          operator           )...(    value    )( comma? )
 					selector.attributes = regexp(selector.attributes, '(?<name>\w+)\s*(?<operator>(=|\^=|\$=|\*=|~=))\s*(?<value>[^,]+)(\s*,\s*)?', 'names');
 					
