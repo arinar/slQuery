@@ -25,11 +25,13 @@ classdef slQuery < double
 	methods
 		function this = slQuery(varargin)
 			%if nargin == 0, return, end; % syntax for allocation
-			if iscellstr(varargin)
+			if isscalar(varargin) && isnumeric(varargin{1}) % simple handle-array conversion
+				handles = varargin{1};
+			elseif iscellstr(varargin) % `sprintf`-style invocation (only strings allowed)
 				varargin{1} = strrep(varargin{1}, '\', '\\'); % preserve single backslashes
 				handles = slQuery.select(sprintf(varargin{:}));
-			elseif isscalar(varargin) && isnumeric(varargin{1})
-				handles = varargin{1};
+			else
+				error('illegal arguments')
 			end
 			
 			this = this@double(handles);
