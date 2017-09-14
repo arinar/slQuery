@@ -342,23 +342,19 @@ classdef slQuery < double
 							
 							ps = double.empty(1,0);
 							
-							virt = ismember(combinator.type, {'~>', '~', '<~'});
+							virt = ismember(combinator.type, {'~>', '~', '<~', '<<', '<>', '>>'});
 							
 							% mark frontier in case of signal-slicing traversal mode
-							if ismember(combinator.type, {'>>', '<>', '<<'})
-								front = info;
-							else
-								front = [];
-							end
+							front = info(ismember(combinator.type, {'>>', '<>', '<<'}));
 							
-							if ismember(combinator.type, {'~>', '~', '=>', '<=>', '>>', '<>'})
-								for port = [-info(virt) slQuery.get_ports(info, 'Outport', combinator.sp)]
+							if ismember(combinator.type, {'~>', '~', '=>', '=', '>>', '<>'})
+								for port = [-info slQuery.get_ports(info, 'Outport', combinator.sp)]
 									ps = [ps slQuery.follow(port, {}, front, virt)]; %#ok<AGROW>
 								end
 							end
 							
-							if ismember(combinator.type, {'<~', '~', '=>', '<=>', '<<', '<>'})
-								for port = [-info(virt) slQuery.get_ports(info, 'Inport', combinator.sp)]
+							if ismember(combinator.type, {'<~', '~', '<=', '=', '<<', '<>'})
+								for port = [-info slQuery.get_ports(info, 'Inport', combinator.sp)]
 									ps = [ps slQuery.follow(port, {}, front, virt)]; %#ok<AGROW>
 								end
 							end
@@ -430,7 +426,6 @@ classdef slQuery < double
 		function eps = follow(bp, addr, slice, virt)
 			% follow the data flow of a port through virtual blocks
 			% OutPort/Subsystem, Subsystem/InPort, Goto/From
-			eps = double.empty(1,0); % only the nonvirtual blocks found during loop
 			
 			% bp - the "begin"-port, i.e. the port, whose line we want to follow
 			assert(isnumeric(bp) && isscalar(bp));
@@ -439,7 +434,9 @@ classdef slQuery < double
 			% signal slicing frontier is a list of blocks, already reached
 			assert(isnumeric(slice));
 			assert(islogical(virt));
-			
+
+			eps = double.empty(1,0); % only the nonvirtual blocks found during loop
+
 			if bp < 0 % this is a block handle ~> represents non-wired connection
 				switch get_param(-bp, 'BlockType')
 					case {'Goto', 'Outport'}
@@ -450,21 +447,23 @@ classdef slQuery < double
 						return % these blocks aren't non-wired
 				end
 				beps = slQuery.get_ports(-bp, edir, 1);
-			else % this is a port
-				% the 'PortType' determines the direction of following (down is true, up is false)
+			else % this is a port handle ~> follow the lines
 				ls = get_param(bp, 'Line');
 				ls(ls == -1) = []; % don't follow unconnected lines
+				
+				% the 'PortType' determines the direction of following (down is true, up is false)
 				if strcmp(get_param(bp, 'PortType'), 'inport')
 					[edir, pdir, beps] = deal('Outport', 'Inport', slQuery.get_ports(ls, 'SrcPortHandle'));
 				else
 					[edir, pdir, beps] = deal('Inport', 'Outport', slQuery.get_ports(ls, 'DstPortHandle'));
 				end
+				
+				% eps is the list of "end"-ports of all blocks matched
+				if virt
+					eps = beps; % use also ports directly adjacent
+				end
 			end
 			
-			% eps is the list of "end"-ports of all blocks matched
-			if virt
-				eps = beps; % use also ports directly adjacent
-			end
 			
 			for ep = beps;
 				b = slQuery.get_parent(ep);
@@ -661,15 +660,17 @@ classdef slQuery < double
 						if isempty(slice) % no signal slicing ~> this non-virtual endpoint is an endpoint
 							neps = ep;
 							
-						else % signal slicing ~> follow the opposite ports of this endpoint
-							bps = slQuery.get_ports(b, pdir, 1); % all ports of the other side
-							bps(ismember(slQuery.get_parent(bps), slice)) = []; % except the ones of blocks already reached
-							
+						elseif ~ismember(b, slice)
+							% signal slicing ~> follow the opposite ports of this endpoint
+							bps = slQuery.get_ports(b, pdir); % all ports of the other side
 							slice = [slice b]; %#ok<AGROW>
 							
 							neps = slQuery.arrayfun(@(bp) slQuery.follow(bp, addr, slice, virt), bps);
 							
-							neps = setdiff(neps, eps); % TODO: (why) is this necessary?
+							neps = setdiff([ep neps], eps); % TODO: (why) is this necessary?
+							
+						else
+							neps = [];
 						end
 				end
 				eps = [eps neps]; %#ok<AGROW>
