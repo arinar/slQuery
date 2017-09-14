@@ -192,8 +192,8 @@ classdef slQuery < double
 	methods(Access=private, Static)
 		
 		function handles = select(query) % core "select" algorithm of slQuery
-			% split along the combinators                                                                             ( comma outside [] )
-			[selectors, combinators] = regexp(query, '\s*( |\\\\|\\|//|/|(:\s*\w+\s*)?(->|-|<-|~>|~|<~|=>|<=|>>|<>|<<|,(?![^\[]*\]))(\s*\w+\s*:)?)\s*', 'split', 'match');
+			% split along the combinators                                                                                                ( outside [] )
+			[selectors, combinators] = regexp(query, '\s*( |\\\\|\\|//|/|(:\s*\w+\s*)?(->|-|<-|~>|~|<~|=>|<=|>>|<>|<<|,)(\s*\w+\s*:)?)\s*(?![^\[]*\])', 'split', 'match');
 			
 			% we start with the combinator '//' for arbitrary descendence and the search root
 			root = get_param(bdroot, 'Handle'); % always search only in current model
