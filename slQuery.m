@@ -217,7 +217,7 @@ classdef slQuery < double
 				switch combinator.type
 					case ',' % group all into one, because not really a combinator
 						cinfos = repmat(root, size(hot_col));
-					case {' ', '\', '\\'} % group by parent of the last blocks
+					case {'\', '\\'} % group by parent of the last blocks
 						cinfos = slQuery.get_parent(hot_col);
 					otherwise % group only by block-handle itself (last column)
 						cinfos = hot_col;
@@ -296,7 +296,7 @@ classdef slQuery < double
 							
 						case ' ' % sibling of the current block
 							
-							new_col = setdiff(find_system(info, 'SearchDepth', 1, find_args{:}), hot_col(info_idx == i), 'rows');
+							new_col = setdiff(find_system(slQuery.get_parent(info), 'SearchDepth', 1, find_args{:}), hot_col(info_idx == i), 'rows');
 							
 						case '/' % direct descendant (child)
 							
