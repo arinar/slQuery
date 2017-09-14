@@ -195,11 +195,11 @@ classdef slQuery < double
 			% split along the combinators                                                                                                ( outside [] )
 			[selectors, combinators] = regexp(query, '\s*( |\\\\|\\|//|/|(:\s*\w+\s*)?(->|-|<-|~>|~|<~|=>|<=|>>|<>|<<|,)(\s*\w+\s*:)?)\s*(?![^\[]*\])', 'split', 'match');
 			
-			% we start with the combinator '//' for arbitrary descendence and the search root
+			% start with the search root and combinator ',' for arbitrary position in this root
 			root = get_param(bdroot, 'Handle'); % always search only in current model
-			handles = double.empty(1,0);
+			handles = double.empty(1, 0);
 			hot_col = root;
-			for row = ['//' combinators; selectors]
+			for row = [',' combinators; selectors]
 				% parse the combinator:     '    (colon with portspec)...(                      combinator type (again)                       )...(portspec with colon )
 				combinator = regexp(row{1}, '^\s*(:)?(?<sp>(?(1)\w+))?\s*(?<type>( |\\\\|\\|//|/|->|-|<-|~>|~|<~|=>|<=|>>|<>|<<|,(?![^\[]*\])))\s*(?<dp>\w+)?\s*(?(4):)?\s*$', 'names');
 				
