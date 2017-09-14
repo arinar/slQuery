@@ -80,6 +80,11 @@ classdef slQuery < double
 									hilite_system(row, 'none');
 								end
 								open_system(cs);
+							case 'link' % an array of links to the blocks (with their name)
+								slice = arrayfun( ...
+									@(h) sprintf('<a href="matlab: hilite_system(%.15f);">%s</a>', h, ...
+									strrep(get_param(h, 'Name'), char(10), ' ')), ...
+									double(slice), 'UniformOutput', false);
 								
 							case 'handle' % most of the simulink functions can't handle objects derived from double as double handles.
 								slice = double(slice);
