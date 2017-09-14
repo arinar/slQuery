@@ -603,44 +603,39 @@ classdef slQuery < double
 						end
 						
 					case 'BusSelector'
-						names = strsplit(get_param(b, 'OutputSignals'));
-						if strcmp(edir, 'Inport') % ~> one of the output signals must match the addr token
-							
-							if isempty(addr) % there is no addr token for digging down the bus ~> we're done
-								neps = ep;
-							else
-								assert(ischar(addr{end}));
-								
-								% indices of ports referencing that signal
-								spi = strcmp(addr{end}, names);
-								if ~any(spi) % this bus selector doesn't select the signal name in addr ~> we're done
-									neps = ep;
-								elseif strcmp(get_param(b, 'OutputAsBus'), 'on') % this makes a new bus using fewer signals
-									neps = slQuery.follow(slQuery.get_ports(b, 'Outport', 1), addr, slice, virt);
-								else
-									neps = slQuery.follow(slQuery.get_ports(b, 'Outport', spi), addr(1:end-1), slice, virt);
+						if strcmp(get_param(b, 'OutputAsBus'), 'on') % selector makes a new bus using maybe fewer signals but the same adresses
+							neps = slQuery.follow(slQuery.get_ports(b, pdir, 1), addr, slice, virt);
+						
+						else % must consider signal adresses
+							% OutputSignals is a comma-separated list of period-separated signal pathnames
+							pathes = strsplit(get_param(b, 'OutputSignals'), ',');
+						
+							if strcmp(edir, 'Inport') % some of the output signals may match the addr token and we will follow them
+								% there is an address try and find the matching set of tokens
+								neps = double.empty(1, 0);
+								for ti = numel(addr):-1:1
+									if ~ischar(addr{ti}), break, end % out of name tokens, cannot go further down
+									for spi = find(strcmp(strjoin(addr(end:-1:ti), '.'), pathes)) % indices of ports referencing that exact signal
+										neps = [neps slQuery.follow(slQuery.get_ports(b, 'Outport', spi), addr(1:ti-1), slice, virt)]; %#ok<AGROW>
+									end
 								end
-							end
-						else % ~> add corresponding name to addr token
-							if strcmp(get_param(b, 'OutputAsBus'), 'on') % this makes a new bus using fewer signals
-								neps = slQuery.follow(slQuery.get_ports(b, 'Inport', 1), addr, slice, virt);
-							else
-								neps = slQuery.follow(slQuery.get_ports(b, 'Inport', 1), [addr names{get_param(ep, 'PortNumber')}], slice, virt);
+							else % ~> add corresponding name tokens to addr
+								tokens = fliplr(strsplit(pathes{get_param(ep, 'PortNumber')}, '.'));
+								neps = slQuery.follow(slQuery.get_ports(b, 'Inport', 1), [addr tokens], slice, virt);
 							end
 						end
-						% TODO: exploit BusCreator and BusSelector symmetry, handle in same case
 						
 					case 'BusAssignment'
-						names = strsplit(get_param(b, 'AssignedSignals'), ',');
+						pathes = strsplit(get_param(b, 'AssignedSignals'), ',');
 						if strcmp(edir, 'Inport') && get_param(ep, 'PortNumber') > 1 % ~> it's one of the substitution element ports
-							neps = slQuery.follow(slQuery.get_ports(b, pdir, 1), [addr names{get(ep, 'PortNumber') - 1}], slice, virt);
+							neps = slQuery.follow(slQuery.get_ports(b, pdir, 1), [addr pathes{get(ep, 'PortNumber') - 1}], slice, virt);
 						else % it's the bus port (whole bus)
 							if isempty(addr) % there is no addr token for digging down and because original the bus as-such doesn't continue, we're done
 								% TODO: does this make any sense?
 								neps = ep;
 							else
 								% is the selected element one of the substituted ones?
-								[~, selidx] = ismember(addr{end}, names);
+								[~, selidx] = ismember(addr{end}, pathes);
 								if selidx == 0 % signal wasn't selected ~> follow opposite bus port (pdir)
 									neps = slQuery.follow(slQuery.get_ports(b, pdir, 1), addr, slice, virt);
 									
