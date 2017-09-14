@@ -50,11 +50,15 @@ classdef slQuery < double
 				switch sel.type
 					case '()' % slicing
 						if isa(slice, 'slQuery')
+							if isscalar(sel.subs) && isnumeric(sel.subs{1})
+								sel.subs = [':', sel.subs];
+							elseif isscalar(sel.subs) && islogical(sel.subs{1})
+								sel.subs = [sel.subs, ':'];
+							end
 							slice = slQuery(builtin('subsref', double(slice), sel));
 						else
 							slice = builtin('subsref', slice, sel);
 						end
-						
 					case '{}' % selecting
 						for spec = sel.subs
 							regexp(spec, '(?<param>)=(?<value>.+)', 'names')
@@ -127,7 +131,13 @@ classdef slQuery < double
 			for sel = indices
 				switch sel.type
 					case '()'
-						slice = builtin('subsref', slice, sel);
+						if isscalar(sel.subs) && isnumeric(sel.subs{1})
+							sel.subs = [':', sel.subs];
+						elseif isscalar(sel.subs) && islogical(sel.subs{1})
+							sel.subs = [sel.subs, ':'];
+						end
+						slice = slQuery(builtin('subsref', slice, sel));
+						
 					case '{}'
 						
 					case '.'
