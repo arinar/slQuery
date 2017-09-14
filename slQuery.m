@@ -94,7 +94,7 @@ classdef slQuery < double
 								
 							case 'tl' % return a TargetLink property
 								% TODO: the property hierarchy must to be resolved before (outside of this loop)
-								slice = tl_get(double(slice), 'blockdatastruct')';
+								slice = arrayfun(@(h) {tl_get(h, 'blockdatastruct')}, double(slice));
 								
 							otherwise % select a block parameter or field of struct
 								if isnumeric(slice) % parameter of a block handle
