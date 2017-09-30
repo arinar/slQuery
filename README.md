@@ -35,15 +35,27 @@ Selector parts can be combined to form more specific conditions.
 	>> slQuery('SubSystem.Tl_SimFrame')
 ... find all subsystems masked with `'TL_SimFrame'`, i.e. all TargetLink subsystems.
 
-### Block Name and Special Blocks
+### Block Name
 
 Prefixing a name with a hash (#) selects on a specific block name.
 
 	>> slQuery('.TL_Inport#in2')
 ... selects TargetLink Inports based on their block name, which must match 'in2'
 
-There are special names '#.' and '#..' for selecting the `gcb` and `gcs` block/system
 
+### Pick from known Set of Blocks
+
+Using `'(i)'` you may restrict the selection to a candidate set of blocks given as an additional 
+argument to the query - the i-th additional argument.
+
+	>> slQuery('(1) // *', gcs)
+... finds all blocks inside the current system
+
+    >> slQuery('(1) / Inport >> (2)', gcs, gcb), ans(2)
+... find all Inports of the current system, that affect the selected block in it
+
+    >> slQuery('(1) -> Sum', {'sys/port1', 'sys/const1'})
+... find all Sum blocks, that are connected to any of the given blocks
 ### Conditions for Block/Mask Parameters
 
 Every search can be refined by specifying arbitrary block parameters in brackets. You can use
@@ -206,14 +218,14 @@ Back references may be used in propery selectors with the `'$<i>.<Parameter>'`-s
 for equality of block parameters.
 
 	>> slQuery('Goto, From[GotoTag=$1.GotoTag]')
-... yields all Pairs of Goto&From-Blocks having the same GotoTag name
+... yields all Pairs of Goto- & From-Blocks having the same GotoTag name
 
-This feature may only be used after a join-combinator preceeding it, because otherwise it would
-introduce too much complexity. (TODO: remove this restriction, by reworking the select-algo)
+This feature may only be used after a join-combinator preceeding it. Although syntactically 
+this is a mode of selection (and not a relation between blocks as defined by combinator), this 
+really is fundamentally combinator-like, because it refers to another block of the same 
+potential situational compound. (TODO: remove this restriction, by reworking the select-algo)
 
-Although syntactically this is a mode of selection (and not a relation between blocks as
-defined by combinator), this really is fundamentally combinator-like, because it refers to
-another block of the same potential situational compound.
+TODO: maybe use @ for this
 
 How results can be used to access stuff
 ---------------------------------------

@@ -6,7 +6,7 @@
                           |___/_|\__\_\\__,_|\___|_|   \__, |
                            easy-as-pie API to Simulink |___/
 
-v0.9.3, 2017 robert@raschhour.com
+v0.9.4, 2017 robert@raschhour.com
 
 slQuery is free software: you can redistribute it and/or modify it under the terms of the GNU
 General Public License as published by the Free Software Foundation, either version 3 of the
@@ -23,15 +23,19 @@ classdef slQuery < double
 	%SLQUERY  easy-as-pie API to Simulink
 	
 	methods
-		function this = slQuery(varargin)
+		function this = slQuery(query, varargin)
 			%if nargin == 0, return, end; % syntax for allocation
-			if isscalar(varargin) && isnumeric(varargin{1}) % simple handle-array conversion
-				handles = varargin{1};
-			elseif iscellstr(varargin) % `sprintf`-style invocation (only strings allowed)
-				varargin{1} = strrep(varargin{1}, '\', '\\'); % preserve single backslashes
-				handles = slQuery.select(sprintf(varargin{:}));
+			if isnumeric(query) % simple handle-array conversion
+				handles = query;
+			elseif ischar(query) % normal query
+				% additional arguments represent sets of blocks to pick from via ^123 - index
+				idx = cellfun(@ischar, varargin);
+				varargin(idx) = cellfun(@(s) {get_param(s, 'Handle')}, varargin(idx));
+				idx = cellfun(@iscellstr, varargin);
+				varargin(idx) = cellfun(@(cs) {cell2mat(get_param(cs, 'Handle'))}, varargin(idx));
+				handles = slQuery.select(query, varargin{:});
 			else
-				error('illegal arguments')
+				error('illegal arguments');
 			end
 			
 			this = this@double(handles);
@@ -192,8 +196,8 @@ classdef slQuery < double
 	
 	methods(Access=private, Static)
 		
-		function handles = select(query) % core "select" algorithm of slQuery
-			% split along the combinators                                                                                                ( outside [] )
+		function handles = select(query, varargin) % core "select" algorithm of slQuery
+			% split query along the combinators                                                                                                ( outside [] )
 			[selectors, combinators] = regexp(query, '\s*( |\\\\|\\|//|/|(:\s*\w+\s*)?(->|-|<-|~>|~|<~|=>|<=|>>|<>|<<|,)(\s*\w+\s*:)?)\s*(?![^\[]*\])', 'split', 'match');
 			
 			% start with the search root and combinator ',' for arbitrary position in this root
@@ -229,20 +233,14 @@ classdef slQuery < double
 					new_handles = double.empty(0, size(handles, 2));
 					
 				else % selector is real ~> a real structure
-					% parse as selector:       ^(!)(*)(block type )...(   hash with id or special   )...(   period with class   )...(    brackets and qualifier list   )...( plus and pseudo-class )$
-					selector = regexp(row{2}, '^\!?\*?(?<type>\w+)?\s*(#)?(?<id>(?(2)(?:\w+|\.\.?)))?\s*(\.)?(?<class>(?(4)\w+))?\s*(\[)?(?<attributes>(?(6).+))(?(6)\])\s*(\+)?(?<pseudo>(?(9)\w+))?$', 'names');
+					% parse as selector:       ^(*)(    parens around arg index     )?(block type)?(  hash with name  )?( period with masktype )?(    brackets and qualifier list  )?(  plus and pseudo-class )?$
+					selector = regexp(row{2}, '^\*?(\()?(?<argidx>(?(1)\d+))?(?(1)\))?(?<type>\w+)?(#)?(?<id>(?(5)\w+))?(\.)?(?<class>(?(7)\w+))?(\[)?(?<attributes>(?(9).+))(?(9)\])(\+)?(?<pseudo>(?(12)\w+))?$', 'names');
 					assert(~isempty(selector), 'malformed selector ''%s''', row{2});
 					% split the attribute qualifiers:                 '(attribute )...(          operator           )...(    value    )( comma? )
 					selector.attributes = regexp(selector.attributes, '(?<name>\w+)\s*(?<operator>(=|\^=|\$=|\*=|~=))\s*(?<value>[^,]+)(\s*,\s*)?', 'names');
 					
 					if ~isempty(selector.id)
-						if strcmp(selector.id, '.') % the current block (gcb)
-							find_args = [find_args, 'Handle', gcbh]; %#ok<AGROW>
-						elseif strcmp(selector.id, '..') % the current system (gcs)
-							find_args = [find_args, 'Handle', get_param(gcs, 'Handle')]; %#ok<AGROW>
-						else
-							find_args = [find_args, 'Name', ['^' selector.id '$']]; %#ok<AGROW>
-						end
+						find_args = [find_args, 'Name', ['^' selector.id '$']]; %#ok<AGROW>
 					end
 					
 					if ~isempty(selector.type)
@@ -376,6 +374,14 @@ classdef slQuery < double
 					if isnumeric(selector) % selector was a back reference ~> project to rows, where the back ref matches to one of the results
 						group = group(ismember(group(:, selector), new_col), :);
 					else %if isstruct(selector) ~> append block corresponding to this group
+						
+						% TODO: perf: move this intersect-step upwards, to avoid unneccesary
+						% `find_system`-calls when there aren't any restrictions OR if there is
+						% a candidate set, simply test each candidate against the set of
+						% restrictions using find_system.
+						if ~isempty(selector.argidx)
+							new_col = intersect(new_col, double(varargin{str2double(selector.argidx)}));
+						end
 						group = slQuery.combine(group, new_col);
 					end
 					new_handles = [ new_handles; group ]; %#ok<AGROW>
