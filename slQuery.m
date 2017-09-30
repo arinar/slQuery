@@ -6,7 +6,7 @@
                           |___/_|\__\_\\__,_|\___|_|   \__, |
                            easy-as-pie API to Simulink |___/
 
-v0.9.2, 2017 robert@raschhour.com
+v0.9.3, 2017 robert@raschhour.com
 
 slQuery is free software: you can redistribute it and/or modify it under the terms of the GNU
 General Public License as published by the Free Software Foundation, either version 3 of the
@@ -94,14 +94,14 @@ classdef slQuery < double
 								
 							case 'tl' % return a TargetLink property
 								% TODO: the property hierarchy must to be resolved before (outside of this loop)
-								slice = arrayfun(@(h) {tl_get(h, 'blockdatastruct')}, double(slice));
+								slice = arrayfun(@(h) tl_get(h, 'blockdatastruct'), double(slice), 'UniformOutput', false);
 								
 							otherwise % select a block parameter or field of struct
 								if isnumeric(slice) % parameter of a block handle
 									slice = arrayfun(@(h) get_param(h, sel.subs), double(slice), 'UniformOutput', false);
 									
-								elseif iscell(slice) && isstruct(slice{1}) % field of a struct
-									slice = cellfun(@(h) h.(sel.subs), slice, 'UniformOutput', false);
+								elseif isstruct(slice) % field of a struct
+									slice = arrayfun(@(h) h.(sel.subs), slice, 'UniformOutput', false);
 									
 									% TODO: when this cell happens to be a uniform result (e.g. LineHandles.Outport of a bunch of
 									% inport blocks), the result will be a uniform double-array instead of a cell nesting all the
@@ -120,11 +120,12 @@ classdef slQuery < double
 						slice = slice{1};
 					else
 						type = unique(cellfun(@class, slice, 'UniformOutput', false));
-						if ~isscalar(type)
-							return
-						end
-						
+						if ~isscalar(type), return, end
 						if isnumeric(slice{1})
+							slice = cell2mat(slice);
+						elseif isstruct(slice{1})
+							fields = cellfun(@fieldnames, slice);
+							if ~isequal(fields{:}), return, end
 							slice = cell2mat(slice);
 						end
 					end
@@ -143,14 +144,14 @@ classdef slQuery < double
 						elseif isscalar(sel.subs) && islogical(sel.subs{1})
 							sel.subs = [sel.subs, ':'];
 						end
-						slice = slQuery(builtin('subsref', slice, sel));
+						slice = builtin('subsref', slice, sel);
 						
 					case '{}'
 						
 					case '.'
 						if ~iscell(value) || isscalar(value) % scalar assignment ~> propagate everywhere
 							
-							for h = slice(:)'
+							for h = double(slice)'
 								set_param(h, sel.subs, value);
 							end
 							
@@ -168,7 +169,7 @@ classdef slQuery < double
 							end
 							
 							for i = 1:size(value, 2)
-								for h = slice(:, i)'
+								for h = double(slice(:, i))'
 									set_param(h, sel.subs, value{i});
 								end
 							end
