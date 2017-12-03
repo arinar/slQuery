@@ -66,7 +66,7 @@ classdef slQuery < double
 			slice = this; % initial selection for get_param
 			for sel = indices;
 				switch sel.type
-					case '()' % slicing
+					case '()' % selection
 						if isa(slice, 'slQuery')
 							if isscalar(sel.subs) && isnumeric(sel.subs{1})
 								sel.subs = [':', sel.subs];
@@ -77,12 +77,8 @@ classdef slQuery < double
 						else
 							slice = builtin('subsref', slice, sel);
 						end
-					case '{}' % selecting
-						for spec = sel.subs
-							regexp(spec, '(?<param>)=(?<value>.+)', 'names')
-						end
 						
-					case '.'
+					case '.' % parameter access
 						switch sel.subs
 							case {'show', 'showall'} % show the situations line by line
 								cs = gcs;
@@ -126,6 +122,8 @@ classdef slQuery < double
 								end
 						end
 						
+					case '{}' % actions
+						
 					otherwise % they did something stupid
 						error(['what is ''' sel.type '''?']);
 				end
@@ -154,7 +152,7 @@ classdef slQuery < double
 			slice = double(this);
 			for sel = indices
 				switch sel.type
-					case '()'
+					case '()' % selection
 						if isscalar(sel.subs) && isnumeric(sel.subs{1})
 							sel.subs = [':', sel.subs];
 						elseif isscalar(sel.subs) && islogical(sel.subs{1})
@@ -162,9 +160,7 @@ classdef slQuery < double
 						end
 						slice = builtin('subsref', slice, sel);
 						
-					case '{}'
-						
-					case '.'
+					case '.' % parameter access
 						if ~iscell(value) || isscalar(value) % scalar assignment ~> propagate everywhere
 							
 							for h = double(slice)'
@@ -199,6 +195,8 @@ classdef slQuery < double
 							end
 							
 						end
+					case '{}' % actions
+						
 					otherwise % they did something stupid
 						error(['what is ''' sel.type '''?']);
 				end
