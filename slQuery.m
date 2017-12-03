@@ -619,7 +619,7 @@ classdef slQuery < double
 						% case 'Assignment', % case 'Concatenate'
 						
 					case 'BusCreator'
-						bo = get_param(b, 'Object'); names = { bo.Signal.name }; % FIXME: this causes some initialization
+						names = get_param(b, 'InputSignalNames');
 						
 						if strcmp(edir, 'Inport') % ~> add an address token and follow the outport
 							neps = slQuery.follow(slQuery.get_ports(b, 'Outport', 1), [addr names{get(ep, 'PortNumber')}], slice, virt);
@@ -639,7 +639,7 @@ classdef slQuery < double
 						else % must consider signal adresses
 							% OutputSignals is a comma-separated list of period-separated signal pathnames
 							pathes = strsplit(get_param(b, 'OutputSignals'), ',');
-						
+							
 							if strcmp(edir, 'Inport') % some of the output signals may match the addr token and we will follow them
 								% there is an address try and find the matching set of tokens
 								neps = double.empty(1, 0);
