@@ -253,6 +253,7 @@ classdef slQuery < double
 					case ',' % group all into one, because not really a combinator
 						cinfos = repmat(root, size(hot_col));
 					case {'\', '\\'} % group by parent of the last blocks
+						% NOTE/TODO: the sibling-combinator ' ' can't be here included here because each block cannot be included amongst its own siblings
 						cinfos = slQuery.get_parent(hot_col);
 					otherwise % group only by block-handle itself (last column)
 						cinfos = hot_col;
@@ -320,35 +321,27 @@ classdef slQuery < double
 					
 					switch combinator.type
 						case ','
-							
 							new_col = find_system(root, find_args{:});
 							
 						case ' ' % sibling of the current block
-							
-							new_col = setdiff(find_system(slQuery.get_parent(info), 'SearchDepth', 1, find_args{:}), hot_col(info_idx == i), 'rows');
+							new_col = setdiff(find_system(slQuery.get_parent(info), 'SearchDepth', 1, find_args{:}), info, 'rows');
 							
 						case '/' % direct descendant (child)
-							
 							new_col = setdiff(find_system(info, 'SearchDepth', 1, find_args{:}), info, 'rows');
 							
 						case '//' % arbitrary depth descendant
-							
 							new_col = setdiff(find_system(info, find_args{:}), info, 'rows');
 							
 						case '\' % direct ascendant (parent)
-							
 							new_col = find_system(info, 'SearchDepth', 0, find_args{:});
 							
 						case '\\' % arbitrary ascendant (ancestor)
-							new_col = [];
-							
 							% compute the chain of parents
-							curblock = info;
-							while curblock % ~= root?
-								new_col(end+1) = curblock; %#ok<AGROW>
-								curblock = slQuery.get_parent(curblock);
+							new_col = [];
+							while info % ~= root?
+								new_col(end+1) = info; %#ok<AGROW>
+								info = slQuery.get_parent(info);
 							end
-							
 							% reduce by search-match
 							new_col = find_system(new_col, 'SearchDepth', 0, find_args{:});
 							
