@@ -68,7 +68,7 @@ classdef slQuery < double
 				switch sel.type
 					case '()' % selection
 						if isa(slice, 'slQuery')
-							if isscalar(sel.subs) && isnumeric(sel.subs{1})
+							if isscalar(sel.subs) && isnumeric(sel.subs{1}) && ~isvector(slice)
 								sel.subs = [':', sel.subs];
 							elseif isscalar(sel.subs) && islogical(sel.subs{1})
 								sel.subs = [sel.subs, ':'];
@@ -108,20 +108,32 @@ classdef slQuery < double
 								% TODO: the property hierarchy must to be resolved before (outside of this loop)
 								slice = arrayfun(@(h) tl_get(h, 'blockdatastruct'), double(slice), 'UniformOutput', false);
 								
-							otherwise % select a block parameter or field of struct
+							otherwise % select a block parameter, field of struct or property of object
 								if isnumeric(slice) % parameter of a block handle
 									slice = arrayfun(@(h) get_param(h, sel.subs), double(slice), 'UniformOutput', false);
 									
-								elseif isstruct(slice) % field of a struct
+								elseif iscellstr(slice) % possibly block path (ReferenceBlock, Ancestor-Block, Parent, ...)
+									slice = cellfun(@(h) get_param(h, sel.subs), slice, 'UniformOutput', false);
+									
+								elseif isstruct(slice) || isobject(slice) || all(ishandle(slice)) % field of a struct or property of an object
 									slice = arrayfun(@(h) h.(sel.subs), slice, 'UniformOutput', false);
 									
-									% TODO: when this cell happens to be a uniform result (e.g. LineHandles.Outport of a bunch of
-									% inport blocks), the result will be a uniform double-array instead of a cell nesting all the
-									% single entries. This is counter-intuitive for LineHandles (of arbitrary blocks) but not for
-									% e.g. Position
+								elseif iscell(slice) && all(cellfun(@isobject, slice) | ishandle(slice)) % (hopefully) shared member of collection of different objects
+									slice = cellfun(@(h) h.(sel.subs), slice, 'UniformOutput', false);
 								end
 						end
 						
+						% TODO: when the result is a cell but happens to be a uniform (e.g.
+						% LineHandles.Outport of a bunch of inport blocks), the result cab be a
+						% uniform double-array instead of a cell nesting all the single entries.
+						% This is counter-intuitive for LineHandles (of arbitrary blocks) but
+						% not for e.g. Position.
+						% TODO: When accessing a char-parameter from a single 1x1 slQuery-handle
+						% user expects a char, not a 1x1 cellstr mostly. But there could be
+						% cases, where a list of blocks happens to be 1-long and the property
+						% must be a cellstr. Maybe all results should be in cells unless each
+						% one is scalar by itself (like numbers). Maybe add syntax so we can be
+						% explicit for this. 
 					case '{}' % actions
 						
 					otherwise % they did something stupid
@@ -134,11 +146,13 @@ classdef slQuery < double
 						slice = slice{1};
 					else
 						type = unique(cellfun(@class, slice, 'UniformOutput', false));
-						if ~isscalar(type), return, end
+						
+						if ~isscalar(type), continue, end
+						
 						if isnumeric(slice{1})
 							slice = cell2mat(slice);
 						elseif isstruct(slice{1})
-							fields = cellfun(@fieldnames, slice);
+							fields = cellfun(@fieldnames, slice, 'UniformOutput', false);
 							if ~isequal(fields{:}), return, end
 							slice = cell2mat(slice);
 						end
@@ -161,13 +175,11 @@ classdef slQuery < double
 						slice = builtin('subsref', slice, sel);
 						
 					case '.' % parameter access
-						if ~iscell(value) || isscalar(value) % scalar assignment ~> propagate everywhere
+						if isscalar(value) || ischar(value)% scalar assignment ~> propagate everywhere
 							
-							for h = double(slice)'
-								set_param(h, sel.subs, value);
-							end
+							arrayfun(@(h) set_param(h, sel.subs, value), double(slice));
 							
-						elseif isvector(value) % vector assignment ~> propagate to columns
+						elseif isvector(value) % vector assignment ~> propagate to columns or rows
 							assert(any(numel(value) == size(slice)), 'MATLAB:dimagree', 'Number of columns or rows in value and selection must match.');
 							
 							% if number of rows matches, transpose the selection (and values)
@@ -181,19 +193,24 @@ classdef slQuery < double
 							end
 							
 							for i = 1:size(value, 2)
-								for h = double(slice(:, i))'
-									set_param(h, sel.subs, value{i});
+								arrayfun(@(h) set_param(h, sel.subs, value{i}), double(slice(:, i)));
+							end
+						
+						else % matrix assignment ~> row/col-wise or exact assignments
+							sm = size(value) == size(slice); % matching dimensions
+							
+							if all(sm)
+								arrayfun(@(h, v) set_param(h, sel.subs, value{1}), slice, value);
+								
+							elseif any(sm)
+								if sm(2), value = value'; end
+									
+								for i = 1:size(value, 1)
+									set_param(slice(i, :), sel.subs, value(i, :));
 								end
+							else
+								error('MATLAB:dimagree', 'Value shape must be scalar, row vector or match selection.');
 							end
-							
-						else % matrix assignment ~> exact assignments
-							
-							assert(size(value) == size(slice), 'MATLAB:dimagree', 'Value shape must be scalar, row vector or match selection.');
-							
-							for i = 1:numel(value)
-								set_param(slice(i), sel.subs, value{i});
-							end
-							
 						end
 					case '{}' % actions
 						
