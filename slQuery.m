@@ -101,6 +101,9 @@ classdef slQuery < double
 							case 'handle' % most of the simulink functions can't handle objects derived from double as double handles.
 								slice = double(slice);
 								
+							case 'wrap' % TODO: is this cool?
+								slice = slQuery(slice);
+
 							case 'fullname' % return the model path of all blocks
 								slice = getfullname(double(slice));
 								
