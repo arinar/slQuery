@@ -33,6 +33,7 @@ classdef slQuery < double
 				varargin(idx) = cellfun(@(s) {get_param(s, 'Handle')}, varargin(idx));
 				idx = cellfun(@iscellstr, varargin);
 				varargin(idx) = cellfun(@(cs) {cell2mat(get_param(cs, 'Handle'))}, varargin(idx));
+				assert(~isempty(bdroot), 'no simulink diagram is active');
 				handles = slQuery.select(query, varargin{:});
 			else
 				error('illegal arguments');
