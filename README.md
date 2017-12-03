@@ -318,7 +318,7 @@ computations totally vectorized and avoid looping over results.
  
 	>> slQuery('Inport -> SignalSpecification -> Outport')
 	>> ans(1).Name = strcat(ans(2).Name, '_in');
-	>> ans(3).Name = strcat(ans(2).Name, '_in');
+	>> ans(3).Name = strcat(ans(2).Name, '_out');
 ... rename inports to `XYZ_in` and outports to `XYZ_out`, this is the MATLAB-way!
 
 Interactive Convenience Features
@@ -344,7 +344,7 @@ short hilite-fest that brings you along the entire result in sequence.
 
 ### Matrix of Block Links
 
-	>> slQuery(Inport \ SubSystem#MySys / Outport).link
+	>> slQuery('Inport \ SubSystem#MySys / Outport').link
 
 Will produce a cellstr-array containing the block names as clickable links, that will bring you
 directly to the block in the diagram.
