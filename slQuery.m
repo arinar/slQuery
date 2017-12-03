@@ -243,7 +243,7 @@ classdef slQuery < double
 				if ~isnan(str2double(combinator.dp)), combinator.dp = str2double(combinator.dp); end
 				
 				% build the find_system filter from blockspec (all searches are reduced to this)
-				find_args = {'FollowLinks', 'on', 'LookUnderMasks', 'all', 'Variants', 'All', 'Regexp', 'On'};
+				find_args = {'FollowLinks', 'on', 'LookUnderMasks', 'all', 'Variants', 'All', 'IncludeCommented', 'on', 'Regexp', 'on'};
 				
 				% combinators always represent a search relating to some set of properties from the row of
 				% blocks selected previously. In order to avoid multiple seaches based on the same infos (that
