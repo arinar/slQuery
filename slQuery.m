@@ -41,14 +41,25 @@ classdef slQuery < double
 			
 			this = this@double(handles);
 		end
-		
+	end
+	methods (Access='public', Hidden=true)
 		function disp(this)
 			if isempty(this)
 				fprintf('   Empty slQuery: 0-by-%d\n', size(this, 2));
-				return;
+			else
+				disp('slQuery with handles')
+				
+				x = dbstack; % hyperlinks don't look nice in datatip displays
+				if numel(x) >= 2 && strncmp(x(2).name, 'datatipinfo', 11)
+					disp(double(this));
+				else
+					% must build one big text, so that it can print immediately
+					mag = floor(log10(max(max(double(this)))));
+					repr = arrayfun(@(h, l) sprintf('    <a href="matlab: hilite_system(%.15f);">%1.4f</a>', h, l), ...
+						double(this)', double(this)' / 10.^mag, 'UniformOutput', false);
+					repr(end+1, :) = {char(10)}; disp([repr{:}])
+				end
 			end
-			disp('slQuery with handles');
-			builtin('disp', double(this));
 		end
 		
 		function slice = subsref(this, indices)
