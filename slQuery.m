@@ -403,7 +403,7 @@ classdef slQuery < double
 						% a candidate set, simply test each candidate against the set of
 						% restrictions using find_system.
 						if ~isempty(selector.argidx)
-							new_col = intersect(new_col, double(varargin{str2double(selector.argidx)}));
+							new_col = intersect(new_col, double(varargin{str2double(selector.argidx)}), 'rows');
 						end
 						group = slQuery.combine(group, new_col);
 					end
