@@ -481,7 +481,7 @@ classdef slQuery < double
 				ls = get_param(bp, 'Line');
 				ls(ls == -1) = []; % don't follow unconnected lines
 				
-				% the 'PortType' determines the direction of following (down is true, up is false)
+				% the 'PortType' determines the direction of following (upstream is true, downstream is false)
 				if strcmp(get_param(bp, 'PortType'), 'inport')
 					[edir, pdir, beps] = deal('Outport', 'Inport', slQuery.get_ports(ls, 'SrcPortHandle'));
 				else
