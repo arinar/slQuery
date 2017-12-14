@@ -28,7 +28,7 @@ classdef slQuery < double
 			if isnumeric(query) % simple handle-array conversion
 				handles = query;
 			elseif ischar(query) % normal query
-				% additional arguments represent sets of blocks to pick from via ^123 - index
+				% additional arguments represent sets of blocks to pick from via (123) - index
 				idx = cellfun(@ischar, varargin);
 				varargin(idx) = cellfun(@(s) {get_param(s, 'Handle')}, varargin(idx));
 				idx = cellfun(@iscellstr, varargin);
@@ -53,7 +53,7 @@ classdef slQuery < double
 				if numel(x) >= 2 && strncmp(x(2).name, 'datatipinfo', 11)
 					disp(double(this));
 				else
-					% must build one big text, so that it can print immediately
+					% must build one big array of text, so that it can all print instantaneously
 					mag = floor(log10(max(max(double(this)))));
 					repr = arrayfun(@(h, l) sprintf('    <a href="matlab: hilite_system(%.15f);">%1.4f</a>', h, l), ...
 						double(this)', double(this)' / 10.^mag, 'UniformOutput', false);
@@ -130,13 +130,8 @@ classdef slQuery < double
 						% LineHandles.Outport of a bunch of inport blocks), the result cab be a
 						% uniform double-array instead of a cell nesting all the single entries.
 						% This is counter-intuitive for LineHandles (of arbitrary blocks) but
-						% not for e.g. Position.
-						% TODO: When accessing a char-parameter from a single 1x1 slQuery-handle
-						% user expects a char, not a 1x1 cellstr mostly. But there could be
-						% cases, where a list of blocks happens to be 1-long and the property
-						% must be a cellstr. Maybe all results should be in cells unless each
-						% one is scalar by itself (like numbers). Maybe add syntax so we can be
-						% explicit for this. 
+						% not for e.g. Position                        
+						
 					case '{}' % actions
 						
 					otherwise % they did something stupid
@@ -622,9 +617,9 @@ classdef slQuery < double
 							
 						elseif isempty(addr) % but there is no addr token for digging down
 							
-							% TODO: when signal-slicing, we must follow all components of an ending mux-signal, event though
-							% the signal itself has ended (blocks behind this Mux/Demux are indeed in the slice of the
-							% original block)
+							% TODO: when signal-slicing, we must follow all components of an ending mux-signal, even though
+							% the signal itself has ended (blocks behind this Mux/Demux are indeed in the signal slice of
+							% the original block)
 							
 							if virt
 								neps = slQuery.arrayfun(@(bp) slQuery.follow(bp, addr, front, virt, slic), ...
