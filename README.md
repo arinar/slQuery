@@ -249,49 +249,48 @@ would expect)
 
 	>> x = slQuery('Constant -> Gain -> Outport');
 	
-	4x3 slQuery with handles
+	3x4 slQuery with handles
 	
-		10.0003   11.0003   10.0002
-		10.0012   11.0032   10.0002
-		10.0015   11.0052   10.0034
-		10.0026   11.0077   10.0034
+		10.0003   10.0012   10.0015   10.0026
+		11.0003   11.0032   11.0052   11.0077
+		10.0002   10.0002   10.0034   10.0034
 	
 	>> x([2,4], 2:end)
 	
 	2x2 slQuery with handles
 	
-		11.0032   10.0002
-		11.0077   10.0034
+		11.0032   11.0077
+		10.0002   10.0034
 
 When using only a single index, slQuery predicts based on the type, whether you wand to select
-rows or columns: the selectors can be filtered by enumerating the column indices, situation
+rows or columns: the selectors can be filtered by enumerating the row indices, situation
 occurences can be filtered by conditional subscripts.
 
 	>> x([1,3])
 	
-	2x2 slQuery with handles
+	2x4 slQuery with handles
 	
-		10.0003   10.0002
-		10.0012   10.0002
-		10.0015   10.0034
-		10.0026   10.0034
+		10.0003   10.0012   10.0015   10.0026
+		10.0002   10.0002   10.0034   10.0034
 	
 	>> x(strcmp(x(2).Value, '1'))
 	
-	2x2 slQuery with handles
+	3x2 slQuery with handles
 	
-		10.0012   11.0032   10.0002
-		10.0026   11.0077   10.0034
+		10.0012   10.0026
+		11.0032   11.0077
+		10.0002   10.0034
 	
 Field subscripting can be mixed with indexing and - if the results are compatible - even with
 array concatenation.
 
 	>> slQuery('Constant -> Gain')
 	>> [ans(1).path, ans(1).Value, ans(2).Gain]
-	   'model/subsystem/MyGain1'    '3.4'     '4.8'
-	   'model/subsystem/MyGain2'    '2'       '2.4'
-	   'model/other/subsystem/CX'   'C_x'     'K_x'
-	   'model/other/subsystem/CY'   'C_y^2'   '2*K_y'
+	
+	   'model/subsystem/MyGain1' 'model/subsystem/MyGain2' 'model/other/subsystem/CX' 'model/other/subsystem/CY'
+	   '3.4'                     '2'                       'C_x'                      'C_y^2'
+	   '4.8'                     '2.4'                     'K_x'                      '2*K_y'
+	
 ... compose some characteristics of a situation
 
 The subscripted assignment to an slQuery result sets all the respective parameter values at
