@@ -210,7 +210,7 @@ classdef slQuery < double
 							sm = size(value) == size(sel); % matching dimensions
 							
 							if all(sm)
-								arrayfun(@(h, v) set_param(h, sub.subs, value{1}), sel, value);
+								arrayfun(@(h, v) set_param(h, sub.subs, v), sel, value);
 								
 							elseif any(sm)
 								if sm(2), value = value'; end
