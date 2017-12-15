@@ -312,6 +312,7 @@ classdef slQuery < double
 					end
 					
 					if ~isempty(selector.type)
+						assert(~strcmp(selector.type, 'Subsystem'), '''Subsystem'' is not a valid block type, use ''SubSystem''');
 						find_args = [find_args 'BlockType', ['^' selector.type '$']]; %#ok<AGROW>
 					end
 					
