@@ -6,7 +6,7 @@
                           |___/_|\__\_\\__,_|\___|_|   \__, |
                            easy-as-pie API to Simulink |___/
 
-v0.9.4, 2017 robert@raschhour.com
+v0.9.5, 2017 robert@raschhour.com
 
 slQuery is free software: you can redistribute it and/or modify it under the terms of the GNU
 General Public License as published by the Free Software Foundation, either version 3 of the
@@ -52,7 +52,7 @@ classdef slQuery < double
 	methods (Access='public', Hidden=true)
 		function disp(this)
 			if isempty(this)
-				fprintf('   Empty slQuery: 0-by-%d\n', size(this, 2));
+				fprintf('   Empty slQuery: %d-by-0\n', size(this, 1));
 			else
 				disp('slQuery with handles')
 				
@@ -74,9 +74,9 @@ classdef slQuery < double
 					case '()' % selection
 						if isa(sel, 'slQuery')
 							if isscalar(sub.subs) && isnumeric(sub.subs{1}) && ~isvector(sel)
-								sub.subs = [':', sub.subs];
-							elseif isscalar(sub.subs) && islogical(sub.subs{1})
 								sub.subs = [sub.subs, ':'];
+							elseif isscalar(sub.subs) && islogical(sub.subs{1})
+								sub.subs = [':', sub.subs];
 							end
 							sel = slQuery(builtin('subsref', double(sel), sub));
 						else
@@ -85,16 +85,16 @@ classdef slQuery < double
 						
 					case '.' % parameter access
 						switch lower(sub.subs)
-							case {'show', 'showall'} % show the situations line by line
+							case {'show', 'showall'} % show the situations column by column
 								cs = gcs;
-								for row = double(sel')
-									hilite_system(row);
+								for col = double(sel)
+									hilite_system(col);
 									if strcmp(sub.subs, 'showall')
-										disp(row'); pause(0.5);
+										disp(col); pause(0.5);
 									else
 										pause
 									end
-									hilite_system(row, 'none');
+									hilite_system(col, 'none');
 								end
 								open_system(cs);
 							
@@ -176,9 +176,9 @@ classdef slQuery < double
 					case '()' % slicing
 						if isa(sel, 'slQuery')
 							if isscalar(sub.subs) && isnumeric(sub.subs{1}) && ~isvector(sel)
-								sub.subs = [':', sub.subs];
-							elseif isscalar(sub.subs) && islogical(sub.subs{1})
 								sub.subs = [sub.subs, ':'];
+							elseif isscalar(sub.subs) && islogical(sub.subs{1})
+								sub.subs = [':', sub.subs];
 							end
 							sel = slQuery(builtin('subsref', double(sel), sub));
 						else
@@ -197,9 +197,9 @@ classdef slQuery < double
 							if numel(value) == size(sel, 2) % number of cols matches ~> transpose the selection (and values) so below code can work
 								sel = sel';
 								value = value';
-								% Note: An assignment with matching row-count doesn't generally make much sense, because the
-								% rows-dimension is for the arbitrary number of results found by a query, i.e. it is
-								% unpredictable. We do however still support this mode.
+								% NOTE: An assignment matching the column-count doesn't generally make much sense, because the
+								% cols-dimension is for the arbitrary number of results found by a query and thus unpredictable.
+								% We do however still support this mode.
 							end
 							
 							for i = 1:size(value, 1)
@@ -231,6 +231,19 @@ classdef slQuery < double
 		end
 	end
 	
+	methods(Access=public) % operators that are operations
+		function [varargout] = ctranspose(this) % allow 'dispersed' assignments: [a, b, ~] = slQuery(...)';
+			if nargout < 2
+				varargout{1} = this; % this does not transpose the array either
+			else
+				varargout = cell(1, nargout);
+				handles = double(this);
+				for i = 1:nargout
+					varargout{i} = slQuery(handles(i, :));
+				end
+			end
+		end
+	end
 	methods(Access=private, Static)
 		function handles = select(query, varargin) % core "select" algorithm of slQuery
 			% split query along the combinators                                                                                          ( outside [] )
@@ -238,8 +251,8 @@ classdef slQuery < double
 			
 			% start with the search root and combinator ',' for arbitrary position in this root
 			root = get_param(bdroot, 'Handle'); % always search only in current model
-			handles = double.empty(1, 0);
-			hot_col = root;
+			handles = double.empty(0, 1);
+			hot = root;
 			for act = [',' combinators; selectors]
 				% parse the combinator:     '    (colon with portspec)...(                      combinator type (again)                       )...(portspec with colon )
 				combinator = regexp(act{1}, '^\s*(:)?(?<sp>(?(1)\w+))?\s*(?<type>( |\\\\|\\|//|/|->|-|<-|~>|~|<~|=>|<=|>>|<>|<<|,(?![^\[]*\])))\s*(?<dp>\w+)?\s*(?(4):)?\s*$', 'names');
@@ -251,23 +264,24 @@ classdef slQuery < double
 				% build the find_system filter from blockspec (all searches are reduced to this)
 				find_args = {'FollowLinks', 'on', 'LookUnderMasks', 'all', 'Variants', 'All', 'IncludeCommented', 'on', 'Regexp', 'on'};
 				
-				% combinators always represent a search relating to some set of properties from the row of
-				% blocks selected previously. In order to avoid multiple seaches based on the same infos (that
-				% will result in the same outcome), we can group all rows based on this distinguishing info and
-				% perform the search with this and then outer-join the result to the original set of rows
+				% combinators always represent a search relating to some set of properties from a row of blocks
+				% selected previously - the "hot" row. In order to avoid multiple seaches based on the same
+				% infos (that would result in the same outcome), we can group hot based on this distinguishing
+				% info and perform the search once for each group and then outer-join the result to the original
+				% set of columns
 				switch combinator.type
 					case ',' % group all into one, because not really a combinator
-						cinfos = repmat(root, size(hot_col));
+						hinfos = repmat(root, size(hot));
 					case {'\', '\\'} % group by parent of the last blocks
-						% NOTE/TODO: the sibling-combinator ' ' can't be here included here because each block cannot be included amongst its own siblings
-						cinfos = slQuery.get_parent(hot_col);
-					otherwise % group only by block-handle itself (last column)
-						cinfos = hot_col;
+						% case {'\', '\\', ' '}  NOTE/TODO: the sibling-combinator ' ' can't be here included here because each block cannot be included amongst its own siblings
+						hinfos = slQuery.get_parent(hot);
+					otherwise % group only by block-handle itself
+						hinfos = hot;
 				end
 				
 				if regexp(act{2}, '^\$\d+$', 'match', 'once') % selector is a reference ~> simple column-number
 					selector = str2double(act{2}(2:end));
-					new_handles = double.empty(0, size(handles, 2));
+					new_handles = double.empty(size(handles, 1), 0); % height stays the same
 					
 				else % selector is real ~> create structure
 					% parse as selector:       ^(*)(    parens around arg index     )?(block type)?(  hash with name  )?( period with masktype )?(    brackets and qualifier list  )?(  plus and pseudo-class )?$
@@ -312,7 +326,7 @@ classdef slQuery < double
 						find_args = [find_args, attr.name, attr.value]; %#ok<AGROW>
 					end
 					
-					new_handles = double.empty(0, size(handles, 2) +1);
+					new_handles = double.empty(size(handles, 1) +1, 0); % height of new selection is one more
 				end
 				
 				% assert(isempty(refattrs) || strcmp(combinator.type, ','), ...
@@ -320,61 +334,62 @@ classdef slQuery < double
 				
 				% the new handles-array is constructed in blocks corresponding to groups. A block is generated
 				% by combining each row of the group with each result from the combinator search (based on info)
-				[infos, ~, info_idx] = unique(cinfos);
+				[infos, ~, info_idx] = unique(hinfos);
 				for i = 1:numel(infos)
 					info = infos(i); % distinguishing info of the current group
-					group = handles(info_idx == i, :);
+					group = handles(:, info_idx == i);
 					
 					switch combinator.type
 						case ','
-							new_col = find_system(root, find_args{:});
+							new = find_system(root, find_args{:})';
 							
 						case ' ' % sibling of the current block
-							new_col = setdiff(find_system(slQuery.get_parent(info), 'SearchDepth', 1, find_args{:}), info, 'rows');
+							par = slQuery.get_parent(info);
+							new = setdiff(find_system(par, 'SearchDepth', 1, find_args{:})', [par info]);
 							
 						case '/' % direct descendant (child)
-							new_col = setdiff(find_system(info, 'SearchDepth', 1, find_args{:}), info, 'rows');
+							new = setdiff(find_system(info, 'SearchDepth', 1, find_args{:})', info);
 							
 						case '//' % arbitrary depth descendant
-							new_col = setdiff(find_system(info, find_args{:}), info, 'rows');
+							new = setdiff(find_system(info, find_args{:})', info);
 							
 						case '\' % direct ascendant (parent)
-							new_col = find_system(info, 'SearchDepth', 0, find_args{:});
+							new = find_system(info, 'SearchDepth', 0, find_args{:})';
 							
 						case '\\' % arbitrary ascendant (ancestor)
 							% compute the chain of parents
-							new_col = [];
+							new = [];
 							while info % ~= root?
-								new_col(end+1) = info; %#ok<AGROW>
+								new(end+1) = info; %#ok<AGROW>
 								info = slQuery.get_parent(info);
 							end
-							% reduce by search-match
-							new_col = find_system(new_col, 'SearchDepth', 0, find_args{:});
+							% filter by search-match
+							new = find_system(new, 'SearchDepth', 0, find_args{:})';
 							
 						case {'->', '-', '<-'} % directly wired
-							ps = [];
+							ps = double.empty(1, 0);
 							if ismember(combinator.type, {'->', '-'})
 								lines = slQuery.get_param(slQuery.get_ports(info, 'Outport', combinator.sp), 'line');
-								ps = slQuery.get_ports(lines(lines ~= -1), 'DstPortHandle', combinator.dp);
+								ps = [ps slQuery.get_ports(lines(lines ~= -1), 'DstPortHandle', combinator.dp)]; %#ok<AGROW>
 							end
 							if ismember(combinator.type, {'<-', '-'})
 								lines = slQuery.get_param(slQuery.get_ports(info, 'Inport', combinator.sp), 'line');
-								ps = slQuery.get_ports(lines(lines ~= -1), 'SrcPortHandle', combinator.dp);
+								ps = [ps slQuery.get_ports(lines(lines ~= -1), 'SrcPortHandle', combinator.dp)]; %#ok<AGROW>
 							end
-							new_col = find_system(slQuery.get_parent(ps), 'SearchDepth', 0, find_args{:});
+							new = find_system(slQuery.get_parent(ps), 'SearchDepth', 0, find_args{:})';
 							
 						case {  '~>', '~', '<~' ... indirectly wired, including virtual blocks (Subsystem-Levels, Goto/From, BusCreator/BusSelector, Mux/Demux)
 								'=>', '=', '<=' ... logically wired, excluding virtual blocks
 								'>>', '<>', '<<' ... signal slicing (any data dependencies)
 								}
 							
-							ps = double.empty(1,0);
+							ps = double.empty(1, 0);
 							virt = ismember(combinator.type, {'~>', '~', '<~', '<<', '<>', '>>'});
 							slic = ismember(combinator.type, {'<<', '<>', '>>'});
 							
 							% make empty frontier for recursion breakpoints
-							% FIXME: use port+addr instead of simple block handle, because there could be lops through virtual busses
-							front = containers.Map('KeyType', 'double', 'ValueType', 'logical');
+							% FIXME: use port+addr instead of simple block handle, because there could be loops through virtual busses
+							front = containers.Map('KeyType', 'char', 'ValueType', 'logical');
 							
 							if ismember(combinator.type, {'>>', '<>', '<<'})
 								front(info) = true;
@@ -400,13 +415,14 @@ classdef slQuery < double
 							end
 							
 							% negative return values of follow are the handles of port blocks
-							new_col = [-ps(ps < 0)'; slQuery.get_parent(ps(ps>0))];
-							new_col = find_system(new_col, 'SearchDepth', 0, find_args{:});
+							new = [-ps(ps < 0)'; slQuery.get_parent(ps(ps>0))];
+							new = find_system(new, 'SearchDepth', 0, find_args{:})';
 					end
-					new_col = unique(new_col, 'rows');
 					
-					if isnumeric(selector) % selector was a back reference ~> project to rows, where the back ref matches to one of the results
-						group = group(ismember(group(:, selector), new_col), :);
+					new = reshape(unique(new), 1, []); % reshape for ML 2010b unique
+					
+					if isnumeric(selector) % selector was reference ~> pick only columns, where the ref matches to one of the results
+						group = group(:, ismember(group(selector, :), new));
 					else %if isstruct(selector) ~> append block corresponding to this group
 						
 						% TODO: perf: move this intersect-step upwards, to avoid unneccesary
@@ -414,18 +430,21 @@ classdef slQuery < double
 						% a candidate set, simply test each candidate against the set of
 						% restrictions using find_system.
 						if ~isempty(selector.argidx)
-							new_col = intersect(new_col, double(varargin{str2double(selector.argidx)}), 'rows');
+							new = intersect(new, varargin{str2double(selector.argidx)});
 						end
-						group = slQuery.combine(group, new_col);
+						
+						group = [
+							group(:, repmat(1:size(group, 2), 1, size(new, 2)))
+							new(:, repmat(1:size(new, 2), size(group, 2), 1))
+							];
 					end
-					new_handles = [ new_handles; group ]; %#ok<AGROW>
+					new_handles = [ new_handles, group ]; %#ok<AGROW>
 				end
-				
 				handles = new_handles;
 				if isnumeric(selector)
-					hot_col = handles(:, selector);
+					hot = handles(selector, :);
 				else
-					hot_col = handles(:, end);
+					hot = handles(end, :);
 				end
 			end
 		end
@@ -440,10 +459,10 @@ classdef slQuery < double
 		
 		function res = get_param(hs, param)
 			% a vectorial get_param without scalar/empty-quirks
-			res = arrayfun(@(h) get_param(h, param)', hs, 'UniformOutput', false);
+			res = arrayfun(@(h) get_param(h, param), double(hs), 'UniformOutput', false);
 			
 			if iscell(res) && ~iscellstr(res)
-				res = [res{:}];
+				res = vertcat(res{:});
 			end
 			if isempty(res)
 				res = double.empty(1,0);
@@ -785,13 +804,8 @@ classdef slQuery < double
 			
 			if isempty(ps); ps = double.empty(1, 0); end;
 		end
-		
-		function c = combine(a, b)
-			% combine all rows of a with all rows of b (like strcat on two cellstrs)
-			ha = size(a, 1); hb = size(b, 1);
-			c = [ a(repmat(1:ha, hb, 1), :) b(repmat(1:hb, 1, ha), :)];
-		end
 	end
+	
 	methods(Static) % wrappers for convenience
 		function result = find(varargin)
 			result = slQuery(get_param(find_system(bdroot, varargin{:}), 'Handle'));
