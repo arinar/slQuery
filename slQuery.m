@@ -252,6 +252,21 @@ classdef slQuery < double
 		function ps = properties(this)
 			ps = sort(fieldnames(get_param(double(this), 'ObjectParameters')));
 		end
+		function ps = colon(i, this, o) % retrieve port (or line) hanldes ~> x:1, -1:x
+			% TODO: support port names for subsystems
+			ps = [];
+			if nargin == 2, o = 0;
+				if isa(i, 'slQuery'), o = this; this = i; i = 0; end % rephrase the case "b:o" case as "0:b:o"
+			end
+			if i ~= 0
+				it = cell2mat(getfield({'LineHandles', 'PortHandles'}, {1+(i>0)})); %#ok<GFLD>
+				ps = [ps, slQuery(arrayfun(@(b) getfield(get_param(b, it), 'Inport', {abs(i)}), double(this)))];
+			end
+			if o ~= 0
+				ot = cell2mat(getfield({'LineHandles', 'PortHandles'}, {1+(o>0)})); %#ok<GFLD>
+				ps = [ps, slQuery(arrayfun(@(b) getfield(get_param(b, ot), 'Outport', {abs(o)}), double(this)))];
+			end
+		end
 		function [varargout] = ctranspose(this) % allow 'dispersed' assignments: [a, b, ~] = slQuery(...)';
 			if nargout < 2
 				varargout{1} = this; % this does not transpose the array either
