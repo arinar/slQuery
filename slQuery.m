@@ -54,17 +54,34 @@ classdef slQuery < double
 			if isempty(this)
 				fprintf('   Empty slQuery: %d-by-0\n', size(this, 1));
 			else
-				disp('slQuery with handles')
-				
+				disp('slQuery with handles');
 				x = dbstack; % hyperlinks don't look nice in datatip displays
 				if numel(x) >= 2 && strncmp(x(2).name, 'datatipinfo', 11)
 					disp(double(this));
 				else
 					% must build one big array of text, so that it can all print instantaneously
 					mag = floor(log10(max(max(double(this)))));
+					if mag < 3, mag = 0; end
 					repr = arrayfun(@(h, l) sprintf('    <a href="matlab: hilite_system(%.15f);">%1.4f</a>', h, l), ...
 						double(this)', double(this)' / 10.^mag, 'UniformOutput', false);
-					repr(end+1, :) = {char(10)}; disp([repr{:}])
+					if mag > 0 
+						fprintf('   1.0e+%02d\n', mag);
+					end
+					
+					w = get(0, 'CommandWindowSize'); w = floor(w(1) / 10);
+					if size(repr, 1) > w
+						% must print groups of columns that fit the screen
+						for i = 1:w:size(repr, 1)
+							j = min(i+w-1, size(repr, 1));
+							fprintf('  Columns %d through %d\n', i, j)
+							crepr = [repr(i:j, :)];
+							crepr(end+1, 1:end-1) = {char(10)};
+							disp([crepr{:}]);
+						end
+					else % can print evrything in one go.
+						repr(end+1, 1:end-1) = {char(10)};
+						disp([repr{:}])
+					end
 				end
 			end
 		end
