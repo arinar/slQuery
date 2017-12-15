@@ -249,6 +249,9 @@ classdef slQuery < double
 	end
 	
 	methods(Access=public) % operators that are operations
+		function ps = properties(this)
+			ps = sort(fieldnames(get_param(double(this), 'ObjectParameters')));
+		end
 		function [varargout] = ctranspose(this) % allow 'dispersed' assignments: [a, b, ~] = slQuery(...)';
 			if nargout < 2
 				varargout{1} = this; % this does not transpose the array either
