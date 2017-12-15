@@ -546,8 +546,7 @@ classdef slQuery < double
 				end
 			end
 			
-			
-			for ep = beps;
+			for ep = beps'
 				b = slQuery.get_parent(ep);
 				
 				sigid = [b addr];
@@ -570,19 +569,20 @@ classdef slQuery < double
 						else % port is on the block_diagram level ~> cannot go beyond, done
 							neps = ep;
 						end
-						if virt
-							neps = [neps -s];
-						end
+						if virt, neps = [neps -s]; end %#ok<AGROW>
 						
 					case 'SubSystem' % ~> follow it inside
-						if ~ismember(get_param(ep, 'PortType'), {'inport', 'outport'})
+						if ~ismember(get_param(ep, 'PortType'), {'inport', 'outport'}) % skip events/actions/triggers (for now)
 							continue;
 						end
 						pbs = find_system(b, 'LookUnderMasks', 'all', 'FollowLinks', 'on', 'SearchDepth', 1, 'BlockType', edir, 'Port', num2str(get_param(ep, 'PortNumber')));
-						neps = slQuery.arrayfun(@(bp) slQuery.follow(bp, addr, front, virt, slic), slQuery.get_ports(pbs, pdir, 1));
-						if virt
-							neps = [neps -pbs];
+						neps = [];
+						for bp = slQuery.get_ports(pbs, pdir, 1)
+							neps = [neps, slQuery.follow(bp, addr, front, virt, slic)]; %#ok<AGROW>
 						end
+						
+						if virt, neps = [neps -pbs]; end %#ok<AGROW>
+						
 					case 'Goto' % ~> find corresponding From-blocks
 						tag_args = {'LookUnderMasks', 'all', 'FollowLinks', 'on', 'GotoTag', get_param(b, 'GotoTag')};
 						switch get_param(b, 'TagVisibility')
@@ -616,10 +616,8 @@ classdef slQuery < double
 								
 						end
 						neps = slQuery.arrayfun(@(fp) slQuery.follow(fp, addr, front, virt, slic), slQuery.get_ports(fbs, 'Outport', 1));
-						if virt
-							neps = [neps -fbs'];
-						end
-												
+						if virt, neps = [neps -fbs']; end %#ok<AGROW>
+						
 					case 'From' % ~> find corresponding Goto-blocks
 						tag_args = {'LookUnderMasks', 'all', 'FollowLinks', 'on', 'GotoTag', get_param(b, 'GotoTag')};
 						
@@ -660,9 +658,7 @@ classdef slQuery < double
 						
 						neps = slQuery.arrayfun(@(bp) slQuery.follow(bp, addr, front, virt, slic), ...
 							slQuery.get_ports(gbs, 'Inport', 1));
-						if virt
-							neps = [neps -gbs];
-						end
+						if virt, neps = [neps -gbs]; end %#ok<AGROW>
 						
 					case {'Mux', 'Demux'}
 						if strcmp(get_param(b, 'BlockType'), 'Mux') == strcmp(edir, 'Inport') % array packing direction ~> add an adr token
@@ -708,7 +704,8 @@ classdef slQuery < double
 								neps = setdiff([ep neps], eps); % TODO: (why) is this necessary?
 							end                            
 						else % that addr token must be in the names
-							neps = slQuery.arrayfun(@(bp) slQuery.follow(bp, addr(1:end-1), front, virt, slic), slQuery.get_ports(b, 'Inport', strcmp(addr{end}, names)));
+							neps = slQuery.arrayfun(@(bp) slQuery.follow(bp, addr(1:end-1), front, virt, slic), ...
+								slQuery.get_ports(b, 'Inport', strcmp(addr{end}, names)));
 						end
 						
 					case 'BusSelector'
@@ -746,7 +743,7 @@ classdef slQuery < double
 								% is the selected element one of the substituted ones?
 								[~, selidx] = ismember(addr{end}, pathes);
 								if selidx == 0 % signal wasn't selected ~> follow opposite bus port (pdir)
-									neps = slQuery.follow(slQuery.get_ports(b, pdir, 1), addr, front, virt. slic);
+									neps = slQuery.follow(slQuery.get_ports(b, pdir, 1), addr, front, virt, slic);
 									
 									% signal name was substituted
 								elseif strcmp(edir, 'Inport') % substitution has cancelled this name downstream
