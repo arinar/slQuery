@@ -550,8 +550,15 @@ classdef slQuery < double
 			for ep = beps;
 				b = slQuery.get_parent(ep);
 				
-				if front.isKey(b), continue, end; % fully came around ~> prune traversal here
-				front(b) = true;
+				sigid = [b addr];
+				ch = cellfun(@isnumeric, sigid);
+				sigid(ch) = cellfun(@(n) {char(typecast(n, 'uint8'))}, sigid(ch));
+				sigid(~ch) = strcat('[', sigid(~ch), ']');
+				sigid = strjoin(sigid);
+				if front.isKey(sigid)
+					continue
+				end; % fully came around ~> prune traversal here
+				front(sigid) = true;
 				
 				% handle all the virtual (signal routing) blocks
 				switch get_param(b, 'BlockType')
@@ -761,7 +768,7 @@ classdef slQuery < double
 							% signal slicing ~> follow the opposite ports of this endpoint
 							neps = slQuery.arrayfun(@(bp) slQuery.follow(bp, addr, front, virt, slic), ...
 								slQuery.get_ports(b, pdir)); % all ports of the other side
-							front(b) = true;
+							front(sigid) = true;
 						else
 							neps = [];
 						end
