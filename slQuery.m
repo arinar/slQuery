@@ -229,9 +229,9 @@ classdef slQuery < double
 			root = get_param(bdroot, 'Handle'); % always search only in current model
 			handles = double.empty(1, 0);
 			hot_col = root;
-			for row = [',' combinators; selectors]
+			for act = [',' combinators; selectors]
 				% parse the combinator:     '    (colon with portspec)...(                      combinator type (again)                       )...(portspec with colon )
-				combinator = regexp(row{1}, '^\s*(:)?(?<sp>(?(1)\w+))?\s*(?<type>( |\\\\|\\|//|/|->|-|<-|~>|~|<~|=>|<=|>>|<>|<<|,(?![^\[]*\])))\s*(?<dp>\w+)?\s*(?(4):)?\s*$', 'names');
+				combinator = regexp(act{1}, '^\s*(:)?(?<sp>(?(1)\w+))?\s*(?<type>( |\\\\|\\|//|/|->|-|<-|~>|~|<~|=>|<=|>>|<>|<<|,(?![^\[]*\])))\s*(?<dp>\w+)?\s*(?(4):)?\s*$', 'names');
 				
 				% cast numeric port qualifiers
 				if ~isnan(str2double(combinator.sp)), combinator.sp = str2double(combinator.sp); end
@@ -254,14 +254,14 @@ classdef slQuery < double
 						cinfos = hot_col;
 				end
 				
-				if regexp(row{2}, '^\$\d+$', 'match', 'once') % selector is a reference ~> simple column-number
-					selector = str2double(row{2}(2:end));
+				if regexp(act{2}, '^\$\d+$', 'match', 'once') % selector is a reference ~> simple column-number
+					selector = str2double(act{2}(2:end));
 					new_handles = double.empty(0, size(handles, 2));
 					
-				else % selector is real ~> a real structure
+				else % selector is real ~> create structure
 					% parse as selector:       ^(*)(    parens around arg index     )?(block type)?(  hash with name  )?( period with masktype )?(    brackets and qualifier list  )?(  plus and pseudo-class )?$
-					selector = regexp(row{2}, '^\*?(\()?(?<argidx>(?(1)\d+))?(?(1)\))?(?<type>\w+)?(#)?(?<id>(?(5)\w+))?(\.)?(?<class>(?(7)\w+))?(\[)?(?<attributes>(?(9).+))(?(9)\])(\+)?(?<pseudo>(?(12)\w+))?$', 'names');
-					assert(~isempty(selector), 'malformed selector ''%s''', row{2});
+					selector = regexp(act{2}, '^\*?(\()?(?<argidx>(?(1)\d+))?(?(1)\))?(?<type>\w+)?(#)?(?<id>(?(5)\w+))?(\.)?(?<class>(?(7)\w+))?(\[)?(?<attributes>(?(9).+))(?(9)\])(\+)?(?<pseudo>(?(12)\w+))?$', 'names');
+					assert(~isempty(selector), 'malformed selector ''%s''', act{2});
 					% split the attribute qualifiers:                 '(attribute )...(          operator           )...(    value    )( comma? )
 					selector.attributes = regexp(selector.attributes, '(?<name>\w+)\s*(?<operator>(=|\^=|\$=|\*=|~=))\s*(?<value>[^,]+)(\s*,\s*)?', 'names');
 					
