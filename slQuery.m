@@ -68,30 +68,28 @@ classdef slQuery < double
 				end
 			end
 		end
-		
-		function slice = subsref(this, indices)
-			slice = this; % initial selection for get_param
-			for sel = indices;
-				switch sel.type
+		function sel = subsref(sel, subs)
+			for sub = subs
+				switch sub.type
 					case '()' % selection
-						if isa(slice, 'slQuery')
-							if isscalar(sel.subs) && isnumeric(sel.subs{1}) && ~isvector(slice)
-								sel.subs = [':', sel.subs];
-							elseif isscalar(sel.subs) && islogical(sel.subs{1})
-								sel.subs = [sel.subs, ':'];
+						if isa(sel, 'slQuery')
+							if isscalar(sub.subs) && isnumeric(sub.subs{1}) && ~isvector(sel)
+								sub.subs = [':', sub.subs];
+							elseif isscalar(sub.subs) && islogical(sub.subs{1})
+								sub.subs = [sub.subs, ':'];
 							end
-							slice = slQuery(builtin('subsref', double(slice), sel));
+							sel = slQuery(builtin('subsref', double(sel), sub));
 						else
-							slice = builtin('subsref', slice, sel);
+							sel = builtin('subsref', sel, sub);
 						end
 						
 					case '.' % parameter access
-						switch sel.subs
+						switch lower(sub.subs)
 							case {'show', 'showall'} % show the situations line by line
 								cs = gcs;
-								for row = double(slice')
+								for row = double(sel')
 									hilite_system(row);
-									if strcmp(sel.subs, 'showall')
+									if strcmp(sub.subs, 'showall')
 										disp(row'); pause(0.5);
 									else
 										pause
@@ -99,37 +97,43 @@ classdef slQuery < double
 									hilite_system(row, 'none');
 								end
 								open_system(cs);
+							
 							case 'hyperlink' % an array of links to the blocks (with their name)
-								slice = arrayfun( ...
+								sel = arrayfun( ...
 									@(h) sprintf('<a href="matlab: hilite_system(%.15f);">%s</a>', h, ...
 									strrep(get_param(h, 'Name'), char(10), ' ')), ...
-									double(slice), 'UniformOutput', false);
-								
-							case 'handle' % most of the simulink functions can't handle objects derived from double as double handles.
-								slice = double(slice);
+									double(sel), 'UniformOutput', false);
 								
 							case 'wrap' % TODO: is this cool?
-								slice = slQuery(slice);
+								if ischar(sel)
+									sel = get_param(sel, 'Handle');
+								elseif iscellstr(sel)
+									sel = cellfun(@(b) get_param(b, 'Handle'), sel);
+								end
+								sel = slQuery(sel);
 
 							case 'fullname' % return the model path of all blocks
-								slice = getfullname(double(slice));
+								sel = getfullname(double(sel));
 								
 							case 'tl' % return a TargetLink property
 								% TODO: the property hierarchy must to be resolved before (outside of this loop)
-								slice = arrayfun(@(h) tl_get(h, 'blockdatastruct'), double(slice), 'UniformOutput', false);
+								sel = arrayfun(@(h) tl_get(h, 'blockdatastruct'), double(sel), 'UniformOutput', false);
 								
 							otherwise % select a block parameter, field of struct or property of object
-								if isnumeric(slice) % parameter of a block handle
-									slice = arrayfun(@(h) get_param(h, sel.subs), double(slice), 'UniformOutput', false);
+								if isnumeric(sel) % parameter of a block handle
+									sel = arrayfun(@(h) get_param(h, sub.subs), double(sel), 'UniformOutput', false);
+								
+								elseif ischar(sel)
+									sel = get_param(sel, sub.subs);
+								elseif iscellstr(sel) % possibly block path (ReferenceBlock, Ancestor-Block, Parent, ...)
+									sel = cellfun(@(h) get_param(h, sub.subs), sel, 'UniformOutput', false);
 									
-								elseif iscellstr(slice) % possibly block path (ReferenceBlock, Ancestor-Block, Parent, ...)
-									slice = cellfun(@(h) get_param(h, sel.subs), slice, 'UniformOutput', false);
+								elseif isstruct(sel) || isobject(sel) || all(ishandle(sel)) % field of a struct or property of an object
+									sel = arrayfun(@(h) h.(sub.subs), sel, 'UniformOutput', false);
 									
-								elseif isstruct(slice) || isobject(slice) || all(ishandle(slice)) % field of a struct or property of an object
-									slice = arrayfun(@(h) h.(sel.subs), slice, 'UniformOutput', false);
-									
-								elseif iscell(slice) && all(cellfun(@isobject, slice) | ishandle(slice)) % (hopefully) shared member of collection of different objects
-									slice = cellfun(@(h) h.(sel.subs), slice, 'UniformOutput', false);
+								elseif iscell(sel) && all(cellfun(@isobject, sel) | ishandle(sel)) % (hopefully) shared member of collection of different objects
+									sel = cellfun(@(h) h.(sub.subs), sel, 'UniformOutput', false);
+								
 								end
 						end
 						
@@ -142,76 +146,77 @@ classdef slQuery < double
 					case '{}' % actions
 						
 					otherwise % they did something stupid
-						error(['what is ''' sel.type '''?']);
+						error(['what is ''' sub.type '''?']);
 				end
 				
 				% coerce the result to a common convenient data type
-				if iscell(slice)
-					if isscalar(slice)
-						slice = slice{1};
+				if iscell(sel)
+					if isscalar(sel) % TODO: this isn't actually cool, because it breaks algorhitms that work with entire query-results, when those just happen to be scalar
+						sel = sel{1};
 					else
-						type = unique(cellfun(@class, slice, 'UniformOutput', false));
+						type = unique(cellfun(@class, sel, 'UniformOutput', false));
 						
 						if ~isscalar(type), continue, end
 						
-						if isnumeric(slice{1})
-							slice = cell2mat(slice);
-						elseif isstruct(slice{1})
-							fields = cellfun(@fieldnames, slice, 'UniformOutput', false);
+						if isnumeric(sel{1})
+							sel = cell2mat(sel);
+						elseif isstruct(sel{1})
+							fields = cellfun(@fieldnames, sel, 'UniformOutput', false);
 							if ~isequal(fields{:}), return, end
-							slice = cell2mat(slice);
+							sel = cell2mat(sel);
 						end
 					end
 				end
 			end
 		end
-		
-		function this = subsasgn(this, indices, value)
-			% initial selection  for get_param
-			slice = double(this);
-			for sel = indices
-				switch sel.type
-					case '()' % selection
-						if isscalar(sel.subs) && isnumeric(sel.subs{1})
-							sel.subs = [':', sel.subs];
-						elseif isscalar(sel.subs) && islogical(sel.subs{1})
-							sel.subs = [sel.subs, ':'];
+		function this = subsasgn(this, subs, value)
+			sel = this;
+			for sub = subs
+				switch sub.type
+					case '()' % slicing
+						if isa(sel, 'slQuery')
+							if isscalar(sub.subs) && isnumeric(sub.subs{1}) && ~isvector(sel)
+								sub.subs = [':', sub.subs];
+							elseif isscalar(sub.subs) && islogical(sub.subs{1})
+								sub.subs = [sub.subs, ':'];
+							end
+							sel = slQuery(builtin('subsref', double(sel), sub));
+						else
+							sel = builtin('subsref', sel, sub);
 						end
-						slice = builtin('subsref', slice, sel);
-						
+
 					case '.' % parameter access
-						if isscalar(value) || ischar(value)% scalar assignment ~> propagate everywhere
+						if isscalar(value) || ischar(value) % scalar assignment ~> propagate everywhere
 							
-							arrayfun(@(h) set_param(h, sel.subs, value), double(slice));
+							arrayfun(@(h) set_param(h, sub.subs, value), double(sel));
 							
 						elseif isvector(value) % vector assignment ~> propagate to columns or rows
-							assert(any(numel(value) == size(slice)), 'MATLAB:dimagree', 'Number of columns or rows in value and selection must match.');
-							
-							% if number of rows matches, transpose the selection (and values)
-							if numel(value) == size(slice, 1)
-								slice = slice';
-								value = value';
+							assert(any(numel(value) == size(sel)), 'MATLAB:dimagree', 'Number of columns or rows in value and selection must match.');
+							sel = double(sel);
 								
+							if numel(value) == size(sel, 2) % number of cols matches ~> transpose the selection (and values) so below code can work
+								sel = sel';
+								value = value';
 								% Note: An assignment with matching row-count doesn't generally make much sense, because the
 								% rows-dimension is for the arbitrary number of results found by a query, i.e. it is
 								% unpredictable. We do however still support this mode.
 							end
 							
-							for i = 1:size(value, 2)
-								arrayfun(@(h) set_param(h, sel.subs, value{i}), double(slice(:, i)));
+							for i = 1:size(value, 1)
+								arrayfun(@(h) set_param(h, sub.subs, value{i}), double(sel(i, :)));
 							end
 						
 						else % matrix assignment ~> row/col-wise or exact assignments
-							sm = size(value) == size(slice); % matching dimensions
+							sm = size(value) == size(sel); % matching dimensions
 							
 							if all(sm)
-								arrayfun(@(h, v) set_param(h, sel.subs, value{1}), slice, value);
+								arrayfun(@(h, v) set_param(h, sub.subs, value{1}), sel, value);
 								
 							elseif any(sm)
 								if sm(2), value = value'; end
 									
 								for i = 1:size(value, 1)
-									set_param(slice(i, :), sel.subs, value(i, :));
+									set_param(sel(i, :), sub.subs, value(i, :));
 								end
 							else
 								error('MATLAB:dimagree', 'Value shape must be scalar, row vector or match selection.');
@@ -220,7 +225,7 @@ classdef slQuery < double
 					case '{}' % actions
 						
 					otherwise % they did something stupid
-						error(['what is ''' sel.type '''?']);
+						error(['what is ''' sub.type '''?']);
 				end
 			end
 		end
