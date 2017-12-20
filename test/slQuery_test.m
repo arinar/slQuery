@@ -432,3 +432,20 @@ assert(all(strcmp(regexp(si.Name, '\d+', 'match', 'once'), regexp(so.Name, '\d+'
 %for x = slQuery('Mux <> Mux')
 %end
 
+% testmodel uses white Memory blocks to break up algebraic loops
+%% signal slicing combinator, detect feedback loops (downstream)
+X = slQuery('Memory[BackgroundColor=white] >> $1');
+assert(~isempty(X));
+
+%% signal slicing combinator, detect feedback loops (upstream)
+X = slQuery('Memory[BackgroundColor=white] << $1');
+assert(~isempty(X));
+
+% testmodel uses grey 'fake' Memory blocks to mark tricky non-loop situations
+%% signal slicing combinator, looping bus, but not subsignal (downstream)
+X = slQuery('Memory[BackgroundColor=grey] >> $1');
+assert(isempty(X));
+
+%% signal slicing combinator, looping bus, but not subsignal (upstream)
+X = slQuery('Memory[BackgroundColor=grey] << $1');
+assert(isempty(X));

@@ -424,13 +424,7 @@ classdef slQuery < double
 							slic = ismember(combinator.type, {'<<', '<>', '>>'});
 							
 							% make empty frontier for recursion breakpoints
-							% FIXME: use port+addr instead of simple block handle, because there could be loops through virtual busses
 							front = containers.Map('KeyType', 'char', 'ValueType', 'logical');
-							
-							if ismember(combinator.type, {'>>', '<>', '<<'})
-								front(info) = true;
-							end
-							
 							if ismember(combinator.type, {'~>', '~', '=>', '=', '>>', '<>'})
 								for port = [-info slQuery.get_ports(info, 'Outport', combinator.sp)]
 									ps = [ps slQuery.follow(port, {}, front, virt, slic)]; %#ok<AGROW>
@@ -564,17 +558,18 @@ classdef slQuery < double
 				end
 			end
 			
+			% construct 'signal fiber' identifier: addr tokens (names/mux-indices) as single string
+			fibid = addr;
+			an = cellfun(@isnumeric, fibid);
+			fibid(an) = cellfun(@(x) {['[' char(typecast(x, 'uint8')) ']']}, fibid(an));
+			fibid(~an) = strcat('.', fibid(~an));
+			fibid = [fibid{:}];
+			
 			for ep = beps'
 				b = slQuery.get_parent(ep);
 				
-				sigid = [b addr];
-				ch = cellfun(@isnumeric, sigid);
-				sigid(ch) = cellfun(@(n) {char(typecast(n, 'uint8'))}, sigid(ch));
-				sigid(~ch) = strcat('[', sigid(~ch), ']');
-				sigid = strjoin(sigid);
-				if front.isKey(sigid)
-					continue
-				end; % fully came around ~> prune traversal here
+				sigid = [char(typecast(ep, 'uint8')) ':' fibid];
+				if front.isKey(sigid), continue, end; % fully came around ~> prune traversal here
 				front(sigid) = true;
 				
 				% handle all the virtual (signal routing) blocks
@@ -598,7 +593,6 @@ classdef slQuery < double
 						for bp = slQuery.get_ports(pbs, pdir, 1)
 							neps = [neps, slQuery.follow(bp, addr, front, virt, slic)]; %#ok<AGROW>
 						end
-						
 						if virt, neps = [neps -pbs]; end %#ok<AGROW>
 						
 					case 'Goto' % ~> find corresponding From-blocks
@@ -674,23 +668,21 @@ classdef slQuery < double
 							warning('ambiguous Goto blocks (%s)!', strjoin(gbs, ', '));
 						end
 						
-						neps = slQuery.arrayfun(@(bp) slQuery.follow(bp, addr, front, virt, slic), ...
-							slQuery.get_ports(gbs, 'Inport', 1));
+						neps = slQuery.arrayfun(@(bp) slQuery.follow(bp, addr, front, virt, slic), slQuery.get_ports(gbs, 'Inport', 1));
 						if virt, neps = [neps -gbs]; end %#ok<AGROW>
 						
 					case {'Mux', 'Demux'}
-						if strcmp(get_param(b, 'BlockType'), 'Mux') == strcmp(edir, 'Inport') % array packing direction ~> add an adr token
+						if strcmp(get_param(b, 'BlockType'), 'Mux') == strcmp(edir, 'Inport') % array packing direction ~> add an addr token
 							neps = slQuery.follow(slQuery.get_ports(b, pdir), [addr {get_param(ep, 'PortNumber')}], front, virt, slic);
 							
 							% ~> array unpacking direction
 							
 						elseif isempty(addr) % but there is no addr token for digging down
 							
-							% TODO: when signal-slicing, we must follow all components of an ending mux-signal, even though
+							% when signal-slicing, we must follow all components of an ending mux-signal, even though
 							% the signal itself has ended (blocks behind this Mux/Demux are indeed in the signal slice of
 							% the original block)
-							
-							if virt
+							if slic
 								neps = slQuery.arrayfun(@(bp) slQuery.follow(bp, addr, front, virt, slic), ...
 									slQuery.get_ports(b, pdir));
 							end
@@ -712,15 +704,16 @@ classdef slQuery < double
 						if strcmp(edir, 'Inport') % ~> add an address token and follow the outport
 							neps = slQuery.follow(slQuery.get_ports(b, 'Outport', 1), [addr names{get(ep, 'PortNumber')}], front, virt, slic);
 							
-						elseif isempty(addr) % there is no addr element for digging down the bus ~> we're done
-							if isempty(front) % ~> this is the block, we're done
-								neps = ep;
-							else
-								% signal slicing ~> follow the opposite ports of this endpoint (even though, the bus is now many signals)
+						elseif isempty(addr) % there is no addr element for digging down the bus
+							if slic % signal slicing ~> follow the opposite ports of this endpoint (even though, the bus is now many signals)
 								bps = slQuery.get_ports(b, pdir); % all ports of the other side
 								neps = slQuery.arrayfun(@(bp) slQuery.follow(bp, addr, front, virt, slic), bps);
-								neps = setdiff([ep neps], eps); % TODO: (why) is this necessary?
-							end                            
+								
+							else % no signal slicing ~> we're done (this block is it)
+								neps = ep;
+								
+							end
+							
 						else % that addr token must be in the names
 							neps = slQuery.arrayfun(@(bp) slQuery.follow(bp, addr(1:end-1), front, virt, slic), ...
 								slQuery.get_ports(b, 'Inport', strcmp(addr{end}, names)));
