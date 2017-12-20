@@ -529,7 +529,7 @@ classdef slQuery < double
 			assert(islogical(slic)); % whether to also follow data dependency (instead of only data flow)
 			
 			% eps is the list of "end"-ports gathered from following bp to where it leads
-			eps = double.empty(1,0);
+			eps = [];
 			
 			% NOTE: negative values in bp and eps represent a the "non-wired" part of a virtual routing
 			% aspect. E.g. an Outport- or Goto-block itself hasn't got an outbound port, whose handle we can
@@ -796,7 +796,7 @@ classdef slQuery < double
 			% get all port handles
 			if ~isempty(hs) && strcmp(get_param(hs(1), 'Type'), 'block_diagram') % diagrams don't have external ports
 				ps = [];
-			elseif ismember(type, {'SrcPortHandle', 'DstPortHandle'})
+			elseif strcmp(type, 'SrcPortHandle') || strcmp(type, 'DstPortHandle')
 				ps = slQuery.get_param(hs, type);
 			elseif isempty(hs)
 				ps = double.empty(0,1);
@@ -819,7 +819,7 @@ classdef slQuery < double
 				elseif isnumeric(index)
 					ps = ps(slQuery.get_param(ps, 'PortNumber') == index);
 				else % char ~> filter by port name, when the block is a subsystem
-					if ismember(type, {'Inport', 'DstPortHandle'})
+					if strcmp(type, 'Inport') || strcmp(type, 'DstPortHandle')
 						bt = 'Inport';
 					else
 						bt = 'Outport';
