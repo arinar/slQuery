@@ -478,7 +478,7 @@ classdef slQuery < double
 				if isnumeric(selector)
 					hot = handles(selector, :);
 				else
-					hot = handles(end, :);
+					hot = handles(size(handles, 1), :);
 				end
 			end
 		end
