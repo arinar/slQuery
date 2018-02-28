@@ -301,6 +301,7 @@ classdef slQuery < double
 				
 				% build the find_system filter from blockspec (all searches are reduced to this)
 				find_args = {'FollowLinks', 'on', 'LookUnderMasks', 'all', 'Variants', 'All', 'IncludeCommented', 'on', 'Regexp', 'on'};
+				if verLessThan('matlab', '8'), find_args(7:8) = []; end
 				
 				% combinators always represent a search relating to some set of properties from a row of blocks
 				% selected previously - the "hot" row. In order to avoid multiple seaches based on the same
@@ -819,7 +820,7 @@ classdef slQuery < double
 				if islogical(index)
 					ps = ps(index);
 				elseif isnumeric(index)
-					ps = ps(slQuery.get_param(ps, 'PortNumber') == index);
+					ps = ps(arrayfun(@(p) get_param(p, 'PortNumber') == index, ps));
 				else % char ~> filter by port name, when the block is a subsystem
 					if strcmp(type, 'Inport') || strcmp(type, 'DstPortHandle')
 						bt = 'Inport';
