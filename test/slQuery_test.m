@@ -449,3 +449,46 @@ assert(isempty(X));
 %% signal slicing combinator, looping bus, but not subsignal (upstream)
 X = slQuery('Memory[BackgroundColor=grey] << $1');
 assert(isempty(X));
+
+
+% model manipulation
+
+%% add block to system (scalar, plain block spec)
+X = slQuery.gcs + 'Gain';
+fix = onCleanup(@() delete_block(double(X)));
+assert(~isempty(X));
+assert(strcmp(X.BlockType, 'Gain'));
+assert(X.Parent.wrap == slQuery.gcs);
+
+%% add block to system (scalar, scalar block template)
+T = slQuery.gcb;
+X = slQuery.gcs + T;
+fix = onCleanup(@() delete_block(double(X)));
+assert(~isempty(X));
+assert(strcmp(X.BlockType, T.BlockType));
+assert(X.Parent.wrap == slQuery.gcs);
+
+%% add block to system (scalar, block template vector)
+T = slQuery('Terminator');
+X = slQuery.gcs + T;
+fix = onCleanup(@() delete_block(double(X)));
+assert(size(X) == size(T));
+assert(all(strcmp(X.BlockType, T.BlockType)));
+assert(all(X.Parent.wrap == slQuery.gcs));
+
+%% add block to system (vector, plain block spec)
+S = slQuery('SubSystem');
+X = S + 'Gain';
+fix = onCleanup(@() delete_block(double(X)));
+assert(numel(X) == numel(S));
+assert(strcmp(X.BlockType, 'Gain'));
+assert(all(X.Parent.wrap == S));
+
+%% add block to system (vector, matching block template vector)
+[S, T] = slQuery('SubSystem / Terminator')';
+X = S + T;
+fix = onCleanup(@() delete_block(double(X)));
+assert(numel(X) == numel(S));
+assert(all(strcmp(X.BlockType, T.BlockType)));
+assert(all(X.Parent.wrap == S));
+

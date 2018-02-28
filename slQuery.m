@@ -224,6 +224,22 @@ classdef slQuery < double
 		function ps = properties(this)
 			ps = sort(fieldnames(get_param(double(this), 'ObjectParameters')));
 		end
+		function new = plus(sys, spec) % add blocks to subsystems
+			target = getfullname(double(sys));
+			
+			if ischar(spec) || iscellstr(spec) % it's a block type spec
+				source = strcat('built-in/', spec);
+				target = strcat(target, '/', spec);
+			
+			elseif isa(spec, 'slQuery') % it's a list blocks that exist already
+				source = double(spec);
+				names = get_param(source, 'Name');
+				if isrow(names) == iscolumn(target), names = names'; end
+				target = strcat(target, '/', names);
+			end
+			
+			new = slQuery(slQuery.arrayfun(@add_block, source, target, 'MakeNameUnique', 'on'));
+		end
 		function ps = colon(i, this, o) % retrieve port (or line) hanldes ~> x:1, -1:x
 			% TODO: support port names for subsystems
 			ps = [];
