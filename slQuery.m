@@ -6,7 +6,7 @@
                           |___/_|\__\_\\__,_|\___|_|   \__, |
                            easy-as-pie API to Simulink |___/
 
-v0.9.6, 2018 robert@raschhour.com
+v0.9.7, 2017 robert@raschhour.com
 
 slQuery is free software: you can redistribute it and/or modify it under the terms of the GNU
 General Public License as published by the Free Software Foundation, either version 3 of the
@@ -489,6 +489,26 @@ classdef slQuery < double
 			res = arrayfun(fun, varargin{:}, 'UniformOutput', false);
 			res = [res{:}];
 			if isempty(res), res = double.empty(1,0); end
+		end
+		
+		function varargout = arrayfun(fun, varargin)
+			% perform an arrayfun call after coercing the arguments to the same size
+			cs = cellfun(@ischar, varargin);
+			sz = cellfun(@size, varargin(~cs), 'UniformOutput', false);
+			sz = vertcat(sz{:}, [1, 1]); % neutral element if all args are strings (scalar case)
+			assert(numel(setdiff(sz(:, 1), 1)) <= 1 && numel(setdiff(sz(:, 2), 1)) <= 1, ...
+				'MATLAB:dimagree', 'Number of columns or rows in value and selection must match.');
+			sz = max(sz, [], 1);
+			
+			for i = 1:numel(varargin)
+				v = varargin{i};
+				if cs(i), v = {v}; end % convert to cellstr
+				if isrow(v) == 1, v = repmat(v, sz(1), 1); end
+				if iscolumn(v) == 1, v = repmat(v, 1, sz(2)); end
+				if ~iscell(v), v = arrayfun(@(x) {x}, v); end
+				varargin{i} = v;
+			end
+			[varargout{1:nargout}] = cellfun(fun, varargin{:});
 		end
 		
 		function res = get_param(hs, param)
