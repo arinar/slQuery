@@ -482,12 +482,12 @@ classdef slQuery < double
 			end
 		end
 		
-		function res = arrayfun(f, varargin)
-			% arrayfun a function that returns multiple handles and concat all the results into
-			% a single array
-			res = arrayfun(f, varargin{:}, 'UniformOutput', false);
+		function res = listfun(fun, varargin)
+			% perform an arrayfun call, where each call may return multiple handles and concat all the
+			% results into a single array
+			res = arrayfun(fun, varargin{:}, 'UniformOutput', false);
 			res = [res{:}];
-			if isempty(res); res = double.empty(1,0); end
+			if isempty(res), res = double.empty(1,0); end
 		end
 		
 		function res = get_param(hs, param)
@@ -630,7 +630,7 @@ classdef slQuery < double
 								fbs = find_system(bdroot(b), tag_args{:}, 'BlockType', 'From');
 								
 						end
-						neps = slQuery.arrayfun(@(fp) slQuery.follow(fp, addr, front, virt, slic), slQuery.get_ports(fbs, 'Outport', 1));
+						neps = slQuery.listfun(@(fp) slQuery.follow(fp, addr, front, virt, slic), slQuery.get_ports(fbs, 'Outport', 1));
 						if virt, neps = [neps -fbs']; end %#ok<AGROW>
 						
 					case 'From' % ~> find corresponding Goto-blocks
@@ -671,7 +671,7 @@ classdef slQuery < double
 							warning('ambiguous Goto blocks (%s)!', strjoin(gbs, ', '));
 						end
 						
-						neps = slQuery.arrayfun(@(bp) slQuery.follow(bp, addr, front, virt, slic), slQuery.get_ports(gbs, 'Inport', 1));
+						neps = slQuery.listfun(@(bp) slQuery.follow(bp, addr, front, virt, slic), slQuery.get_ports(gbs, 'Inport', 1));
 						if virt, neps = [neps -gbs]; end %#ok<AGROW>
 						
 					case {'Mux', 'Demux'}
@@ -686,7 +686,7 @@ classdef slQuery < double
 							% the signal itself has ended (blocks behind this Mux/Demux are indeed in the signal slice of
 							% the original block)
 							if slic
-								neps = slQuery.arrayfun(@(bp) slQuery.follow(bp, addr, front, virt, slic), ...
+								neps = slQuery.listfun(@(bp) slQuery.follow(bp, addr, front, virt, slic), ...
 									slQuery.get_ports(b, pdir));
 							end
 							
@@ -696,7 +696,7 @@ classdef slQuery < double
 							
 						else % a valid addr ~> try to match the array token
 							assert(isnumeric(addr{end}));
-							neps = slQuery.follow(slQuery.get_ports(b, pdir, addr{end}), addr(1:end-1), front, virt, slic);
+							neps = slQuery.listfun(@(bp) slQuery.follow(bp, addr(1:end-1), front, virt, slic), slQuery.get_ports(b, pdir, addr{end}));
 						end
 					%case 'Assignment'
 					%case 'Concatenate'
@@ -710,7 +710,7 @@ classdef slQuery < double
 						elseif isempty(addr) % there is no addr element for digging down the bus
 							if slic % signal slicing ~> follow the opposite ports of this endpoint (even though, the bus is now many signals)
 								bps = slQuery.get_ports(b, pdir); % all ports of the other side
-								neps = slQuery.arrayfun(@(bp) slQuery.follow(bp, addr, front, virt, slic), bps);
+								neps = slQuery.listfun(@(bp) slQuery.follow(bp, addr, front, virt, slic), bps);
 								
 							else % no signal slicing ~> we're done (this block is it)
 								neps = ep;
@@ -718,7 +718,7 @@ classdef slQuery < double
 							end
 							
 						else % that addr token must be in the names
-							neps = slQuery.arrayfun(@(bp) slQuery.follow(bp, addr(1:end-1), front, virt, slic), ...
+							neps = slQuery.listfun(@(bp) slQuery.follow(bp, addr(1:end-1), front, virt, slic), ...
 								slQuery.get_ports(b, 'Inport', strcmp(addr{end}, names)));
 						end
 						
@@ -777,7 +777,7 @@ classdef slQuery < double
 							
 						elseif slic
 							% signal slicing ~> follow the opposite ports of this endpoint
-							neps = slQuery.arrayfun(@(bp) slQuery.follow(bp, addr, front, virt, slic), ...
+							neps = slQuery.listfun(@(bp) slQuery.follow(bp, addr, front, virt, slic), ...
 								slQuery.get_ports(b, pdir)); % all ports of the other side
 							front(sigid) = true;
 						else
