@@ -23,7 +23,7 @@ assert(slQuery.gcs == get_param(gcs, 'Handle'));
 %% get block handle (scalar selection)
 x = slQuery.gcb;
 assert(x.Handle == gcbh);
-assert(strcmp(class(x.Handle), 'double')); %#ok<STISA> slQuery < double, but must assert h is _not_ slQuery
+assert(isnumeric(x.Handle) && ~isa(x.Handle, 'slQuery'));
 
 %% get block handle (nonscalar selection)
 X = slQuery(gcbh * [1 1; 1 1]);
@@ -202,14 +202,14 @@ assert(all(strcmp(X.ShowName, 'on')));
 
 %% port handle access with colon operator (inport)
 for x = slQuery('Mux')
-    assert(x.PortHandles.Inport(1) == 1:x);
-    assert(x.PortHandles.Inport(2) == 2:x);
+	assert(x.PortHandles.Inport(1) == 1:x);
+	assert(x.PortHandles.Inport(2) == 2:x);
 end
 
 %% port handle access with colon operator (outport)
 for x = slQuery('Demux')
-    assert(x.PortHandles.Outport(1) == x:1);
-    assert(x.PortHandles.Outport(2) == x:2);
+	assert(x.PortHandles.Outport(1) == x:1);
+	assert(x.PortHandles.Outport(2) == x:2);
 end
 
 %% join combinator
@@ -232,8 +232,8 @@ assert(isequal(size(slQuery('SubSystem, GotoTagVisibility, Nonsense')), [3, 0]))
 
 %% use result in loop
 for x = slQuery('Goto, From')
-    assert(size(x, 1) == 2);
-    assert(size(x, 2) == 1);
+	assert(size(x, 1) == 2);
+	assert(size(x, 2) == 1);
 end
 
 %% assign query to separate variables (')
@@ -265,12 +265,12 @@ X([2 1]).BackgroundColor = {'white'; 'white'};
 
 %% numeric indexing for columns (set parameter, distribute row as column)
 X = slQuery('Goto, From');
-fix = fix_param(X.Handle, 'BackgroundColor');
+fix = fix_param(double(X), 'BackgroundColor');
 X([1 2]).BackgroundColor = {'green'; 'red'};
 
 %% numeric indexing for columns (set parameter, distribute row)
 X = slQuery('Goto, From');
-fix = fix_param(X.Handle, 'BackgroundColor');
+fix = fix_param(double(X), 'BackgroundColor');
 X([1 2]).BackgroundColor = repmat({'green'}, [1, size(X, 2)]);
 
 %% logical indexing for rows
@@ -293,17 +293,17 @@ assert(isequal(X(2,3).BlockType, 'From'));
 X = slQuery('SubSystem / Goto');
 assert(~isempty(X));
 for x = X
-    assert(x(1).Handle == x(2).Parent.Handle)
+	assert(x(1).Handle == x(2).Parent.Handle)
 end
 
 %% descendents combinator
 for x = slQuery('SubSystem // Goto')
-    s = x(2);
-    while s ~= 0
-        s = s.Parent.Handle.wrap;
-        if s == x(1), break, end
-    end
-    assert(s ~= 0);
+	s = x(2);
+	while s ~= 0
+		s = s.Parent.Handle.wrap;
+		if s == x(1), break, end
+	end
+	assert(s ~= 0);
 end
 
 %% parent combinator
@@ -317,9 +317,9 @@ assert(isequal(X(1), X(3)));
 %% ascendants combinator
 [B, S] = slQuery('Goto \\ SubSystem')';
 while any(S)
-    B = B.Parent.Handle.wrap;
-    i = B == S; % drop all blocks that match up
-    B = B(~i); S = S(~i);
+	B = B.Parent.Handle.wrap;
+	i = B == S; % drop all blocks that match up
+	B = B(~i); S = S(~i);
 end
 assert(isempty(B) && isempty(S));
 
@@ -327,20 +327,20 @@ assert(isempty(B) && isempty(S));
 X = slQuery('Goto Goto');
 assert(~isempty(X));
 for x = X
-    assert(x(1).Parent.Handle == x(2).Parent.Handle); % must have same parent
-    assert(x(1) ~= x(2)); % can't be sibling to oneself
+	assert(x(1).Parent.Handle == x(2).Parent.Handle); % must have same parent
+	assert(x(1) ~= x(2)); % can't be sibling to oneself
 end
 
 % signal lines, wires
 
 %% signal line combinator (downstream)
 for x = slQuery('Inport -> Outport')
-    assert(x(1):1 == get_param(double(-1:x(2)), 'SrcPortHandle'));
+	assert(x(1):1 == get_param(double(-1:x(2)), 'SrcPortHandle'));
 end
 
 %% signal line combinator (upstream)
 for x = slQuery('Outport <- Inport')
-    assert(x(2):1 == get_param(double(-1:x(1)), 'SrcPortHandle'));
+	assert(x(2):1 == get_param(double(-1:x(1)), 'SrcPortHandle'));
 end
 
 % TODO: signal line combinator (indirectional)
@@ -349,33 +349,33 @@ end
 
 %% signal line combinators with portspec (port number, inport)
 for x = slQuery('Inport -> 2:SubSystem:2 <- Inport')
-    assert(x(1):1 == get_param(double(-2:x(2)), 'SrcPortHandle'));
-    assert(x(1) == x(3));
+	assert(x(1):1 == get_param(double(-2:x(2)), 'SrcPortHandle'));
+	assert(x(1) == x(3));
 end
 
 %% signal line combinators with portspec (port number, outport)
 for x = slQuery('Outport <- 2:SubSystem:2 -> Outport')
-    assert(x(2):2 == get_param(double(-1:x(1)), 'SrcPortHandle'));
-    assert(x(1) == x(3));
+	assert(x(2):2 == get_param(double(-1:x(1)), 'SrcPortHandle'));
+	assert(x(1) == x(3));
 end
 
 %% signal line combinators with portspec (port name, inport)
 for x = slQuery('Inport -> In2:SubSystem:In2 <- Inport')
-    i = str2double(get_param([x(2).fullname '/In2'], 'Port'));
-    assert(x(1):1 == get_param(double(-(i):x(2)), 'SrcPortHandle'));
-    assert(x(1) == x(3));
+	i = str2double(get_param([x(2).fullname '/In2'], 'Port'));
+	assert(x(1):1 == get_param(double(-(i):x(2)), 'SrcPortHandle'));
+	assert(x(1) == x(3));
 end
 
 %% signal line combinators with portspec (port name, outport)
 for x = slQuery('Outport <- Out2:SubSystem:Out2 -> Outport')
-    i = str2double(get_param([x(2).fullname '/Out2'], 'Port'));
-    assert(x(2):(i) == get_param(double(-1:x(1)), 'SrcPortHandle'));
-    assert(x(1) == x(3));
+	i = str2double(get_param([x(2).fullname '/Out2'], 'Port'));
+	assert(x(2):(i) == get_param(double(-1:x(1)), 'SrcPortHandle'));
+	assert(x(1) == x(3));
 end
 
 %% downstream and upstream signal line combinators yield same info
 for x = slQuery('Inport -> Outport <- Inport')
-    assert(x(1) == x(3));
+	assert(x(1) == x(3));
 end
 
 % dataflow wiring combinators - colored port blocks are set up in the test model so the port
