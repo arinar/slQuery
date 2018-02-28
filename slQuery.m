@@ -6,7 +6,7 @@
                           |___/_|\__\_\\__,_|\___|_|   \__, |
                            easy-as-pie API to Simulink |___/
 
-v0.9.5, 2017 robert@raschhour.com
+v0.9.6, 2018 robert@raschhour.com
 
 slQuery is free software: you can redistribute it and/or modify it under the terms of the GNU
 General Public License as published by the Free Software Foundation, either version 3 of the
@@ -21,7 +21,6 @@ see <http://www.gnu.org/licenses/>.
 %}
 classdef slQuery < double
 	%SLQUERY  easy-as-pie API to Simulink
-	
 	methods
 		function this = slQuery(query, varargin)
 			%if nargin == 0, return, end; % syntax for allocation
@@ -49,7 +48,7 @@ classdef slQuery < double
 			this = this@double(handles);
 		end
 	end
-	methods (Access='public', Hidden=true)
+	methods(Access=public, Hidden)
 		function disp(this)
 			if isempty(this)
 				fprintf('   Empty slQuery: %d-by-0\n', size(this, 1));
@@ -64,7 +63,7 @@ classdef slQuery < double
 					if mag < 3, mag = 0; end
 					repr = arrayfun(@(h, l) sprintf('    <a href="matlab: hilite_system(%.15f);">%1.4f</a>', h, l), ...
 						double(this)', double(this)' / 10.^mag, 'UniformOutput', false);
-					if mag > 0 
+					if mag > 0
 						fprintf('   1.0e+%02d\n', mag);
 					end
 					
@@ -74,8 +73,8 @@ classdef slQuery < double
 						for i = 1:w:size(repr, 1)
 							j = min(i+w-1, size(repr, 1));
 							fprintf('  Columns %d through %d\n', i, j)
-							crepr = [repr(i:j, :)];
-							crepr(end+1, 1:end-1) = {char(10)};
+							crepr = repr(i:j, :);
+							crepr(end+1, 1:end-1) = {char(10)}; %#ok<AGROW>
 							disp([crepr{:}]);
 						end
 					else % can print evrything in one go.
@@ -136,13 +135,14 @@ classdef slQuery < double
 								% TODO: the property hierarchy must to be resolved before (outside of this loop)
 								sel = arrayfun(@(h) tl_get(h, 'blockdatastruct'), double(sel), 'UniformOutput', false);
 								
-							otherwise % select a block parameter, field of struct or property of object
+							otherwise % select a block parameter, field of a struct or property of an object
 								if isnumeric(sel) % parameter of a block handle
 									sel = arrayfun(@(h) get_param(h, sub.subs), double(sel), 'UniformOutput', false);
-								
-								elseif ischar(sel)
+									
+								elseif ischar(sel) % possibly single block path.
 									sel = get_param(sel, sub.subs);
-								elseif iscellstr(sel) % possibly block path (ReferenceBlock, Ancestor-Block, Parent, ...)
+									
+								elseif iscellstr(sel) % possibly multiple block pathes (ReferenceBlock, Ancestor-Block, Parent, ...)
 									sel = cellfun(@(h) get_param(h, sub.subs), sel, 'UniformOutput', false);
 									
 								elseif isstruct(sel) || isobject(sel) || all(ishandle(sel)) % field of a struct or property of an object
@@ -158,7 +158,7 @@ classdef slQuery < double
 						% LineHandles.Outport of a bunch of inport blocks), the result cab be a
 						% uniform double-array instead of a cell nesting all the single entries.
 						% This is counter-intuitive for LineHandles (of arbitrary blocks) but
-						% not for e.g. Position                        
+						% not for e.g. Position (rectangle)
 						
 					case '{}' % actions
 						
@@ -166,7 +166,7 @@ classdef slQuery < double
 						error(['what is ''' sub.type '''?']);
 				end
 				
-				% coerce the result to a common convenient data type
+				% trim the result to a common convenient data type
 				if iscell(sel)
 					if isscalar(sel) % TODO: this isn't actually cool, because it breaks algorhitms that work with entire query-results, when those just happen to be scalar
 						sel = sel{1};
@@ -799,7 +799,7 @@ classdef slQuery < double
 			elseif strcmp(type, 'SrcPortHandle') || strcmp(type, 'DstPortHandle')
 				ps = slQuery.get_param(hs, type);
 			elseif isempty(hs)
-				ps = double.empty(0,1);
+				ps = double.empty(0, 1);
 			else
 				ps = get_param(hs, 'PortHandles');
 				if iscell(ps), ps = [ps{:}]; end
@@ -838,7 +838,6 @@ classdef slQuery < double
 			if isempty(ps); ps = double.empty(1, 0); end;
 		end
 	end
-	
 	methods(Static) % wrappers for convenience
 		function result = find(varargin)
 			result = slQuery(get_param(find_system(bdroot, varargin{:}), 'Handle'));
