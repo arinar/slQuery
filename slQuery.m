@@ -190,6 +190,8 @@ classdef slQuery < double
 			end
 		end
 		function this = subsasgn(this, subs, value)
+			% TODO: support "this(select) = []" - syntax for dropping rows or columns
+			% TODO: support .tl.bla.blubb - assignments.s
 			sel = this;
 			for sub = subs
 				switch sub.type
@@ -206,42 +208,9 @@ classdef slQuery < double
 						end
 
 					case '.' % parameter access
-						if isscalar(value) || ischar(value) % scalar assignment ~> propagate everywhere
-							
-							arrayfun(@(h) set_param(h, sub.subs, value), double(sel));
-							
-						elseif isvector(value) % vector assignment ~> propagate to columns or rows
-							assert(any(numel(value) == size(sel)), 'MATLAB:dimagree', 'Number of columns or rows in value and selection must match.');
-							sel = double(sel);
-								
-							if numel(value) == size(sel, 2) % number of cols matches ~> transpose the selection (and values) so below code can work
-								sel = sel';
-								value = value';
-								% NOTE: An assignment matching the column-count doesn't generally make much sense, because the
-								% cols-dimension is for the arbitrary number of results found by a query and thus unpredictable.
-								% We do however still support this mode.
-							end
-							
-							for i = 1:size(value, 1)
-								arrayfun(@(h) set_param(h, sub.subs, value{i}), double(sel(i, :)));
-							end
 						
-						else % matrix assignment ~> row/col-wise or exact assignments
-							sm = size(value) == size(sel); % matching dimensions
-							
-							if all(sm)
-								arrayfun(@(h, v) set_param(h, sub.subs, v), sel, value);
-								
-							elseif any(sm)
-								if sm(2), value = value'; end
-									
-								for i = 1:size(value, 1)
-									set_param(sel(i, :), sub.subs, value(i, :));
-								end
-							else
-								error('MATLAB:dimagree', 'Value shape must be scalar, row vector or match selection.');
-							end
-						end
+						slQuery.arrayfun(@set_param, double(sel), sub.subs, value);
+						
 					case '{}' % actions
 						
 					otherwise % they did something stupid
