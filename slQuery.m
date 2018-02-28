@@ -27,6 +27,9 @@ classdef slQuery < double
 			if isnumeric(query) % simple handle-array conversion
 				handles = query;
 				
+			elseif iscellstr(query) % fullname-array conversion
+				handles = cellfun(@(s) get_param(s, 'Handle'), query);
+				
 			elseif ischar(query) % normal query
 				% additional arguments represent sets of blocks to pick from via (123) - index
 				idx = cellfun(@isnumeric, varargin);
