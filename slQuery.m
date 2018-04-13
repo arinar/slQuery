@@ -6,7 +6,7 @@
                           |___/_|\__\_\\__,_|\___|_|   \__, |
                            easy-as-pie API to Simulink |___/
 
-v0.9.8, 2017 robert@raschhour.com
+v0.9.9, 2017 robert@raschhour.com
 
 slQuery is free software: you can redistribute it and/or modify it under the terms of the GNU
 General Public License as published by the Free Software Foundation, either version 3 of the
@@ -226,9 +226,9 @@ classdef slQuery < double
 		function ps = properties(this)
 			ps = sort(fieldnames(get_param(double(this), 'ObjectParameters')));
 		end
-		function new = plus(sys, spec) % add blocks to subsystems
+		function new = rdivide(sys, spec) % add blocks to subsystems
 			target = getfullname(double(sys));
-			
+			% TODO: parse the spec entirely (param-specs, class)
 			if ischar(spec) || iscellstr(spec) % it's a block type spec
 				source = strcat('built-in/', spec);
 				target = strcat(target, '/', spec);
