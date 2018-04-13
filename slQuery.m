@@ -6,7 +6,7 @@
                           |___/_|\__\_\\__,_|\___|_|   \__, |
                            easy-as-pie API to Simulink |___/
 
-v0.9.7, 2017 robert@raschhour.com
+v0.9.8, 2017 robert@raschhour.com
 
 slQuery is free software: you can redistribute it and/or modify it under the terms of the GNU
 General Public License as published by the Free Software Foundation, either version 3 of the
@@ -139,29 +139,44 @@ classdef slQuery < double
 								sel = arrayfun(@(h) tl_get(h, 'blockdatastruct'), double(sel), 'UniformOutput', false);
 								
 							otherwise % select a block parameter, field of a struct or property of an object
-								if isnumeric(sel) % parameter of a block handle
-									sel = arrayfun(@(h) get_param(h, sub.subs), double(sel), 'UniformOutput', false);
-									
-								elseif ischar(sel) % possibly single block path.
-									sel = get_param(sel, sub.subs);
-									
-								elseif iscellstr(sel) % possibly multiple block pathes (ReferenceBlock, Ancestor-Block, Parent, ...)
-									sel = cellfun(@(h) get_param(h, sub.subs), sel, 'UniformOutput', false);
-									
-								elseif isstruct(sel) || isobject(sel) || all(ishandle(sel)) % field of a struct or property of an object
+								
+								if isstruct(sel) || (isobject(sel) && ~isa(sel, 'slQuery')) || all(ishandle(sel)) % field of a struct or property of an object
 									sel = arrayfun(@(h) h.(sub.subs), sel, 'UniformOutput', false);
-									
-								elseif iscell(sel) && all(cellfun(@isobject, sel) | ishandle(sel)) % (hopefully) shared member of collection of different objects
+								
+								elseif iscell(sel) && all(cellfun(@(s) isobject(s) | ishandle(s) | isstruct(s), sel)) % (hopefully) shared member of collection of different objects
 									sel = cellfun(@(h) h.(sub.subs), sel, 'UniformOutput', false);
 								
+								else % something from simulink
+									
+									if isa(sel, 'slQuery') % get_param of a handle
+										sel = double(sel);
+									elseif ischar(sel) % possibly single block path.
+										sel = get_param(sel, 'Handle');
+									elseif iscellstr(sel) % possibly multiple block pathes (ReferenceBlock, Ancestor-Block, Parent, ...)
+										sel = cellfun(@(h) get_param(h, 'Handle'), sel);
+									end
+									
+									% TODO: maybe check, that all blocks actually have this parameter
+									ops = get_param(sel(1), 'ObjectParameters');
+									
+									fs = fieldnames(ops);
+									fi = strcmpi(sub.subs, fs); assert(any(fi), 'no parameter ''%s''', sub.subs);
+									op = ops.(fs{fi});
+									
+									sel = arrayfun(@(h) get_param(h, sub.subs), sel, 'UniformOutput', ismember(op.Type, {'real'}));
+									
+									% simplify result data type, based on parameter type
+									switch op.Type
+										case {'rectangle', 'ports'} % homogenous array ~> add extra matrix dimension
+											sel = reshape(cell2mat(sel), size(sel, 1), size(sel, 2), []);
+										case 'matrix'
+											if isstruct(sel{1}), sel = cell2mat(sel); end
+											%TODO: case 'boolean' maybe ~> logical
+											%TODO: case 'enum' maybe categorical
+											%other types {'handle vector' 'list', 'object'}
+									end
 								end
 						end
-						
-						% TODO: when the result is a cell but happens to be a uniform (e.g.
-						% LineHandles.Outport of a bunch of inport blocks), the result cab be a
-						% uniform double-array instead of a cell nesting all the single entries.
-						% This is counter-intuitive for LineHandles (of arbitrary blocks) but
-						% not for e.g. Position (rectangle)
 						
 					case '{}' % actions
 						
@@ -169,23 +184,10 @@ classdef slQuery < double
 						error(['what is ''' sub.type '''?']);
 				end
 				
-				% trim the result to a common convenient data type
-				if iscell(sel)
-					if isscalar(sel) % TODO: this isn't actually cool, because it breaks algorhitms that work with entire query-results, when those just happen to be scalar
-						sel = sel{1};
-					else
-						type = unique(cellfun(@class, sel, 'UniformOutput', false));
-						
-						if ~isscalar(type), continue, end
-						
-						if isnumeric(sel{1})
-							sel = cell2mat(sel);
-						elseif isstruct(sel{1})
-							fields = cellfun(@fieldnames, sel, 'UniformOutput', false);
-							if ~isequal(fields{:}), return, end
-							sel = cell2mat(sel);
-						end
-					end
+				% LEGACY. this isn't actually cool, because it breaks algorhitms that work with entire
+				% query-results, when those just happen to be scalars. TODO: need a way to decide this!
+				if iscell(sel) &&  isscalar(sel) 
+					sel = sel{1};
 				end
 			end
 		end
