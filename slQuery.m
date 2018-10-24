@@ -64,10 +64,10 @@ classdef slQuery < double
 					% must build one big array of text, so that it can all print instantaneously
 					mag = floor(log10(max(max(double(this)))));
 					if mag < 3, mag = 0; end
-					repr = arrayfun(@(h, l) sprintf('    <a href="matlab: hilite_system(%.15f);">%1.4f</a>', h, l), ...
+					repr = arrayfun(@(h, l) sprintf('% *s<a href="matlab: hilite_system(%.15f);">%1.4f</a>', min(4, 5-ceil(log10(l))), '', h, l), ...
 						double(this)', double(this)' / 10.^mag, 'UniformOutput', false);
 					if mag > 0
-						fprintf('   1.0e+%02d\n', mag);
+						fprintf('   1.0e+%02d *', mag);
 					end
 					
 					w = get(0, 'CommandWindowSize'); w = floor(w(1) / 10);
@@ -82,7 +82,7 @@ classdef slQuery < double
 						end
 					else % can print evrything in one go.
 						repr(end+1, 1:end-1) = {char(10)};
-						disp([repr{:}])
+						disp([char(10) repr{:}])
 					end
 				end
 			end
