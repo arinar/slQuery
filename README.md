@@ -328,8 +328,8 @@ Interactive Convenience Features
 The most basic block identifiers can be retrieved from an slQuery-result easily
 
 	>> slQuery('Constant').handle
-	>> slQuery('Constant').path
-produce the (double) handles or full pathes of the selected blocks
+	>> slQuery('Constant').fullname
+... produce the (double) handles or full pathes of the selected blocks
 
 ### Highlighting
 
