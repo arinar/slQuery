@@ -42,20 +42,6 @@ Prefixing a name with a hash (#) selects on a specific block name.
 	>> slQuery('.TL_Inport#in2')
 ... selects TargetLink Inports based on their block name, which must match 'in2'
 
-
-### Pick from known Set of Blocks
-
-Using `'(i)'` you may restrict the selection to a candidate set of blocks given as an additional 
-argument to the query - the i-th additional argument.
-
-	>> slQuery('(1) // *', gcs)
-... finds all blocks inside the current system
-
-    >> slQuery('(1) / Inport >> (2)', gcs, gcb), ans(2)
-... find all Inports of the current system, that affect the selected block in it
-
-    >> slQuery('(1) -> Sum', {'sys/port1', 'sys/const1'})
-... find all Sum blocks, that are connected to any of the given blocks
 ### Conditions for Block/Mask Parameters
 
 Every search can be refined by specifying arbitrary block parameters in brackets. You can use
@@ -77,11 +63,24 @@ for any flag-parameter to be 'on' - only one such flag is allowed though.
 	>> slQuery('+Selected')
 ... finds all currently selected blocks.
 
+### Pick from known Set of Blocks
+
+Using `'(i)'` you may restrict the selection to a candidate set of blocks given as an additional
+argument to the query - the i-th additional argument.
+
+	>> slQuery('(1)Inport', slQuery('+Selected'));
+... first find all selected blocks, then pick only Inport-block from that
+	>> slQuery('Inport+Selected'); % equivalent
+
+    >> slQuery('(1)', {'sys/port1', 'sys/const1'})
+... simply transform the given block fullnames to slQuery
+    >> slQuery({'sys/port1', 'sys/const1'}) % equivalent
+
 ### General Selector
 
 the general form of a selector is this:
 
-	'BlockType#BlockName.MaskType+Flag[Param1=Value1,Param2=Value2,...]
+	'(SetIndex)BlockType#BlockName.MaskType+Flag[Param1=Value1,Param2=Value2,...]
 ... where all parts are optional, but at least one part must be there. You can also use `*`
 instead of the block type if you simply want to match any block at all.
 
