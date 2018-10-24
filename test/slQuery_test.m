@@ -55,7 +55,7 @@ assert(isa(X.Parent.Handle.wrap, 'slQuery'));
 
 %% block object parameters act as the properties
 x = slQuery.gcb;
-assert(isempty(setxor(properties(x), fieldnames(x.ObjectParameters))));
+assert(isempty(setxor(properties(x), fieldnames(get_param(gcbh, 'ObjectParameters')))));
 
 %% get block parameter (string)
 x = slQuery.gcb;
@@ -472,12 +472,12 @@ assert(X.Parent.wrap == slQuery.gcs);
 T = slQuery('Terminator');
 X = slQuery.gcs ./ T;
 fix = onCleanup(@() delete_block(double(X)));
-assert(size(X) == size(T));
+assert(all(size(X) == size(T)));
 assert(all(strcmp(X.BlockType, T.BlockType)));
 assert(all(X.Parent.wrap == slQuery.gcs));
 
 %% add block to system (vector, plain block spec)
-S = slQuery('SubSystem');
+S = slQuery('SubSystem[LinkStatus=none]');
 X = S ./ 'Gain';
 fix = onCleanup(@() delete_block(double(X)));
 assert(numel(X) == numel(S));
