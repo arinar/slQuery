@@ -11,11 +11,19 @@ structured documents. Considering that nowadays, documents (mostly xml) are bein
 manipulated with suitable and comprehensive mechanisms and especially knowing what the jQuery
 library does so successfully for web developers, this had to be done.
 
-How slQuery can be used to Select single elements
--------------------------------------------------
+Think of slQuery as a powerful syntax for interacting with the blocks of a Simulink at model
+construction time (not simulation time). It's a tool for avoiding the heavy boilerplate code
+that is the normal API (`find_system`, `get`/`set_param` and any construction built upon them)
 
-Blocks are selected using block-selector expressions - they are a special syntax for
-`find_system`-calls. Here are some examples of what can be done - in order of increasing fun.
+How slQuery can be used to find simple blocks
+---------------------------------------------
+
+Using _block-selector_ expressions, one can filter all blocks of the model to find, what is
+required or interesting - they are a special syntax for `find_system`-calls. The expression is
+passed as a query to the slQuery constructor which will return an array of the resulting block
+handles.
+
+Here are some examples of what can be done - in order of increasing fun.
 
 ### Block-Type, Mask-Type
 
