@@ -343,7 +343,7 @@ short hilite-fest that brings you along the entire result in sequence.
 
 ### Matrix of Block Links
 
-	>> slQuery('Inport \ SubSystem#MySys / Outport').link
+	>> slQuery('Inport \ SubSystem#MySys / Outport').hyperlink
 
 Will produce a cellstr-array containing the block names as clickable links, that will bring you
 directly to the block in the diagram.
