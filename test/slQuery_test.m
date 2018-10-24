@@ -5,7 +5,8 @@
 open_system('slQuery_testmodel');
 modelDTor = onCleanup(@() close_system('slQuery_testmodel', false));
 
-sys = get_param('slQuery_testmodel/Subsystem', 'Handle'); % block chosen to have 2 inports, 2 outports
+% special elements
+subs22 = get_param('slQuery_testmodel/Subsystem', 'Handle'); % block chosen to have 2 inports, 2 outports
 
 % parameter/attribute access:
 
@@ -86,16 +87,16 @@ fix = fix_param(gcb, 'Position');
 x.Position = [100, 200, 300, 400];
 
 %% get block parameter (structure)
-x = slQuery(sys);
-assert(isequal(x.LineHandles, get_param(sys, 'LineHandles')));
+x = slQuery(subs22);
+assert(isequal(x.LineHandles, get_param(subs22, 'LineHandles')));
 
 %% get block parameter (field of a structure)
-x = slQuery(sys);
-assert(isequal(x.LineHandles.Inport, getfield(get_param(sys, 'LineHandles'), 'Inport')));
+x = slQuery(subs22);
+assert(isequal(x.LineHandles.Inport, getfield(get_param(subs22, 'LineHandles'), 'Inport')));
 
 %% get block parameter (element of an array-field of a structure)
-x = slQuery(sys);
-assert(isequal(x.LineHandles.Inport(2), getfield(get_param(sys, 'LineHandles'), 'Inport', {2})));
+x = slQuery(subs22);
+assert(isequal(x.LineHandles.Inport(2), getfield(get_param(subs22, 'LineHandles'), 'Inport', {2})));
 
 % selectors:
 %% any selector
