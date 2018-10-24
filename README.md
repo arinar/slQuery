@@ -95,8 +95,8 @@ instead of the block type if you simply want to match any block at all.
 Selection on situational compounds
 ----------------------------------
 
-To search for complex model situations, use combinators to describe the relation of two or more
-selection elements to each other.
+To search for complex model situations, use _combinators_ to describe the relation of two or
+more elements matched by block-selectors.
 
 ### Hierarchy Combinators
 
@@ -194,7 +194,7 @@ Fancy Stuff
 This "any"-relation enables selection of the outer product set of two completely unrelated sets
 of situations.
 
->> slQuery('Inport, Outport')
+	>> slQuery('Inport, Outport')
 ... yields all combinations of Inport and Outport selectors
 
 This is probably only useful in combination with back reference selectors.
@@ -219,7 +219,9 @@ a normal query, in terms of back-references like so:
 
 All block matches from back references will be dropped and the result is then the same.
 
-### Back References in Property Selectors (TODO)
+### Back References in Property Selectors
+
+*NOTE: This feature is not yet implemented!*
 
 Back references may be used in propery selectors with the `'$<i>.<Parameter>'`-syntax, to check
 for equality of block parameters.
@@ -227,12 +229,10 @@ for equality of block parameters.
 	>> slQuery('Goto, From[GotoTag=$1.GotoTag]')
 ... yields all Pairs of Goto- & From-Blocks having the same GotoTag name
 
-This feature may only be used after a join-combinator preceeding it. Although syntactically 
-this is a mode of selection (and not a relation between blocks as defined by combinator), this 
-really is fundamentally combinator-like, because it refers to another block of the same 
+This feature may only be used after a join-combinator preceeding it. Although syntactically
+this is a mode of selection (and not a relation between blocks as defined by combinator), this
+really is fundamentally combinator-like, because it refers to another block of the same
 potential situational compound. (TODO: remove this restriction, by reworking the select-algo)
-
-TODO: maybe use @ for this
 
 How results can be used to access stuff
 ---------------------------------------
