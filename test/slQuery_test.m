@@ -3,6 +3,7 @@
 % preconditions
 % open test model in fresh state
 open_system('slQuery_testmodel');
+modelDTor = onCleanup(@() close_system('slQuery_testmodel', false));
 
 sys = get_param('slQuery_testmodel/Subsystem', 'Handle'); % block chosen to have 2 inports, 2 outports
 
