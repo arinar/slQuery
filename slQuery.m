@@ -267,9 +267,8 @@ classdef slQuery < double
 			[selectors, combinators] = regexp(query, '\s*( |\\\\|\\|//|/|(:\s*\w+\s*)?(->|-|<-|~>|~|<~|=>|<=|>>|<>|<<|,)(\s*\w+\s*:)?)\s*(?![^\[]*\])', 'split', 'match');
 			
 			% start with the search root and combinator ',' for arbitrary position in this root
-			root = get_param(bdroot, 'Handle'); % always search only in current model
+			hot = get_param(bdroot, 'Handle'); % always search only in current model
 			handles = double.empty(0, 1);
-			hot = root;
 			for act = [',' combinators; selectors]
 				% parse the combinator:     '    (colon with portspec)...(                      combinator type (again)                       )...(portspec with colon )
 				combinator = regexp(act{1}, '^\s*(:)?(?<sp>(?(1)\w+))?\s*(?<type>( |\\\\|\\|//|/|->|-|<-|~>|~|<~|=>|<=|>>|<>|<<|,(?![^\[]*\])))\s*(?<dp>\w+)?\s*(?(4):)?\s*$', 'names');
@@ -288,8 +287,8 @@ classdef slQuery < double
 				% info and perform the search once for each group and then outer-join the result to the original
 				% set of columns
 				switch combinator.type
-					case ',' % group all into one, because not really a combinator
-						hinfos = repmat(root, size(hot));
+					case ',' % group blocks by the block diagram root (only relation they have)
+						hinfos = bdroot(hot);
 					case {'\', '\\'} % group by parent of the last blocks
 						% case {'\', '\\', ' '}  NOTE/TODO: the sibling-combinator ' ' can't be here included here because each block cannot be included amongst its own siblings
 						hinfos = slQuery.get_ref(hot, 'Parent');
@@ -379,7 +378,7 @@ classdef slQuery < double
 						case '\\' % arbitrary ascendant (ancestor)
 							% compute the chain of parents
 							new = [];
-							while info % ~= root?
+							while info ~= -1
 								new(end+1) = info; %#ok<AGROW>
 								info = slQuery.get_ref(info, 'Parent');
 							end
