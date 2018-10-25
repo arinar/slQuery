@@ -157,25 +157,8 @@ classdef slQuery < double
 										sel = cellfun(@(h) get_param(h, 'Handle'), sel);
 									end
 									
-									% TODO: maybe check, that all blocks actually have this parameter
-									ops = get_param(sel(1), 'ObjectParameters');
-									
-									fs = fieldnames(ops);
-									fi = strcmpi(sub.subs, fs); assert(any(fi), 'no parameter ''%s''', sub.subs);
-									op = ops.(fs{fi});
-									
-									sel = arrayfun(@(h) get_param(h, sub.subs), sel, 'UniformOutput', ismember(op.Type, {'real'}));
-									
-									% simplify result data type, based on parameter type
-									switch op.Type
-										case {'rectangle', 'ports'} % homogenous array ~> add extra matrix dimension
-											sel = reshape(cell2mat(sel), size(sel, 1), size(sel, 2), []);
-										case 'matrix'
-											if isstruct(sel{1}), sel = cell2mat(sel); end
-											%TODO: case 'boolean' maybe ~> logical
-											%TODO: case 'enum' maybe categorical
-											%other types {'handle vector' 'list', 'object'}
-									end
+									ot = slQuery.get_paramtype(sel, sub.subs);
+									sel = arrayfun(@(h) get_param(h, sub.subs), sel, 'UniformOutput', ismember(ot, {'real'}));
 								end
 						end
 						
@@ -509,9 +492,18 @@ classdef slQuery < double
 				res = double.empty(1,0);
 			end
 		end
-		
+
+		function type = get_paramtype(sel, param)
+			% TODO: maybe check, that all blocks actually have this parameter
+			if isempty(sel)
+				type = '';
+			elseif ismember(lower(param), {'object', 'linkdata'}) % not listed in ObjectParameters
+				type = 'object';
 			else
-				p = cell2mat(get_param(p, 'Handle'));
+				ops = get_param(sel(1), 'ObjectParameters');
+				fs = fieldnames(ops);
+				fi = strcmpi(param, fs); assert(any(fi), 'no parameter ''%s''', param);
+				type = ops.(fs{fi}).Type;
 			end
 		end
 		
