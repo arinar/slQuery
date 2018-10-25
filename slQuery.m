@@ -698,6 +698,8 @@ classdef slQuery < double
 							if slic
 								neps = slQuery.listfun(@(bp) slQuery.follow(bp, addr, front, virt, slic), ...
 									slQuery.get_ports(b, pdir));
+							else
+								neps = [];
 							end
 							
 						elseif isscalar(slQuery.get_ports(b, pdir)) % only one inport and outport ~> doesn't mux/demux anything at all
@@ -712,11 +714,10 @@ classdef slQuery < double
 					%case 'Concatenate'
 						
 					case 'BusCreator'
-						names = get_param(b, 'InputSignalNames');
-						
 						if strcmp(edir, 'Inport') % ~> add an address token and follow the outport
-							neps = slQuery.follow(slQuery.get_ports(b, 'Outport', 1), [addr names{get(ep, 'PortNumber')}], front, virt, slic);
-							
+							signals = get_param(b, 'SignalHierarchy');
+							neps = slQuery.follow(slQuery.get_ports(b, 'Outport', 1), [addr signals(get(ep, 'PortNumber')).name], front, virt, slic);
+
 						elseif isempty(addr) % there is no addr element for digging down the bus
 							if slic % signal slicing ~> follow the opposite ports of this endpoint (even though, the bus is now many signals)
 								bps = slQuery.get_ports(b, pdir); % all ports of the other side
@@ -728,8 +729,9 @@ classdef slQuery < double
 							end
 							
 						else % that addr token must be in the names
+							signals = get_param(b, 'SignalHierarchy');
 							neps = slQuery.listfun(@(bp) slQuery.follow(bp, addr(1:end-1), front, virt, slic), ...
-								slQuery.get_ports(b, 'Inport', strcmp(addr{end}, names)));
+								slQuery.get_ports(b, 'Inport', strcmp(addr{end}, {signals.name})));
 						end
 						
 					case 'BusSelector'
