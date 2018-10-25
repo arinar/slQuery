@@ -242,6 +242,13 @@ classdef slQuery < double
 				ps = [ps, slQuery(arrayfun(@(b) getfield(get_param(b, ot), 'Outport', {abs(o)}), double(this)))];
 			end
 		end
+		function ls = gt(sps, dps) % add a line between ports x:1 > 1:y
+			sys = unique(slQuery.get_ref(slQuery.get_ref(double(sps), 'Parent'), 'Parent'));
+			ls = slQuery.arrayfun(@(dp) get_param(double(dp), 'line'), dps);
+			delete_line(ls(ls ~= -1));
+			ls = slQuery.arrayfun(@add_line, sys, double(sps), double(dps), 'Autorouting', 'on');
+			ls = slQuery(ls);
+		end
 		function [varargout] = ctranspose(this) % allow 'dispersed' assignments: [a, b, ~] = slQuery(...)';
 			if nargout < 2
 				varargout{1} = this; % this does not transpose the array either
