@@ -6,7 +6,7 @@
                           |___/_|\___\_\\__,_|\___|_|   \__, |
                             easy-as-pie API to Simulink |___/
 
-v1.3, 2018 robert@raschhour.com
+v1.4, 2018 robert@raschhour.com
 
 slQuery is free software: you can redistribute it and/or modify it under the terms of the GNU
 General Public License as published by the Free Software Foundation, either version 3 of the
@@ -136,10 +136,16 @@ classdef slQuery < double
 								
 							case 'root' % return the block diagram root of all blocks
 								sel = bdroot(double(sel));
+
 							case 'tl' % return a TargetLink property
-								% TODO: the property hierarchy must to be resolved before (outside of this loop)
+								subs(1:find(strcmp({subs.subs}, 'tl'))) = [];
 								sel = arrayfun(@(h) tl_get(h, 'blockdatastruct'), double(sel), 'UniformOutput', false);
-								
+								if ~isempty(subs)
+									sel = cellfun(@(p) subsref(p, subs), sel, 'UniformOutput', false);
+								end
+								if isscalar(sel), sel = sel{1}; end
+								break
+
 							otherwise % select a block parameter, field of a struct or property of an object
 								
 								if isstruct(sel) || (isobject(sel) && ~isa(sel, 'slQuery')) || all(all(ishandle(sel))) % field of a struct or property of an object
@@ -175,7 +181,6 @@ classdef slQuery < double
 
 		function this = subsasgn(this, subs, value)
 			% TODO: support "this(select) = []" - syntax for dropping rows or columns
-			% TODO: support .tl.bla.blubb - assignments
 			sel = this;
 			for sub = subs
 				switch sub.type
@@ -192,6 +197,18 @@ classdef slQuery < double
 						end
 						
 					case '.' % parameter access
+						if strcmp(sub.subs, 'tl') % set TargetLink property ~> collect all items up for tl_set
+							subs(1:find(strcmp({subs.subs}, 'tl'))) = [];
+							if ~isempty(subs)
+								tlprops = arrayfun(@(h) tl_get(h, 'blockdatastruct'), double(sel), 'UniformOutput', false);
+								tlprops = slQuery.arrayfun(@subsasgn, tlprops, {subs}, value);
+							else
+								tlprops = slQuery.arrayfun(@(~, v) v, sel, value);
+							end
+							arrayfun(@(h, p) tl_set(h, 'blockdatastruct', p), double(sel), tlprops, 'UniformOutput', false);
+							break; % all further subs were resolved here
+						end
+						
 						switch slQuery.get_paramtype(double(sel), sub.subs)
 							case {'rectangle', 'ports'} % homogenous array ~> pack last dimension into cell
 								value = num2cell(value, numel(size(value)));
@@ -342,6 +359,7 @@ classdef slQuery < double
 					end
 					
 					for attr = selector.attributes % parameters
+						% TODO: also support ".tl.bla.blubb" parameters.
 						if attr.value(1) == '"' && attr.value(end) == '"'
 							attr.value = attr.value(2:end-1);
 						end
