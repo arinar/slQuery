@@ -452,6 +452,19 @@ assert(isempty(X));
 X = slQuery('Memory[BackgroundColor=grey] << $1');
 assert(isempty(X));
 
+% reference block
+
+%% resolved link to a library block (acute)
+X = slQuery('SubSystem ´ *');
+
+%% all active links to a block (grave)
+X = slQuery('slQuery_testlibrary // * ` SubSystem');
+
+%% resolved link to a library block (international)
+X = slQuery('SubSystem § *');
+
+%% all active links to a block (international)
+X = slQuery('slQuery_testlibrary // * @ SubSystem');
 
 % combinatorics
 

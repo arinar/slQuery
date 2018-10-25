@@ -6,7 +6,7 @@
                           |___/_|\___\_\\__,_|\___|_|   \__, |
                             easy-as-pie API to Simulink |___/
 
-v1.2, 2018 robert@raschhour.com
+v1.3, 2018 robert@raschhour.com
 
 slQuery is free software: you can redistribute it and/or modify it under the terms of the GNU
 General Public License as published by the Free Software Foundation, either version 3 of the
@@ -278,16 +278,16 @@ classdef slQuery < double
 	end
 	methods(Access=private, Static)
 		function handles = select(query, varargin) % core "select" algorithm of slQuery
-			% split query along the combinators                                                                                          ( outside [] )
-			[selectors, combinators] = regexp(query, '\s*( |\\\\|\\|//|/|(:\s*\w+\s*)?(->|-|<-|~>|~|<~|=>|<=|>>|<>|<<|,)(\s*\w+\s*:)?)\s*(?![^\[]*\])', 'split', 'match');
-			
+			% split query along the combinators                                                                                                  ( outside [] )
+			[selectors, combinators] = regexp(query, '\s*( |\\\\|\\|//|/|,|@|§|´|`|(:\s*\w+\s*)?(->|-|<-|~>|~(?!=)|<~|=>|<=|>>|<>|<<)(\s*\w+\s*:)?)\s*(?![^\[]*\])', 'split', 'match');
+
 			% start with the search root and combinator ',' for arbitrary position in this root
 			hot = get_param(bdroot, 'Handle'); % always search only in current model
 			handles = double.empty(0, 1);
 			for act = [',' combinators; selectors]
-				% parse the combinator:     '    (colon with portspec)...(                      combinator type (again)                       )...(portspec with colon )
-				combinator = regexp(act{1}, '^\s*(:)?(?<sp>(?(1)\w+))?\s*(?<type>( |\\\\|\\|//|/|->|-|<-|~>|~|<~|=>|<=|>>|<>|<<|,(?![^\[]*\])))\s*(?<dp>\w+)?\s*(?(4):)?\s*$', 'names');
-				
+				% parse the combinator:     '    (colon with portspec)...(                          combinator type (again)                           )...(portspec with colon )
+				combinator = regexp(act{1}, '^\s*(:)?(?<sp>(?(1)\w+))?\s*(?<type>( |\\\\|\\|//|/|,|@|§|´|`|->|-|<-|~>|~|<~|=>|<=|>>|<>|<<(?![^\[]*\])))\s*(?<dp>\w+)?\s*(?(4):)?\s*$', 'names');
+
 				% cast numeric port qualifiers
 				if ~isnan(str2double(combinator.sp)), combinator.sp = str2double(combinator.sp); end
 				if ~isnan(str2double(combinator.dp)), combinator.dp = str2double(combinator.dp); end
@@ -307,6 +307,8 @@ classdef slQuery < double
 					case {'\', '\\'} % group by parent of the last blocks
 						% case {'\', '\\', ' '}  NOTE/TODO: the sibling-combinator ' ' can't be here included here because each block cannot be included amongst its own siblings
 						hinfos = slQuery.get_ref(hot, 'Parent');
+					case {'§', '´'}
+						hinfos = slQuery.get_ref(hot, 'ReferenceBlock');
 					otherwise % group only by block-handle itself
 						hinfos = hot;
 				end
@@ -400,6 +402,19 @@ classdef slQuery < double
 							% filter by search-match
 							new = find_system(new, 'SearchDepth', 0, find_args{:})';
 							
+						case {'§', '´'} % the linked library block
+							% info is the reference block property already resolved
+							if info == -1
+								new = [];
+							else
+								new = find_system(info, 'SearchDepth', 0, find_args{:})';
+							end
+
+						case {'@', '`'} % model blocks linking this library block
+							% this is more expensive: search from root 0 instead of bdroot
+							new = find_system(0, 'ReferenceBlock', getfullname(info));
+							new = find_system(new, 'SearchDepth', 0, find_args{:})';
+
 						case {'->', '-', '<-'} % directly wired
 							ps = double.empty(1, 0);
 							if ismember(combinator.type, {'->', '-'})
@@ -424,13 +439,13 @@ classdef slQuery < double
 							% make empty frontier for recursion breakpoints
 							front = containers.Map('KeyType', 'char', 'ValueType', 'logical');
 							if ismember(combinator.type, {'~>', '~', '=>', '=', '>>', '<>'})
-								for port = [-info slQuery.get_ports(info, 'Outport', combinator.sp)]
+								for port = [-info(ismember(get_param(info, 'BlockType'), {'Outport', 'Goto'})) slQuery.get_ports(info, 'Outport', combinator.sp)]
 									ps = [ps slQuery.follow(port, {}, front, virt, slic)]; %#ok<AGROW>
 								end
 							end
 							
 							if ismember(combinator.type, {'<~', '~', '<=', '=', '<<', '<>'})
-								for port = [-info slQuery.get_ports(info, 'Inport', combinator.sp)]
+								for port = [-info(ismember(get_param(info, 'BlockType'), {'Inport', 'From'})) slQuery.get_ports(info, 'Inport', combinator.sp)]
 									ps = [ps slQuery.follow(port, {}, front, virt, slic)]; %#ok<AGROW>
 								end
 							end
