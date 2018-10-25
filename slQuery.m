@@ -6,7 +6,7 @@
                           |___/_|\___\_\\__,_|\___|_|   \__, |
                             easy-as-pie API to Simulink |___/
 
-v1.0, 2018 robert@raschhour.com
+v1.1, 2018 robert@raschhour.com
 
 slQuery is free software: you can redistribute it and/or modify it under the terms of the GNU
 General Public License as published by the Free Software Foundation, either version 3 of the
@@ -208,6 +208,9 @@ classdef slQuery < double
 	methods(Access=public) % operators that are operations
 		function ps = properties(this)
 			ps = sort(fieldnames(get_param(double(this), 'ObjectParameters')));
+		end
+		function new = ldivide(spec, sys)
+			new = slQuery.rdivide(sys, spec);
 		end
 		function new = rdivide(sys, spec) % add blocks to subsystems
 			target = getfullname(double(sys));
