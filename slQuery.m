@@ -1,12 +1,12 @@
 %{
-                               _  ___
-                           ___| |/ _ \ _   _  ___ _ __ _   _
-                          / __| | | | | | | |/ _ \ '__| | | |
-                          \__ \ | |_| | |_| |  __/ |  | |_| |
-                          |___/_|\__\_\\__,_|\___|_|   \__, |
-                           easy-as-pie API to Simulink |___/
+                               _  ____
+                           ___| |/ __ \ _   _  ___ _ __ _   _
+                          / __| | |  | | | | |/ _ \ '__| | | |
+                          \__ \ | |__| | |_| |  __/ |  | |_| |
+                          |___/_|\___\_\\__,_|\___|_|   \__, |
+                            easy-as-pie API to Simulink |___/
 
-v0.9.9, 2017 robert@raschhour.com
+v1.0, 2018 robert@raschhour.com
 
 slQuery is free software: you can redistribute it and/or modify it under the terms of the GNU
 General Public License as published by the Free Software Foundation, either version 3 of the
@@ -299,7 +299,7 @@ classdef slQuery < double
 						hinfos = repmat(root, size(hot));
 					case {'\', '\\'} % group by parent of the last blocks
 						% case {'\', '\\', ' '}  NOTE/TODO: the sibling-combinator ' ' can't be here included here because each block cannot be included amongst its own siblings
-						hinfos = slQuery.get_parent(hot);
+						hinfos = slQuery.get_ref(hot, 'Parent');
 					otherwise % group only by block-handle itself
 						hinfos = hot;
 				end
@@ -371,7 +371,7 @@ classdef slQuery < double
 							new = find_system(info, find_args{:})';
 
 						case ' ' % sibling of the current block
-							par = slQuery.get_parent(info);
+							par = slQuery.get_ref(info, 'Parent');
 							new = setdiff(find_system(par, 'SearchDepth', 1, find_args{:})', [par info]);
 							
 						case '/' % direct descendant (child)
@@ -388,7 +388,7 @@ classdef slQuery < double
 							new = [];
 							while info % ~= root?
 								new(end+1) = info; %#ok<AGROW>
-								info = slQuery.get_parent(info);
+								info = slQuery.get_ref(info, 'Parent');
 							end
 							% filter by search-match
 							new = find_system(new, 'SearchDepth', 0, find_args{:})';
@@ -403,7 +403,7 @@ classdef slQuery < double
 								lines = slQuery.get_param(slQuery.get_ports(info, 'Inport', combinator.sp), 'line');
 								ps = [ps slQuery.get_ports(lines(lines ~= -1), 'SrcPortHandle', combinator.dp)]; %#ok<AGROW>
 							end
-							new = find_system(slQuery.get_parent(ps), 'SearchDepth', 0, find_args{:})';
+							new = find_system(slQuery.get_ref(ps, 'Parent'), 'SearchDepth', 0, find_args{:})';
 							
 						case {  '~>', '~', '<~' ... indirectly wired, including virtual blocks (Subsystem-Levels, Goto/From, BusCreator/BusSelector, Mux/Demux)
 								'=>', '=', '<=' ... logically wired, excluding virtual blocks
@@ -436,7 +436,7 @@ classdef slQuery < double
 							end
 							
 							% negative return values of follow are the handles of port blocks
-							new = [-ps(ps < 0)'; slQuery.get_parent(ps(ps>0))];
+							new = [-ps(ps < 0)'; slQuery.get_ref(ps(ps>0), 'Parent')];
 							new = find_system(new, 'SearchDepth', 0, find_args{:})';
 					end
 					
@@ -510,20 +510,22 @@ classdef slQuery < double
 			end
 		end
 		
-		function p = get_parent(b)
-			% FIXME: find more performant way than going with the intermediate path
-			p = get_param(b, 'Parent');
-			if ischar(p)
-				if isempty(p)
-					p = 0;
-				else
-					p = get_param(p, 'Handle');
-				end
 			else
 				p = cell2mat(get_param(p, 'Handle'));
 			end
 		end
 		
+		function r = get_ref(hs, reftype)
+			% resolve properties that represent a block to their handle
+			p = get_param(hs, reftype);
+			if ischar(p), p = {p}; end
+			
+			% unset references will resolve to the handle -1
+			r = zeros(size(p));
+			i = cellfun(@isempty, p);
+			r(i) = -1; 
+			r(~i) = cell2mat(get_param(p(~i), 'Handle'));
+		end
 		% signal slicing frontier is a set of blocks, already reached during current
 		% "follow"-call. NOTE: _re_cursive calls are ok, but no _con_current calls of
 		% slQuery.follow may occur (follow itself must not for some reason want to start a new
@@ -586,7 +588,7 @@ classdef slQuery < double
 				% handle all the virtual (signal routing) blocks
 				switch get_param(b, 'BlockType')
 					case {'Inport', 'Outport'} % a port ~> follow it outside
-						s = slQuery.get_parent(b);
+						s = slQuery.get_ref(b, 'Parent');
 						if strcmp(get_param(s, 'Type'), 'block')
 							sp = slQuery.get_ports(s, pdir, str2double(get_param(b, 'Port')));
 							neps = slQuery.follow(sp, addr, front, virt, slic);
@@ -611,23 +613,23 @@ classdef slQuery < double
 						tag_args = {'LookUnderMasks', 'all', 'FollowLinks', 'on', 'GotoTag', get_param(b, 'GotoTag')};
 						switch get_param(b, 'TagVisibility')
 							case 'local'
-								fbs = find_system(slQuery.get_parent(b), 'SearchDepth', 1, tag_args{:}, 'BlockType', 'From');
+								fbs = find_system(slQuery.get_ref(b, 'Parent'), 'SearchDepth', 1, tag_args{:}, 'BlockType', 'From');
 								
 							case 'scoped'
 								% find the corresponding scope-block
-								s = slQuery.get_parent(b);
-								while s
+								s = slQuery.get_ref(b, 'Parent');
+								while s ~= -1
 									if ~isempty(find_system(s, 'SearchDepth', 1, tag_args{:}, 'BlockType', 'GotoTagVisibility'))
 										break;
 									end
-									s = slQuery.get_parent(s);
+									s = slQuery.get_ref(s, 'Parent');
 								end
 								
-								if ~s, continue, end % no scope found ~> no more s-levels, break
+								if s == -1, continue, end % no scope found ~> no more s-levels, break
 								
 								% limiting scope block subsystems,
 								sbss = find_system(s, tag_args{:}, 'BlockType', 'GotoTagVisibility');
-								sbss = slQuery.get_parent(sbss(2:end)); % don't count the actually effective scope block
+								sbss = slQuery.get_ref(sbss(2:end), 'Parent'); % don't count the actually effective scope block
 								
 								% now all from blocks but not the ones inside one of sbss, TODO: perf.
 								fbs = setdiff( ...
@@ -646,20 +648,20 @@ classdef slQuery < double
 						tag_args = {'LookUnderMasks', 'all', 'FollowLinks', 'on', 'GotoTag', get_param(b, 'GotoTag')};
 						
 						% determine earliest innermost Tag-Visibility
-						s = slQuery.get_parent(b);
+						s = slQuery.get_ref(b, 'Parent');
 						% find the corresponding scope-block
-						while s
+						while s ~= -1
 							if ~isempty(find_system(s, 'SearchDepth', 1, tag_args{:}, 'BlockType', 'GotoTagVisibility'))
 								break;
 							end
 							
-							s = slQuery.get_parent(s);
+							s = slQuery.get_ref(s, 'Parent');
 						end
 						
-						if s % there is a matching scope
+						if s ~= -1 % there is a matching scope
 							% find limiting scope block subsystems
 							sbss = find_system(s, tag_args{:}, 'BlockType', 'GotoTagVisibility');
-							sbss = slQuery.get_parent(sbss(2:end)); % don't count the actually effective scope block
+							sbss = slQuery.get_ref(sbss(2:end), 'Parent'); % don't count the actually effective scope block
 							
 							gbs = setdiff( ...
 								find_system(s, tag_args{:}, 'BlockType', 'Goto'), ...
@@ -668,7 +670,7 @@ classdef slQuery < double
 							
 						else % no scope found ~> local or global Gotos
 							gbs = [ ...
-								find_system(slQuery.get_parent(b), 'SearchDepth', 1, tag_args{:}, 'TagVisibility', 'local', 'BlockType', 'Goto'), ...
+								find_system(slQuery.get_ref(b, 'Parent'), 'SearchDepth', 1, tag_args{:}, 'TagVisibility', 'local', 'BlockType', 'Goto'), ...
 								find_system(bdroot(b), tag_args{:}, 'TagVisibility', 'global', 'BlockType', 'Goto') ...
 								];
 							
