@@ -453,6 +453,13 @@ X = slQuery('Memory[BackgroundColor=grey] << $1');
 assert(isempty(X));
 
 
+% combinatorics
+
+%% combine results (common info)
+% $2 is handled in groups, because it repeats
+X = slQuery('Inport \ #Subsystem / Outport');
+assert(isequal(size(X), size(unique(X.handle', 'rows')')));
+
 % model manipulation
 
 %% add block to system (scalar, plain block spec)
@@ -493,4 +500,3 @@ fix = onCleanup(@() delete_block(double(X)));
 assert(numel(X) == numel(S));
 assert(all(strcmp(X.BlockType, T.BlockType)));
 assert(all(X.Parent.wrap == S));
-
