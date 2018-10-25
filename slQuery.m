@@ -142,10 +142,10 @@ classdef slQuery < double
 								
 							otherwise % select a block parameter, field of a struct or property of an object
 								
-								if isstruct(sel) || (isobject(sel) && ~isa(sel, 'slQuery')) || all(ishandle(sel)) % field of a struct or property of an object
+								if isstruct(sel) || (isobject(sel) && ~isa(sel, 'slQuery')) || all(all(ishandle(sel))) % field of a struct or property of an object
 									sel = arrayfun(@(h) h.(sub.subs), sel, 'UniformOutput', false);
 								
-								elseif iscell(sel) && all(cellfun(@(s) isobject(s) | ishandle(s) | isstruct(s), sel)) % (hopefully) shared member of collection of different objects
+								elseif iscell(sel) && all(all(cellfun(@(s) isobject(s) | isstruct(s), sel))) % (hopefully) shared member of collection of different objects
 									sel = cellfun(@(h) h.(sub.subs), sel, 'UniformOutput', false);
 								
 								else % something from simulink
