@@ -149,7 +149,6 @@ classdef slQuery < double
 									sel = cellfun(@(h) h.(sub.subs), sel, 'UniformOutput', false);
 								
 								else % something from simulink
-									
 									if isa(sel, 'slQuery') % get_param of a handle
 										sel = double(sel);
 									elseif ischar(sel) % possibly single block path.
@@ -180,22 +179,20 @@ classdef slQuery < double
 								end
 						end
 						
-					case '{}' % actions
-						
 					otherwise % they did something stupid
-						error(['what is ''' sub.type '''?']);
+						error('''%s'' not supported');
 				end
-				
 				% LEGACY. this isn't actually cool, because it breaks algorhitms that work with entire
 				% query-results, when those just happen to be scalars. TODO: need a way to decide this!
-				if iscell(sel) &&  isscalar(sel) 
+				if iscell(sel) && isscalar(sel)
 					sel = sel{1};
 				end
 			end
 		end
+
 		function this = subsasgn(this, subs, value)
 			% TODO: support "this(select) = []" - syntax for dropping rows or columns
-			% TODO: support .tl.bla.blubb - assignments.s
+			% TODO: support .tl.bla.blubb - assignments
 			sel = this;
 			for sub = subs
 				switch sub.type
@@ -210,20 +207,21 @@ classdef slQuery < double
 						else
 							sel = builtin('subsref', sel, sub);
 						end
-
-					case '.' % parameter access
 						
+					case '.' % parameter access
+						switch slQuery.get_paramtype(double(sel), sub.subs)
+							case {'rectangle', 'ports'} % homogenous array ~> pack last dimension into cell
+								value = num2cell(value, numel(size(value)));
+								value = cellfun(@(x) {squeeze(x)'}, value);
+						end
 						slQuery.arrayfun(@set_param, double(sel), sub.subs, value);
 						
-					case '{}' % actions
-						
 					otherwise % they did something stupid
-						error(['what is ''' sub.type '''?']);
+						error('''%s'' not supported');
 				end
 			end
 		end
 	end
-	
 	methods(Access=public) % operators that are operations
 		function ps = properties(this)
 			ps = sort(fieldnames(get_param(double(this), 'ObjectParameters')));
@@ -241,7 +239,6 @@ classdef slQuery < double
 				if isrow(names) == iscolumn(target), names = names'; end
 				target = strcat(target, '/', names);
 			end
-			
 			new = slQuery(slQuery.arrayfun(@add_block, source, target, 'MakeNameUnique', 'on'));
 		end
 		function ps = colon(i, this, o) % retrieve port (or line) hanldes ~> x:1, -1:x
@@ -370,8 +367,9 @@ classdef slQuery < double
 					
 					switch combinator.type
 						case ','
-							new = find_system(root, find_args{:})';
-							
+							% info is the root of the previous block
+							new = find_system(info, find_args{:})';
+
 						case ' ' % sibling of the current block
 							par = slQuery.get_parent(info);
 							new = setdiff(find_system(par, 'SearchDepth', 1, find_args{:})', [par info]);
@@ -563,7 +561,7 @@ classdef slQuery < double
 				ls = get_param(bp, 'Line');
 				ls(ls == -1) = []; % don't follow unconnected lines
 				
-				% the 'PortType' determines the direction of following (upstream is true, downstream is false)
+				% the 'PortType' determines the direction of following (upstream is true, downstream is false, )
 				if strcmp(get_param(bp, 'PortType'), 'inport')
 					[edir, pdir, beps] = deal('Outport', 'Inport', slQuery.get_ports(ls, 'SrcPortHandle'));
 				else
@@ -579,7 +577,7 @@ classdef slQuery < double
 			fibid = [fibid{:}];
 			
 			for ep = beps'
-				b = slQuery.get_parent(ep);
+				b = slQuery.get_ref(ep, 'Parent');
 				
 				sigid = [char(typecast(ep, 'uint8')) ':' fibid];
 				if front.isKey(sigid), continue, end; % fully came around ~> prune traversal here
@@ -592,6 +590,7 @@ classdef slQuery < double
 						if strcmp(get_param(s, 'Type'), 'block')
 							sp = slQuery.get_ports(s, pdir, str2double(get_param(b, 'Port')));
 							neps = slQuery.follow(sp, addr, front, virt, slic);
+
 						else % port is on the block_diagram level ~> cannot go beyond, done
 							neps = ep;
 						end
