@@ -134,6 +134,8 @@ classdef slQuery < double
 							case 'fullname' % return the model path of all blocks
 								sel = getfullname(double(sel));
 								
+							case 'root' % return the block diagram root of all blocks
+								sel = bdroot(double(sel));
 							case 'tl' % return a TargetLink property
 								% TODO: the property hierarchy must to be resolved before (outside of this loop)
 								sel = arrayfun(@(h) tl_get(h, 'blockdatastruct'), double(sel), 'UniformOutput', false);
