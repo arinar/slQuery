@@ -627,6 +627,11 @@ classdef slQuery < double
 					case {'Inport', 'Outport'} % a port ~> follow it outside
 						s = slQuery.get_ref(b, 'Parent');
 						if strcmp(get_param(s, 'Type'), 'block')
+
+							if ~isempty(get_param(s, 'VariantControl')) % system is variant ~> skip to parent
+								% TODO: include the port block on VariantSystem level into neps
+								s = slQuery.get_ref(s, 'Parent');
+							end
 							sp = slQuery.get_ports(s, pdir, str2double(get_param(b, 'Port')));
 							neps = slQuery.follow(sp, addr, front, virt, slic);
 
@@ -639,11 +644,22 @@ classdef slQuery < double
 						if ~ismember(get_param(ep, 'PortType'), {'inport', 'outport'}) % skip events/actions/triggers (for now)
 							continue;
 						end
-						pbs = find_system(b, 'LookUnderMasks', 'all', 'FollowLinks', 'on', 'SearchDepth', 1, 'BlockType', edir, 'Port', num2str(get_param(ep, 'PortNumber')));
-						neps = [];
-						for bp = slQuery.get_ports(pbs, pdir, 1)
-							neps = [neps, slQuery.follow(bp, addr, front, virt, slic)]; %#ok<AGROW>
+						pn = num2str(get_param(ep, 'PortNumber'));
+
+						if strcmp(get_param(b, 'Variant'), 'on') % it's a variant sub-system and all variants must be followed
+							ss = setdiff(find_system(b, 'LookUnderMasks', 'all', 'FollowLinks', 'on', 'Variants', 'all', 'SearchDepth', 1, 'BlockType', 'SubSystem')', b);
+						else
+							ss = b;
 						end
+
+						neps = [];
+						for s = ss
+							pbs = find_system(s, 'LookUnderMasks', 'all', 'FollowLinks', 'on', 'SearchDepth', 1, 'BlockType', edir, 'Port', pn);
+							for bp = slQuery.get_ports(pbs, pdir, 1)
+								neps = [neps, slQuery.follow(bp, addr, front, virt, slic)]; %#ok<AGROW>
+							end
+						end
+
 						if virt, neps = [neps -pbs]; end %#ok<AGROW>
 						
 					case 'Goto' % ~> find corresponding From-blocks
