@@ -260,17 +260,70 @@ assert(all(strcmp(X.MaskType, 'T900')));
 assert(all(strcmp(X.BackgroundColor, 'white')));
 assert(all(strcmp(X.ShowName, 'on')));
 
-%% port handle access with colon operator (inport)
+%% port handle access (scalar, single inport)
 for x = slQuery('Mux')
 	assert(x.PortHandles.Inport(1) == 1:x);
 	assert(x.PortHandles.Inport(2) == 2:x);
 end
 
-%% port handle access with colon operator (outport)
+%% port handle access (scalar, single outport)
 for x = slQuery('Demux')
 	assert(x.PortHandles.Outport(1) == x:1);
 	assert(x.PortHandles.Outport(2) == x:2);
 end
+
+%% line handle access (scalar, single inport line)
+for x = slQuery('Mux')
+	assert(x.LineHandles.Inport(1) == -1:x);
+	assert(x.LineHandles.Inport(2) == -2:x);
+end
+
+%% line handle access (scalar, single outport line)
+for x = slQuery('Demux')
+	assert(x.LineHandles.Outport(1) == x:-1);
+	assert(x.LineHandles.Outport(2) == x:-2);
+end
+
+%% port handle access (nonscalar, single port)
+X = slQuery('Mux');
+assert(all(X.PortHandles.Inport(2) == 2:X));
+assert(all(X.PortHandles.Outport(1) == X:1));
+
+%% line handle access (nonscalar, single port line)
+X = slQuery('Demux');
+assert(all(X.LineHandles.Inport(1) == -1:X));
+assert(all(X.LineHandles.Outport(2) == X:-2));
+
+%% port handle access (scalar, multiple inports)
+for x = slQuery('Mux')
+	assert(all([x.PortHandles.Inport(1); x.PortHandles.Inport(2)] == [1,2]:x));
+	assert(all([x.LineHandles.Inport(1); x.LineHandles.Inport(2)] == [-1,-2]:x));
+end
+
+%% port handle access (scalar, multiple outports)
+for x = slQuery('Demux')
+	assert(all([x.PortHandles.Outport(1); x.PortHandles.Outport(2)] == x:[1,2]));
+	assert(all([x.LineHandles.Outport(1); x.LineHandles.Outport(2)] == x:[-1,-2]));
+end
+
+%% port handle access (scalar, mixed ports and lines)
+for x = slQuery('Demux')
+	assert(all([x.LineHandles.Inport(1); x.PortHandles.Outport(2)] == -1:x:2));
+	assert(all([x.LineHandles.Inport(1); x.PortHandles.Inport(1); x.PortHandles.Outport(1); x.LineHandles.Outport(2)] == [-1, 1]:x:[1,-2]));
+end
+
+%% port handle access (nonscalar, multiple inports)
+X = slQuery('Mux');
+assert(all(all([X.PortHandles.Inport(1); X.PortHandles.Inport(2)] == [1,2]:X)));
+
+%% port handle access (nonscalar, multiple outports)
+X = slQuery('Mux');
+assert(all(all([X.PortHandles.Inport(1); X.PortHandles.Inport(2)] == [1,2]:X)));
+
+%% port handle access (nonscalar, mixed ports and lines)
+X = slQuery('Demux');
+assert(all(all([X.LineHandles.Inport(1); X.PortHandles.Outport(2)] == -1:X:2)));
+assert(all(all([X.LineHandles.Inport(1); X.PortHandles.Inport(1); X.PortHandles.Outport(1); X.LineHandles.Outport(2)] == [-1, 1]:X:[1,-2])));
 
 %% join combinator
 assert(~isempty(slQuery('*, *')));

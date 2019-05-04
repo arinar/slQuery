@@ -97,7 +97,9 @@ classdef slQuery < double
 							elseif isscalar(sub.subs) && islogical(sub.subs{1})
 								sub.subs = [':', sub.subs];
 							end
-							sel = slQuery(builtin('subsref', double(sel), sub));
+							sel = slQuery(subsref(double(sel), sub));
+						elseif iscell(sel)
+							sel = slQuery.arrayfun(@subsref, sel, sub); 
 						else
 							sel = builtin('subsref', sel, sub);
 						end
@@ -208,8 +210,10 @@ classdef slQuery < double
 						
 						switch slQuery.get_paramtype(double(sel), sub.subs)
 							case {'rectangle', 'ports'} % homogenous array ~> pack last dimension into cell
-								value = num2cell(value, numel(size(value)));
-								value = cellfun(@(x) {squeeze(x)'}, value);
+								if ~iscell(value)
+									value = num2cell(value, numel(size(value)));
+									value = cellfun(@(x) {squeeze(x)'}, value);
+								end
 						end
 						
 						slQuery.arrayfun(@set_param, double(sel), sub.subs, value);
@@ -244,24 +248,29 @@ classdef slQuery < double
 		end
 		function ps = colon(i, this, o) % retrieve port (or line) hanldes ~> x:1, -1:x
 			% TODO: support port names for subsystems
-			ps = [];
+			
 			if nargin == 2, o = [];
 				if isa(i, 'slQuery'), o = this; this = i; i = []; end % rephrase the case "b:o" case as "[]:b:o"
 			end
-			if ~isempty(i)
-				it = cell2mat(getfield({'LineHandles', 'PortHandles'}, {1+(i>0)})); %#ok<GFLD>
-				ps = [ps, slQuery(arrayfun(@(b) getfield(get_param(b, it), 'Inport', {abs(i)}), double(this)))];
-			end
-			if ~isempty(o)
-				ot = cell2mat(getfield({'LineHandles', 'PortHandles'}, {1+(o>0)})); %#ok<GFLD>
-				ps = [ps, slQuery(arrayfun(@(b) getfield(get_param(b, ot), 'Outport', {abs(o)}), double(this)))];
-			end
+			assert(isempty(i) || isscalar(i) || isempty(o) || isscalar(o) || numel(i) == numel(o), ... so both sides can be combined
+				'input and output port spec cardinality must match (i=%d, o=%d)', numel(i), numel(o));
+			
+			lhs = slQuery.arrayfun(@(h) get_param(h, 'LineHandles'), double(this));
+			phs = slQuery.arrayfun(@(h) get_param(h, 'PortHandles'), double(this));
+			
+			its(:, i>0) = cell2mat(arrayfun(@(h) {h.Inport(i(i>0))}, phs)');
+			its(:, i<0) = cell2mat(arrayfun(@(h) {h.Inport(-i(i<0))}, lhs)');
+			
+			ots(:, o>0) = cell2mat(arrayfun(@(h) {h.Outport(o(o>0))}, phs)');
+			ots(:, o<0) = cell2mat(arrayfun(@(h) {h.Outport(-o(o<0))}, lhs)');
+
+			ps = slQuery([its ots]');
 		end
 		function ls = gt(sps, dps) % add a line between ports x:1 > 1:y
-			sys = unique(slQuery.get_ref(slQuery.get_ref(double(sps), 'Parent'), 'Parent'));
+			sys = slQuery.get_ref(slQuery.get_ref(double(sps), 'Parent'), 'Parent')';
 			ls = slQuery.arrayfun(@(dp) get_param(double(dp), 'line'), dps);
 			delete_line(ls(ls ~= -1));
-			ls = slQuery.arrayfun(@add_line, sys, double(sps), double(dps), 'Autorouting', 'on');
+			ls = slQuery.arrayfun(@add_line, reshape(sys, 1, []), reshape(double(sps), 1, []), reshape(double(dps), 1, []), 'Autorouting', 'on');
 			ls = slQuery(ls);
 		end
 		function mpower(target, hs) % ~> 'attach to void' []^x
