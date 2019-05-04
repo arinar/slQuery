@@ -387,7 +387,6 @@ classdef slQuery < double
 				[infos, ~, info_idx] = unique(hinfos);
 				for i = 1:numel(infos)
 					info = infos(i); % distinguishing info of the current group
-					group = handles(:, info_idx == i);
 					
 					switch combinator.type
 						case ','
@@ -478,6 +477,7 @@ classdef slQuery < double
 					end
 					
 					new = reshape(unique(new), 1, []); % reshape for ML 2010b unique
+					group = handles(:, info_idx == i);
 					
 					if isnumeric(selector) % selector was reference ~> pick only columns, where the ref matches to one of the results
 						group = group(:, ismember(group(selector, :), new));
@@ -490,6 +490,7 @@ classdef slQuery < double
 							new = intersect(new, varargin{str2double(selector.argidx)});
 						end
 						
+						% outer join of group and new elements
 						group = [
 							group(:, repmat(1:size(group, 2), 1, size(new, 2)))
 							new(:, repmat(1:size(new, 2), size(group, 2), 1))
@@ -497,6 +498,8 @@ classdef slQuery < double
 					end
 					new_handles = [ new_handles, group ]; %#ok<AGROW>
 				end
+				
+				% next selector step: handles from new_handles, hot from last selector results
 				handles = new_handles;
 				if isnumeric(selector)
 					hot = handles(selector, :);
