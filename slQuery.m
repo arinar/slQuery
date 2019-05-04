@@ -77,12 +77,12 @@ classdef slQuery < double
 							j = min(i+w-1, size(repr, 1));
 							fprintf('  Columns %d through %d\n', i, j)
 							crepr = repr(i:j, :);
-							crepr(end+1, 1:end-1) = {char(10)}; %#ok<AGROW>
+							crepr(end+1, 1:end-1) = {char(10)}; %#ok<CHARTEN,AGROW>
 							disp([crepr{:}]);
 						end
 					else % can print evrything in one go.
-						repr(end+1, 1:end-1) = {char(10)};
-						disp([char(10) repr{:}])
+						repr(end+1, 1:end-1) = {char(10)}; %#ok<CHARTEN>
+						disp([char(10) repr{:}]) %#ok<CHARTEN>
 					end
 				end
 			end
@@ -121,7 +121,7 @@ classdef slQuery < double
 								sel = arrayfun( ...
 									@(h) sprintf('<a href="matlab: hilite_system(%.15f);">%s</a>', h, ...
 									strrep(get_param(h, 'Name'), char(10), ' ')), ...
-									double(sel), 'UniformOutput', false);
+									double(sel), 'UniformOutput', false); %#ok<CHARTEN>
 								
 							case 'wrap' % TODO: is this cool?
 								if ischar(sel)
@@ -167,9 +167,6 @@ classdef slQuery < double
 									sel = arrayfun(@(h) get_param(h, sub.subs), sel, 'UniformOutput', ismember(ot, {'real'}));
 								end
 						end
-						
-					otherwise % they did something stupid
-						error('''%s'' not supported');
 				end
 				% LEGACY. this isn't actually cool, because it breaks algorhitms that work with entire
 				% query-results, when those just happen to be scalars. TODO: need a way to decide this!
@@ -214,6 +211,7 @@ classdef slQuery < double
 								value = num2cell(value, numel(size(value)));
 								value = cellfun(@(x) {squeeze(x)'}, value);
 						end
+						
 						slQuery.arrayfun(@set_param, double(sel), sub.subs, value);
 						
 					otherwise % they did something stupid
@@ -295,7 +293,7 @@ classdef slQuery < double
 	end
 	methods(Access=private, Static)
 		function handles = select(query, varargin) % core "select" algorithm of slQuery
-			% split query along the combinators                                                                                                  ( outside [] )
+			% split query along the combinators                                                                                                       ( outside [] )
 			[selectors, combinators] = regexp(query, '\s*( |\\\\|\\|//|/|,|@|§|´|`|(:\s*\w+\s*)?(->|-|<-|~>|~(?!=)|<~|=>|<=|>>|<>|<<)(\s*\w+\s*:)?)\s*(?![^\[]*\])', 'split', 'match');
 
 			% start with the search root and combinator ',' for arbitrary position in this root
@@ -332,7 +330,7 @@ classdef slQuery < double
 				
 				if regexp(act{2}, '^\$\d+$', 'match', 'once') % selector is a reference ~> simple column-number
 					selector = str2double(act{2}(2:end));
-					new_handles = double.empty(size(handles, 1), 0); % height stays the same
+					new_handles = double.empty(size(handles, 1), 0); % height of result is the same
 					
 				else % selector is real ~> create structure
 					% parse as selector:       ^(*)(    parens around arg index     )?(block type)?(  hash with name  )?( period with masktype )?(    brackets and qualifier list  )?(  plus and pseudo-class )?$
@@ -476,7 +474,7 @@ classdef slQuery < double
 							end
 							
 							% negative return values of follow are the handles of port blocks
-							new = [-ps(ps < 0)'; slQuery.get_ref(ps(ps>0), 'Parent')];
+							new = [-ps(ps < 0), slQuery.get_ref(ps(ps>0), 'Parent')];
 							new = find_system(new, 'SearchDepth', 0, find_args{:})';
 					end
 					
@@ -486,10 +484,9 @@ classdef slQuery < double
 						group = group(:, ismember(group(selector, :), new));
 					else %if isstruct(selector) ~> append block corresponding to this group
 						
-						% TODO: perf: move this intersect-step upwards, to avoid unneccesary
-						% `find_system`-calls when there aren't any restrictions OR if there is
-						% a candidate set, simply test each candidate against the set of
-						% restrictions using find_system.
+						% TODO: perf: move this intersect-step upwards, to avoid unneccesary `find_system`-calls when
+						% there aren't any restrictions OR if there is a candidate set, simply test each candidate
+						% against the set of restrictions using find_system.
 						if ~isempty(selector.argidx)
 							new = intersect(new, varargin{str2double(selector.argidx)});
 						end
@@ -525,8 +522,8 @@ classdef slQuery < double
 			sz = vertcat(sz{:}, [1 1]); % neutral element if all args are strings (scalar case)
 			assert(numel(setdiff(sz(:, 1), 1)) <= 1 && numel(setdiff(sz(:, 2), 1)) <= 1, ...
 				'MATLAB:dimagree', 'Non singleton dimensions of assignment value must match selection.');
-
-			if any(sz(:) == 0), % some parameter is empty ~> empty result
+			
+			if any(sz(:) == 0) % some parameter is empty ~> empty result
 				[r, ~] = find(sz == 0);
 				[varargout{1:nargout}] = deal(double.empty(sz(r(1),:)));
 			else
@@ -535,8 +532,8 @@ classdef slQuery < double
 				for i = 1:numel(varargin)
 					v = varargin{i};
 					if cs(i), v = {v}; end % convert to cellstr
-					if isrow(v) == 1, v = repmat(v, sz(1), 1); end
-					if iscolumn(v) == 1, v = repmat(v, 1, sz(2)); end
+					if isrow(v), v = repmat(v, sz(1), 1); end
+					if iscolumn(v), v = repmat(v, 1, sz(2)); end
 					if ~iscell(v), v = num2cell(v); end
 					varargin{i} = v;
 				end
@@ -637,7 +634,7 @@ classdef slQuery < double
 				b = slQuery.get_ref(ep, 'Parent');
 				
 				sigid = [char(typecast(ep, 'uint8')) ':' fibid];
-				if front.isKey(sigid), continue, end; % fully came around ~> prune traversal here
+				if front.isKey(sigid), continue, end % fully came around ~> prune traversal here
 				front(sigid) = true;
 				
 				% handle all the virtual (signal routing) blocks
@@ -921,7 +918,7 @@ classdef slQuery < double
 				end
 			end
 			
-			if isempty(ps); ps = double.empty(1, 0); end;
+			if isempty(ps); ps = double.empty(1, 0); end
 		end
 		
 		function C = strsplit(str, delimiter)

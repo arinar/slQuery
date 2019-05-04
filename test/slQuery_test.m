@@ -297,8 +297,8 @@ for x = slQuery('Goto, From')
 end
 
 %% assign query to separate variables (')
-[B,F] = slQuery('Goto, From')';
-assert(size(B, 1) == 1);
+[G,F] = slQuery('Goto, From')';
+assert(size(G, 1) == 1);
 assert(size(F, 1) == 1);
 
 %% numeric indexing for columns (single column)
