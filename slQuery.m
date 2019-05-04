@@ -876,16 +876,19 @@ classdef slQuery < double
 						neps = slQuery.follow(slQuery.get_ports(b, pdir, 1), addr, front, virt, slic);
 						
 					otherwise
-						if isempty(front) % no signal slicing ~> this non-virtual endpoint is an endpoint
-							neps = ep;
+						if slic % signal slicing ~> follow the opposite ports of this endpoint
 							
-						elseif slic
-							% signal slicing ~> follow the opposite ports of this endpoint
-							neps = slQuery.listfun(@(bp) slQuery.follow(bp, addr, front, virt, slic), ...
-								slQuery.get_ports(b, pdir)); % all ports of the other side
+							% addr should be emptied, because signal hierarchies don't relate to each other in the
+							% "otherwise" case. TODO: this is dependent on the block type and config (e.g. mux-signals of
+							% Gain in element-wise mode are decoupled)
+							naddr = {};
+							
+							neps = [ep slQuery.listfun(@(bp) slQuery.follow(bp, naddr, front, virt, slic), ...
+								slQuery.get_ports(b, pdir))]; % all ports of the other side
+							
 							front(sigid) = true;
 						else
-							neps = [];
+							neps = ep;
 						end
 				end
 				
