@@ -276,19 +276,19 @@ classdef slQuery < double
 			ls = slQuery.arrayfun(@add_line, reshape(sys, 1, []), reshape(double(sps), 1, []), reshape(double(dps), 1, []), 'Autorouting', 'on');
 			ls = slQuery(ls);
 		end
-		function mpower(target, hs) % ~> 'attach to void' []^x
-			if isempty(hs), return, end
-			assert(isa(target, 'double') && isempty(target));
-			type = unique(slQuery.get_param(double(hs), 'type'));
-			assert(isscalar(type));
-			switch type{1}
-				case 'line'
-					hs = double(hs);
-					delete_line(hs(hs ~= -1));
-				case 'block'
-					ls = slQuery.get_param(hs, 'LineHandles');
-					delete_line(setdiff([ls.Inport ls.Outport], -1));
-					delete_block(double(hs));
+		function mpower(target, hss) % ~> 'attach to void' []^x
+			for hs = double(hss)
+				assert(isa(target, 'double') && isempty(target));
+				type = unique(slQuery.get_param(hs, 'type'));
+				assert(isscalar(type));
+				switch type{1}
+					case 'line'
+						delete_line(hs(hs ~= -1));
+					case 'block'
+						ls = slQuery.get_param(hs, 'LineHandles');
+						delete_line(setdiff([ls.Inport ls.Outport], -1));
+						delete_block(hs);
+				end
 			end
 		end
 		function [varargout] = ctranspose(this) % allow 'dispersed' assignments: [a, b, ~] = slQuery(...)';
