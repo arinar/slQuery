@@ -575,7 +575,7 @@ classdef slQuery < double
 			if ischar(p), p = {p}; end
 			
 			% unset references will resolve to the handle -1
-			r = zeros(size(p));
+			r = zeros(size(hs));
 			i = cellfun(@isempty, p);
 			r(i) = -1; 
 			r(~i) = cell2mat(get_param(p(~i), 'Handle'));
