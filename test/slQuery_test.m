@@ -593,6 +593,14 @@ assert(~isempty(X));
 assert(strcmp(X.BlockType, 'Gain'));
 assert(X.Parent.wrap == slQuery.gcs);
 
+%% add block to system (scalar, block spec with name)
+X = slQuery.gcs ./ 'Gain#MyGain';
+fix = onCleanup(@() delete_block(double(X)));
+assert(~isempty(X));
+assert(strcmp(X.BlockType, 'Gain'));
+assert(strcmp(X.Name, 'MyGain'));
+assert(X.Parent.wrap == slQuery.gcs);
+
 %% add block to system (scalar, scalar block template)
 T = slQuery.gcb;
 X = slQuery.gcs ./ T;

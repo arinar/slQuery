@@ -235,8 +235,11 @@ classdef slQuery < double
 			target = getfullname(double(sys));
 			% TODO: parse the spec entirely (param-specs, class)
 			if ischar(spec) || iscellstr(spec) % it's a block type spec
-				source = strcat('built-in/', spec);
-				target = strcat(target, '/', spec);
+				spec = regexp(spec, '(?<type>\w+)(#)?(?<name>(?(2)\w+))', 'names', 'once');
+				assert(~isempty(spec));
+				if isempty(spec.name), spec.name = ['slq_' spec.type]; end
+				source = strcat('built-in/', spec.type);
+				target = strcat(target, '/', spec.name);
 			
 			elseif isa(spec, 'slQuery') % it's a list blocks that exist already
 				source = double(spec);
