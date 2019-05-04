@@ -370,20 +370,7 @@ classdef slQuery < double
 						if attr.value(1) == '"' && attr.value(end) == '"'
 							attr.value = attr.value(2:end-1);
 						end
-						
-						switch attr.operator
-							case '=' % literal match "text"
-								attr.value = ['^' regexptranslate('escape', attr.value) '$'];
-							case '^=' % literal match at beginning "text*"
-								attr.value = ['^' regexptranslate('escape', attr.value)];
-							case '$=' % literal match at the end "*text"
-								attr.value = [regexptranslate('escape', attr.value) '$'];
-							case '*=' % literal match anywhere "*text*"
-								attr.value = regexptranslate('escape', attr.value);
-							case '~=' % regex match
-								% attr.value shall be a regexp already
-						end
-						find_args = [find_args, attr.name, attr.value]; %#ok<AGROW>
+						find_args = [find_args, attr.name, slQuery.wrap_find_arg(attr.operator, attr.value)]; %#ok<AGROW>
 					end
 					
 					new_handles = double.empty(size(handles, 1) +1, 0); % height of new selection is one more
@@ -587,6 +574,17 @@ classdef slQuery < double
 			r(i) = -1; 
 			r(~i) = cell2mat(get_param(p(~i), 'Handle'));
 		end
+		
+		function value = wrap_find_arg(operator, value)
+			switch operator
+				case '=',  value = ['^' regexptranslate('escape', value) '$']; % literal match "text"
+				case '^=', value = ['^' regexptranslate('escape', value)]; % literal match at beginning "text*"
+				case '$=', value = [regexptranslate('escape', value) '$']; % literal match at the end "*text"
+				case '*=', value = regexptranslate('escape', value); % literal match anywhere "*text*"
+				case '~=' % regex match,, value shall be a regexp already
+			end
+		end
+		
 		% signal slicing frontier is a set of blocks, already reached during current
 		% "follow"-call. NOTE: _re_cursive calls are ok, but no _con_current calls of
 		% slQuery.follow may occur (follow itself must not for some reason want to start a new
