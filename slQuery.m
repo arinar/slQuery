@@ -426,9 +426,8 @@ classdef slQuery < double
 
 						case {'@', '`'} % model blocks linking this library block
 							% this is more expensive: search from root 0 instead of bdroot
-							new = find_system(0, 'ReferenceBlock', getfullname(info));
-							new = find_system(new, 'SearchDepth', 0, find_args{:})';
-
+							new = find_system(0, find_args{:}, 'ReferenceBlock', ['^' getfullname(info) '$'])';
+							
 						case {'->', '-', '<-'} % directly wired
 							ps = double.empty(1, 0);
 							if ismember(combinator.type, {'->', '-'})
