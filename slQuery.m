@@ -345,11 +345,11 @@ classdef slQuery < double
 					new_handles = double.empty(size(handles, 1), 0); % height of result is the same
 					
 				else % selector is real ~> create structure
-					% parse as selector:       ^(*)(    parens around arg index     )?(block type)?(  hash with name  )?( period with masktype )?(    brackets and qualifier list  )?(  plus and pseudo-class )?$
-					selector = regexp(act{2}, '^\*?(\()?(?<argidx>(?(1)\d+))?(?(1)\))?(?<type>\w+)?(#)?(?<id>(?(5)\w+))?(\.)?(?<class>(?(7)\w+))?(\[)?(?<attributes>(?(9).+))(?(9)\])(\+)?(?<pseudo>(?(12)\w+))?$', 'names');
+					% parse as selector:       ^(*)(    parens around arg index    )(block type )(  hash with name  )( period with masktype )(    brackets and qualifier list   )(  plus and pseudo-class )$
+					selector = regexp(act{2}, '^\*?(\()?(?<argidx>(?(1)\d+))(?(1)\))(?<type>\w+)?(#)?(?<id>(?(5)\w+))(\.)?(?<class>(?(7)\w+))(\[)?(?<attributes>(?(9).+))(?(9)\])(\+)?(?<pseudo>(?(12)\w+))$', 'names');
 					assert(~isempty(selector), 'malformed selector ''%s''', act{2});
-					% split the attribute qualifiers:                 '(attribute )...(          operator           )...(    value    )( comma? )
-					selector.attributes = regexp(selector.attributes, '(?<name>\w+)\s*(?<operator>(=|\^=|\$=|\*=|~=))\s*(?<value>[^,]+)(\s*,\s*)?', 'names');
+					% split the attribute qualifiers:                 '(attribute )...(         operator          )...(       ref attribute        )(    value    )( comma? )
+					selector.attributes = regexp(selector.attributes, '(?<name>\w+)\s*(?<operator>=|\^=|\$=|\*=|~=)\s*(\$)?(?<ref>(?(3)\d+))(?(3)\.)(?<value>[^,]+)(\s*,\s*)?', 'names');
 					
 					if ~isempty(selector.id)
 						find_args = [find_args, 'Name', ['^' selector.id '$']]; %#ok<AGROW>
@@ -378,9 +378,6 @@ classdef slQuery < double
 					
 					new_handles = double.empty(size(handles, 1) +1, 0); % height of new selection is one more
 				end
-				
-				% assert(isempty(refattrs) || strcmp(combinator.type, ','), ...
-				%    'cannot use back reference in property selector after combinator other than '',''!');
 				
 				% the new handles-array is constructed in blocks corresponding to groups. A block is generated
 				% by combining each row of the group with each result from the combinator search (based on info)

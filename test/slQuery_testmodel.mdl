@@ -721,7 +721,7 @@ Model {
       UnitExpr		      "inherit"
     }
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.66"
+    ComputedModelVersion    "1.69"
     NumModelReferences	    0
     NumTestPointedSignals   0
     NumProvidedFunctions    0
@@ -2675,6 +2675,8 @@ Model {
       SID		      "424"
       Position		      [840, 1082, 970, 1098]
       ZOrder		      323
+      ForegroundColor	      "red"
+      BackgroundColor	      "red"
       ShowName		      off
       RndMeth		      "Floor"
       SaturateOnIntegerOverflow	off
@@ -2686,6 +2688,8 @@ Model {
       Ports		      [1, 3]
       Position		      [965, 483, 970, 537]
       ZOrder		      210
+      ForegroundColor	      "red"
+      BackgroundColor	      "red"
       ShowName		      off
       Outputs		      "3"
       DisplayOption	      "bar"
@@ -2697,6 +2701,8 @@ Model {
       Ports		      [1, 2]
       Position		      [965, 551, 970, 589]
       ZOrder		      218
+      ForegroundColor	      "green"
+      BackgroundColor	      "green"
       ShowName		      off
       Outputs		      "2"
       DisplayOption	      "bar"
@@ -2733,6 +2739,8 @@ Model {
       Ports		      [1, 2]
       Position		      [925, 549, 930, 636]
       ZOrder		      220
+      ForegroundColor	      "yellow"
+      BackgroundColor	      "yellow"
       ShowName		      off
       Outputs		      "2"
       DisplayOption	      "bar"
@@ -2744,6 +2752,8 @@ Model {
       Ports		      [1, 2]
       Position		      [965, 596, 970, 634]
       ZOrder		      223
+      ForegroundColor	      "blue"
+      BackgroundColor	      "blue"
       ShowName		      off
       Outputs		      "2"
       DisplayOption	      "bar"
@@ -3109,6 +3119,8 @@ Model {
       Ports		      [3, 1]
       Position		      [840, 483, 845, 537]
       ZOrder		      209
+      ForegroundColor	      "red"
+      BackgroundColor	      "red"
       ShowName		      off
       Inputs		      "3"
       DisplayOption	      "bar"
@@ -3120,6 +3132,8 @@ Model {
       Ports		      [2, 1]
       Position		      [840, 551, 845, 589]
       ZOrder		      217
+      ForegroundColor	      "green"
+      BackgroundColor	      "green"
       ShowName		      off
       Inputs		      "2"
       DisplayOption	      "bar"
@@ -3166,6 +3180,8 @@ Model {
       Ports		      [2, 1]
       Position		      [880, 549, 885, 636]
       ZOrder		      219
+      ForegroundColor	      "yellow"
+      BackgroundColor	      "yellow"
       ShowName		      off
       Inputs		      "2"
       DisplayOption	      "bar"
@@ -3177,6 +3193,8 @@ Model {
       Ports		      [2, 1]
       Position		      [840, 596, 845, 634]
       ZOrder		      226
+      ForegroundColor	      "blue"
+      BackgroundColor	      "blue"
       ShowName		      off
       Inputs		      "2"
       DisplayOption	      "bar"
