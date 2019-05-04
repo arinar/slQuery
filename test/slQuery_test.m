@@ -336,6 +336,14 @@ assert(size(x, 1) == 1);
 x = slQuery('SubSystem, $1, Terminator, $2, $1')';
 assert(size(x, 1) == 2);
 
+%% backref in param spec
+X = slQuery('Mux, Demux[BackgroundColor=$1.BackgroundColor]');
+assert(all(cellfun(@strcmp, X(1).BackgroundColor, X(2).BackgroundColor)));
+
+%% backref in param spec (multiple backrefs)
+X = slQuery('Mux, Demux[BackgroundColor=$1.BackgroundColor,ForegroundColor=$1.ForegroundColor]');
+assert(all(cellfun(@strcmp, X(1).BackgroundColor, X(2).BackgroundColor)));
+
 % hierarchy-combinators
 %% shape of the result
 assert(size(slQuery('Goto, From'), 1) == 2);
