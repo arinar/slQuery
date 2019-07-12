@@ -721,7 +721,7 @@ Model {
       UnitExpr		      "inherit"
     }
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.69"
+    ComputedModelVersion    "1.72"
     NumModelReferences	    0
     NumTestPointedSignals   0
     NumProvidedFunctions    0
@@ -788,7 +788,7 @@ Model {
 	DockPosition		"Left"
 	Width			[50]
 	Height			[50]
-	Filter			[9]
+	Filter			[11]
       }
       Object {
 	$PropName		"ExplorerBarInfo"
@@ -805,8 +805,8 @@ Model {
 	  ViewObjType		  "SimulinkTopLevel"
 	  LoadSaveID		  "0"
 	  Extents		  [1689.0, 1036.0]
-	  ZoomFactor		  [1.0]
-	  Offset		  [459.21177076480672, 460.59980606043251]
+	  ZoomFactor		  [1.5]
+	  Offset		  [622.07703114572473, -127.54516725865568]
 	}
 	Object {
 	  $ObjectID		  6
@@ -853,9 +853,9 @@ Model {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "FO10C9R"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Wed Oct 24 19:10:33 2018"
-  RTWModifiedTimeStamp	  462309028
-  ModelVersionFormat	  "1.%<AutoIncrement:66>"
+  LastModifiedDate	  "Wed Jul 03 19:15:05 2019"
+  RTWModifiedTimeStamp	  484082104
+  ModelVersionFormat	  "1.%<AutoIncrement:72>"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
   LibraryLinkDisplay	  "all"
@@ -881,14 +881,14 @@ Model {
   ShowVisualizeInsertedRTB on
   ShowMarkup		  on
   BlockNameDataTip	  on
-  BlockParametersDataTip  on
+  BlockParametersDataTip  off
   BlockDescriptionStringDataTip	on
   BlockVariantConditionDataTip off
   ToolBar		  on
   StatusBar		  on
   BrowserShowLibraryLinks off
   FunctionConnectors	  off
-  BrowserLookUnderMasks	  off
+  BrowserLookUnderMasks	  on
   SimulationMode	  "normal"
   VisualizeLoggedSignalsWhenLoggingToFile off
   PauseTimes		  "5"
@@ -1970,7 +1970,7 @@ Model {
     TiledPaperMargins	    [1.270000, 1.270000, 1.270000, 1.270000]
     TiledPageScale	    1
     ShowPageBoundaries	    off
-    ZoomFactor		    "100"
+    ZoomFactor		    "150"
     ReportName		    "simulink-default.rpt"
     SIDHighWatermark	    "974"
     Block {
@@ -2856,7 +2856,7 @@ Model {
 	  Type			  "edit"
 	  Name			  "data"
 	  Prompt		  "data"
-	  Value			  "{'date',737357.7235309144}"
+	  Value			  "{'gain',{'class','CAL'},'date',737609.80213288194}"
 	  Evaluate		  "off"
 	  Visible		  "off"
 	}
@@ -3275,7 +3275,7 @@ Model {
 	  Type			  "edit"
 	  Name			  "data"
 	  Prompt		  "data"
-	  Value			  "{'date',737357.79893961805}"
+	  Value			  "{'date',737609.79318274301}"
 	  Evaluate		  "off"
 	  Visible		  "off"
 	}
@@ -3316,7 +3316,7 @@ Model {
 	  Type			  "edit"
 	  Name			  "data"
 	  Prompt		  "data"
-	  Value			  "{'date',737357.79894009256}"
+	  Value			  "{'output',{'type','UInt8'},'date',737609.79343885416}"
 	  Evaluate		  "off"
 	  Visible		  "off"
 	}
@@ -3357,7 +3357,7 @@ Model {
 	  Type			  "edit"
 	  Name			  "data"
 	  Prompt		  "data"
-	  Value			  "{'date',737357.79894048616}"
+	  Value			  "{'output',{'type','UInt16'},'date',737609.79352688661}"
 	  Evaluate		  "off"
 	  Visible		  "off"
 	}
@@ -3398,7 +3398,7 @@ Model {
 	  Type			  "edit"
 	  Name			  "data"
 	  Prompt		  "data"
-	  Value			  "{'date',737357.79894076393}"
+	  Value			  "{'output',{'type','UInt32'},'date',737609.79361886578}"
 	  Evaluate		  "off"
 	  Visible		  "off"
 	}
@@ -3439,7 +3439,7 @@ Model {
 	  Type			  "edit"
 	  Name			  "data"
 	  Prompt		  "data"
-	  Value			  "{'date',737357.79894128477}"
+	  Value			  "{'output',{'type','Int8'},'date',737609.79310484952}"
 	  Evaluate		  "off"
 	  Visible		  "off"
 	}
@@ -3480,7 +3480,7 @@ Model {
 	  Type			  "edit"
 	  Name			  "data"
 	  Prompt		  "data"
-	  Value			  "{'date',737357.79894153937}"
+	  Value			  "{'output',{'type','Int32'},'date',737609.79325869214}"
 	  Evaluate		  "off"
 	  Visible		  "off"
 	}
@@ -3521,7 +3521,7 @@ Model {
 	  Type			  "edit"
 	  Name			  "data"
 	  Prompt		  "data"
-	  Value			  "{'date',737357.79894178244}"
+	  Value			  "{'output',{'type','Float32'},'date',737609.79287188663}"
 	  Evaluate		  "off"
 	  Visible		  "off"
 	}
@@ -3562,7 +3562,7 @@ Model {
 	  Type			  "edit"
 	  Name			  "data"
 	  Prompt		  "data"
-	  Value			  "{'date',737357.79894201388}"
+	  Value			  "{'output',{'type','Float64'},'date',737609.79334344913}"
 	  Evaluate		  "off"
 	  Visible		  "off"
 	}

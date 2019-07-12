@@ -349,7 +349,7 @@ classdef slQuery < double
 					selector = regexp(act{2}, '^\*?(\()?(?<argidx>(?(1)\d+))(?(1)\))(?<type>\w+)?(#)?(?<id>(?(5)\w+))(\.)?(?<class>(?(7)\w+))(\[)?(?<attributes>(?(9).+))(?(9)\])(\+)?(?<pseudo>(?(12)\w+))$', 'names');
 					assert(~isempty(selector), 'malformed selector ''%s''', act{2});
 					% split the attribute qualifiers:                 '(attribute )...(         operator          )...(       ref attribute        )(    value    )( comma? )
-					selector.attributes = regexp(selector.attributes, '(?<name>\w+)\s*(?<operator>=|\^=|\$=|\*=|~=)\s*(\$)?(?<ref>(?(3)\d+))(?(3)\.)(?<value>[^,]+)(\s*,\s*)?', 'names');
+					selector.attributes = regexp(selector.attributes, '(?<name>[\w.]+)\s*(?<operator>[\^\$\*~]?=)\s*(\$)?(?<ref>(?(3)\d+))(?(3)\.)(?<value>[^,]+)(\s*,\s*)?', 'names');
 					
 					if ~isempty(selector.id)
 						common_find_args = [common_find_args, 'Name', ['^' selector.id '$']]; %#ok<AGROW>
@@ -368,23 +368,26 @@ classdef slQuery < double
 						common_find_args = [common_find_args, selector.pseudo, 'on']; %#ok<AGROW>
 					end
 					
-					rattrs = []; rinfos = []; % collect ref-attrs and ref-infos
+					tlattrs = []; rattrs = []; rinfos = []; % collect ref-attrs and ref-infos
 					for attr = selector.attributes % parameters
 						% TODO: also support ".tl.bla.blubb" parameters.
-						% TODO: also support ".tl.bla.blubb" parameters.
-						if ~isempty(attr.ref) % the value is a ref-property ~> append to find_args later
+						if ~isempty(attr.ref) % the value is a ref-property ~> append to find_args or tlattrs later
 							% value is the parameter '$1.param'
 							rinfos = [rinfos; handles(str2double(attr.ref), :)]; %#ok<AGROW>
 							rattrs = [rattrs attr]; %#ok<AGROW>
-						else % the value is a literal ~> translate & append to find_args now
+
+						else % the value is a literal ~> translate & append to find_args/tlattr now
 							if numel(attr.value >= 2) && attr.value(1) == '"' && attr.value(end) == '"' % strip quotes
 								attr.value = attr.value(2:end-1);
 							end
-							
+							if strncmp(attr.name, 'tl.', 3) % is a TargetLink block property
+								tlattrs = [tlattrs attr]; %#ok<AGROW>
+							else
+								common_find_args = [common_find_args, attr.name, slQuery.wrap_find_arg(attr.operator, attr.value)]; %#ok<AGROW>
+							end
 						end
-						find_args = [find_args, attr.name, slQuery.wrap_find_arg(attr.operator, attr.value)]; %#ok<AGROW>
 					end
-					
+					if ~isempty(tlattrs), common_find_args = [common_find_args, 'data', '.*']; end %#ok<AGROW>
 					new_handles = double.empty(size(handles, 1) +1, 0); % height of new selection is one more
 				end
 				
@@ -489,6 +492,16 @@ classdef slQuery < double
 					
 					new = reshape(unique(new), 1, []); % reshape for ML 2010b unique
 					group = handles(:, info_idx == i);
+					
+					% filter TargetLink properties via the tlattrs 
+					if ~isempty(tlattrs)
+						for attr = tlattrs
+							% new(arrayfun(@(h) ~isfield(get_param(h, 'ObjectParameters'), 'data'), new)) = [];
+							new(arrayfun(@(h) ~ismember(attr.name(4:end), tl_get(h)), new)) = [];
+							regex = slQuery.wrap_find_arg(attr.operator, attr.value);
+							new(arrayfun(@(h) isempty(regexp(char(tl_get(h, attr.name(4:end))), regex, 'once')), new)) = [];
+						end
+					end
 					
 					if isnumeric(selector) % selector was reference ~> pick only columns, where the ref matches to one of the results
 						group = group(:, ismember(group(selector, :), new));

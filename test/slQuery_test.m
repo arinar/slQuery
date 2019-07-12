@@ -213,16 +213,57 @@ X = slQuery('[Name*=sig]');
 assert(~isempty(X));
 assert(~any(cellfun(@isempty, regexp(X.Name, 'sig', 'match', 'once'))));
 
-%% param spec selector (full regex)
+%% param spec selector (regex)
 X = slQuery('[BlockType~=^(In|Out)port$]');
 assert(~isempty(X));
 assert(all(ismember(X.BlockType, {'Inport', 'Outport'})));
 
-%% param spec selector multiple params
+%% param spec selector (multiple params)
 X = slQuery('[BlockType=Inport,BackgroundColor=orange]');
 assert(~isempty(X));
 assert(all(strcmp(X.BlockType, 'Inport')));
 assert(all(strcmp(X.BackgroundColor, 'orange')));
+
+%% param spec selector (tlprop)
+X = slQuery('[tl.output.type=Int16]');
+assert(~isempty(X));
+assert(all(strcmp(X.tl.output.type, 'Int16')));
+
+%% param spec selector (tlprop, start)
+X = slQuery('[tl.output.type^=Float]');
+assert(~isempty(X));
+assert(all(~cellfun(@isempty, regexp(X.tl.output.type, '^Float', 'once') )));
+
+%% param spec selector (tlprop, end)
+X = slQuery('[tl.output.type$=32]');
+assert(~isempty(X));
+assert(all(~cellfun(@isempty, regexp(X.tl.output.type, '32$', 'once') )));
+
+%% param spec selector (tlprop, part)
+X = slQuery('[tl.output.type*=Int]');
+assert(~isempty(X));
+assert(all(~cellfun(@isempty, regexp(X.tl.output.type, 'Int', 'once') )));
+
+%% param spec selector (tlprop, regex)
+X = slQuery('[tl.output.type~=^U?Int(8|32)$]');
+assert(~isempty(X));
+assert(all(~cellfun(@isempty, regexp(X.tl.output.type, '^U?Int(8|32)$', 'once') )));
+
+%% param spec selector (tlprop, restrict on property exist)
+X = slQuery('[tl.gain.type=Int16]');
+assert(~isempty(X));
+assert(all(strcmp(X.BlockType, 'Gain') & strcmp(X.MaskType, 'TL_Gain')));
+assert(all(strcmp(X.tl.output.type, 'Int16')));
+
+%% param spec selector (tlprop, multiple)
+X = slQuery('[tl.output.type=Int16,tl.gain.type=Int16]');
+assert(~isempty(X));
+assert(all(strcmp(X.tl.output.type, 'Int16') & strcmp(X.tl.gain.type, 'Int16')));
+
+%% param spec selector (mixed slparam tlprop)
+X = slQuery('[Gain=42,tl.gain.type=Int16]');
+assert(~isempty(X));
+assert(all(strcmp(X.Gain, '42') & strcmp(X.tl.gain.type, 'Int16')));
 
 %% argidx selectors (single char)
 x = slQuery('(1)', gcb);
