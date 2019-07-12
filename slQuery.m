@@ -258,14 +258,24 @@ classdef slQuery < double
 			assert(isempty(i) || isscalar(i) || isempty(o) || isscalar(o) || numel(i) == numel(o), ... so both sides can be combined
 				'input and output port spec cardinality must match (i=%d, o=%d)', numel(i), numel(o));
 			
-			lhs = slQuery.arrayfun(@(h) get_param(h, 'LineHandles'), double(this));
-			phs = slQuery.arrayfun(@(h) get_param(h, 'PortHandles'), double(this));
+			lhs = slQuery.get_param(double(this), 'LineHandles');
+			phs = slQuery.get_param(double(this), 'PortHandles');
 			
-			its(:, i>0) = cell2mat(arrayfun(@(h) {h.Inport(i(i>0))}, phs)');
-			its(:, i<0) = cell2mat(arrayfun(@(h) {h.Inport(-i(i<0))}, lhs)');
+			if isequal(i, '!')
+				its(:, 1) = arrayfun(@(h) h.Trigger, phs);
+			elseif isequal(i, '-!')
+				its(:, 1) = arrayfun(@(h) h.Trigger, lhs);
+			elseif isequal(i, '?')
+				its(:, 1) = arrayfun(@(h) h.Enable, phs);
+			elseif isequal(i, '-?')
+				its(:, 1) = arrayfun(@(h) h.Enable, lhs);
+			else
+				its(:, i>0) = cell2mat(arrayfun(@(h) {h.Inport(i(i>0))}, phs));
+				its(:, i<0) = cell2mat(arrayfun(@(h) {h.Inport(-i(i<0))}, lhs));
+			end
 			
-			ots(:, o>0) = cell2mat(arrayfun(@(h) {h.Outport(o(o>0))}, phs)');
-			ots(:, o<0) = cell2mat(arrayfun(@(h) {h.Outport(-o(o<0))}, lhs)');
+			ots(:, o>0) = cell2mat(arrayfun(@(h) {h.Outport(o(o>0))}, phs));
+			ots(:, o<0) = cell2mat(arrayfun(@(h) {h.Outport(-o(o<0))}, lhs));
 
 			ps = slQuery([its ots]');
 		end
@@ -482,6 +492,8 @@ classdef slQuery < double
 							if ~isempty(combinator.dp)
 								if isnumeric(combinator.dp)
 									ps = ps(slQuery.get_param(ps, 'PortNumber') == combinator.dp);
+								elseif ischar(combinator.dp) && isequal(combinator.dp, '!')
+									ps = ps(slQuery.get_param(ps, 'PortNumber') == combinator.dp);
 								end
 							end
 							
@@ -577,6 +589,8 @@ classdef slQuery < double
 			if isempty(res)
 				res = double.empty(1,0);
 			end
+			if iscell(res) && ~iscellstr(res), res = vertcat(res{:}); end
+			if isempty(res), res = double.empty(1,0); end
 		end
 
 		function type = get_paramtype(sel, param)
@@ -623,7 +637,6 @@ classdef slQuery < double
 		function eps = follow(bp, addr, front, virt, slic)
 			% follow the data flow of a port through lines and virtual blocks
 			% OutPort/Subsystem, Subsystem/InPort, Goto/From
-
 			assert(isnumeric(bp) && isscalar(bp)); % bp - "begin"-port, whose line we want to follow
 			assert(iscell(addr)); % addr - the address of a compound signal (bus, array)
 			
@@ -759,7 +772,6 @@ classdef slQuery < double
 							if ~isempty(find_system(s, 'SearchDepth', 1, tag_args{:}, 'BlockType', 'GotoTagVisibility'))
 								break;
 							end
-							
 							s = slQuery.get_ref(s, 'Parent');
 						end
 						
@@ -797,7 +809,6 @@ classdef slQuery < double
 							% ~> array unpacking direction
 							
 						elseif isempty(addr) % but there is no addr token for digging down
-							
 							% when signal-slicing, we must follow all components of an ending mux-signal, even though
 							% the signal itself has ended (blocks behind this Mux/Demux are indeed in the signal slice of
 							% the original block)
@@ -941,6 +952,10 @@ classdef slQuery < double
 					ps = ps(index);
 				elseif isnumeric(index)
 					ps = ps(arrayfun(@(p) get_param(p, 'PortNumber') == index, ps));
+				elseif isequal(index, '!') % trigger
+					ps = ps(strcmp(slQuery.get_param(ps, 'PortType'), 'trigger'));
+				elseif isequal(index, '?') % enable
+					ps = ps(strcmp(slQuery.get_param(ps, 'PortType'), 'enable'));
 				else % char ~> filter by port name, when the block is a subsystem
 					if strcmp(type, 'Inport') || strcmp(type, 'DstPortHandle')
 						bt = 'Inport';
