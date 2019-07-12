@@ -204,7 +204,7 @@ classdef slQuery < double
 							else
 								tlprops = slQuery.arrayfun(@(~, v) v, sel, value);
 							end
-							arrayfun(@(h, p) tl_set(h, 'blockdatastruct', p), double(sel), tlprops, 'UniformOutput', false);
+							slQuery.arrayfun(@tl_set, double(sel), 'blockdatastruct', tlprops);
 							break; % all further subs were resolved here
 						end
 						
