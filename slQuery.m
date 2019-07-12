@@ -417,20 +417,15 @@ classdef slQuery < double
 						case ','
 							% info is the root of the previous block
 							new = find_system(info, find_args{:})';
-
 						case ' ' % sibling of the current block
 							par = slQuery.get_ref(info, 'Parent');
 							new = setdiff(find_system(par, 'SearchDepth', 1, find_args{:})', [par info]);
-							
 						case '/' % direct descendant (child)
 							new = setdiff(find_system(info, 'SearchDepth', 1, find_args{:})', info);
-							
 						case '//' % arbitrary depth descendant
 							new = setdiff(find_system(info, find_args{:})', info);
-							
 						case '\' % direct ascendant (parent)
 							new = find_system(info, 'SearchDepth', 0, find_args{:})';
-							
 						case '\\' % arbitrary ascendant (ancestor)
 							% compute the chain of parents
 							new = [];
@@ -448,11 +443,9 @@ classdef slQuery < double
 							else
 								new = find_system(info, 'SearchDepth', 0, find_args{:})';
 							end
-
 						case {'@', '`'} % model blocks linking this library block
 							% this is more expensive: search from root 0 instead of bdroot
 							new = find_system(0, find_args{:}, 'ReferenceBlock', ['^' getfullname(info) '$'])';
-							
 						case {'->', '-', '<-'} % directly wired
 							ps = double.empty(1, 0);
 							if ismember(combinator.type, {'->', '-'})
@@ -464,16 +457,13 @@ classdef slQuery < double
 								ps = [ps slQuery.get_ports(lines(lines ~= -1), 'SrcPortHandle', combinator.dp)]; %#ok<AGROW>
 							end
 							new = find_system(slQuery.get_ref(ps, 'Parent'), 'SearchDepth', 0, find_args{:})';
-							
 						case {  '~>', '~', '<~' ... indirectly wired, including virtual blocks (Subsystem-Levels, Goto/From, BusCreator/BusSelector, Mux/Demux)
 								'=>', '=', '<=' ... logically wired, excluding virtual blocks
 								'>>', '<>', '<<' ... signal slicing (any data dependencies)
 								}
-							
 							ps = double.empty(1, 0);
 							virt = ismember(combinator.type, {'~>', '~', '<~', '<<', '<>', '>>'});
 							slic = ismember(combinator.type, {'<<', '<>', '>>'});
-							
 							% make empty frontier for recursion breakpoints
 							front = containers.Map('KeyType', 'char', 'ValueType', 'logical');
 							if ismember(combinator.type, {'~>', '~', '=>', '=', '>>', '<>'})
@@ -481,13 +471,11 @@ classdef slQuery < double
 									ps = [ps slQuery.follow(port, {}, front, virt, slic)]; %#ok<AGROW>
 								end
 							end
-							
 							if ismember(combinator.type, {'<~', '~', '<=', '=', '<<', '<>'})
 								for port = [-info(ismember(get_param(info, 'BlockType'), {'Inport', 'From'})) slQuery.get_ports(info, 'Inport', combinator.sp)]
 									ps = [ps slQuery.follow(port, {}, front, virt, slic)]; %#ok<AGROW>
 								end
 							end
-							
 							% filter by port handle number
 							if ~isempty(combinator.dp)
 								if isnumeric(combinator.dp)
@@ -496,12 +484,10 @@ classdef slQuery < double
 									ps = ps(slQuery.get_param(ps, 'PortNumber') == combinator.dp);
 								end
 							end
-							
 							% negative return values of follow are the handles of port blocks
 							new = [-ps(ps < 0), slQuery.get_ref(ps(ps>0), 'Parent')];
 							new = find_system(new, 'SearchDepth', 0, find_args{:})';
 					end
-					
 					new = reshape(unique(new), 1, []); % reshape for ML 2010b unique
 					group = handles(:, info_idx == i);
 					
@@ -525,7 +511,6 @@ classdef slQuery < double
 						if ~isempty(selector.argidx)
 							new = intersect(new, varargin{str2double(selector.argidx)});
 						end
-						
 						% outer join of group and new elements
 						group = [
 							group(:, repmat(1:size(group, 2), 1, size(new, 2)))
@@ -565,7 +550,6 @@ classdef slQuery < double
 				[r, ~] = find(sz == 0);
 				[varargout{1:nargout}] = deal(double.empty(sz(r(1),:)));
 			else
-
 				sz = max(sz, [], 1);
 				for i = 1:numel(varargin)
 					v = varargin{i};
@@ -582,13 +566,6 @@ classdef slQuery < double
 		function res = get_param(hs, param)
 			% a vectorial get_param without scalar/empty-quirks
 			res = arrayfun(@(h) get_param(h, param), double(hs), 'UniformOutput', false);
-			
-			if iscell(res) && ~iscellstr(res)
-				res = vertcat(res{:});
-			end
-			if isempty(res)
-				res = double.empty(1,0);
-			end
 			if iscell(res) && ~iscellstr(res), res = vertcat(res{:}); end
 			if isempty(res), res = double.empty(1,0); end
 		end
