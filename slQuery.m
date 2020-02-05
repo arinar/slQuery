@@ -302,14 +302,11 @@ classdef slQuery < double
 			end
 		end
 		function [varargout] = ctranspose(this) % allow 'dispersed' assignments: [a, b, ~] = slQuery(...)';
-			if nargout < 2
-				varargout{1} = this; % this does not transpose the array either
-			else
-				varargout = cell(1, nargout);
-				handles = double(this);
-				for i = 1:nargout
-					varargout{i} = slQuery(handles(i, :));
-				end
+			if nargout < 2, varargout{1} = this; return; end % does not transpose the array
+			varargout = cell(1, nargout);
+			handles = double(this);
+			for i = 1:nargout
+				varargout{i} = slQuery(handles(i, :));
 			end
 		end
 	end
