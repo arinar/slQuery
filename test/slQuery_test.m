@@ -660,14 +660,14 @@ for x = slQuery('PMIOPort - 1:SubSystem')
 end
 
 %% signal line combinators with portspec (port name, inport)
-for x = slQuery('Inport -> In2:SubSystem:In2 <- Inport')
+for x = slQuery('Inport -> In2: SubSystem :In2 <- Inport')
 	i = str2double(get_param([x(2).fullname '/In2'], 'Port'));
 	assert(x(1):1 == get_param(double(-(i):x(2)), 'SrcPortHandle'));
 	assert(x(1) == x(3));
 end
 
 %% signal line combinators with portspec (port name, outport)
-for x = slQuery('Outport <- Out2:SubSystem:Out2 -> Outport')
+for x = slQuery('Outport <- Out2: SubSystem :Out2 -> Outport')
 	i = str2double(get_param([x(2).fullname '/Out2'], 'Port'));
 	assert(x(2):(i) == get_param(double(-1:x(1)), 'SrcPortHandle'));
 	assert(x(1) == x(3));
