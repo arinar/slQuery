@@ -383,7 +383,7 @@ classdef slQuery < double
 							rattrs = [rattrs attr]; %#ok<AGROW>
 
 						else % the value is a literal ~> translate & append to find_args/tlattr now
-							if numel(attr.value >= 2) && attr.value(1) == '"' && attr.value(end) == '"' % strip quotes
+							if numel(attr.value) >= 2 && attr.value(1) == '"' && attr.value(end) == '"' % strip quotes
 								attr.value = attr.value(2:end-1);
 							end
 							if strncmp(attr.name, 'tl.', 3) % is a TargetLink block property
