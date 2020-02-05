@@ -622,9 +622,18 @@ for x = slQuery('Outport <- Inport')
 	assert(x(2):1 == get_param(double(-1:x(1)), 'SrcPortHandle'));
 end
 
-% TODO: signal line combinator (indirectional)
-%for x = slQuery('SubSystem - SubSystem')
-%end
+%% physical line combinator (indirectional)
+for x = slQuery('PMIOPort[Side=Left] - PMIOPort[Side=Right]')
+	% naive: there are no splits - same line
+	if x(1):-1j == x(2):-1j, continue, end
+	
+	% slightly less naive: at least one line is in the others LineChildren
+	if any(x(1):-1j == getfield(x(2):-1j, 'LineChildren')), continue, end %#ok<GFLD> i want `(x(2):-1j).LineChildren` syntax
+	if any(x(2):-1j == getfield(x(1):-1j, 'LineChildren')), continue, end %#ok<GFLD>
+	
+	% it might be a special case where two separately grown trees collide
+	assert(false);
+end
 
 %% signal line combinators with portspec (port number, inport)
 for x = slQuery('Inport -> 2:SubSystem:2 <- Inport')
@@ -636,6 +645,18 @@ end
 for x = slQuery('Outport <- 2:SubSystem:2 -> Outport')
 	assert(x(2):2 == get_param(double(-1:x(1)), 'SrcPortHandle'));
 	assert(x(1) == x(3));
+end
+
+%% physical line combinator with portspec (rconn number)
+for x = slQuery('SubSystem:1 - PMIOPort')
+	% naive: there are no splits - same line
+	assert(x(1):-1j == x(2):-1j);
+end
+
+%% physical line combinator with portspec (lconn number)
+for x = slQuery('PMIOPort - 1:SubSystem')
+	% naive: there are no splits - same line
+	assert(x(1):-1j == x(2):-1j);
 end
 
 %% signal line combinators with portspec (port name, inport)
@@ -650,6 +671,13 @@ for x = slQuery('Outport <- Out2:SubSystem:Out2 -> Outport')
 	i = str2double(get_param([x(2).fullname '/Out2'], 'Port'));
 	assert(x(2):(i) == get_param(double(-1:x(1)), 'SrcPortHandle'));
 	assert(x(1) == x(3));
+end
+
+%% physical line combinator with portspec (conn name)
+for x = slQuery('PMIOPort - LConn2: SubSystem :RConn2 - PMIOPort')
+	i = str2double(get_param([x(2).fullname '/LConn2'], 'Port'));
+	assert(x(2):(i) == get_param(double(-1:x(1)), 'SrcPortHandle'));
+	assert(x(1):-1j == x(2):-1j);
 end
 
 %% downstream and upstream signal line combinators yield same info

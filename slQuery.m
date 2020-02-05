@@ -458,13 +458,24 @@ classdef slQuery < double
 						case {'@', '`'} % model blocks linking this library block
 							% this is more expensive: search from root 0 instead of bdroot
 							new = find_system(0, find_args{:}, 'ReferenceBlock', ['^' getfullname(info) '$'])';
-						case {'->', '-', '<-'} % directly wired
+						case '-' % directly connected
+							pc = get_param(info, 'PortConnectivity');
+							pc(~strncmp({pc.Type}, 'RConn', 5)) = [];
+							if (combinator.sp)
+								pc(~strcmp({pc.Type}, ['RConn' num2str(combinator.sp)])) = [];
+							end
+							ps = [pc.DstPort];
+							if combinator.dp
+								ps(slQuery.get_param(ps, 'PortNumber') ~= combinator.dp) = [];
+							end
+							new = find_system(setdiff(slQuery.get_ref(ps, 'Parent'), info), 'SearchDepth', 0, find_args{:})';
+						case {'->', '<-'} % directly feeding
 							ps = double.empty(1, 0);
-							if ismember(combinator.type, {'->', '-'})
+							if strcmp(combinator.type, '->')
 								lines = slQuery.get_param(slQuery.get_ports(info, 'Outport', combinator.sp), 'line');
 								ps = [ps slQuery.get_ports(lines(lines ~= -1), 'DstPortHandle', combinator.dp)]; %#ok<AGROW>
 							end
-							if ismember(combinator.type, {'<-', '-'})
+							if strcmp(combinator.type, '<-')
 								lines = slQuery.get_param(slQuery.get_ports(info, 'Inport', combinator.sp), 'line');
 								ps = [ps slQuery.get_ports(lines(lines ~= -1), 'SrcPortHandle', combinator.dp)]; %#ok<AGROW>
 							end
