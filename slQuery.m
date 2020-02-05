@@ -368,6 +368,7 @@ classdef slQuery < double
 					
 				else % selector is real ~> create structure
 					% parse as selector:       ^(*)(    parens around arg index    )(block type )(  hash with name  )( period with masktype )(    brackets and qualifier list   )(  plus and pseudo-class )$
+					assert(~isempty(act{2}), 'missing selector after ''%s''', act{1});
 					selector = regexp(act{2}, '^\*?(\()?(?<argidx>(?(1)\d+))(?(1)\))(?<type>\w+)?(#)?(?<id>(?(5)\w+))(\.)?(?<class>(?(7)\w+))(\[)?(?<attributes>(?(9).+))(?(9)\])(\+)?(?<pseudo>(?(12)\w+))$', 'names');
 					assert(~isempty(selector), 'malformed selector ''%s''', act{2});
 					% split the attribute qualifiers:                 '(attribute )...(         operator          )...(       ref attribute        )(    value    )( comma? )
