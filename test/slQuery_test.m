@@ -594,7 +594,8 @@ assert(isequal(X(1), X(3)));
 
 %% ascendants combinator
 [B, S] = slQuery('Goto \\ SubSystem')';
-while any(S)
+assert(~isempty(B));
+while any(S) % iteratively set Bs to their parents drop them when they match S
 	B = B.Parent.Handle.wrap;
 	i = B == S; % drop all blocks that match up
 	B = B(~i); S = S(~i);
@@ -662,13 +663,13 @@ end
 %% wiring combinator (downstream)
 [i, o] = slQuery('Inport[BackgroundColor=orange] => Outport[BackgroundColor=lightBlue]')';
 assert(~isempty(i));
-assert(all(strcmp(regexp(i.Name, '\d+', 'match', 'once'), regexp(i.Name, '\d+', 'match', 'once')))); 
+assert(all(strcmp(regexp(i.Name, '\d+', 'match', 'once'), regexp(o.Name, '\d+', 'match', 'once'))));
 assert(all(strcmp(i.Port, o.Port)));
 
 %% wiring combinator (upstream)
 [o, i] = slQuery('Outport[BackgroundColor=lightBlue] <= Inport[BackgroundColor=orange]')';
 assert(~isempty(o));
-assert(all(strcmp(regexp(i.Name, '\d+', 'match', 'once'), regexp(i.Name, '\d+', 'match', 'once'))));
+assert(all(strcmp(regexp(i.Name, '\d+', 'match', 'once'), regexp(o.Name, '\d+', 'match', 'once'))));
 assert(all(strcmp(i.Port, o.Port)));
 
 % TODO: wiring combinator (indirectional)
@@ -681,13 +682,13 @@ assert(all(strcmp(i.Port, o.Port)));
 [i, o] = slQuery('Inport[BackgroundColor=orange] ~> Outport')';
 assert(~isempty(i));
 assert(any(strcmp(o.BackgroundColor, 'white')));
-assert(all(strcmp(regexp(i.Name, '\d+', 'match', 'once'), regexp(i.Name, '\d+', 'match', 'once')))); 
+assert(all(strcmp(regexp(i.Name, '\d+', 'match', 'once'), regexp(o.Name, '\d+', 'match', 'once'))));
 
 %% wiring combinator (downstream, including virtual blocks)
 [o, i] = slQuery('Outport[BackgroundColor=lightBlue] <~ Inport')';
 assert(~isempty(o));
 assert(any(strcmp(i.BackgroundColor, 'white')));
-assert(all(strcmp(regexp(i.Name, '\d+', 'match', 'once'), regexp(i.Name, '\d+', 'match', 'once'))));
+assert(all(strcmp(regexp(i.Name, '\d+', 'match', 'once'), regexp(o.Name, '\d+', 'match', 'once'))));
 
 % TODO: wiring combinator (indirectional, including virtual blocks)
 %for x = slQuery('Mux = Mux')
