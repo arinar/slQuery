@@ -380,7 +380,6 @@ classdef slQuery < double
 					
 					tlattrs = []; rattrs = []; rinfos = []; % collect ref-attrs and ref-infos
 					for attr = selector.attributes % parameters
-						% TODO: also support ".tl.bla.blubb" parameters.
 						if ~isempty(attr.ref) % the value is a ref-property ~> append to find_args or tlattrs later
 							% value is the parameter '$1.param'
 							rinfos = [rinfos; handles(str2double(attr.ref), :)]; %#ok<AGROW>
