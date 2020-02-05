@@ -54,7 +54,7 @@ classdef slQuery < double
 	methods(Access=public, Hidden)
 		function disp(this)
 			if isempty(this)
-				fprintf('   Empty slQuery: %d-by-0\n', size(this, 1));
+				fprintf('   %dx0 empty slQuery\n', size(this, 1));
 			else
 				disp('slQuery with handles');
 				x = dbstack; % hyperlinks don't look nice in datatip displays
