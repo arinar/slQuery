@@ -261,22 +261,37 @@ classdef slQuery < double
 			lhs = slQuery.get_param(double(this), 'LineHandles');
 			phs = slQuery.get_param(double(this), 'PortHandles');
 			
-			if isequal(i, '!')
-				its(:, 1) = arrayfun(@(h) h.Trigger, phs);
-			elseif isequal(i, '-!')
-				its(:, 1) = arrayfun(@(h) h.Trigger, lhs);
-			elseif isequal(i, '?')
-				its(:, 1) = arrayfun(@(h) h.Enable, phs);
-			elseif isequal(i, '-?')
-				its(:, 1) = arrayfun(@(h) h.Enable, lhs);
-			else
+			if ischar(i)
+				if i(1) == '-', hs = lhs; i(1) = []; else, hs = phs; end
+				switch i
+					case {'t', '!'}, f = 'Trigger';
+					case {'e', '?'}, f = 'Enable';
+					case {'a'}, f = 'Ifaction';
+					case {'r', '°'}, f = 'Reset';
+					otherwise, error('left handle index must be real or imaginary integer or one of t, !, e, ?, a, r');
+				end
+				its(:, 1) = arrayfun(@(h) h.(f), hs);
+			elseif isreal(i)
 				its(:, i>0) = cell2mat(arrayfun(@(h) {h.Inport(i(i>0))}, phs));
 				its(:, i<0) = cell2mat(arrayfun(@(h) {h.Inport(-i(i<0))}, lhs));
+			else
+				i = imag(i);
+				its(:, i>0) = cell2mat(arrayfun(@(h) {h.LConn(i(i>0))}, phs));
+				its(:, i<0) = cell2mat(arrayfun(@(h) {h.LConn(-i(i<0))}, lhs));
 			end
 			
-			ots(:, o>0) = cell2mat(arrayfun(@(h) {h.Outport(o(o>0))}, phs));
-			ots(:, o<0) = cell2mat(arrayfun(@(h) {h.Outport(-o(o<0))}, lhs));
-
+			if ischar(o)
+				if o(1) == '-', hs = lhs; o(1) = []; else hs = phs; end
+				assert(ismember(o, {'s', '^'}), 'right handle index must be real or imaginary integer or one of s, ^');
+				ots(:, 1) = arrayfun(@(h) h.State, hs);
+			elseif isreal(o)
+				ots(:, o>0) = cell2mat(arrayfun(@(h) {h.Outport(o(o>0))}, phs));
+				ots(:, o<0) = cell2mat(arrayfun(@(h) {h.Outport(-o(o<0))}, lhs));
+			else
+				o = imag(o);
+				ots(:, o>0) = cell2mat(arrayfun(@(h) {h.RConn(o(o>0))}, phs));
+				ots(:, o<0) = cell2mat(arrayfun(@(h) {h.RConn(-o(o<0))}, lhs));
+			end
 			ps = slQuery([its ots]');
 		end
 		function ls = gt(sps, dps) % add a line between ports x:1 > 1:y

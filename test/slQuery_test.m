@@ -8,7 +8,7 @@ open_system('slQuery_testmodel');
 modelDTor = onCleanup(@() close_system('slQuery_testmodel', false));
 
 % special elements
-subs22 = get_param('slQuery_testmodel/Subsystem', 'Handle'); % block chosen to have 2 inports, 2 outports
+subs22 = get_param('slQuery_testmodel/GotoTagVisibilityInside', 'Handle'); % block chosen to have 2 inports, 2 outports
 
 tlgain = get_param('slQuery_testmodel/Gain', 'Handle'); % block with TargetLink block mask
 tlprods = find_system(bdroot(tlgain), 'MaskType', 'TL_Product')'; % uniform set of blocks TargetLink block mask
@@ -303,8 +303,11 @@ assert(all(strcmp(X.MaskType, 'T900')));
 assert(all(strcmp(X.BackgroundColor, 'white')));
 assert(all(strcmp(X.ShowName, 'on')));
 
+% block port and line handle syntax using colon
+
 %% port handle access (scalar, single inport)
 for x = slQuery('Mux')
+	assert(isa(1:x, 'slQuery'));
 	assert(x.PortHandles.Inport(1) == 1:x);
 	assert(x.PortHandles.Inport(2) == 2:x);
 end
@@ -315,16 +318,88 @@ for x = slQuery('Demux')
 	assert(x.PortHandles.Outport(2) == x:2);
 end
 
-%% line handle access (scalar, single inport line)
+%% port handle access (scalar, single conn)
+for x = slQuery('SimscapeBus')
+	assert(x.PortHandles.LConn(1) == 1j:x);
+	assert(x.PortHandles.LConn(2) == 2j:x);
+	assert(x.PortHandles.RConn(1) == x:1j);
+end
+
+%% port handle access (scalar, reset)
+for x = slQuery('SubSystem[Name^=Resettable]')
+	assert(x.PortHandles.Reset == 'r':x)
+	assert(x.PortHandles.Reset == '°':x)
+end
+
+%% port handle access (scalar, enable)
+for x = slQuery('SubSystem[Name^=Enabled]')
+	assert(x.PortHandles.Enable == 'e':x)
+	assert(x.PortHandles.Enable == '?':x)
+end
+
+%% port handle access (scalar, trigger)
+for x = slQuery('SubSystem[Name^=Triggered]')
+	assert(x.PortHandles.Trigger == 't':x)
+	assert(x.PortHandles.Trigger == '!':x)
+end
+
+%% port handle access (scalar, action)
+for x = slQuery('SubSystem[Name^=Action]')
+	assert(x.PortHandles.Ifaction == 'a':x)
+end
+
+%% port handle access (scalar, state)
+for x = slQuery('[Name^=StatePortHaving]')
+	assert(x.PortHandles.State == x:'s')
+	assert(x.PortHandles.State == x:'^')
+end
+
+%% port handle access (scalar, single inport line)
 for x = slQuery('Mux')
 	assert(x.LineHandles.Inport(1) == -1:x);
 	assert(x.LineHandles.Inport(2) == -2:x);
 end
 
-%% line handle access (scalar, single outport line)
+%% port handle access (scalar, single outport line)
 for x = slQuery('Demux')
 	assert(x.LineHandles.Outport(1) == x:-1);
 	assert(x.LineHandles.Outport(2) == x:-2);
+end
+
+%% port handle access (scalar, reset line)
+for x = slQuery('SubSystem[Name^=Resettable]')
+	assert(x.LineHandles.Reset == '-r':x)
+	assert(x.LineHandles.Reset == '-°':x)
+end
+
+%% port handle access (scalar, enable line)
+for x = slQuery('SubSystem[Name^=Enabled]')
+	assert(x.LineHandles.Enable == '-e':x)
+	assert(x.LineHandles.Enable == '-?':x)
+end
+
+%% port handle access (scalar, trigger line)
+for x = slQuery('SubSystem[Name^=Triggered]')
+	assert(x.LineHandles.Trigger == '-t':x)
+	assert(x.LineHandles.Trigger == '-!':x)
+end
+
+%% port handle access (scalar, action line)
+for x = slQuery('SubSystem[Name^=Action]')
+	assert(x.LineHandles.Ifaction == '-a':x)
+end
+
+%% port handle access (scalar, state line)
+for x = slQuery('[Name^=StatePortHaving]')
+	assert(x.LineHandles.State == x:'-s')
+	assert(x.LineHandles.State == x:'-^')
+end
+
+%% port handle access (scalar, single conn line)
+for x = slQuery('SimscapeBus')
+	assert(x.LineHandles.LConn(1) == -1j:x);
+	assert(x.LineHandles.LConn(2) == -2j:x);
+	assert(x.LineHandles.RConn(1) == x:-1j);
 end
 
 %% port handle access (nonscalar, single port)
@@ -332,41 +407,75 @@ X = slQuery('Mux');
 assert(all(X.PortHandles.Inport(2) == 2:X));
 assert(all(X.PortHandles.Outport(1) == X:1));
 
-%% line handle access (nonscalar, single port line)
+%% port handle access (nonscalar, single conn)
+X = slQuery('SimscapeBus');
+assert(all(X.PortHandles.LConn(2) == 2j:X));
+assert(all(X.PortHandles.RConn(1) == X:1j));
+
+%% port handle access (nonscalar, single port line)
 X = slQuery('Demux');
 assert(all(X.LineHandles.Inport(1) == -1:X));
 assert(all(X.LineHandles.Outport(2) == X:-2));
 
+%% port handle access (nonscalar, single conn line)
+X = slQuery('SimscapeBus');
+assert(all(X.LineHandles.LConn(2) == -2j:X));
+assert(all(X.LineHandles.RConn(1) == X:-1j));
+
 %% port handle access (scalar, multiple inports)
 for x = slQuery('Mux')
-	assert(all([x.PortHandles.Inport(1); x.PortHandles.Inport(2)] == [1,2]:x));
-	assert(all([x.LineHandles.Inport(1); x.LineHandles.Inport(2)] == [-1,-2]:x));
+	assert(all([x.PortHandles.Inport(1); x.PortHandles.Inport(2)] == [1 2]:x));
+	assert(all([x.LineHandles.Inport(1); x.LineHandles.Inport(2)] == -[1 2]:x));
 end
 
 %% port handle access (scalar, multiple outports)
 for x = slQuery('Demux')
-	assert(all([x.PortHandles.Outport(1); x.PortHandles.Outport(2)] == x:[1,2]));
-	assert(all([x.LineHandles.Outport(1); x.LineHandles.Outport(2)] == x:[-1,-2]));
+	assert(all([x.PortHandles.Outport(1); x.PortHandles.Outport(2)] == x:[1 2]));
+	assert(all([x.LineHandles.Outport(1); x.LineHandles.Outport(2)] == x:-[1 2]));
+end
+
+%% port handle access (scalar, multiple conn)
+for x = slQuery('SimscapeBus')
+	assert(all([x.PortHandles.LConn(1); x.PortHandles.LConn(2)] == [1j 2j]:x));
+	assert(all([x.LineHandles.LConn(1); x.LineHandles.LConn(2)] == -[1j 2j]:x));
+	% must use the same port number, because there aren't any dual-rconn blocks in testmodel
+	assert(all([x.PortHandles.RConn(1); x.PortHandles.RConn(1)] == x:[1j 1j]));
+	assert(all([x.LineHandles.RConn(1); x.LineHandles.RConn(1)] == x:-[1j 1j]));
 end
 
 %% port handle access (scalar, mixed ports and lines)
 for x = slQuery('Demux')
 	assert(all([x.LineHandles.Inport(1); x.PortHandles.Outport(2)] == -1:x:2));
-	assert(all([x.LineHandles.Inport(1); x.PortHandles.Inport(1); x.PortHandles.Outport(1); x.LineHandles.Outport(2)] == [-1, 1]:x:[1,-2]));
+	assert(all([x.LineHandles.Inport(1); x.PortHandles.Inport(1); x.PortHandles.Outport(1); x.LineHandles.Outport(2)] == [-1 1]:x:[1 -2]));
+end
+
+%% port handle access (scalar, mixed conn and line)
+for x = slQuery('SimscapeBus')
+	assert(all([x.LineHandles.LConn(1); x.PortHandles.RConn(1)] == -1j:x:1j));
+	assert(all([x.LineHandles.LConn(1); x.PortHandles.LConn(1); x.PortHandles.RConn(1); x.LineHandles.RConn(1)] == [-1j 1j]:x:[1j -1j]));
 end
 
 %% port handle access (nonscalar, multiple inports)
 X = slQuery('Mux');
-assert(all(all([X.PortHandles.Inport(1); X.PortHandles.Inport(2)] == [1,2]:X)));
+assert(all(all([X.PortHandles.Inport(1); X.PortHandles.Inport(2)] == [1 2]:X)));
 
 %% port handle access (nonscalar, multiple outports)
 X = slQuery('Mux');
-assert(all(all([X.PortHandles.Inport(1); X.PortHandles.Inport(2)] == [1,2]:X)));
+assert(all(all([X.PortHandles.Inport(1); X.PortHandles.Inport(2)] == [1 2]:X)));
+
+%% port handle access (nonscalar, multiple conn)
+X = slQuery('SimscapeBus');
+assert(all(all([X.PortHandles.LConn(1); X.PortHandles.LConn(2)] == [1j 2j]:X)));
 
 %% port handle access (nonscalar, mixed ports and lines)
 X = slQuery('Demux');
 assert(all(all([X.LineHandles.Inport(1); X.PortHandles.Outport(2)] == -1:X:2)));
-assert(all(all([X.LineHandles.Inport(1); X.PortHandles.Inport(1); X.PortHandles.Outport(1); X.LineHandles.Outport(2)] == [-1, 1]:X:[1,-2])));
+assert(all(all([X.LineHandles.Inport(1); X.PortHandles.Inport(1); X.PortHandles.Outport(1); X.LineHandles.Outport(2)] == [-1 1]:X:[1 -2])));
+
+%% port handle access (nonscalar, mixed conn and lines)
+X = slQuery('SimscapeBus');
+assert(all(all([X.LineHandles.LConn(1); X.PortHandles.RConn(1)] == -1j:X:1j)));
+assert(all(all([X.LineHandles.LConn(1); X.PortHandles.LConn(1); X.PortHandles.RConn(1); X.LineHandles.RConn(1)] == [-1j 1j]:X:[1j -1j])));
 
 %% join combinator
 assert(~isempty(slQuery('*, *')));

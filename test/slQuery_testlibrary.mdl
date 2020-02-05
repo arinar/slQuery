@@ -1,7 +1,6 @@
 Library {
   Name			  "slQuery_testlibrary"
   Version		  8.6
-  MdlSubVersion		  0
   SavedCharacterEncoding  "windows-1252"
   LibraryType		  "BlockLibrary"
   ScopeRefreshTime	  0.035000
@@ -40,11 +39,11 @@ Library {
 	$ObjectID		5
 	$ClassName		"Simulink.EditorInfo"
 	IsActive		[1]
-	ViewObjType		"SimulinkSubsys"
-	LoadSaveID		"43"
-	Extents			[1812.0, 1053.0]
-	ZoomFactor		[1.25]
-	Offset			[-674.57678744259545, -173.95010540182923]
+	ViewObjType		"SimulinkTopLevel"
+	LoadSaveID		"0"
+	Extents			[1808.0, 1047.0]
+	ZoomFactor		[1.75]
+	Offset			[0.0, 0.0]
       }
     }
   }
@@ -54,10 +53,9 @@ Library {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "FO10C9R"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Tue Apr 24 09:50:12 2018"
-  RTWModifiedTimeStamp	  446464202
-  ModelVersionFormat	  "1.%<AutoIncrement:5>"
-  ConfigurationManager	  "none"
+  LastModifiedDate	  "Wed Jul 17 11:14:19 2019"
+  RTWModifiedTimeStamp	  485262859
+  ModelVersionFormat	  "1.%<AutoIncrement:6>"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
   LibraryLinkDisplay	  "all"
@@ -119,20 +117,19 @@ Library {
     Type		    "Handle"
     Dimension		    1
     Simulink.ConfigSet {
-      $ObjectID		      6
+      $ObjectID		      7
       Version		      "1.15.1"
       Array {
 	Type			"Handle"
 	Dimension		9
 	Simulink.SolverCC {
-	  $ObjectID		  7
+	  $ObjectID		  8
 	  Version		  "1.15.1"
 	  StartTime		  "0.0"
 	  StopTime		  "10.0"
 	  AbsTol		  "auto"
 	  FixedStep		  "auto"
 	  InitialStep		  "auto"
-	  MaxNumMinSteps	  "-1"
 	  MaxOrder		  5
 	  ZcThreshold		  "auto"
 	  ConsecutiveZCsStepRelTol "10*128*eps"
@@ -162,7 +159,7 @@ Library {
 	  InsertRTBMode		  "Whenever possible"
 	}
 	Simulink.DataIOCC {
-	  $ObjectID		  8
+	  $ObjectID		  9
 	  Version		  "1.15.1"
 	  Decimation		  "1"
 	  ExternalInput		  "[t, u]"
@@ -198,7 +195,7 @@ Library {
 	  LoggingIntervals	  "[-inf, inf]"
 	}
 	Simulink.OptimizationCC {
-	  $ObjectID		  9
+	  $ObjectID		  10
 	  Version		  "1.15.1"
 	  Array {
 	    Type		    "Cell"
@@ -255,7 +252,7 @@ Library {
 	  AccelVerboseBuild	  off
 	}
 	Simulink.DebuggingCC {
-	  $ObjectID		  10
+	  $ObjectID		  11
 	  Version		  "1.15.1"
 	  RTPrefix		  "error"
 	  ConsistencyChecking	  "none"
@@ -345,7 +342,7 @@ Library {
 	  IntegerSaturationMsg	  "warning"
 	}
 	Simulink.HardwareCC {
-	  $ObjectID		  11
+	  $ObjectID		  12
 	  Version		  "1.15.1"
 	  ProdBitPerChar	  8
 	  ProdBitPerShort	  16
@@ -385,7 +382,7 @@ Library {
 	  ProdEqTarget		  on
 	}
 	Simulink.ModelReferenceCC {
-	  $ObjectID		  12
+	  $ObjectID		  13
 	  Version		  "1.15.1"
 	  UpdateModelReferenceTargets "IfOutOfDateOrStructuralChange"
 	  EnableRefExpFcnMdlSchedulingChecks on
@@ -401,7 +398,7 @@ Library {
 	  SupportModelReferenceSimTargetCustomCode off
 	}
 	Simulink.SFSimCC {
-	  $ObjectID		  13
+	  $ObjectID		  14
 	  Version		  "1.15.1"
 	  SFSimEcho		  on
 	  SimCtrlC		  on
@@ -413,7 +410,7 @@ Library {
 	}
 	Simulink.RTWCC {
 	  $BackupClass		  "Simulink.RTWCC"
-	  $ObjectID		  14
+	  $ObjectID		  15
 	  Version		  "1.15.1"
 	  Array {
 	    Type		    "Cell"
@@ -441,7 +438,6 @@ Library {
 	  PackageGeneratedCodeAndArtifacts off
 	  TemplateMakefile	  "grt_default_tmf"
 	  PostCodeGenCommand	  ""
-	  Description		  ""
 	  GenerateReport	  off
 	  SaveLog		  off
 	  RTWVerbose		  on
@@ -482,11 +478,11 @@ Library {
 	    Type		    "Handle"
 	    Dimension		    2
 	    Simulink.CodeAppCC {
-	      $ObjectID		      15
+	      $ObjectID		      16
 	      Version		      "1.15.1"
 	      Array {
 		Type			"Cell"
-		Dimension		24
+		Dimension		28
 		Cell			"IgnoreCustomStorageClasses"
 		Cell			"ParameterTuningSideEffectCode"
 		Cell			"IgnoreTestpoints"
@@ -511,6 +507,10 @@ Library {
 		Cell			"CustomSymbolStrMacro"
 		Cell			"CustomSymbolStrUtil"
 		Cell			"ReqsInCode"
+		Cell			"CustomSymbolStrModelFcn"
+		Cell			"CustomSymbolStrEmxType"
+		Cell			"CustomSymbolStrEmxFcn"
+		Cell			"CustomUserTokenString"
 		PropName		"DisabledProps"
 	      }
 	      ForceParamTrailComments off
@@ -518,17 +518,14 @@ Library {
 	      CommentStyle	      "Auto"
 	      IgnoreCustomStorageClasses on
 	      IgnoreTestpoints	      off
-	      IncHierarchyInIds	      off
 	      MaxIdLength	      31
 	      PreserveName	      off
 	      PreserveNameWithParent  off
 	      ShowEliminatedStatement off
 	      OperatorAnnotations     off
-	      IncAutoGenComments      off
 	      SimulinkDataObjDesc     off
 	      SFDataObjDesc	      off
 	      MATLABFcnDesc	      off
-	      IncDataTypeInIds	      off
 	      MangleLength	      1
 	      CustomSymbolStrGlobalVar "$R$N$M"
 	      CustomSymbolStrType     "$N$R$M_T"
@@ -554,11 +551,11 @@ Library {
 	    }
 	    Simulink.GRTTargetCC {
 	      $BackupClass	      "Simulink.TargetCC"
-	      $ObjectID		      16
+	      $ObjectID		      17
 	      Version		      "1.15.1"
 	      Array {
 		Type			"Cell"
-		Dimension		12
+		Dimension		15
 		Cell			"IncludeMdlTerminateFcn"
 		Cell			"SuppressErrorStatus"
 		Cell			"ERTCustomFileBanners"
@@ -571,6 +568,9 @@ Library {
 		Cell			"SupportAbsoluteTime"
 		Cell			"SupportContinuousTime"
 		Cell			"SupportNonInlinedSFcns"
+		Cell			"ExistingSharedCode"
+		Cell			"RemoveDisableFunc"
+		Cell			"RemoveResetFunc"
 		PropName		"DisabledProps"
 	      }
 	      TargetFcnLib	      "ansi_tfl_table_tmw.mat"
@@ -581,7 +581,6 @@ Library {
 	      CodeReplacementLibrary  "None"
 	      UtilityFuncGeneration   "Auto"
 	      ERTMultiwordTypeDef     "System defined"
-	      ERTMultiwordLength      256
 	      MultiwordLength	      2048
 	      GenerateFullHeader      on
 	      InferredTypesCompatibility off
@@ -596,7 +595,6 @@ Library {
 	      CombineOutputUpdateFcns on
 	      CombineSignalStateStructs	off
 	      SuppressErrorStatus     off
-	      ERTFirstTimeCompliant   off
 	      IncludeFileDelimiter    "Auto"
 	      ERTCustomFileBanners    off
 	      SupportAbsoluteTime     on
@@ -639,7 +637,7 @@ Library {
 	  }
 	}
 	SlCovCC.ConfigComp {
-	  $ObjectID		  17
+	  $ObjectID		  18
 	  Version		  "1.15.1"
 	  Description		  "Simulink Coverage Configuration Component"
 	  Name			  "Simulink Coverage"
@@ -656,7 +654,7 @@ Library {
 	  CovCumulativeVarName	  "covCumulativeData"
 	  CovCumulativeReport	  off
 	  CovReportOnPause	  on
-	  CovModelRefEnable	  "off"
+	  CovModelRefEnable	  "Off"
 	  CovExternalEMLEnable	  off
 	  CovSFcnEnable		  on
 	  CovBoundaryAbsTol	  1e-05
@@ -669,7 +667,7 @@ Library {
       }
       Name		      "Configuration"
       CurrentDlgPage	      "Solver"
-      ConfigPrmDlgPosition     [ 420, 280, 1500, 920 ] 
+      ConfigPrmDlgPosition    [ 420, 280, 1500, 920 ]
     }
     PropName		    "ConfigurationSets"
   }
@@ -773,6 +771,7 @@ Library {
       SourceOfInitialOutputValue "Dialog"
       OutputWhenDisabled      "held"
       InitialOutput	      "[]"
+      OutputWhenUnConnected   off
     }
     Block {
       BlockType		      SubSystem
@@ -782,7 +781,6 @@ Library {
       TreatAsAtomicUnit	      off
       MinAlgLoopOccurrences   off
       PropExecContextOutsideSubsystem off
-      CheckFcnCallInpInsideContextMsg off
       SystemSampleTime	      "-1"
       RTWSystemCode	      "Auto"
       RTWFcnNameOpts	      "Auto"
@@ -807,7 +805,7 @@ Library {
     }
   }
   System {
-    Name		    "slQuery_testlibrary"
+    Name		    "slQuery_testlibrary_2015b"
     Location		    [66, -8, 1928, 1208]
     Open		    off
     ModelBrowserVisibility  off
@@ -834,7 +832,7 @@ Library {
       Variant		      off
       Object {
 	$PropName		"MaskObject"
-	$ObjectID		18
+	$ObjectID		19
 	$ClassName		"Simulink.Mask"
 	Display			"disp(['1-4' 10 '2-3'])"
       }
@@ -896,7 +894,7 @@ Library {
 	  Position		  [70, 72, 115, 108]
 	  ZOrder		  381
 	  ShowName		  off
-	  LibraryVersion	  "1.4"
+	  LibraryVersion	  "1.5"
 	  SourceBlock		  "slQuery_testlibrary/Sort2"
 	  SourceType		  "Sort"
 	  ShowPortLabels	  "FromPortIcon"
@@ -913,7 +911,7 @@ Library {
 	  Position		  [70, 17, 115, 53]
 	  ZOrder		  382
 	  ShowName		  off
-	  LibraryVersion	  "1.4"
+	  LibraryVersion	  "1.5"
 	  SourceBlock		  "slQuery_testlibrary/Sort2"
 	  SourceType		  "Sort"
 	  ShowPortLabels	  "FromPortIcon"
@@ -1026,7 +1024,7 @@ Library {
       Variant		      off
       Object {
 	$PropName		"MaskObject"
-	$ObjectID		19
+	$ObjectID		20
 	$ClassName		"Simulink.Mask"
 	Display			"disp(['1-6' 10 '2-5' 10 '3-4'])"
       }
@@ -1106,7 +1104,7 @@ Library {
 	  Position		  [70, 72, 115, 108]
 	  ZOrder		  381
 	  ShowName		  off
-	  LibraryVersion	  "1.4"
+	  LibraryVersion	  "1.5"
 	  SourceBlock		  "slQuery_testlibrary/Sort2"
 	  SourceType		  "Sort"
 	  ShowPortLabels	  "FromPortIcon"
@@ -1123,7 +1121,7 @@ Library {
 	  Position		  [70, 132, 115, 168]
 	  ZOrder		  391
 	  ShowName		  off
-	  LibraryVersion	  "1.4"
+	  LibraryVersion	  "1.5"
 	  SourceBlock		  "slQuery_testlibrary/Sort2"
 	  SourceType		  "Sort"
 	  ShowPortLabels	  "FromPortIcon"
@@ -1140,7 +1138,7 @@ Library {
 	  Position		  [70, 17, 115, 53]
 	  ZOrder		  382
 	  ShowName		  off
-	  LibraryVersion	  "1.4"
+	  LibraryVersion	  "1.5"
 	  SourceBlock		  "slQuery_testlibrary/Sort2"
 	  SourceType		  "Sort"
 	  ShowPortLabels	  "FromPortIcon"
@@ -1299,7 +1297,7 @@ Library {
       Variant		      off
       Object {
 	$PropName		"MaskObject"
-	$ObjectID		20
+	$ObjectID		21
 	$ClassName		"Simulink.Mask"
 	Display			"disp(['1-8' 10 '2-7' 10 '3-6' 10 '4-5'])"
       }
@@ -1397,7 +1395,7 @@ Library {
 	  Position		  [70, 72, 115, 108]
 	  ZOrder		  381
 	  ShowName		  off
-	  LibraryVersion	  "1.4"
+	  LibraryVersion	  "1.5"
 	  SourceBlock		  "slQuery_testlibrary/Sort2"
 	  SourceType		  "Sort"
 	  ShowPortLabels	  "FromPortIcon"
@@ -1414,7 +1412,7 @@ Library {
 	  Position		  [70, 132, 115, 168]
 	  ZOrder		  391
 	  ShowName		  off
-	  LibraryVersion	  "1.4"
+	  LibraryVersion	  "1.5"
 	  SourceBlock		  "slQuery_testlibrary/Sort2"
 	  SourceType		  "Sort"
 	  ShowPortLabels	  "FromPortIcon"
@@ -1435,7 +1433,7 @@ Library {
 	  Variant		  off
 	  Object {
 	    $PropName		    "MaskObject"
-	    $ObjectID		    21
+	    $ObjectID		    22
 	    $ClassName		    "Simulink.Mask"
 	    Type		    "Sort"
 	    Display		    "disp('O(1)')"
@@ -1570,7 +1568,7 @@ Library {
 	  Position		  [70, 17, 115, 53]
 	  ZOrder		  382
 	  ShowName		  off
-	  LibraryVersion	  "1.4"
+	  LibraryVersion	  "1.5"
 	  SourceBlock		  "slQuery_testlibrary/Sort2"
 	  SourceType		  "Sort"
 	  ShowPortLabels	  "FromPortIcon"
@@ -1775,7 +1773,7 @@ Library {
       Variant		      off
       Object {
 	$PropName		"MaskObject"
-	$ObjectID		22
+	$ObjectID		23
 	$ClassName		"Simulink.Mask"
 	Type			"Sort"
 	Display			"disp('>O(44)')"
@@ -1946,7 +1944,7 @@ Library {
 	  Position		  [155, 412, 200, 448]
 	  ZOrder		  465
 	  ShowName		  off
-	  LibraryVersion	  "1.4"
+	  LibraryVersion	  "1.5"
 	  SourceBlock		  "slQuery_testlibrary/Sort2"
 	  SourceType		  "Sort"
 	  ShowPortLabels	  "FromPortIcon"
@@ -1963,7 +1961,7 @@ Library {
 	  Position		  [225, 412, 270, 448]
 	  ZOrder		  464
 	  ShowName		  off
-	  LibraryVersion	  "1.4"
+	  LibraryVersion	  "1.5"
 	  SourceBlock		  "slQuery_testlibrary/Sort2"
 	  SourceType		  "Sort"
 	  ShowPortLabels	  "FromPortIcon"
@@ -1980,7 +1978,7 @@ Library {
 	  Position		  [5, 412, 50, 448]
 	  ZOrder		  467
 	  ShowName		  off
-	  LibraryVersion	  "1.4"
+	  LibraryVersion	  "1.5"
 	  SourceBlock		  "slQuery_testlibrary/Sort2"
 	  SourceType		  "Sort"
 	  ShowPortLabels	  "FromPortIcon"
@@ -1997,7 +1995,7 @@ Library {
 	  Position		  [80, 412, 125, 448]
 	  ZOrder		  466
 	  ShowName		  off
-	  LibraryVersion	  "1.4"
+	  LibraryVersion	  "1.5"
 	  SourceBlock		  "slQuery_testlibrary/Sort2"
 	  SourceType		  "Sort"
 	  ShowPortLabels	  "FromPortIcon"
@@ -2014,7 +2012,7 @@ Library {
 	  Position		  [455, 412, 500, 448]
 	  ZOrder		  469
 	  ShowName		  off
-	  LibraryVersion	  "1.4"
+	  LibraryVersion	  "1.5"
 	  SourceBlock		  "slQuery_testlibrary/Sort2"
 	  SourceType		  "Sort"
 	  ShowPortLabels	  "FromPortIcon"
@@ -2031,7 +2029,7 @@ Library {
 	  Position		  [525, 412, 570, 448]
 	  ZOrder		  468
 	  ShowName		  off
-	  LibraryVersion	  "1.4"
+	  LibraryVersion	  "1.5"
 	  SourceBlock		  "slQuery_testlibrary/Sort2"
 	  SourceType		  "Sort"
 	  ShowPortLabels	  "FromPortIcon"
@@ -2048,7 +2046,7 @@ Library {
 	  Position		  [305, 412, 350, 448]
 	  ZOrder		  471
 	  ShowName		  off
-	  LibraryVersion	  "1.4"
+	  LibraryVersion	  "1.5"
 	  SourceBlock		  "slQuery_testlibrary/Sort2"
 	  SourceType		  "Sort"
 	  ShowPortLabels	  "FromPortIcon"
@@ -2065,7 +2063,7 @@ Library {
 	  Position		  [380, 412, 425, 448]
 	  ZOrder		  470
 	  ShowName		  off
-	  LibraryVersion	  "1.4"
+	  LibraryVersion	  "1.5"
 	  SourceBlock		  "slQuery_testlibrary/Sort2"
 	  SourceType		  "Sort"
 	  ShowPortLabels	  "FromPortIcon"
@@ -2230,7 +2228,7 @@ Library {
       Variant		      off
       Object {
 	$PropName		"MaskObject"
-	$ObjectID		23
+	$ObjectID		24
 	$ClassName		"Simulink.Mask"
 	Type			"Sort"
 	Display			"disp('O(1)')"
@@ -2368,7 +2366,7 @@ Library {
       Variant		      off
       Object {
 	$PropName		"MaskObject"
-	$ObjectID		24
+	$ObjectID		25
 	$ClassName		"Simulink.Mask"
 	Type			"Sort"
 	Display			"disp('O(3)')"
@@ -2421,9 +2419,9 @@ Library {
 	  Ports			  [2, 2]
 	  Position		  [155, 41, 190, 99]
 	  ZOrder		  532
-	  LibraryVersion	  "1.2"
+	  LibraryVersion	  "1.5"
 	  SourceBlock		  "slQuery_testlibrary/Sort2"
-	  SourceType		  ""
+	  SourceType		  "Sort"
 	  ShowPortLabels	  "FromPortIcon"
 	  SystemSampleTime	  "-1"
 	  FunctionWithSeparateData off
@@ -2437,9 +2435,9 @@ Library {
 	  Ports			  [2, 2]
 	  Position		  [90, 11, 125, 69]
 	  ZOrder		  531
-	  LibraryVersion	  "1.2"
+	  LibraryVersion	  "1.5"
 	  SourceBlock		  "slQuery_testlibrary/Sort2"
-	  SourceType		  ""
+	  SourceType		  "Sort"
 	  ShowPortLabels	  "FromPortIcon"
 	  SystemSampleTime	  "-1"
 	  FunctionWithSeparateData off
@@ -2453,9 +2451,9 @@ Library {
 	  Ports			  [2, 2]
 	  Position		  [220, 11, 255, 69]
 	  ZOrder		  534
-	  LibraryVersion	  "1.2"
+	  LibraryVersion	  "1.5"
 	  SourceBlock		  "slQuery_testlibrary/Sort2"
-	  SourceType		  ""
+	  SourceType		  "Sort"
 	  ShowPortLabels	  "FromPortIcon"
 	  SystemSampleTime	  "-1"
 	  FunctionWithSeparateData off
@@ -2564,7 +2562,7 @@ Library {
       Variant		      off
       Object {
 	$PropName		"MaskObject"
-	$ObjectID		25
+	$ObjectID		26
 	$ClassName		"Simulink.Mask"
 	Type			"Sort"
 	Display			"disp('O(5)')"
@@ -2626,7 +2624,7 @@ Library {
 	  Ports			  [2, 2]
 	  Position		  [0, 41, 50, 99]
 	  ZOrder		  387
-	  LibraryVersion	  "1.3"
+	  LibraryVersion	  "1.5"
 	  SourceBlock		  "slQuery_testlibrary/Sort2"
 	  SourceType		  "Sort"
 	  ShowPortLabels	  "FromPortIcon"
@@ -2642,7 +2640,7 @@ Library {
 	  Ports			  [2, 2]
 	  Position		  [0, 141, 50, 199]
 	  ZOrder		  386
-	  LibraryVersion	  "1.3"
+	  LibraryVersion	  "1.5"
 	  SourceBlock		  "slQuery_testlibrary/Sort2"
 	  SourceType		  "Sort"
 	  ShowPortLabels	  "FromPortIcon"
@@ -2658,7 +2656,7 @@ Library {
 	  Ports			  [2, 2]
 	  Position		  [105, 41, 155, 99]
 	  ZOrder		  388
-	  LibraryVersion	  "1.3"
+	  LibraryVersion	  "1.5"
 	  SourceBlock		  "slQuery_testlibrary/Sort2"
 	  SourceType		  "Sort"
 	  ShowPortLabels	  "FromPortIcon"
@@ -2674,7 +2672,7 @@ Library {
 	  Ports			  [2, 2]
 	  Position		  [105, 141, 155, 199]
 	  ZOrder		  389
-	  LibraryVersion	  "1.3"
+	  LibraryVersion	  "1.5"
 	  SourceBlock		  "slQuery_testlibrary/Sort2"
 	  SourceType		  "Sort"
 	  ShowPortLabels	  "FromPortIcon"
@@ -2690,7 +2688,7 @@ Library {
 	  Ports			  [2, 2]
 	  Position		  [205, 91, 255, 149]
 	  ZOrder		  390
-	  LibraryVersion	  "1.3"
+	  LibraryVersion	  "1.5"
 	  SourceBlock		  "slQuery_testlibrary/Sort2"
 	  SourceType		  "Sort"
 	  ShowPortLabels	  "FromPortIcon"
@@ -2857,7 +2855,7 @@ Library {
       Variant		      off
       Object {
 	$PropName		"MaskObject"
-	$ObjectID		26
+	$ObjectID		27
 	$ClassName		"Simulink.Mask"
 	Type			"Sort"
 	Display			"disp('O(19)')"
@@ -2865,7 +2863,7 @@ Library {
       System {
 	Name			"Sort8"
 	Location		[66, -8, 1928, 1208]
-	Open			on
+	Open			off
 	ModelBrowserVisibility	off
 	ModelBrowserWidth	200
 	ScreenColor		"white"
@@ -2960,7 +2958,7 @@ Library {
 	  Variant		  off
 	  Object {
 	    $PropName		    "MaskObject"
-	    $ObjectID		    27
+	    $ObjectID		    28
 	    $ClassName		    "Simulink.Mask"
 	    Display		    "disp(['1-4' 10 '2-3'])"
 	  }
@@ -3022,7 +3020,7 @@ Library {
 	      Position		      [70, 72, 115, 108]
 	      ZOrder		      381
 	      ShowName		      off
-	      LibraryVersion	      "1.4"
+	      LibraryVersion	      "1.5"
 	      SourceBlock	      "slQuery_testlibrary/Sort2"
 	      SourceType	      "Sort"
 	      ShowPortLabels	      "FromPortIcon"
@@ -3039,7 +3037,7 @@ Library {
 	      Position		      [70, 17, 115, 53]
 	      ZOrder		      382
 	      ShowName		      off
-	      LibraryVersion	      "1.4"
+	      LibraryVersion	      "1.5"
 	      SourceBlock	      "slQuery_testlibrary/Sort2"
 	      SourceType	      "Sort"
 	      ShowPortLabels	      "FromPortIcon"
@@ -3149,7 +3147,7 @@ Library {
 	  Position		  [-260, 23, -225, 217]
 	  ZOrder		  446
 	  ShowName		  off
-	  LibraryVersion	  "1.4"
+	  LibraryVersion	  "1.5"
 	  SourceBlock		  "slQuery_testlibrary/Pairwise4"
 	  SourceType		  ""
 	  ShowPortLabels	  "FromPortIcon"
@@ -3166,7 +3164,7 @@ Library {
 	  Position		  [-335, 13, -300, 427]
 	  ZOrder		  445
 	  ShowName		  off
-	  LibraryVersion	  "1.4"
+	  LibraryVersion	  "1.5"
 	  SourceBlock		  "slQuery_testlibrary/Pairwise8"
 	  SourceType		  ""
 	  ShowPortLabels	  "FromPortIcon"
@@ -3183,7 +3181,7 @@ Library {
 	  Position		  [-190, 222, -155, 318]
 	  ZOrder		  448
 	  ShowName		  off
-	  LibraryVersion	  "1.4"
+	  LibraryVersion	  "1.5"
 	  SourceBlock		  "slQuery_testlibrary/Sort2"
 	  SourceType		  "Sort"
 	  ShowPortLabels	  "FromPortIcon"
@@ -3200,7 +3198,7 @@ Library {
 	  Position		  [-50, 147, -5, 183]
 	  ZOrder		  437
 	  ShowName		  off
-	  LibraryVersion	  "1.4"
+	  LibraryVersion	  "1.5"
 	  SourceBlock		  "slQuery_testlibrary/Sort2"
 	  SourceType		  "Sort"
 	  ShowPortLabels	  "FromPortIcon"
@@ -3217,7 +3215,7 @@ Library {
 	  Position		  [-50, 257, -5, 293]
 	  ZOrder		  438
 	  ShowName		  off
-	  LibraryVersion	  "1.4"
+	  LibraryVersion	  "1.5"
 	  SourceBlock		  "slQuery_testlibrary/Sort2"
 	  SourceType		  "Sort"
 	  ShowPortLabels	  "FromPortIcon"
@@ -3234,7 +3232,7 @@ Library {
 	  Position		  [30, 202, 75, 238]
 	  ZOrder		  440
 	  ShowName		  off
-	  LibraryVersion	  "1.4"
+	  LibraryVersion	  "1.5"
 	  SourceBlock		  "slQuery_testlibrary/Sort2"
 	  SourceType		  "Sort"
 	  ShowPortLabels	  "FromPortIcon"
@@ -3251,7 +3249,7 @@ Library {
 	  Position		  [30, 317, 75, 353]
 	  ZOrder		  441
 	  ShowName		  off
-	  LibraryVersion	  "1.4"
+	  LibraryVersion	  "1.5"
 	  SourceBlock		  "slQuery_testlibrary/Sort2"
 	  SourceType		  "Sort"
 	  ShowPortLabels	  "FromPortIcon"
@@ -3268,7 +3266,7 @@ Library {
 	  Position		  [30, 87, 75, 123]
 	  ZOrder		  439
 	  ShowName		  off
-	  LibraryVersion	  "1.4"
+	  LibraryVersion	  "1.5"
 	  SourceBlock		  "slQuery_testlibrary/Sort2"
 	  SourceType		  "Sort"
 	  ShowPortLabels	  "FromPortIcon"
@@ -3285,7 +3283,7 @@ Library {
 	  Position		  [115, 152, 160, 188]
 	  ZOrder		  442
 	  ShowName		  off
-	  LibraryVersion	  "1.4"
+	  LibraryVersion	  "1.5"
 	  SourceBlock		  "slQuery_testlibrary/Sort2"
 	  SourceType		  "Sort"
 	  ShowPortLabels	  "FromPortIcon"
@@ -3302,7 +3300,7 @@ Library {
 	  Position		  [115, 252, 160, 288]
 	  ZOrder		  443
 	  ShowName		  off
-	  LibraryVersion	  "1.4"
+	  LibraryVersion	  "1.5"
 	  SourceBlock		  "slQuery_testlibrary/Sort2"
 	  SourceType		  "Sort"
 	  ShowPortLabels	  "FromPortIcon"
@@ -3319,7 +3317,7 @@ Library {
 	  Position		  [-190, 22, -155, 118]
 	  ZOrder		  450
 	  ShowName		  off
-	  LibraryVersion	  "1.4"
+	  LibraryVersion	  "1.5"
 	  SourceBlock		  "slQuery_testlibrary/Sort2"
 	  SourceType		  "Sort"
 	  ShowPortLabels	  "FromPortIcon"
@@ -3336,7 +3334,7 @@ Library {
 	  Position		  [-190, 122, -155, 218]
 	  ZOrder		  449
 	  ShowName		  off
-	  LibraryVersion	  "1.4"
+	  LibraryVersion	  "1.5"
 	  SourceBlock		  "slQuery_testlibrary/Sort2"
 	  SourceType		  "Sort"
 	  ShowPortLabels	  "FromPortIcon"
@@ -3353,7 +3351,7 @@ Library {
 	  Position		  [-190, 322, -155, 418]
 	  ZOrder		  432
 	  ShowName		  off
-	  LibraryVersion	  "1.4"
+	  LibraryVersion	  "1.5"
 	  SourceBlock		  "slQuery_testlibrary/Sort2"
 	  SourceType		  "Sort"
 	  ShowPortLabels	  "FromPortIcon"
