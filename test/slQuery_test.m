@@ -1,5 +1,7 @@
 % test features of slQuery 
 
+% tests marked 'tlprop', require  dSPACE TargetLink Production Code Generator  toolbox
+
 % preconditions
 % open test model in fresh state
 open_system('slQuery_testmodel');
@@ -101,47 +103,47 @@ assert(isequal(x.LineHandles.Inport, getfield(get_param(subs22, 'LineHandles'), 
 x = slQuery(subs22);
 assert(isequal(x.LineHandles.Inport(2), getfield(get_param(subs22, 'LineHandles'), 'Inport', {2})));
 
-%% get TargetLink property (cgdata struct)
+%% get property (tlprop, cgdata struct)
 x = slQuery(tlgain);
 assert(isequaln(x.tl, tl_get(tlgain, 'blockdatastruct')));
 
-%% get TargetLink property (cgdata substruct)
+%% get property (tlprop, cgdata substruct)
 x = slQuery(tlgain);
 assert(isequaln(x.tl.output, getfield(tl_get(tlgain, 'blockdatastruct'), 'output')));
 
-%% get TargetLink property (cgdata leaf property)
+%% get property (tlprop, cgdata leaf property)
 x = slQuery(tlgain);
 assert(isequal(x.tl.output.variable, tl_get(tlgain, 'output.variable')));
 
-%% set TargetLink property (cgdata struct)
+%% set property (tlprop, cgdata struct)
 fix_param(tlgain, 'data');
 x = slQuery(tlgain);
 s = tl_get(tlgain, 'blockdatastruct'); s.output.type = 'Int32';
 x.tl = s;
 assert(isequal(tl_get(tlgain, 'output.type'), 'Int32'));
 
-%% set TargetLink property (cgdata substruct)
+%% set property (tlprop, cgdata substruct)
 fix_param(tlgain, 'data');
 x = slQuery(tlgain);
 s = tl_get(tlgain, 'blockdatastruct'); s.output.type = 'Int32';
 x.tl.output = s.output;
 assert(isequal(tl_get(tlgain, 'output.type'), 'Int32'));
 
-%% set TargetLink property (cgdata leaf property)
+%% set property (tlprop, cgdata leaf property)
 fix_param(tlgain, 'data');
 x = slQuery(tlgain);
 x.tl.output.type = 'Int32';
 assert(isequal(tl_get(tlgain, 'output.type'), 'Int32'));
 
-%% get TargetLink property (cgdata struct, nonscalar selection)
+%% get property (tlprop, cgdata struct, nonscalar selection)
 x = slQuery(tlprods);
 assert(isequaln(x.tl, tl_get(tlprods, 'blockdatastruct')));
 
-%% get TargetLink property (cgdata leaf property, nonscalar selection)
+%% get property (tlprop, cgdata leaf property, nonscalar selection)
 x = slQuery(tlprods);
 assert(isequal(x.tl.output.variable, tl_get(tlprods, 'output.variable')));
 
-%% set TargetLink property (cgdata struct, nonscalar selection)
+%% set property (tlprop, cgdata struct, nonscalar selection)
 fix_param(tlprods, 'data');
 x = slQuery(tlprods);
 s = tl_get(tlprods, 'blockdatastruct');
@@ -149,12 +151,12 @@ for i = 1:numel(s), s{i}.output.type = 'Int32'; end
 x.tl = s;
 assert(isequal(tl_get(tlprods, 'output.type'), repmat({'Int32'}, size(tlprods))));
 
-%% set TargetLink property (cgdata leaf property, nonscalar selection)
+%% set property (tlprop, cgdata leaf property, nonscalar selection)
 fix_param(tlprods, 'data');
 x = slQuery(tlprods);
-s = tl_get(tlprods, 'output.type');
 x.tl.output.type = 'Int32';
 assert(isequal(tl_get(tlprods, 'output.type'), repmat({'Int32'}, size(tlprods))));
+
 % selectors
 
 %% any selector
