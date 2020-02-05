@@ -1,4 +1,5 @@
-% test features of slQuery 
+% test features of slQuery
+% (run with matlab testrunner: `>> runtests slQuery_test`)
 
 % tests marked 'tlprop', require  dSPACE TargetLink Production Code Generator  toolbox
 
@@ -267,7 +268,7 @@ X = slQuery('[Gain=42,tl.gain.type=Int16]');
 assert(~isempty(X));
 assert(all(strcmp(X.Gain, '42') & strcmp(X.tl.gain.type, 'Int16')));
 
-%% argidx selectors (single char)
+%% argidx selectors (single path)
 x = slQuery('(1)', gcb);
 assert(x == gcbh);
 
@@ -275,7 +276,7 @@ assert(x == gcbh);
 x = slQuery('(1)', gcbh);
 assert(x == gcbh);
 
-%% argidx selectors (cellstr candidate list)
+%% argidx selectors (pathes candidate list)
 x = slQuery('(1)', {gcb}); % all these blocks must exist TODO: it'd be better if they hadn't have to
 assert(x == gcbh);
 
@@ -476,6 +477,8 @@ assert(all(all([X.LineHandles.Inport(1); X.PortHandles.Inport(1); X.PortHandles.
 X = slQuery('SimscapeBus');
 assert(all(all([X.LineHandles.LConn(1); X.PortHandles.RConn(1)] == -1j:X:1j)));
 assert(all(all([X.LineHandles.LConn(1); X.PortHandles.LConn(1); X.PortHandles.RConn(1); X.LineHandles.RConn(1)] == [-1j 1j]:X:[1j -1j])));
+
+% back references with $i and ,-combinator
 
 %% join combinator
 assert(~isempty(slQuery('*, *')));
