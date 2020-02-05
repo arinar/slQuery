@@ -5,8 +5,10 @@
 
 % preconditions
 % open test model in fresh state
-open_system('slQuery_testmodel');
-modelDTor = onCleanup(@() close_system('slQuery_testmodel', false));
+if ~bdIsLoaded('slQuery_testmodel')
+	open_system('slQuery_testmodel');
+	modelDTor = onCleanup(@() close_system('slQuery_testmodel', false));
+end
 
 % special elements
 subs22 = get_param('slQuery_testmodel/GotoTagVisibilityInside', 'Handle'); % block chosen to have 2 inports, 2 outports
@@ -204,17 +206,17 @@ assert(all(strcmp(X.type, 'block_diagram')));
 %% param spec selector (start)
 X = slQuery('[Name^=In1]');
 assert(~isempty(X));
-assert(~any(cellfun(@isempty, regexp(X.Name, '^In1', 'match', 'once'))));
+assert(all(~cellfun(@isempty, regexp(X.Name, '^In1', 'match', 'once'))));
 
 %% param spec selector (end)
 X = slQuery('[Name$=11]');
 assert(~isempty(X));
-assert(~any(cellfun(@isempty, regexp(X.Name, '11$', 'match', 'once'))));
+assert(all(~cellfun(@isempty, regexp(X.Name, '11$', 'match', 'once'))));
 
 %% param spec selector (part)
 X = slQuery('[Name*=sig]');
 assert(~isempty(X));
-assert(~any(cellfun(@isempty, regexp(X.Name, 'sig', 'match', 'once'))));
+assert(all(~cellfun(@isempty, regexp(X.Name, 'sig', 'match', 'once'))));
 
 %% param spec selector (regex)
 X = slQuery('[BlockType~=^(In|Out)port$]');
@@ -287,7 +289,7 @@ assert(x == gcbh);
 %% combined selectors (wildcard and param spec)
 X = slQuery('*[Name^=Subsystem]');
 assert(~isempty(X));
-assert(~any(cellfun(@isempty, regexp(X.Name, '^Subsystem', 'match', 'once'))));
+assert(all(~cellfun(@isempty, regexp(X.Name, '^Subsystem', 'match', 'once'))));
 
 %% combined selectors (block type and block name)
 X = slQuery('Terminator#Terminator');
