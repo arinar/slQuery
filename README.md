@@ -6,22 +6,22 @@ the "easy-as-pie API to Simulink"
 Introduction
 ------------
 
-slQuery ("slickery") came about, when i realized that Simulink Models are essentially
-structured documents. Considering that nowadays, documents (mostly xml) are being navigated and
-manipulated with suitable and comprehensive mechanisms and especially knowing what the jQuery
+`slQuery` ("slickery") came about, when i realized that Simulink Models are essentially 
+structured documents. Considering that nowadays, documents (mostly xml) are being navigated and 
+manipulated with suitable and comprehensive mechanisms and especially knowing what the jQuery 
 library does so successfully for web developers, this had to be done.
 
-Think of slQuery as a powerful syntax for interacting with the blocks of a Simulink at model
+Think of `slQuery` as a powerful syntax for interacting with the blocks of a Simulink at model
 construction time (not simulation time). It's a tool for avoiding the heavy boilerplate code
 that is the normal API (`find_system`, `get`/`set_param` and any construction built upon them)
 
-How slQuery can be used to find simple blocks
----------------------------------------------
+How `slQuery` can be used to find simple blocks
+-----------------------------------------------
 
-Using _block-selector_ expressions, one can filter all blocks of the model to find, what is
-required or interesting - they are a special syntax for `find_system`-calls. The expression is
-passed as a query to the slQuery constructor which will return an array of the resulting block
-handles.
+Using _block-selector_ expressions, one can filter all blocks of the model to find, what is 
+required or interesting - they are a special syntax for `find_system`-calls. The expression is 
+passed as a query to the `slQuery` constructor which will return an array of the resulting 
+block handles.
 
 Here are some examples of what can be done - in order of increasing fun.
 
@@ -71,10 +71,10 @@ double quotes ("...") to search for non-simple strings (special chars, whitespac
 There are also special forms of this
 
 ```matlab
->> From[GotoTag^=My]               ... starting  with "My"
->> From[GotoTag$=Signal]            ... ending  with "Signal"`
->> From[GotoTag*=Sig]             ... containing  "Sig" anywhere`
->> From[GotoTag~="[sS]ig(nal)?s?"] ... matching  regular expression `[sS]ig(nal)?s?`
+>> slQuery('From[GotoTag^=My]')               ... starting  with "My"
+>> slQuery('From[GotoTag$=Signal]')            ... ending  with "Signal"`
+>> slQuery('From[GotoTag*=Sig]')             ... containing  "Sig" anywhere`
+>> slQuery('From[GotoTag~="[sS]ig(nal)?s?"]') ... matching  regular expression `[sS]ig(nal)?s?`
 ```
 
 the `+Flag`-notation is euqivalent to specifying `[Flag=on]`. This way, you can easily filter
@@ -87,8 +87,9 @@ for any flag-parameter to be 'on' - only one such flag is allowed though.
 
 ### Pick from known Set of Blocks
 
-Using `'(i)'` you may restrict the selection to a candidate set of blocks given as an additional
-argument to the query - the i-th additional argument.
+Using `(i)` you may restrict the selection to a candidate set of blocks given as an 
+additional argument after the query string. `(i)` then matches only, if the result is also in 
+the set of blocks given by the i-th additional argument.
 
 ```matlab
 >> slQuery('(1)Inport', slQuery('+Selected'))
@@ -96,9 +97,12 @@ argument to the query - the i-th additional argument.
 >> slQuery('Inport+Selected') % equivalent
 ```
 
+The `(i)`-selection supports handle-arrays, full block pathes given as a `cellstr` or even 
+other `slQuery`-results.
+
 ```matlab
 >> slQuery('(1)', {'sys/port1', 'sys/const1'})
-   ... simply transform the given block fullnames to slQuery
+   ... simply transform the given block fullnames to `slQuery`
 >> slQuery({'sys/port1', 'sys/const1'}) % equivalent
 ```
 
@@ -121,7 +125,7 @@ more elements matched by block-selectors.
 
 ### Hierarchy Combinators
 
-The hierarchy combinator `'/'` looks for a "direct child"-relation among the two combined
+The hierarchy combinator `/` looks for a "direct child"-relation among the two combined
 elements.
 
 ```matlab
@@ -129,7 +133,7 @@ elements.
    ... find Inports directly inside TargetLink Subsystems
 ```
 
-There are other hierarchy combinators for "direct parents" (`'\'`), "direct siblings" (`' '`,
+There are other hierarchy combinators for "direct parents" (`\`), "direct siblings" (` `, 
 whitespace)
 
 ```matlab
@@ -140,31 +144,31 @@ whitespace)
    ... will only match, when there are 2 Main Dialogs
 ```
 
-There are weaker forms for "arbitrary descendent" (`'//'`) and "arbitrary ascendent" (`'\\'`)
+There are weaker forms for "arbitrary descendent" (`//`) and "arbitrary ascendent" (`\\`)
 
 ### Direct Wiring
 
-The `'->'`, `'<-'` and `'-'` combinators describe dataflow-dependency of the elements. `'->'`
-describes "feeding", `'<-'` is "fed by" and `'-'` is used for either direction.
+The `->`, `<-` and `-` combinators describe dataflow-dependency of the elements. `->` describes 
+"feeding", `<-` is "fed by" and `-` is used for either direction.
 
 ```matlab
 >> slQuery('Inport -> Gain')
-   ... find Inports directly connected to a Gain's Input blocks
+   ... find Inports blocks directly connected to a Gain block's input port
 ```
 
 ### Data Flow
 
-The `'=>'`, `'<='` and `'='` family of combinators selects on logical data dependency rather
-than explicit wiring in the model. I.e. it includes dependency across routing elements
-(goto/from, ports, arrays, busses) and purely virtual blocks (convert, ...)
+The `=>`, `<=` and `=` family of combinators selects on logical data dependency rather than 
+explicit wiring in the model. I.e. it includes dependency across routing elements (goto/from, 
+ports, arrays, busses) and purely virtual blocks (convert, ...)
 
 ```matlab
 >> slQuery('Sum => Gain')
    ... find Sum blocks logically feeding into Gain blocks
 ```
 
-Using `'~>'`, `'<~'`, and `'~'` you can make out all blocks attached to the direct data flow of
-a signal. In contrast to '=', '~' will also match all virtual blocks on the path of data
+Using `~>`, `<~`, and `~` you can make out all blocks attached to the direct data flow of
+a signal. In contrast to `=`, `~` will also match all virtual blocks on the path of data
 dependency. This is useful for matching elements at the interfaces of subsystems.
     
 ```matlab
@@ -175,7 +179,7 @@ dependency. This is useful for matching elements at the interfaces of subsystems
 ### Data Dependency (Signal Slicing)
 
 Data flow slicing can be used to restrict the search to the set of blocks that are dependent on
-a blocks signal.
+a block's output signal.
 
 ```matlab
 >> slQuery('#MySubsystemLevel / Inport >> #SomeSpecificGain')
@@ -201,9 +205,15 @@ Although the colon visually binds the port number to the block-selector, the eff
 considered a property of the combinator. To make this point clear, perhaps read and write it
 like this: `'Constant :1~>2: Sum[Sign="+-"]'`
 
-The direction of the port is always derived from the flow-direction of the combinator. You
-cannot find two blocks that are connected to the same source this way. `'x:1 - 1:y'` is not the
-same as `'x <- :1 foo :1 -> y'`
+The direction of the port is always derived from the flow-direction of the combinator. In the 
+right-pointing combinator flavor ("downstream"), the left hand side port spec specifies the 
+output port number of the source block and the right hand side one the input port number of the 
+destination block.
+
+When using the bidirectional flavor, an input port always matched up with an output port (only 
+that the sense of direction isn't specfied). You cannot find two blocks that are connected to 
+the same source like this: `'x:1 - 1:y'`. to find blocks with a common source requires two 
+dataflow combinators like so: `'x <- 1: * :1 -> y'`
 
 Trigger ports (Action, or Function-Call) and Enable ports can be matched with the special port
 specs `'!:'` and `'?:'`
@@ -219,6 +229,11 @@ Also the port names of Subsystems can be used to reference ports
 >> slQuery('* -> my_input:SubSystem:my_output -> *')
    ... find blocks connected to special "my_input"-signal ports of subsystems
 ```
+
+However this syntax can be ambiguous, when using a data flow combinator on either side of a 
+simple block-type selector but with only one namey port spec, because both parts are just plain 
+words separated by colon with no way to tell, which part should go as the blocktype and which 
+as the port-spec.
 
 Fancy Stuff
 -----------
@@ -237,8 +252,8 @@ This is probably only useful in combination with back reference selectors.
 
 ### Back References
 
-A back reference `'$i'` selectes the exact block already matched by another selector in this
-situational compound: the i-th one. It may only be used proceeding position i.
+A back reference selector `$i`, only matches the exact block already matched by an earlier 
+selector in this situational compound: the i-th one. It may only be used proceeding position i.
 
 ```matlab
 >> slQuery('Inport -> Gain, $1 -> Delay')
@@ -261,9 +276,7 @@ All block matches from back references will be dropped and the result is then th
 
 ### Back References in Property Selectors
 
-*NOTE: This feature is not yet implemented!*
-
-Back references may be used in propery selectors with the `'$<i>.<Parameter>'`-syntax, to check
+Back references may be used in propery selectors with the `$i.<parameter>`-syntax, to check
 for equality of block parameters.
 
 ```matlab
@@ -271,10 +284,9 @@ for equality of block parameters.
    ... yields all Pairs of Goto- & From-Blocks having the same GotoTag name
 ```
 
-This feature may only be used after a join-combinator preceeding it. Although syntactically
-this is a mode of selection (and not a relation between blocks as defined by combinator), this
-really is fundamentally combinator-like, because it refers to another block of the same
-potential situational compound. (TODO: remove this restriction, by reworking the select-algo)
+Although syntactically this is a mode of selection (and not a relation between blocks as 
+defined by combinator), this really is fundamentally combinator-like, because it refers to 
+another block of the same situational compound.
 
 How results can be used to access stuff
 ---------------------------------------
@@ -283,7 +295,7 @@ The result that a call to `slQuery` returns is a special wrapper for the Simulin
 the selected blocks. The wrapper features some nice syntactical sugar for accessing the
 parameters of underlying blocks
 
-This is achieved by redirecting the MATLAB subscript syntax (`'object.fieldname'`) for field
+This is achieved by redirecting the MATLAB subscript syntax (`object.fieldname`) for field
 access to the Simulink `get_param` and `set_param` functions and preparating the returned
 values in a convenient manner.
 
@@ -295,7 +307,7 @@ values in a convenient manner.
    ... returns the parent Subsystems of Inport blocks at once as a cellstr-array
 ```
 
-Indexing into the array yields an slQuery-object representing a subselection handles (as you
+Indexing into the array yields an slQuery-object representing a subselection of handles (as you 
 would expect)
 
 ```matlab
@@ -368,7 +380,7 @@ When selecting on situational compounds, you can assign a distinct value to the 
 parameters of each of the elements in the situation.
 
 ```matlab
->> slQuery('Inport ~> 'Outport')
+>> slQuery('Inport ~> Outport')
 >> ans.BackgroundColor = {'blue', 'orange'}
    ... find direct feed-through signals and make their inports blue and outports orange
 ```
