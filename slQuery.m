@@ -984,17 +984,12 @@ classdef slQuery < double
 			if isempty(ps); ps = double.empty(1, 0); end
 		end
 	end
-	methods(Static) % wrappers for convenience
-		function result = find(varargin)
-			result = slQuery(get_param(find_system(bdroot, varargin{:}), 'Handle'));
-		end
-		
-		function result = gcb
-			result = slQuery(gcbh);
-		end
-		
-		function result = gcs
-			result = slQuery(get_param(gcs, 'Handle'));
+	methods(Static) % for convenience
+		function result = gcb, result = slQuery(gcbh); end
+		function result = gcs, result = slQuery(get_param(gcs, 'Handle')); end
+		function result = sel
+			result = find_system(get_param(gcs, 'Handle'), 'SearchDepth', 1, 'Selected', 'on');
+			result = slQuery(result(2:end)');
 		end
 	end
 end
