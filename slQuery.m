@@ -98,8 +98,9 @@ classdef slQuery < double
 								sub.subs = [':', sub.subs];
 							end
 							sel = slQuery(subsref(double(sel), sub));
-						elseif iscell(sel)
-							sel = slQuery.arrayfun(@subsref, sel, sub); 
+						elseif iscell(sel) % distribute index access across all cells
+							sel = cellfun(@(c) {subsref(c, sub)}, sel);
+							if all(cellfun(@isscalar, sel)), sel = cell2mat(sel); end
 						else
 							sel = builtin('subsref', sel, sub);
 						end
