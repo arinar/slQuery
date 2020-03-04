@@ -301,7 +301,7 @@ classdef slQuery < double
 			end
 			ps = slQuery([its ots]');
 		end
-		function ls = gt(sps, dps) % add a line between ports x:1 > 1:y
+		function ls = minus(sps, dps) % add a line between ports x:1 - 1:y
 			sys = slQuery.get_ref(slQuery.get_ref(double(sps), 'Parent'), 'Parent')';
 			ls = slQuery.arrayfun(@(dp) get_param(double(dp), 'line'), dps);
 			delete_line(ls(ls ~= -1));
