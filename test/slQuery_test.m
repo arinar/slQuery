@@ -415,30 +415,26 @@ end
 
 %% port handle access (scalar, reset)
 for x = slQuery('SubSystem[Name^=Resettable]')
-	assert(x.PortHandles.Reset == 'r':x)
 	assert(x.PortHandles.Reset == '°':x)
 end
 
 %% port handle access (scalar, enable)
 for x = slQuery('SubSystem[Name^=Enabled]')
-	assert(x.PortHandles.Enable == 'e':x)
 	assert(x.PortHandles.Enable == '?':x)
 end
 
 %% port handle access (scalar, trigger)
 for x = slQuery('SubSystem[Name^=Triggered]')
-	assert(x.PortHandles.Trigger == 't':x)
 	assert(x.PortHandles.Trigger == '!':x)
 end
 
 %% port handle access (scalar, action)
 for x = slQuery('SubSystem[Name^=Action]')
-	assert(x.PortHandles.Ifaction == 'a':x)
+	assert(x.PortHandles.Ifaction == '%':x)
 end
 
 %% port handle access (scalar, state)
 for x = slQuery('[Name^=StatePortHaving]')
-	assert(x.PortHandles.State == x:'s')
 	assert(x.PortHandles.State == x:'^')
 end
 
@@ -456,30 +452,26 @@ end
 
 %% port handle access (scalar, reset line)
 for x = slQuery('SubSystem[Name^=Resettable]')
-	assert(x.LineHandles.Reset == '-r':x)
 	assert(x.LineHandles.Reset == '-°':x)
 end
 
 %% port handle access (scalar, enable line)
 for x = slQuery('SubSystem[Name^=Enabled]')
-	assert(x.LineHandles.Enable == '-e':x)
 	assert(x.LineHandles.Enable == '-?':x)
 end
 
 %% port handle access (scalar, trigger line)
 for x = slQuery('SubSystem[Name^=Triggered]')
-	assert(x.LineHandles.Trigger == '-t':x)
 	assert(x.LineHandles.Trigger == '-!':x)
 end
 
 %% port handle access (scalar, action line)
 for x = slQuery('SubSystem[Name^=Action]')
-	assert(x.LineHandles.Ifaction == '-a':x)
+	assert(x.LineHandles.Ifaction == '-%':x)
 end
 
 %% port handle access (scalar, state line)
 for x = slQuery('[Name^=StatePortHaving]')
-	assert(x.LineHandles.State == x:'-s')
 	assert(x.LineHandles.State == x:'-^')
 end
 

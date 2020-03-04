@@ -264,11 +264,11 @@ classdef slQuery < double
 			if ischar(i)
 				if i(1) == '-', hs = lhs; i(1) = []; else, hs = phs; end
 				switch i
-					case {'t', '!'}, f = 'Trigger';
-					case {'e', '?'}, f = 'Enable';
-					case {'a'}, f = 'Ifaction';
-					case {'r', '°'}, f = 'Reset';
-					otherwise, error('left handle index must be real or imaginary integer or one of t, !, e, ?, a, r');
+					case '!', f = 'Trigger';
+					case '?', f = 'Enable';
+					case '%', f = 'Ifaction';
+					case '°', f = 'Reset';
+					otherwise, error('left handle index must be real or imaginary integer or one of !, ?, %, °');
 				end
 				its(:, 1) = arrayfun(@(h) h.(f), hs);
 			elseif isreal(i)
@@ -281,8 +281,8 @@ classdef slQuery < double
 			end
 			
 			if ischar(o)
-				if o(1) == '-', hs = lhs; o(1) = []; else hs = phs; end
-				assert(ismember(o, {'s', '^'}), 'right handle index must be real or imaginary integer or one of s, ^');
+				if o(1) == '-', hs = lhs; o(1) = []; else, hs = phs; end
+				assert(ismember(o, {'^'}), 'right handle index must be real or imaginary integer or ^');
 				ots(:, 1) = arrayfun(@(h) h.State, hs);
 			elseif isreal(o)
 				ots(:, o>0) = cell2mat(arrayfun(@(h) {h.Outport(o(o>0))}, phs));
