@@ -1,0 +1,6 @@
+# these are text files and should be normalized
+*.m text=auto
+
+# ascii but not text files
+*.mdl binary
+
