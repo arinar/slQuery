@@ -1,0 +1,574 @@
+<svg height="159" preserveAspectRatio="xMinYMin meet" viewBox="-43 349 405.25 159" width="405.25" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" zoomAndPan="disable">
+ <clipPath id="a">
+  <path d="m0 0h400v141h-400z"/>
+ </clipPath>
+ <clipPath id="b">
+  <path d="m-5-34.0001h408v159.0001h-408z"/>
+ </clipPath>
+ <clipPath id="c">
+  <path d="m-5-34.0001h408v159.0001h-408z"/>
+ </clipPath>
+ <clipPath id="d">
+  <path d="m-5-34.0001h408v159.0001h-408z"/>
+ </clipPath>
+ <clipPath id="e">
+  <path d="m-5-34.0001h408v159.0001h-408z"/>
+ </clipPath>
+ <clipPath id="f">
+  <path d="m-5-34.0001h408v159.0001h-408z"/>
+ </clipPath>
+ <clipPath id="g">
+  <path d="m-5-34.0001h408v159.0001h-408z"/>
+ </clipPath>
+ <clipPath id="h">
+  <path d="m-5-34.0001h408v159.0001h-408z"/>
+ </clipPath>
+ <clipPath id="i">
+  <path d="m-5-34.0001h408v159.0001h-408z"/>
+ </clipPath>
+ <clipPath id="j">
+  <path d="m-5-34.0001h408v159.0001h-408z"/>
+ </clipPath>
+ <clipPath id="k">
+  <path d="m-255.766-145h408v159h-408z"/>
+ </clipPath>
+ <clipPath id="l">
+  <path d="m0 0h30v30h-30z"/>
+ </clipPath>
+ <clipPath id="m">
+  <path d="m6-1h30v30h-30z"/>
+ </clipPath>
+ <clipPath id="n">
+  <path d="m-178.523-54.0001h408v159.0001h-408z"/>
+ </clipPath>
+ <clipPath id="o">
+  <path d="m234.5 361.5h30v31h-30z"/>
+ </clipPath>
+ <clipPath id="p">
+  <path d="m234.5 361.5h30v31h-30z"/>
+ </clipPath>
+ <clipPath id="q">
+  <path d="m234.5 361.5h30v31h-30z"/>
+ </clipPath>
+ <clipPath id="r">
+  <path d="m234.5 361.5h30v31h-30z"/>
+ </clipPath>
+ <clipPath id="s">
+  <path d="m234.5 361.5h30v31h-30z"/>
+ </clipPath>
+ <clipPath id="t">
+  <path d="m234.5 361.5h30v31h-30z"/>
+ </clipPath>
+ <clipPath id="u">
+  <path d="m-273.516-47.0001h408v159.0001h-408z"/>
+ </clipPath>
+ <clipPath id="v">
+  <path d="m0 0h30v30h-30z"/>
+ </clipPath>
+ <clipPath id="w">
+  <path d="m6-1h30v30h-30z"/>
+ </clipPath>
+ <clipPath id="x">
+  <path d="m-360.75-34.0001h408v159.0001h-408z"/>
+ </clipPath>
+ <clipPath id="y">
+  <path d="m324.5 456.5h30v31h-30z"/>
+ </clipPath>
+ <clipPath id="z">
+  <path d="m324.5 456.5h30v31h-30z"/>
+ </clipPath>
+ <clipPath id="A">
+  <path d="m324.5 456.5h30v31h-30z"/>
+ </clipPath>
+ <clipPath id="B">
+  <path d="m-366.016-142h408.0004v159h-408.0004z"/>
+ </clipPath>
+ <clipPath id="C">
+  <path d="m-174.352-121h408v159h-408z"/>
+ </clipPath>
+ <clipPath id="D">
+  <path d="m0 0h30v30h-30z"/>
+ </clipPath>
+ <clipPath id="E">
+  <path d="m6-1h30v30h-30z"/>
+ </clipPath>
+ <clipPath id="F">
+  <path d="m254.5 439.5h30v30h-30z"/>
+ </clipPath>
+ <clipPath id="G">
+  <path d="m254.5 439.5h30v30h-30z"/>
+ </clipPath>
+ <clipPath id="H">
+  <path d="m-296.297-124h408v159h-408z"/>
+ </clipPath>
+ <clipPath id="I">
+  <path d="m-257.953-131h408v159h-408z"/>
+ </clipPath>
+ <clipPath id="J">
+  <path d="m324.5 401.5h30v36h-30z"/>
+ </clipPath>
+ <clipPath id="K">
+  <path d="m324.5 401.5h30v36h-30z"/>
+ </clipPath>
+ <clipPath id="L">
+  <path d="m324.5 401.5h30v36h-30z"/>
+ </clipPath>
+ <clipPath id="M">
+  <path d="m324.5 401.5h30v36h-30z"/>
+ </clipPath>
+ <clipPath id="N">
+  <path d="m324.5 401.5h30v36h-30z"/>
+ </clipPath>
+ <clipPath id="O">
+  <path d="m324.5 401.5h30v36h-30z"/>
+ </clipPath>
+ <clipPath id="P">
+  <path d="m324.5 401.5h30v36h-30z"/>
+ </clipPath>
+ <clipPath id="Q">
+  <path d="m324.5 401.5h30v36h-30z"/>
+ </clipPath>
+ <clipPath id="R">
+  <path d="m324.5 401.5h30v36h-30z"/>
+ </clipPath>
+ <clipPath id="S">
+  <path d="m324.5 401.5h30v36h-30z"/>
+ </clipPath>
+ <clipPath id="T">
+  <path d="m324.5 401.5h30v36h-30z"/>
+ </clipPath>
+ <clipPath id="U">
+  <path d="m324.5 401.5h30v36h-30z"/>
+ </clipPath>
+ <clipPath id="V">
+  <path d="m324.5 401.5h30v36h-30z"/>
+ </clipPath>
+ <clipPath id="W">
+  <path d="m324.5 401.5h30v36h-30z"/>
+ </clipPath>
+ <clipPath id="X">
+  <path d="m324.5 401.5h30v36h-30z"/>
+ </clipPath>
+ <clipPath id="Y">
+  <path d="m324.5 401.5h30v36h-30z"/>
+ </clipPath>
+ <clipPath id="Z">
+  <path d="m324.5 401.5h30v36h-30z"/>
+ </clipPath>
+ <clipPath id="aa">
+  <path d="m-6-17h30v36h-30z"/>
+ </clipPath>
+ <clipPath id="ab">
+  <path d="m-375.734-92.0001h407.9996v159.0001h-407.9996z"/>
+ </clipPath>
+ <clipPath id="ac">
+  <path d="m-12-5h25v10h-25z"/>
+ </clipPath>
+ <clipPath id="ad">
+  <path d="m284.5 414.5h25v10h-25z"/>
+ </clipPath>
+ <clipPath id="ae">
+  <path d="m284.5 414.5h25v10h-25z"/>
+ </clipPath>
+ <clipPath id="af">
+  <path d="m-333.234-79.0001h407.9996v159.0001h-407.9996z"/>
+ </clipPath>
+ <clipPath id="ag">
+  <path d="m219.5 409.5h20v20h-20z"/>
+ </clipPath>
+ <clipPath id="ah">
+  <path d="m219.5 409.5h20v20h-20z"/>
+ </clipPath>
+ <clipPath id="ai">
+  <path d="m219.5 409.5h20v20h-20z"/>
+ </clipPath>
+ <clipPath id="aj">
+  <path d="m-254.633-84.0001h408v159.0001h-408z"/>
+ </clipPath>
+ <clipPath id="ak">
+  <path d="m-12-5h25v10h-25z"/>
+ </clipPath>
+ <clipPath id="al">
+  <path d="m174.5 379.5h25v10h-25z"/>
+ </clipPath>
+ <clipPath id="am">
+  <path d="m174.5 379.5h25v10h-25z"/>
+ </clipPath>
+ <clipPath id="an">
+  <path d="m-223.234-44.0001h408v159.0001h-408z"/>
+ </clipPath>
+ <clipPath id="ao">
+  <path d="m-12-5h25v10h-25z"/>
+ </clipPath>
+ <clipPath id="ap">
+  <path d="m174.5 449.5h25v10h-25z"/>
+ </clipPath>
+ <clipPath id="aq">
+  <path d="m174.5 449.5h25v10h-25z"/>
+ </clipPath>
+ <clipPath id="ar">
+  <path d="m-223.234-114h408v159h-408z"/>
+ </clipPath>
+ <g fill="none" fill-rule="evenodd" stroke="#000" stroke-linecap="square" stroke-linejoin="bevel">
+  <g stroke="none">
+   <path d="m-42 350h403.25v157h-403.25z" fill="#fff" fill-rule="evenodd" pointer-events="none"/>
+   <g transform="translate(-42 350)">
+    <path d="m0 .5c0-.276142.223858-.5.5-.5h399c.276 0 .5.223858.5.5v140c0 .276-.224.5-.5.5h-399c-.276142 0-.5-.224-.5-.5z" fill="#fff" fill-rule="evenodd"/>
+    <g clip-path="url(#a)" fill="none" stroke-opacity="0">
+     <path d="m0 0h400v141h-400z" fill-rule="evenodd"/>
+    </g>
+   </g>
+  </g>
+  <g transform="translate(-37 382)">
+   <path d="m0 0h165.094v78h-165.094z" fill="#fff" fill-rule="evenodd" stroke="none"/>
+   <g stroke-linecap="square" stroke-linejoin="bevel">
+    <g clip-path="url(#b)" fill="#fff" stroke="#000">
+     <text fill="#000" font-family="Courier New" font-size="16" font-weight="700" stroke="none" textLength="9.59375" x="29.7812" y="15">'</text>
+    </g>
+    <g clip-path="url(#c)" fill="#fff" stroke="#f00">
+     <text fill="#f00" font-family="Courier New" font-size="16" font-weight="700" stroke="none" textLength="86.3438" x="39.375" y="15">[Name^=c]</text>
+    </g>
+    <g style="fill:#000;font-family:Courier New;font-size:16;font-weight:700;stroke:none;clip-path:url(#d)">
+     <text textLength="9.59375" x="125.719" y="15">'</text>
+     <text textLength="9.59375" x="24.9844" y="34">'</text>
+    </g>
+    <g clip-path="url(#e)" fill="#fff" stroke="#0070c0">
+     <text fill="#0070c0" font-family="Courier New" font-size="16" font-weight="700" stroke="none" textLength="95.9375" x="34.5781" y="34">[Name$=ss]</text>
+    </g>
+    <g style="fill:#000;font-family:Courier New;font-size:16;font-weight:700;stroke:none;clip-path:url(#f)">
+     <text textLength="9.59375" x="130.516" y="34">'</text>
+     <text textLength="9.59375" x="29.7812" y="53">'</text>
+    </g>
+    <g clip-path="url(#g)" fill="#fff" stroke="#ffc000">
+     <text fill="#ffc000" font-family="Courier New" font-size="16" font-weight="700" stroke="none" textLength="86.3438" x="39.375" y="53">[Name*=d]</text>
+    </g>
+    <g style="fill:#000;font-family:Courier New;font-size:16;font-weight:700;stroke:none;clip-path:url(#h)">
+     <text textLength="9.59375" x="125.719" y="53">'</text>
+     <text textLength="9.59375" x="1" y="72">'</text>
+    </g>
+    <g fill="#fff">
+     <g clip-path="url(#i)" stroke="#00b050">
+      <text fill="#00b050" font-family="Courier New" font-size="16" font-weight="700" stroke="none" textLength="143.906" x="10.5938" y="72">[Name~=(x|y|z)]</text>
+     </g>
+     <g clip-path="url(#j)" stroke="#000">
+      <text fill="#000" font-family="Courier New" font-size="16" font-weight="700" stroke="none" textLength="9.59375" x="154.5" y="72">'</text>
+     </g>
+    </g>
+   </g>
+  </g>
+  <path d="m0 0h115v137h-115z" fill="#fff" fill-rule="evenodd" stroke="none" transform="translate(185 354)"/>
+  <g fill="none">
+   <path d="m0 0h115v137h-115z" stroke="#000" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="2" stroke-width="2" transform="translate(185 354)"/>
+   <g clip-path="url(#k)" stroke="#000" stroke-linecap="square" stroke-linejoin="bevel" transform="translate(213.766 493)">
+    <text fill="#000" font-family="Arial" font-size="10" font-weight="400" stroke="none" textLength="55.4688" x="1" y="10">garbleburble</text>
+   </g>
+   <g stroke="#ffc000" stroke-linecap="round" stroke-linejoin="miter" stroke-miterlimit="2" stroke-width="2">
+    <path d="m5-5-5 5 5 5" transform="matrix(-1 0 0 -1 135 385)"/>
+    <path d="m0-5 5 5-5 5" transform="translate(165 385)"/>
+   </g>
+  </g>
+  <g stroke="none">
+   <g transform="translate(135 370)">
+    <path d="m28 16 6 3-30 15v-6z" fill="#000" fill-opacity=".8" fill-rule="evenodd"/>
+    <path d="m0 0 30 15-30 15z" fill="#fff" fill-rule="nonzero"/>
+    <g clip-path="url(#l)" fill="none" stroke-opacity="0">
+     <path d="m0 0 30 15-30 15z" fill-rule="nonzero"/>
+    </g>
+   </g>
+   <g clip-path="url(#m)" fill="#ffc000" stroke-opacity="0" transform="translate(129.492 370.914)">
+    <path d="m12.6406 15.6875.875-.1094c.1042.4896.2761.8464.5156 1.0703.2396.224.5365.336.8907.336.4166 0 .7656-.1433 1.0469-.4297.2812-.2865.4218-.6432.4218-1.0703 0-.4063-.1302-.7396-.3906-1s-.5938-.3906-1-.3906c-.1667 0-.375.0312-.625.0937l.0938-.7656h.1406c.375 0 .7135-.0964 1.0156-.2891s.4531-.4922.4531-.8984c0-.3229-.1093-.5912-.3281-.8047-.2188-.2136-.5-.3203-.8438-.3203-.3437 0-.6302.1067-.8593.3203-.2292.2135-.375.5391-.4375.9765l-.875-.1562c.1041-.5938.3463-1.0521.7265-1.375s.8516-.4844 1.4141-.4844c.3958 0 .7578.0834 1.0859.25.3282.1667.5782.3959.75.6875.1719.2917.2579.599.2579.9219 0 .3125-.0808.5938-.2422.8438-.1615.25-.4089.4531-.7422.6093.4271.0938.7578.2943.9922.6016.2343.3073.3515.6953.3515 1.1641 0 .625-.2291 1.1536-.6875 1.5859-.4583.4323-1.0312.6484-1.7187.6484-.6354 0-1.1589-.1875-1.5703-.5625-.4115-.375-.6485-.8594-.711-1.4531z" fill-rule="nonzero"/>
+   </g>
+  </g>
+  <g fill="none">
+   <path d="m0 0 30 15-30 15z" stroke="#ffc000" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="2" transform="translate(135 370)"/>
+   <g clip-path="url(#n)" stroke="#ffc000" stroke-linecap="square" stroke-linejoin="bevel" transform="translate(136.523 402)">
+    <text fill="#ffc000" font-family="Arial" font-size="10" font-weight="400" stroke="none" textLength="24.9531" x="1" y="10">adapt</text>
+   </g>
+   <g stroke="#0070c0" stroke-linecap="round" stroke-linejoin="miter" stroke-miterlimit="2" stroke-width="2">
+    <path d="m5-5-5 5 5 5" transform="matrix(-1 0 0 -1 235 385)"/>
+    <path d="m5-5-5 5 5 5" transform="matrix(-1 0 0 -1 235 370)"/>
+    <path d="m0-5 5 5-5 5" transform="translate(265 380)"/>
+   </g>
+  </g>
+  <path d="m0 0h30v31h-30z" fill="#fff" fill-rule="nonzero" stroke="none" transform="translate(235 362)"/>
+  <g fill="none" stroke="#0070c0">
+   <g stroke-linecap="square" stroke-linejoin="bevel">
+    <g clip-path="url(#o)" transform="translate(.5 .5)">
+     <path d="m238 370h4" fill="none"/>
+    </g>
+    <g clip-path="url(#p)" transform="translate(.5 .5)">
+     <path d="m240 368v4" fill="none"/>
+    </g>
+    <g clip-path="url(#q)" transform="translate(.5 .5)">
+     <path d="m238 385h4" fill="none"/>
+    </g>
+    <g clip-path="url(#r)" transform="translate(.5 .5)">
+     <path d="m240 383v4" fill="none"/>
+    </g>
+    <g clip-path="url(#s)" transform="translate(.5 .5)">
+     <path d="m235 390h30" fill="none"/>
+    </g>
+    <g clip-path="url(#t)" transform="translate(.5 .5)">
+     <path d="m235 365h30" fill="none"/>
+    </g>
+   </g>
+   <path d="m0 0h30v31h-30z" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="2" transform="translate(235 362)"/>
+   <g clip-path="url(#u)" stroke-linecap="square" stroke-linejoin="bevel" transform="translate(231.516 395)">
+    <text fill="#0070c0" font-family="Arial" font-size="10" font-weight="400" stroke="none" textLength="34.9688" x="1" y="10">process</text>
+   </g>
+   <g stroke-linecap="round" stroke-linejoin="miter" stroke-miterlimit="2" stroke-width="2">
+    <path d="m0-5 5 5-5 5" transform="translate(355 365)"/>
+    <path d="m5-5-5 5 5 5" transform="matrix(-1 0 0 -1 325 365)"/>
+   </g>
+  </g>
+  <g stroke="none">
+   <path d="m0 0 30 15-30 15z" fill="#fff" fill-rule="nonzero" transform="translate(325 350)"/>
+   <g stroke-opacity="0">
+    <g clip-path="url(#v)" fill="none" transform="translate(325 350)">
+     <path d="m0 0 30 15-30 15z" fill-rule="nonzero"/>
+    </g>
+    <g clip-path="url(#w)" fill="#0070c0" transform="translate(319.492 350.914)">
+     <path d="m12.6406 15.6875.875-.1094c.1042.4896.2761.8464.5156 1.0703.2396.224.5365.336.8907.336.4166 0 .7656-.1433 1.0469-.4297.2812-.2865.4218-.6432.4218-1.0703 0-.4063-.1302-.7396-.3906-1s-.5938-.3906-1-.3906c-.1667 0-.375.0312-.625.0937l.0938-.7656h.1406c.375 0 .7135-.0964 1.0156-.2891s.4531-.4922.4531-.8984c0-.3229-.1093-.5912-.3281-.8047-.2188-.2136-.5-.3203-.8438-.3203-.3437 0-.6302.1067-.8593.3203-.2292.2135-.375.5391-.4375.9765l-.875-.1562c.1041-.5938.3463-1.0521.7265-1.375s.8516-.4844 1.4141-.4844c.3958 0 .7578.0834 1.0859.25.3282.1667.5782.3959.75.6875.1719.2917.2579.599.2579.9219 0 .3125-.0808.5938-.2422.8438-.1615.25-.4089.4531-.7422.6093.4271.0938.7578.2943.9922.6016.2343.3073.3515.6953.3515 1.1641 0 .625-.2291 1.1536-.6875 1.5859-.4583.4323-1.0312.6484-1.7187.6484-.6354 0-1.1589-.1875-1.5703-.5625-.4115-.375-.6485-.8594-.711-1.4531z" fill-rule="nonzero"/>
+    </g>
+   </g>
+  </g>
+  <g fill="none">
+   <path d="m0 0 30 15-30 15z" stroke="#0070c0" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="2" transform="translate(325 350)"/>
+   <g clip-path="url(#x)" stroke="#0070c0" stroke-linecap="square" stroke-linejoin="bevel" transform="translate(318.75 382)">
+    <text fill="#0070c0" font-family="Arial" font-size="10" font-weight="400" stroke="none" textLength="39" x="1" xml:space="preserve" y="10"> process</text>
+   </g>
+   <g stroke="#000" stroke-linecap="round" stroke-linejoin="miter" stroke-miterlimit="2" stroke-width="2">
+    <path d="m0-5 5 5-5 5" transform="translate(355 475)"/>
+    <path d="m5-5-5 5 5 5" transform="matrix(-1 0 0 -1 325 480)"/>
+    <path d="m5-5-5 5 5 5" transform="matrix(-1 0 0 -1 325 465)"/>
+   </g>
+  </g>
+  <path d="m30 4h4v31h-30v-4h26z" fill="#000" fill-opacity=".8" fill-rule="evenodd" stroke="none" transform="translate(325 457)"/>
+  <path d="m0 0h30v31h-30z" fill="#fff" fill-rule="nonzero" stroke="none" transform="translate(325 457)"/>
+  <g fill="none">
+   <g stroke="#000">
+    <g stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="2">
+     <g clip-path="url(#y)" transform="translate(.5 .5)">
+      <path d="m328 465h4" fill="none"/>
+     </g>
+     <g clip-path="url(#z)" transform="translate(.5 .5)">
+      <path d="m330 463v4" fill="none"/>
+     </g>
+     <g clip-path="url(#A)" transform="translate(.5 .5)">
+      <path d="m328 480h4" fill="none"/>
+     </g>
+     <path d="m0 0h30v31h-30z" transform="translate(325 457)"/>
+    </g>
+    <g clip-path="url(#B)" stroke-linecap="square" stroke-linejoin="bevel" transform="translate(324.016 490)">
+     <text fill="#000" font-family="Arial" font-size="10" font-weight="400" stroke="none" textLength="29.9688" x="1" y="10">rework</text>
+    </g>
+   </g>
+   <g stroke="#e60000" stroke-linecap="round" stroke-linejoin="miter" stroke-miterlimit="2" stroke-width="2">
+    <path d="m5-5-5 5 5 5" transform="matrix(-1 0 0 -1 145 460)"/>
+    <path d="m5-5-5 5 5 5" transform="matrix(-1 0 0 -1 145 445)"/>
+    <path d="m0-5 5 5-5 5" transform="translate(150 455)"/>
+   </g>
+  </g>
+  <path d="m0 0h5v29h-5z" fill="#e60000" fill-rule="evenodd" stroke="none" transform="translate(145 438)"/>
+  <g fill="none">
+   <path d="m0 0h5v29h-5z" stroke="#e60000" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="2" transform="translate(145 438)"/>
+   <g clip-path="url(#C)" stroke="#e60000" stroke-linecap="square" stroke-linejoin="bevel" transform="translate(132.352 469)">
+    <text fill="#e60000" font-family="Arial" font-size="10" font-weight="400" stroke="none" textLength="28.2969" x="1" y="10">collect</text>
+   </g>
+   <g stroke="#ffc000" stroke-linecap="round" stroke-linejoin="miter" stroke-miterlimit="2" stroke-width="2">
+    <path d="m0-5 5 5-5 5" transform="translate(285 455)"/>
+    <path d="m5-5-5 5 5 5" transform="matrix(-1 0 0 -1 255 455)"/>
+   </g>
+  </g>
+  <g stroke="none">
+   <path d="m0 0 30 15-30 15z" fill="#fff" fill-rule="nonzero" transform="translate(255 440)"/>
+   <g clip-path="url(#D)" fill="none" stroke-opacity="0" transform="translate(255 440)">
+    <path d="m0 0 30 15-30 15z" fill-rule="nonzero"/>
+   </g>
+   <g clip-path="url(#E)" fill="#ffc000" stroke-opacity="0" transform="translate(249.492 440.914)">
+    <path d="m17.25 16.7344v.8437h-4.7344c0-.2083.0365-.4114.1094-.6093.125-.323.3177-.6407.5781-.9532s.6459-.6718 1.1563-1.0781c.7708-.6458 1.2942-1.1536 1.5703-1.5234.276-.3698.4141-.7214.4141-1.0547 0-.3542-.125-.6485-.375-.8828-.25-.2344-.573-.3516-.9688-.3516-.4271 0-.7682.125-1.0234.375s-.3828.599-.3828 1.0469l-.9063-.0938c.0625-.6666.2943-1.1771.6953-1.5312.4011-.3542.9453-.5313 1.6328-.5313s1.2318.1901 1.6328.5703c.4011.3802.6016.8516.6016 1.4141 0 .2917-.0599.5755-.1797.8516-.1198.276-.3151.5677-.5859.875-.2709.3073-.724.7265-1.3594 1.2578-.5208.4375-.8568.737-1.0078.8984-.1511.1615-.2734.3203-.3672.4766z" fill-rule="nonzero"/>
+   </g>
+  </g>
+  <g fill="none">
+   <g stroke="#ffc000">
+    <g clip-path="url(#F)" stroke-linecap="square" stroke-linejoin="bevel" transform="translate(.5 .5)">
+     <path d="m255 467 24-12" fill="none"/>
+    </g>
+    <g clip-path="url(#G)" stroke-linecap="square" stroke-linejoin="bevel" transform="translate(.5 .5)">
+     <path d="m279 455-24-12" fill="none"/>
+    </g>
+    <path d="m0 0 30 15-30 15z" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="2" transform="translate(255 440)"/>
+    <g clip-path="url(#H)" stroke-linecap="square" stroke-linejoin="bevel" transform="translate(254.297 472)">
+     <text fill="#ffc000" font-family="Arial" font-size="10" font-weight="400" stroke="none" textLength="29.4062" x="1" y="10">modify</text>
+    </g>
+   </g>
+   <g stroke="#0070c0" stroke-linecap="round" stroke-linejoin="miter" stroke-miterlimit="2" stroke-width="2">
+    <path d="m5-5-5 5 5 5" transform="matrix(-1 0 0 -1 225 465)"/>
+    <path d="m0-5 5 5-5 5" transform="translate(230 470)"/>
+    <path d="m0-5 5 5-5 5" transform="translate(230 455)"/>
+   </g>
+  </g>
+  <path d="m0 0h5v29h-5z" fill="#0070c0" fill-rule="evenodd" stroke="none" transform="translate(225 448)"/>
+  <g fill="none">
+   <path d="m0 0h5v29h-5z" stroke="#0070c0" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="2" transform="translate(225 448)"/>
+   <g clip-path="url(#I)" stroke="#0070c0" stroke-linecap="square" stroke-linejoin="bevel" transform="translate(215.953 479)">
+    <text fill="#0070c0" font-family="Arial" font-size="10" font-weight="400" stroke="none" textLength="21.0938" x="1" y="10">pass</text>
+   </g>
+   <g stroke="#00b050" stroke-linecap="round" stroke-linejoin="miter" stroke-miterlimit="2" stroke-width="2">
+    <path d="m5-5-5 5 5 5" transform="matrix(-1 0 0 -1 325 430)"/>
+    <path d="m5-5-5 5 5 5" transform="matrix(-1 0 0 -1 325 420)"/>
+    <path d="m5-5-5 5 5 5" transform="matrix(-1 0 0 -1 325 410)"/>
+    <path d="m0-5 5 5-5 5" transform="translate(355 420)"/>
+   </g>
+  </g>
+  <path d="m30 4h4v36h-30v-4h26z" fill="#000" fill-opacity=".8" fill-rule="evenodd" stroke="none" transform="translate(325 402)"/>
+  <path d="m0 0h30v36h-30z" fill="#fff" fill-rule="evenodd" stroke="none" transform="translate(325 402)"/>
+  <g fill="none" stroke="#00b050">
+   <g stroke-linecap="square" stroke-linejoin="bevel">
+    <g clip-path="url(#J)" transform="translate(.5 .5)">
+     <path d="m337 433v1" fill="none"/>
+    </g>
+    <g clip-path="url(#K)" transform="translate(.5 .5)">
+     <path d="m337 434h1" fill="none"/>
+    </g>
+    <g clip-path="url(#L)" transform="translate(.5 .5)">
+     <path d="m338 434v-2" fill="none"/>
+    </g>
+    <g clip-path="url(#M)" transform="translate(.5 .5)">
+     <path d="m338 432h-1" fill="none"/>
+    </g>
+    <g clip-path="url(#N)" transform="translate(.5 .5)">
+     <path d="m337 432v1" fill="none"/>
+    </g>
+    <g clip-path="url(#O)" transform="translate(.5 .5)">
+     <path d="m337 433h-12" fill="none"/>
+    </g>
+    <g clip-path="url(#P)" transform="translate(.5 .5)">
+     <path d="m337 408v1" fill="none"/>
+    </g>
+    <g clip-path="url(#Q)" transform="translate(.5 .5)">
+     <path d="m337 409h1" fill="none"/>
+    </g>
+    <g clip-path="url(#R)" transform="translate(.5 .5)">
+     <path d="m338 409v-2" fill="none"/>
+    </g>
+    <g clip-path="url(#S)" transform="translate(.5 .5)">
+     <path d="m338 407h-1" fill="none"/>
+    </g>
+    <g clip-path="url(#T)" transform="translate(.5 .5)">
+     <path d="m337 407v1" fill="none"/>
+    </g>
+    <g clip-path="url(#U)" transform="translate(.5 .5)">
+     <path d="m337 408h-12" fill="none"/>
+    </g>
+    <g clip-path="url(#V)" transform="translate(.5 .5)">
+     <path d="m338 408 11 12" fill="none"/>
+    </g>
+    <g clip-path="url(#W)" transform="translate(.5 .5)">
+     <path d="m349 420h6" fill="none"/>
+    </g>
+    <g clip-path="url(#X)" transform="translate(.5 .5)">
+     <path d="m329 424v-7" fill="none"/>
+    </g>
+    <g clip-path="url(#Y)" transform="translate(.5 .5)">
+     <path d="m329 417v3" fill="none"/>
+    </g>
+    <g clip-path="url(#Z)" transform="translate(.5 .5)">
+     <path d="m329 420h-4" fill="none"/>
+    </g>
+    <g clip-path="url(#aa)" transform="translate(331 419)">
+     <text fill="#00b050" font-family="Arial" font-size="10" font-weight="400" stroke="none" textLength="9" xml:space="preserve" y="3.5"> &gt;</text>
+    </g>
+   </g>
+   <path d="m0 0h30v36h-30z" fill-rule="evenodd" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="2" transform="translate(325 402)"/>
+   <g clip-path="url(#ab)" stroke-linecap="square" stroke-linejoin="bevel" transform="translate(333.734 440)">
+    <text fill="#00b050" font-family="Arial" font-size="10" font-weight="400" stroke="none" textLength="8" x="1" xml:space="preserve" y="10"> x</text>
+   </g>
+   <path d="m5-5-5 5 5 5" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="miter" stroke-miterlimit="2" stroke-width="2" transform="matrix(-1 0 0 -1 285 420)"/>
+  </g>
+  <path d="m5 0h15c2.7614 0 5 2.23858 5 5s-2.2386 5-5 5h-15c-2.76142 0-5-2.23858-5-5s2.23858-5 5-5z" fill="#fff" fill-rule="nonzero" stroke="none" transform="translate(285 415)"/>
+  <g fill="none">
+   <g stroke="#00b050">
+    <g stroke-linecap="square" stroke-linejoin="bevel">
+     <g clip-path="url(#ac)" transform="translate(297 420)">
+      <text fill="#00b050" font-family="Arial" font-size="10" font-weight="400" stroke="none" textLength="5.54688" x="-2.76562" y="3.5">1</text>
+     </g>
+     <g clip-path="url(#ad)" transform="translate(.5 .5)">
+      <path d="m290 425 4-10" fill="none"/>
+     </g>
+     <g clip-path="url(#ae)" transform="translate(.5 .5)">
+      <path d="m301 425 4-10" fill="none"/>
+     </g>
+    </g>
+    <path d="m5 0h15c2.7614 0 5 2.23858 5 5s-2.2386 5-5 5h-15c-2.76142 0-5-2.23858-5-5s2.23858-5 5-5z" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="2" transform="translate(285 415)"/>
+    <g clip-path="url(#af)" stroke-linecap="square" stroke-linejoin="bevel" transform="translate(291.234 427)">
+     <text fill="#00b050" font-family="Arial" font-size="10" font-weight="400" stroke="none" textLength="5" x="1" y="10">z</text>
+    </g>
+   </g>
+   <g stroke="#e60000" stroke-linecap="round" stroke-linejoin="miter" stroke-miterlimit="2" stroke-width="2">
+    <path d="m5-5-5 5 5 5" transform="matrix(-.866025 -.5 .5 -.866025 222 415)"/>
+    <path d="m5-5-5 5 5 5" transform="matrix(-.866025 .5 -.5 -.866025 222 425)"/>
+    <path d="m0-5 5 5-5 5" transform="translate(240 420)"/>
+   </g>
+  </g>
+  <path d="m24 14-.1611 1.7975-.4645 1.6918-.7397 1.5579-.9866 1.3957-1.2052 1.2052-1.3957.9866-1.5579.7397-1.6918.4645-1.7975.1611-1.7975-.1611-1.6918-.4645-1.55789-.7397-1.39568-.9866-1.20526-1.2052-.98658-1.3957-.13279-.2797 1.27818.6069 1.69181.4645 1.79751.1611 1.7975-.1611 1.6918-.4645 1.5579-.7397 1.3957-.9866 1.2052-1.2052.9866-1.3957.7397-1.5579.4645-1.6918.1611-1.7975-.1611-1.79751-.4645-1.69181-.6069-1.27818.2797.13279 1.3957.98658 1.2052 1.20526.9866 1.39568.7397 1.55789.4645 1.6918z" fill="#000" fill-opacity=".8" fill-rule="evenodd" stroke="none" transform="translate(220 410)"/>
+  <path d="m20 10c0 5.5228-4.4772 10-10 10-5.52285 0-10-4.4772-10-10 0-5.52285 4.47715-10 10-10 5.5228 0 10 4.47715 10 10z" fill="#fff" fill-rule="nonzero" stroke="none" transform="translate(220 410)"/>
+  <g fill="none">
+   <g stroke="#e60000">
+    <g stroke-linecap="square" stroke-linejoin="bevel">
+     <g clip-path="url(#ag)" transform="translate(.5 .5)">
+      <path d="m223 417h4" fill="none"/>
+     </g>
+     <g clip-path="url(#ah)" transform="translate(.5 .5)">
+      <path d="m225 415v4" fill="none"/>
+     </g>
+     <g clip-path="url(#ai)" transform="translate(.5 .5)">
+      <path d="m223 422h4" fill="none"/>
+     </g>
+    </g>
+    <path d="m20 10c0 5.5228-4.4772 10-10 10-5.52285 0-10-4.4772-10-10 0-5.52285 4.47715-10 10-10 5.5228 0 10 4.47715 10 10z" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="2" transform="translate(220 410)"/>
+    <g clip-path="url(#aj)" stroke-linecap="square" stroke-linejoin="bevel" transform="translate(212.633 432)">
+     <text fill="#e60000" font-family="Arial" font-size="10" font-weight="400" stroke="none" textLength="32.7344" x="1" y="10">change</text>
+    </g>
+   </g>
+   <path d="m0-5 5 5-5 5" stroke="#00b050" stroke-linecap="round" stroke-linejoin="miter" stroke-miterlimit="2" stroke-width="2" transform="translate(200 385)"/>
+  </g>
+  <path d="m5 0h15c2.7614 0 5 2.23858 5 5s-2.2386 5-5 5h-15c-2.76142 0-5-2.23858-5-5s2.23858-5 5-5z" fill="#fff" fill-rule="nonzero" stroke="none" transform="translate(175 380)"/>
+  <g fill="none" stroke="#00b050">
+   <g stroke-linecap="square" stroke-linejoin="bevel">
+    <g clip-path="url(#ak)" transform="translate(187 385)">
+     <text fill="#00b050" font-family="Arial" font-size="10" font-weight="400" stroke="none" textLength="5.54688" x="-2.76562" y="3.5">1</text>
+    </g>
+    <g clip-path="url(#al)" transform="translate(.5 .5)">
+     <path d="m180 390 4-10" fill="none"/>
+    </g>
+    <g clip-path="url(#am)" transform="translate(.5 .5)">
+     <path d="m191 390 4-10" fill="none"/>
+    </g>
+   </g>
+   <path d="m5 0h15c2.7614 0 5 2.23858 5 5s-2.2386 5-5 5h-15c-2.76142 0-5-2.23858-5-5s2.23858-5 5-5z" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="2" transform="translate(175 380)"/>
+   <g clip-path="url(#an)" stroke-linecap="square" stroke-linejoin="bevel" transform="translate(181.234 392)">
+    <text fill="#00b050" font-family="Arial" font-size="10" font-weight="400" stroke="none" textLength="10.5312" x="1" xml:space="preserve" y="10">  x</text>
+   </g>
+   <path d="m0-5 5 5-5 5" stroke-linecap="round" stroke-linejoin="miter" stroke-miterlimit="2" stroke-width="2" transform="translate(200 455)"/>
+  </g>
+  <path d="m5 0h15c2.7614 0 5 2.23858 5 5s-2.2386 5-5 5h-15c-2.76142 0-5-2.23858-5-5s2.23858-5 5-5z" fill="#fff" fill-rule="nonzero" stroke="none" transform="translate(175 450)"/>
+  <g fill="none" stroke="#00b050">
+   <g stroke-linecap="square" stroke-linejoin="bevel">
+    <g clip-path="url(#ao)" transform="translate(187 455)">
+     <text fill="#00b050" font-family="Arial" font-size="10" font-weight="400" stroke="none" textLength="5.54688" x="-2.76562" y="3.5">2</text>
+    </g>
+    <g clip-path="url(#ap)" transform="translate(.5 .5)">
+     <path d="m180 460 4-10" fill="none"/>
+    </g>
+    <g clip-path="url(#aq)" transform="translate(.5 .5)">
+     <path d="m191 460 4-10" fill="none"/>
+    </g>
+   </g>
+   <path d="m5 0h15c2.7614 0 5 2.23858 5 5s-2.2386 5-5 5h-15c-2.76142 0-5-2.23858-5-5s2.23858-5 5-5z" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="2" transform="translate(175 450)"/>
+   <g clip-path="url(#ar)" stroke-linecap="square" stroke-linejoin="bevel" transform="translate(181.234 462)">
+    <text fill="#00b050" font-family="Arial" font-size="10" font-weight="400" stroke="none" textLength="10.5312" x="1" xml:space="preserve" y="10">  y</text>
+   </g>
+  </g>
+ </g>
+</svg>

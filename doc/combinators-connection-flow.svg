@@ -1,0 +1,230 @@
+<svg height="152" preserveAspectRatio="xMinYMin meet" viewBox="656 476 319 152" width="319" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" zoomAndPan="disable">
+ <clipPath id="a">
+  <path d="m0 0h317v134h-317z"/>
+ </clipPath>
+ <clipPath id="b">
+  <path d="m-24-59h317v152h-317z"/>
+ </clipPath>
+ <clipPath id="c">
+  <path d="m-24-59h317v152h-317z"/>
+ </clipPath>
+ <clipPath id="d">
+  <path d="m-24-59h317v152h-317z"/>
+ </clipPath>
+ <clipPath id="e">
+  <path d="m-24-59h317v152h-317z"/>
+ </clipPath>
+ <clipPath id="f">
+  <path d="m-24-59h317v152h-317z"/>
+ </clipPath>
+ <clipPath id="g">
+  <path d="m-213.367-138h317v152h-317z"/>
+ </clipPath>
+ <clipPath id="h">
+  <path d="m-138.43-40h317v152h-317z"/>
+ </clipPath>
+ <clipPath id="i">
+  <path d="m-233.43-110h317.0003v152h-317.0003z"/>
+ </clipPath>
+ <clipPath id="j">
+  <path d="m1 1h20v20h-20z"/>
+ </clipPath>
+ <clipPath id="k">
+  <path d="m1 291h6v5h-6z"/>
+ </clipPath>
+ <clipPath id="l">
+  <path d="m-25-7h20v20h-20z"/>
+ </clipPath>
+ <clipPath id="m">
+  <path d="m2 1h20v20h-20z"/>
+ </clipPath>
+ <clipPath id="n">
+  <path d="m1 291h6v5h-6z"/>
+ </clipPath>
+ <clipPath id="o">
+  <path d="m12-7h20v20h-20z"/>
+ </clipPath>
+ <clipPath id="p">
+  <path d="m0 0h11v30h-11z"/>
+ </clipPath>
+ <clipPath id="q">
+  <path d="m90 0h10v100h-10z"/>
+ </clipPath>
+ <clipPath id="r">
+  <path d="m90 35h10v29h-10z"/>
+ </clipPath>
+ <clipPath id="s">
+  <path d="m3-11h10v29h-10z"/>
+ </clipPath>
+ <clipPath id="t">
+  <path d="m3-26h10v29h-10z"/>
+ </clipPath>
+ <clipPath id="u">
+  <path d="m0 0h11v30h-11z"/>
+ </clipPath>
+ <clipPath id="v">
+  <path d="m90 0h10v100h-10z"/>
+ </clipPath>
+ <clipPath id="w">
+  <path d="m90 35h10v29h-10z"/>
+ </clipPath>
+ <clipPath id="x">
+  <path d="m-3-11h10v29h-10z"/>
+ </clipPath>
+ <clipPath id="y">
+  <path d="m-3-26h10v29h-10z"/>
+ </clipPath>
+ <clipPath id="z">
+  <path d="m-12-5h25v10h-25z"/>
+ </clipPath>
+ <clipPath id="A">
+  <path d="m-12-5h25v10h-25z"/>
+ </clipPath>
+ <g fill="none" fill-rule="evenodd" stroke="#000" stroke-linecap="square" stroke-linejoin="bevel">
+  <g stroke="none">
+   <path d="m657 477h317v150h-317z" fill="#fff" fill-rule="evenodd" pointer-events="none"/>
+   <g transform="translate(657 477)">
+    <path d="m0 .5c0-.276142.223858-.5.5-.5h316c.276 0 .5.223858.5.5v133c0 .276-.224.5-.5.5h-316c-.276142 0-.5-.224-.5-.5z" fill="#fff" fill-rule="evenodd"/>
+    <g clip-path="url(#a)" fill="none" stroke-opacity="0">
+     <path d="m0 0h317v134h-317z" fill-rule="evenodd"/>
+    </g>
+   </g>
+  </g>
+  <g fill="#fff">
+   <g transform="translate(681 534)">
+    <path d="m0 0h69.1562v21h-69.1562z" fill-rule="evenodd" stroke="none"/>
+    <g stroke-linecap="square" stroke-linejoin="bevel">
+     <g clip-path="url(#b)" stroke="#000">
+      <text fill="#000" font-family="Courier New" font-size="16" font-weight="700" stroke="none" textLength="9.59375" x="1" y="15">'</text>
+     </g>
+     <g clip-path="url(#c)" stroke="#f00">
+      <text fill="#f00" font-family="Courier New" font-size="16" font-weight="700" stroke="none" textLength="9.59375" x="10.5938" y="15">*</text>
+     </g>
+     <g clip-path="url(#d)" stroke="#000">
+      <text fill="#000" font-family="Courier New" font-size="16" font-weight="700" stroke="none" textLength="19" x="20.1875" xml:space="preserve" y="15"> ~</text>
+     </g>
+     <g clip-path="url(#e)" stroke="#f00">
+      <text fill="#f00" font-family="Courier New" font-size="16" font-weight="700" stroke="none" textLength="9.59375" x="48.9688" y="15">*</text>
+     </g>
+     <g clip-path="url(#f)" stroke="#000">
+      <text fill="#000" font-family="Courier New" font-size="16" font-weight="700" stroke="none" textLength="9.59375" x="58.5625" y="15">'</text>
+     </g>
+    </g>
+   </g>
+   <path d="m0 0h110v77h-110z" fill-rule="evenodd" stroke="none" transform="translate(843 534)"/>
+  </g>
+  <path d="m0 0h110v77h-110z" fill="none" stroke="#000" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="2" transform="translate(843 534)"/>
+  <g clip-path="url(#g)" fill="none" stroke="#000" stroke-linecap="square" stroke-linejoin="bevel" transform="translate(870.367 613)">
+   <text fill="#000" font-family="Arial" font-size="10" font-weight="400" stroke="none" textLength="52" x="1" xml:space="preserve" y="10"> subsystem</text>
+  </g>
+  <path d="m0 0h35v36h-35z" fill="#fff" fill-rule="evenodd" stroke="none" transform="translate(805 477)"/>
+  <path d="m0 0h35v36h-35z" style="fill:none;stroke:#e60000;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:2;stroke-width:2" transform="translate(805 477)"/>
+  <g clip-path="url(#h)" fill="none" stroke="#e60000" stroke-linecap="square" stroke-linejoin="bevel" transform="translate(795.43 515)">
+   <text fill="#e60000" font-family="Arial" font-size="10" font-weight="400" stroke="none" textLength="52" x="1" y="10">component</text>
+  </g>
+  <path d="m0 0h35v36h-35z" fill="#fff" fill-rule="evenodd" stroke="none" transform="translate(900 547)"/>
+  <path d="m0 0h35v36h-35z" style="fill:none;stroke:#e60000;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:2;stroke-width:2" transform="translate(900 547)"/>
+  <g clip-path="url(#i)" fill="none" stroke="#e60000" stroke-linecap="square" stroke-linejoin="bevel" transform="translate(890.43 585)">
+   <text fill="#e60000" font-family="Arial" font-size="10" font-weight="400" stroke="none" textLength="52.1406" x="1" xml:space="preserve" y="10"> component</text>
+  </g>
+  <path d="m10 .00006049h5l5 10.00003951-5 9.9999h-5-5l-4.99999965-9.9999 4.99999965-10.00003951z" fill="#fff" fill-rule="evenodd" stroke="none" transform="translate(910 495)"/>
+  <path d="m10 .00006049h5l5 10.00003951-5 9.9999h-5-5l-4.99999965-9.9999 4.99999965-10.00003951z" fill="none" stroke="none" transform="translate(910 495)"/>
+  <g style="fill:none;opacity:0;stroke:#000;stroke-linecap:butt;stroke-linejoin:miter;stroke-width:12;clip-path:url(#j)" transform="translate(909 494)">
+   <path d="m11.5 1.50001h5l5 9.99999-5 10h-5-5l-5-10 5-9.99999z" fill-rule="nonzero"/>
+  </g>
+  <g clip-path="url(#k)" fill="#000" stroke="none" stroke-opacity="0" transform="matrix(3.77953 0 0 4.44649 905 -799.727)">
+   <path d="m5.42393 291.292-1.32291 2.249 1.32291 2.248 1.32292-2.248z" fill-rule="nonzero"/>
+  </g>
+  <g clip-path="url(#l)" fill="#000" stroke="none" stroke-opacity="0" transform="translate(935 501.982)">
+   <path d="m-.015625 8.07812 2.750005-7.156245h1.01562l2.9375 7.156245h-1.07812l-.84376-2.17187h-2.98437l-.796875 2.17187zm2.062505-2.9375h2.4375l-.75-1.98437c-.22917-.60417-.40105-1.09896-.51563-1.48437-.08333.45833-.20833.91145-.375 1.35937z" fill-rule="nonzero"/>
+  </g>
+  <path d="m10 .00006049h5l5 10.00003951-5 9.9999h-5-5l-4.99999965-9.9999 4.99999965-10.00003951z" fill="none" stroke="#000" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="2" transform="translate(910 495)"/>
+  <path d="m10 19.9999h-5l-5.00000106-9.99999 5.00000106-9.99994913h5 5l5 9.99994913-5 9.99999z" fill="#fff" fill-rule="evenodd" stroke="none" transform="translate(795 565)"/>
+  <path d="m10 19.9999h-5l-5.00000106-9.99999 5.00000106-9.99994913h5 5l5 9.99994913-5 9.99999z" fill="none" stroke="none" transform="translate(795 565)"/>
+  <g style="fill:none;opacity:0;stroke:#000;stroke-linecap:butt;stroke-linejoin:miter;stroke-width:12;clip-path:url(#m)" transform="matrix(-1 0 0 1 817 564)">
+   <path d="m11.5 1.50001h5l5 9.99999-5 10h-5-5l-5-10 5-9.99999z" fill-rule="nonzero"/>
+  </g>
+  <g clip-path="url(#n)" fill="#000" stroke="none" stroke-opacity="0" transform="matrix(-3.77953 0 0 4.44649 820 -729.727)">
+   <path d="m5.1594 291.292-1.32292 2.249 1.32292 2.248 1.32292-2.248z" fill-rule="nonzero"/>
+  </g>
+  <g clip-path="url(#o)" fill="#000" stroke="none" stroke-opacity="0" transform="translate(783.344 571.982)">
+   <path d="m-.015625 8.07812 2.750005-7.156245h1.01562l2.9375 7.156245h-1.07812l-.84376-2.17187h-2.98437l-.796875 2.17187zm2.062505-2.9375h2.4375l-.75-1.98437c-.22917-.60417-.40105-1.09896-.51563-1.48437-.08333.45833-.20833.91145-.375 1.35937z" fill-rule="nonzero"/>
+  </g>
+  <path d="m10 19.9999h-5l-5.00000106-9.99999 5.00000106-9.99994913h5 5l5 9.99994913-5 9.99999z" fill="none" stroke="#000" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="2" transform="translate(795 565)"/>
+  <path d="m8 4c0 2.20914-1.79086 4-4 4s-4-1.79086-4-4 1.79086-4 4-4 4 1.79086 4 4z" style="fill-rule:nonzero;fill:#fff;stroke:#000;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:2" transform="matrix(-1 0 0 1 880 506)"/>
+  <g stroke="none">
+   <path d="m0 0h10v29h-10z" fill="#fff" fill-rule="evenodd" transform="translate(880 488)"/>
+   <g stroke-opacity="0">
+    <g clip-path="url(#p)" fill="none" transform="translate(880 488)">
+     <path d="m0 0h11v30h-11z" fill-rule="evenodd"/>
+    </g>
+    <g clip-path="url(#q)" fill="#000" transform="matrix(1 0 0 .29 790 488)">
+     <path d="m94.4999 1.72379h6.0001v100.00021h-6.0001z" fill-rule="nonzero"/>
+    </g>
+    <g clip-path="url(#r)" fill="#fff" transform="translate(790 452.5)">
+     <path d="m95.4999 47.9999h5.0001v5h-5.0001z" fill-rule="nonzero"/>
+    </g>
+    <g fill="#000">
+     <g clip-path="url(#s)" transform="translate(877 498.5)">
+      <path d="m1.17188 0v-1h1v1zm3.32812 0v-1h1v1zm3.32812 0v-1h1.01563v1z" fill-rule="nonzero"/>
+     </g>
+     <g clip-path="url(#t)" transform="translate(877 513.5)">
+      <path d="m1.17188 0v-1h1v1zm3.32812 0v-1h1v1zm3.32812 0v-1h1.01563v1z" fill-rule="nonzero"/>
+     </g>
+    </g>
+   </g>
+  </g>
+  <path d="m0 0h10v29h-10z" fill="none" stroke="#000" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="2" transform="translate(880 488)"/>
+  <path d="m8 4c0 2.20914-1.79086 4-4 4s-4-1.79086-4-4 1.79086-4 4-4 4 1.79086 4 4z" style="fill-rule:nonzero;fill:#fff;stroke:#000;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:2" transform="translate(880 576)"/>
+  <g stroke="none">
+   <path d="m0 0h10v29h-10z" fill="#fff" fill-rule="evenodd" transform="translate(870 558)"/>
+   <g stroke-opacity="0">
+    <g clip-path="url(#u)" fill="none" transform="translate(870 558)">
+     <path d="m0 0h11v30h-11z" fill-rule="evenodd"/>
+    </g>
+    <g clip-path="url(#v)" fill="#000" transform="matrix(-1 0 0 .29 970 558)">
+     <path d="m93.5001 1.72379h6v100.00021h-6z" fill-rule="nonzero"/>
+    </g>
+    <g clip-path="url(#w)" fill="#fff" transform="matrix(-1 0 0 1 970 522.5)">
+     <path d="m94.5001 47.9999h5v5h-5z" fill-rule="nonzero"/>
+    </g>
+    <g fill="#000">
+     <g clip-path="url(#x)" transform="translate(873 568.5)">
+      <path d="m1.17188 0v-1h1v1zm3.32812 0v-1h1v1zm3.32812 0v-1h1.01563v1z" fill-rule="nonzero"/>
+     </g>
+     <g clip-path="url(#y)" transform="translate(873 583.5)">
+      <path d="m1.17188 0v-1h1v1zm3.32812 0v-1h1v1zm3.32812 0v-1h1.01563v1z" fill-rule="nonzero"/>
+     </g>
+    </g>
+   </g>
+  </g>
+  <path d="m0 0h10v29h-10z" fill="none" stroke="#000" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="2" transform="translate(870 558)"/>
+  <path d="m0 5 6.25-5h12.5l6.25 5-6.25 5h-12.5z" fill="#808080" fill-rule="nonzero" stroke="none" transform="translate(830 570)"/>
+  <g style="fill:none;stroke:#000;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:2;clip-path:url(#z)" transform="translate(842 575)">
+   <text fill="#000" font-family="Arial" font-size="10" font-weight="400" stroke="none" textLength="5.54688" x="-2.76562" y="3.5">2</text>
+  </g>
+  <path d="m0 5 6.25-5h12.5l6.25 5-6.25 5h-12.5z" fill="none" stroke="#000" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="2" transform="translate(830 570)"/>
+  <path d="m25 5-6.25 5h-12.5l-6.25-5 6.25-5h12.5z" fill="#fff" fill-rule="nonzero" stroke="none" transform="translate(830 570)"/>
+  <g fill="none" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="2">
+   <g clip-path="url(#A)" stroke="#000" transform="translate(842 575)">
+    <text fill="#000" font-family="Arial" font-size="10" font-weight="400" stroke="none" textLength="5.54688" x="-2.76562" y="3.5">1</text>
+   </g>
+   <path d="m25 5-6.25 5h-12.5l-6.25-5 6.25-5h12.5z" fill-rule="nonzero" stroke="#000" transform="translate(830 570)"/>
+   <g fill-rule="evenodd">
+    <path d="m901 565h-22" stroke="#000"/>
+    <path d="m911 505h-22" stroke="#000" stroke-width="7"/>
+    <path d="m911 505h-22" stroke="#fff" stroke-width="3"/>
+    <path d="m911 505h-22" stroke="#000"/>
+    <path d="m814 575h17" stroke="#000" stroke-width="7"/>
+    <path d="m814 575h17" stroke="#fff" stroke-width="3"/>
+    <g stroke="#000">
+     <path d="m814 575h17"/>
+     <path d="m839 495h42"/>
+     <path d="m871 575h-17" stroke-width="7"/>
+    </g>
+    <path d="m871 575h-17" stroke="#fff" stroke-width="3"/>
+    <path d="m871 575h-17" stroke="#000"/>
+   </g>
+  </g>
+ </g>
+</svg>

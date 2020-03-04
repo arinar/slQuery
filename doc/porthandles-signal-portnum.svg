@@ -1,0 +1,158 @@
+<svg height="133" preserveAspectRatio="xMinYMin meet" viewBox="395 380 462 133" width="462" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" zoomAndPan="disable">
+ <clipPath id="a">
+  <path d="m0 0h460v131h-460z"/>
+ </clipPath>
+ <clipPath id="b">
+  <path d="m0 0h122v78h-122z"/>
+ </clipPath>
+ <clipPath id="c">
+  <path d="m0 0h122v78h-122z"/>
+ </clipPath>
+ <clipPath id="d">
+  <path d="m0 0h122v78h-122z"/>
+ </clipPath>
+ <clipPath id="e">
+  <path d="m0 0h122v78h-122z"/>
+ </clipPath>
+ <clipPath id="f">
+  <path d="m0 0h122v78h-122z"/>
+ </clipPath>
+ <clipPath id="g">
+  <path d="m0 0h122v78h-122z"/>
+ </clipPath>
+ <clipPath id="h">
+  <path d="m0 0h122v78h-122z"/>
+ </clipPath>
+ <clipPath id="i">
+  <path d="m0 0h122v78h-122z"/>
+ </clipPath>
+ <clipPath id="j">
+  <path d="m0 0h122v78h-122z"/>
+ </clipPath>
+ <g fill="none" fill-rule="evenodd" stroke="#000" stroke-linecap="square" stroke-linejoin="bevel">
+  <g stroke="none">
+   <path d="m396 381h460v131h-460z" fill="#fff" fill-rule="evenodd" pointer-events="none"/>
+   <g transform="translate(396 381)">
+    <path d="m0 .5c0-.276142.223858-.5.5-.5h459c.276 0 .5.223858.5.5v130c0 .276-.224.5-.5.5h-459c-.276142 0-.5-.224-.5-.5z" fill="#fff" fill-rule="evenodd"/>
+    <g clip-path="url(#a)" fill="none" stroke-opacity="0">
+     <path d="m0 0h460v131h-460z" fill-rule="evenodd"/>
+    </g>
+   </g>
+  </g>
+  <g fill="#fff" transform="translate(437 408)">
+   <path d="m0 0h122v78h-122z" fill-rule="evenodd" stroke="none"/>
+   <g stroke-linecap="square" stroke-linejoin="bevel">
+    <g clip-path="url(#b)" stroke="#f00">
+     <text fill="#f00" font-family="Courier New" font-size="16" font-weight="700" stroke="none" textLength="19.1875" x="22.625" y="15">1:</text>
+    </g>
+    <g clip-path="url(#c)" stroke="#000">
+     <text fill="#000" font-family="Courier New" font-size="16" font-weight="700" stroke="none" textLength="57.5625" x="41.8125" y="15">blocks</text>
+    </g>
+    <g clip-path="url(#d)" stroke="#000">
+     <text fill="#000" font-family="Courier New" font-size="16" font-weight="700" stroke="none" textLength="57.5625" x="3.4375" y="34">blocks</text>
+    </g>
+    <g clip-path="url(#e)" stroke="#0070c0">
+     <text fill="#0070c0" font-family="Courier New" font-size="16" font-weight="700" stroke="none" textLength="57.5625" x="61" y="34">:[1:3]</text>
+    </g>
+    <g clip-path="url(#f)" stroke="#000">
+     <text fill="#000" font-family="Courier New" font-size="16" font-weight="700" stroke="none" textLength="57.5625" x="3.4375" y="53">blocks</text>
+    </g>
+    <g clip-path="url(#g)" stroke="#ffc000">
+     <text fill="#ffc000" font-family="Courier New" font-size="16" font-weight="700" stroke="none" textLength="57.5625" x="61" y="53">:[2,4]</text>
+    </g>
+    <g clip-path="url(#h)" stroke="#00b050">
+     <text fill="#00b050" font-family="Courier New" font-size="16" font-weight="700" stroke="none" textLength="19.1875" x="13.0312" y="72">1:</text>
+    </g>
+    <g clip-path="url(#i)" stroke="#000">
+     <text fill="#000" font-family="Courier New" font-size="16" font-weight="700" stroke="none" textLength="57.5625" x="32.2188" y="72">blocks</text>
+    </g>
+    <g clip-path="url(#j)" stroke="#00b050">
+     <text fill="#00b050" font-family="Courier New" font-size="16" font-weight="700" stroke="none" textLength="19.1875" x="89.7812" y="72">:1</text>
+    </g>
+   </g>
+  </g>
+  <path d="m0-5 5 5-5 5" style="fill:none;stroke:#00b050;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:2;stroke-width:2" transform="translate(720 395)"/>
+  <path d="m0 0h20v16h-20z" fill="#fff" fill-rule="evenodd" stroke="none" transform="translate(700 387)"/>
+  <path d="m0 0h20v16h-20z" fill="none" stroke="none" transform="translate(700 387)"/>
+  <path d="m0-5 5 5-5 5" style="fill:none;stroke:#00b050;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:2;stroke-width:2" transform="translate(825 425)"/>
+  <path d="m0 0h20v16h-20z" fill="#fff" fill-rule="evenodd" stroke="none" transform="translate(805 417)"/>
+  <g fill="none">
+   <path d="m0 0h20v16h-20z" stroke="none" transform="translate(805 417)"/>
+   <g stroke="#ffc000" stroke-linecap="round" stroke-linejoin="miter" stroke-miterlimit="2" stroke-width="2">
+    <path d="m0-5 5 5-5 5" transform="translate(825 445)"/>
+    <path d="m0-5 5 5-5 5" transform="translate(825 485)"/>
+   </g>
+  </g>
+  <path d="m0 0h20v78h-20z" fill="#fff" fill-rule="evenodd" stroke="none" transform="translate(805 426)"/>
+  <g fill="none">
+   <path d="m0 0h20v78h-20z" stroke="none" transform="translate(805 426)"/>
+   <g stroke="#ffc000" stroke-linecap="round" stroke-linejoin="miter" stroke-miterlimit="2" stroke-width="2">
+    <path d="m0-5 5 5-5 5" transform="translate(720 455)"/>
+    <path d="m0-5 5 5-5 5" transform="translate(720 415)"/>
+   </g>
+  </g>
+  <path d="m0 0h15v80h-15z" fill="#fff" fill-rule="evenodd" stroke="none" transform="translate(705 395)"/>
+  <g fill="none">
+   <path d="m0 0h15v80h-15z" stroke="none" transform="translate(705 395)"/>
+   <g stroke="#0070c0" stroke-linecap="round" stroke-linejoin="miter" stroke-miterlimit="2" stroke-width="2">
+    <path d="m0-5 5 5-5 5" transform="translate(715 415)"/>
+    <path d="m0-5 5 5-5 5" transform="translate(715 435)"/>
+    <path d="m0-5 5 5-5 5" transform="translate(715 395)"/>
+   </g>
+  </g>
+  <path d="m0 0h20v68h-20z" fill="#fff" fill-rule="evenodd" stroke="none" transform="translate(695 381)"/>
+  <g fill="none">
+   <path d="m0 0h20v68h-20z" stroke="none" transform="translate(695 381)"/>
+   <g stroke="#0070c0" stroke-linecap="round" stroke-linejoin="miter" stroke-miterlimit="2" stroke-width="2">
+    <path d="m0-5 5 5-5 5" transform="translate(820 465)"/>
+    <path d="m0-5 5 5-5 5" transform="translate(820 425)"/>
+    <path d="m0-5 5 5-5 5" transform="translate(820 445)"/>
+   </g>
+  </g>
+  <path d="m0 0h25v54h-25z" fill="#fff" fill-rule="evenodd" stroke="none" transform="translate(795 418)"/>
+  <path d="m0 0h25v54h-25z" fill="none" stroke="none" transform="translate(795 418)"/>
+  <path d="m5-5-5 5 5 5" style="fill:none;stroke:#00b050;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:2;stroke-width:2" transform="matrix(-1 0 0 -1 740 435)"/>
+  <path d="m0 0h25v14h-25z" fill="#fff" fill-rule="evenodd" stroke="none" transform="translate(740 428)"/>
+  <path d="m0 0h25v14h-25z" fill="none" stroke="none" transform="translate(740 428)"/>
+  <path d="m5-5-5 5 5 5" style="fill:none;stroke:#00b050;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:2;stroke-width:2" transform="matrix(-1 0 0 -1 630 400)"/>
+  <path d="m0 0h25v14h-25z" fill="#fff" fill-rule="evenodd" stroke="none" transform="translate(630 393)"/>
+  <path d="m0 0h25v14h-25z" fill="none" stroke="none" transform="translate(630 393)"/>
+  <path d="m5-5-5 5 5 5" style="fill:none;stroke:#e60000;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:2;stroke-width:2" transform="matrix(-1 0 0 -1 745 435)"/>
+  <path d="m0 0h20v14h-20z" fill="#fff" fill-rule="evenodd" stroke="none" transform="translate(745 428)"/>
+  <path d="m0 0h20v14h-20z" fill="none" stroke="none" transform="translate(745 428)"/>
+  <path d="m5-5-5 5 5 5" style="fill:none;stroke:#e60000;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:2;stroke-width:2" transform="matrix(-1 0 0 -1 635 400)"/>
+  <path d="m0 0h20v14h-20z" fill="#fff" fill-rule="evenodd" stroke="none" transform="translate(635 393)"/>
+  <g fill="none">
+   <path d="m0 0h20v14h-20z" stroke="none" transform="translate(635 393)"/>
+   <g stroke="#000" stroke-linecap="round" stroke-linejoin="miter" stroke-miterlimit="2" stroke-width="2">
+    <path d="m0-5 5 5-5 5" transform="translate(705 415)"/>
+    <path d="m0-5 5 5-5 5" transform="translate(705 435)"/>
+    <path d="m0-5 5 5-5 5" transform="translate(705 395)"/>
+    <path d="m0-5 5 5-5 5" transform="translate(705 475)"/>
+    <path d="m5-5-5 5 5 5" transform="matrix(-1 0 0 -1 645 475)"/>
+    <path d="m5-5-5 5 5 5" transform="matrix(-1 0 0 -1 645 450)"/>
+    <path d="m0-5 5 5-5 5" transform="translate(705 455)"/>
+    <path d="m5-5-5 5 5 5" transform="matrix(-1 0 0 -1 645 425)"/>
+    <path d="m5-5-5 5 5 5" transform="matrix(-1 0 0 -1 645 400)"/>
+   </g>
+  </g>
+  <path d="m0 0h60v98h-60z" fill="#fff" fill-rule="evenodd" stroke="none" transform="translate(645 386)"/>
+  <g fill="none" stroke="#000" stroke-linejoin="miter" stroke-miterlimit="2">
+   <path d="m0 0h60v98h-60z" stroke-linecap="butt" transform="translate(645 386)"/>
+   <g stroke-linecap="round" stroke-width="2">
+    <path d="m0-5 5 5-5 5" transform="translate(810 485)"/>
+    <path d="m0-5 5 5-5 5" transform="translate(810 465)"/>
+    <path d="m0-5 5 5-5 5" transform="translate(810 445)"/>
+    <path d="m5-5-5 5 5 5" transform="matrix(-1 0 0 -1 755 495)"/>
+    <path d="m5-5-5 5 5 5" transform="matrix(-1 0 0 -1 755 435)"/>
+    <path d="m0-5 5 5-5 5" transform="translate(810 425)"/>
+    <path d="m0-5 5 5-5 5" transform="translate(810 505)"/>
+    <path d="m5-5-5 5 5 5" transform="matrix(-1 0 0 -1 755 465)"/>
+   </g>
+  </g>
+  <g transform="translate(755 418)">
+   <path d="m0 0h55v94h-55z" fill="#fff" fill-rule="evenodd" stroke="none"/>
+   <path d="m0 0h55v94h-55z" fill="none" stroke="#000" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="2"/>
+  </g>
+ </g>
+</svg>

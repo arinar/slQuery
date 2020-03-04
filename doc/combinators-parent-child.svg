@@ -1,0 +1,98 @@
+<svg height="115" preserveAspectRatio="xMinYMin meet" viewBox="337 452 319 115" width="319" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" zoomAndPan="disable">
+ <clipPath id="a">
+  <path d="m0 0h317v97h-317z"/>
+ </clipPath>
+ <clipPath id="b">
+  <path d="m-24-31h317v115h-317z"/>
+ </clipPath>
+ <clipPath id="c">
+  <path d="m-24-31h317v115h-317z"/>
+ </clipPath>
+ <clipPath id="d">
+  <path d="m-24-31h317v115h-317z"/>
+ </clipPath>
+ <clipPath id="e">
+  <path d="m-24-31h317v115h-317z"/>
+ </clipPath>
+ <clipPath id="f">
+  <path d="m-24-31h317v115h-317z"/>
+ </clipPath>
+ <clipPath id="g">
+  <path d="m-24-31h317v115h-317z"/>
+ </clipPath>
+ <clipPath id="h">
+  <path d="m-24-31h317v115h-317z"/>
+ </clipPath>
+ <clipPath id="i">
+  <path d="m-24-31h317v115h-317z"/>
+ </clipPath>
+ <clipPath id="j">
+  <path d="m-24-31h317v115h-317z"/>
+ </clipPath>
+ <clipPath id="k">
+  <path d="m-201.859-101h317v115h-317z"/>
+ </clipPath>
+ <clipPath id="l">
+  <path d="m-188.234-56h317v115h-317z"/>
+ </clipPath>
+ <g fill="none" fill-rule="evenodd" stroke="#000" stroke-linecap="square" stroke-linejoin="bevel">
+  <g stroke="none">
+   <path d="m338 453h317v113h-317z" fill="#fff" fill-rule="evenodd" pointer-events="none"/>
+   <g transform="translate(338 453)">
+    <path d="m0 .5c0-.276142.223858-.5.5-.5h316c.276 0 .5.223858.5.5v96c0 .2761-.224.5-.5.5h-316c-.276142 0-.5-.2239-.5-.5z" fill="#fff" fill-rule="evenodd"/>
+    <g clip-path="url(#a)" fill="none" stroke-opacity="0">
+     <path d="m0 0h317v97h-317z" fill-rule="evenodd"/>
+    </g>
+   </g>
+  </g>
+  <g transform="translate(362 482)">
+   <path d="m0 0h69.1562v40h-69.1562z" fill="#fff" fill-rule="evenodd" stroke="none"/>
+   <g stroke-linecap="square" stroke-linejoin="bevel">
+    <g fill="#fff">
+     <g clip-path="url(#b)" stroke="#000">
+      <text fill="#000" font-family="Courier New" font-size="16" font-weight="700" stroke="none" textLength="9.59375" x="1" y="15">'</text>
+     </g>
+     <g clip-path="url(#c)" stroke="#f00">
+      <text fill="#f00" font-family="Courier New" font-size="16" font-weight="700" stroke="none" textLength="9.59375" x="10.5938" y="15">*</text>
+     </g>
+     <g clip-path="url(#d)" stroke="#000">
+      <text fill="#000" font-family="Courier New" font-size="16" font-weight="700" stroke="none" textLength="18" x="20.1875" xml:space="preserve" y="15"> /</text>
+     </g>
+     <g clip-path="url(#e)" stroke="#0070c0">
+      <text fill="#0070c0" font-family="Courier New" font-size="16" font-weight="700" stroke="none" textLength="9.59375" x="48.9688" y="15">*</text>
+     </g>
+    </g>
+    <g style="fill:#000;font-family:Courier New;font-size:16;font-weight:700;stroke:none;clip-path:url(#f)">
+     <text textLength="9.59375" x="58.5625" y="15">'</text>
+     <text textLength="9.59375" x="1" y="34">'</text>
+    </g>
+    <g fill="#fff">
+     <g clip-path="url(#g)" stroke="#0070c0">
+      <text fill="#0070c0" font-family="Courier New" font-size="16" font-weight="700" stroke="none" textLength="9.59375" x="10.5938" y="34">*</text>
+     </g>
+     <g clip-path="url(#h)" stroke="#000">
+      <text fill="#000" font-family="Courier New" font-size="16" font-weight="700" stroke="none" textLength="18" x="20.1875" xml:space="preserve" y="34"> \</text>
+     </g>
+     <g clip-path="url(#i)" stroke="#f00">
+      <text fill="#f00" font-family="Courier New" font-size="16" font-weight="700" stroke="none" textLength="9.59375" x="48.9688" y="34">*</text>
+     </g>
+     <g clip-path="url(#j)" stroke="#000">
+      <text fill="#000" font-family="Courier New" font-size="16" font-weight="700" stroke="none" textLength="9.59375" x="58.5625" y="34">'</text>
+     </g>
+    </g>
+   </g>
+  </g>
+  <path d="m0 0h120v97h-120z" fill="#fff" fill-rule="evenodd" stroke="none" transform="translate(495 453)"/>
+  <path d="m0 0h120v97h-120z" style="fill:none;stroke:#e60000;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:2;stroke-width:2" transform="translate(495 453)"/>
+  <g clip-path="url(#k)" fill="none" stroke="#e60000" stroke-linecap="square" stroke-linejoin="bevel" transform="translate(539.859 552)">
+   <text fill="#e60000" font-family="Arial" font-size="10" font-weight="400" stroke="none" textLength="28.2812" x="1" y="10">parent</text>
+  </g>
+  <path d="m0 0h35v37h-35z" fill="#fff" fill-rule="evenodd" stroke="none" transform="translate(520 468)"/>
+  <g fill="none" stroke="#0070c0">
+   <path d="m0 0h35v37h-35z" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="2" stroke-width="2" transform="translate(520 468)"/>
+   <g clip-path="url(#l)" stroke-linecap="square" stroke-linejoin="bevel" transform="translate(526.234 507)">
+    <text fill="#0070c0" font-family="Arial" font-size="10" font-weight="400" stroke="none" textLength="20.5312" x="1" y="10">child</text>
+   </g>
+  </g>
+ </g>
+</svg>
