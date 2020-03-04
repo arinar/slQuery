@@ -915,16 +915,20 @@ assert(isempty(X));
 % reference block
 
 %% resolved link to a library block (acute)
-X = slQuery('SubSystem ´ *');
+[blk, lib] = slQuery('SubSystem ´ *')'; %#ok<RHSFN> it can do this
+assert(all(strcmp(blk.ReferenceBlock, lib.fullname)));
 
 %% all active links to a block (grave)
-X = slQuery('slQuery_testlibrary // * ` SubSystem');
+[~, lib, blk] = slQuery('(1) // * ` SubSystem', {'slQuery_testlibrary'})'; %#ok<RHSFN> it can do this
+assert(all(strcmp(blk.ReferenceBlock, lib.fullname)));
 
 %% resolved link to a library block (international)
 X = slQuery('SubSystem § *');
+assert(all(strcmp(X(1).ReferenceBlock, X(2).fullname)));
 
 %% all active links to a block (international)
-X = slQuery('slQuery_testlibrary // * @ SubSystem');
+X = slQuery('(1) // * @ SubSystem', {'slQuery_testlibrary'});
+assert(all(strcmp(X(3).ReferenceBlock, X(2).fullname)));
 
 % combinatorics
 
