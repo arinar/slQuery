@@ -801,10 +801,7 @@ classdef slQuery < double
 						end
 						
 						if isempty(gbs), continue, end
-						
-						if ~isscalar(gbs)
-							warning('ambiguous Goto blocks (%s)!', slQuery.strjoin(gbs, ', '));
-						end
+						if ~isscalar(gbs), warning('ambiguous Goto blocks (%s)!', strjoin(gbs, ', ')); end
 						
 						neps = slQuery.listfun(@(bp) slQuery.follow(bp, addr, front, virt, slic), slQuery.get_ports(gbs, 'Inport', 1));
 						if virt, neps = [neps -gbs]; end %#ok<AGROW>
@@ -864,24 +861,24 @@ classdef slQuery < double
 							
 						else % must consider signal adresses
 							% OutputSignals is a comma-separated list of period-separated signal pathnames
-							pathes = slQuery.strsplit(get_param(b, 'OutputSignals'), ',');
+							pathes = strsplit(get_param(b, 'OutputSignals'), ',');
 							if strcmp(edir, 'Inport') % some of the output signals may match the addr token and we will follow them
 								% there is an address try and find the matching set of tokens
 								neps = double.empty(1, 0);
 								for ti = numel(addr):-1:1
 									if ~ischar(addr{ti}), break, end % out of name tokens, cannot go further down
-									for spi = find(strcmp(slQuery.strjoin(addr(end:-1:ti), '.'), pathes)) % indices of ports referencing that exact signal
+									for spi = find(strcmp(strjoin(addr(end:-1:ti), '.'), pathes)) % indices of ports referencing that exact signal
 										neps = [neps slQuery.follow(slQuery.get_ports(b, 'Outport', spi), addr(1:ti-1), front, virt, slic)]; %#ok<AGROW>
 									end
 								end
 							else % ~> add corresponding name tokens to addr
-								tokens = fliplr(slQuery.strsplit(pathes{get_param(ep, 'PortNumber')}, '.'));
+								tokens = fliplr(strsplit(pathes{get_param(ep, 'PortNumber')}, '.'));
 								neps = slQuery.follow(slQuery.get_ports(b, 'Inport', 1), [addr tokens], front, virt, slic);
 							end
 						end
 						
 					case 'BusAssignment'
-						pathes = slQuery.strsplit(get_param(b, 'AssignedSignals'), ',');
+						pathes = strsplit(get_param(b, 'AssignedSignals'), ',');
 						if strcmp(edir, 'Inport') && get_param(ep, 'PortNumber') > 1 % ~> it's one of the substitution element ports
 							neps = slQuery.follow(slQuery.get_ports(b, pdir, 1), [addr pathes{get(ep, 'PortNumber') - 1}], front, virt, slic);
 						else % it's the bus port (whole bus)
@@ -985,17 +982,6 @@ classdef slQuery < double
 			end
 			
 			if isempty(ps); ps = double.empty(1, 0); end
-		end
-		
-		function C = strsplit(str, delimiter)
-			C = regexp(str, ['[' delimiter ']'], 'split');
-		end
-		
-		function str = strjoin(C, delimiter)
-			assert(iscellstr(C) && isvector(C));
-			C = reshape(C, 1, []);
-			C(2, 1:end-1) = {delimiter};
-			str = [C{:}];
 		end
 	end
 	methods(Static) % wrappers for convenience
