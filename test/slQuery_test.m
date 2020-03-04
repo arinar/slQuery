@@ -785,6 +785,56 @@ for x = slQuery('PMIOPort - LConn2: SubSystem :RConn2 - PMIOPort')
 	assert(x(1):-1j == x(2):-1j);
 end
 
+%% signal line combinators with portspec (enable port)
+for x = slQuery('Ground -> ?:*')
+	assert(x(1).LineHandles.Outport == x(2).LineHandles.Enable);
+end
+
+%% signal line combinators with portspec (enable port, reverse)
+for x = slQuery('*:! <- Ground')
+	assert(x(2).LineHandles.Outport == x(1).LineHandles.Enable);
+end
+
+%% signal line combinators with portspec (trigger port)
+for x = slQuery('Ground -> !:*')
+	assert(x(1).LineHandles.Outport == x(2).LineHandles.Trigger);
+end
+
+%% signal line combinators with portspec (trigger port, reverse)
+for x = slQuery('*:! <- Ground')
+	assert(x(2).LineHandles.Outport == x(1).LineHandles.Trigger);
+end
+
+%% signal line combinators with portspec (action port)
+for x = slQuery('Ground -> %:*')
+	assert(x(1).LineHandles.Outport == x(2).LineHandles.Ifaction);
+end
+
+%% signal line combinators with portspec (action port, reverse)
+for x = slQuery('*:% <- Ground')
+	assert(x(2).LineHandles.Outport == x(1).LineHandles.Ifaction);
+end
+
+%% signal line combinators with portspec (reset port)
+for x = slQuery('Ground -> °:*')
+	assert(x(1).LineHandles.Outport == x(2).LineHandles.Reset);
+end
+
+%% signal line combinators with portspec (reset port, reverse)
+for x = slQuery('*:° <- Ground')
+	assert(x(2).LineHandles.Outport == x(1).LineHandles.Reset);
+end
+
+%% signal line combinators with portspec (state port)
+for x = slQuery('*:^ -> Terminator')
+	assert(x(2).LineHandles.Inport == x(2).LineHandles.State);
+end
+
+%% signal line combinators with portspec (state port, reverse)
+for x = slQuery('Terminator <- ^:*')
+	assert(x(1).LineHandles.Inport == x(1).LineHandles.State);
+end
+
 %% downstream and upstream signal line combinators yield same info
 for x = slQuery('Inport -> Outport <- Inport')
 	assert(x(1) == x(3));

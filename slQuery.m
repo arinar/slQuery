@@ -334,16 +334,16 @@ classdef slQuery < double
 	end
 	methods(Access=private, Static)
 		function handles = select(query, varargin) % core "select" algorithm of slQuery
-			% split query along the combinators                                                                                                       ( outside [] )
-			[selectors, combinators] = regexp(query, '\s*( |\\\\|\\|//|/|,|@|§|´|`|(:\s*\w+\s*)?(->|-|<-|~>|~(?!=)|<~|=>|<=|>>|<>|<<)(\s*\w+\s*:)?)\s*(?![^\[]*\])', 'split', 'match');
-
+			% split query along the combinators                                                                                                                           ( outside [] )
+			[selectors, combinators] = regexp(query, '\s*( |\\\\|\\|//|/|,|@|§|´|`|(:\s*(\w+|[?!%°^])\s*)?(->|-|<-|~>|~(?!=)|<~|=>|<=|>>|<>|<<)(\s*(\w+|[?!%°^])\s*:)?)\s*(?![^\[]*\])', 'split', 'match');
+			
 			% start with the search root and combinator ',' for arbitrary position in this root
 			hot = get_param(bdroot, 'Handle'); % always search only in current model
 			handles = double.empty(0, 1);
 			for act = [',' combinators; selectors]
-				% parse the combinator:     '    (colon with portspec)...(                          combinator type (again)                           )...(portspec with colon )
-				combinator = regexp(act{1}, '^\s*(:)?(?<sp>(?(1)\w+))?\s*(?<type>( |\\\\|\\|//|/|,|@|§|´|`|->|-|<-|~>|~|<~|=>|<=|>>|<>|<<(?![^\[]*\])))\s*(?<dp>\w+)?\s*(?(4):)?\s*$', 'names');
-
+				% parse the combinator:     '    (     colon with portspec     )...(                          combinator type (again)                           )...(      portspec with colon     )
+				combinator = regexp(act{1}, '^\s*(:)?(?<sp>(?(1)(\w+|[?!%°^])))?\s*(?<type>( |\\\\|\\|//|/|,|@|§|´|`|->|-|<-|~>|~|<~|=>|<=|>>|<>|<<(?![^\[]*\])))\s*(?<dp>(\w+|[?!%°^]))?\s*(?(4):)?\s*$', 'names');
+				
 				% cast numeric port qualifiers
 				if ~isnan(str2double(combinator.sp)), combinator.sp = str2double(combinator.sp); end
 				if ~isnan(str2double(combinator.dp)), combinator.dp = str2double(combinator.dp); end
@@ -963,6 +963,10 @@ classdef slQuery < double
 					ps = ps(strcmp(slQuery.get_param(ps, 'PortType'), 'trigger'));
 				elseif isequal(index, '?') % enable
 					ps = ps(strcmp(slQuery.get_param(ps, 'PortType'), 'enable'));
+				elseif isequal(index, '%') % enable
+					ps = ps(strcmp(slQuery.get_param(ps, 'PortType'), 'ifaction'));
+				elseif isequal(index, '°') % enable
+					ps = ps(strcmp(slQuery.get_param(ps, 'PortType'), 'Reset'));
 				else % char ~> filter by port name, when the block is a subsystem
 					if strcmp(type, 'Inport') || strcmp(type, 'DstPortHandle')
 						bt = 'Inport';
