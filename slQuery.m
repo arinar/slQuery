@@ -543,10 +543,7 @@ classdef slQuery < double
 							new = intersect(new, varargin{str2double(selector.argidx)});
 						end
 						% outer join of group and new elements
-						group = [
-							group(:, repmat(1:size(group, 2), 1, size(new, 2)))
-							new(:, repmat(1:size(new, 2), size(group, 2), 1))
-							];
+						group = [repmat(group, 1, size(new, 2)); repelem(new, 1, size(group, 2))];
 					end
 					new_handles = [ new_handles, group ]; %#ok<AGROW>
 				end
