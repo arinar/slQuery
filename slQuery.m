@@ -120,10 +120,17 @@ classdef slQuery < double
 								open_system(cs);
 							
 							case 'hyperlink' % an array of links to the blocks (with their name)
-								sel = arrayfun( ...
-									@(h) sprintf('<a href="matlab: hilite_system(%.15f);">%s</a>', h, ...
-									strrep(get_param(h, 'Name'), char(10), ' ')), ...
-									double(sel), 'UniformOutput', false); %#ok<CHARTEN>
+								subs(1:find(strcmp({subs.subs}, 'hyperlink'))) = [];
+								if ~isempty(subs) && strcmp(subs(1).type, '()') && iscell(subs(1).subs) ... allow hyperlink subsref
+										&& isscalar(subs(1).subs) && (ischar(subs(1).subs{1}) || iscellstr(subs(1).subs{1})) % with one char or cellstr like a fcn-call
+									names = subs(1).subs{1};
+								else
+									names = slQuery.get_param(sel, 'Name');
+								end
+								sel = slQuery.arrayfun( ...
+									@(h, n) { sprintf('<a href="matlab: hilite_system(%.15f);">%s</a>', h, n) } ...
+									, double(sel), names);
+								return
 								
 							case 'wrap' % TODO: is this cool?
 								if ischar(sel)
