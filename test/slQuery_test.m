@@ -11,10 +11,19 @@ if ~bdIsLoaded('slQuery_testmodel')
 end
 
 % special elements
-subs22 = get_param('slQuery_testmodel/GotoTagVisibilityInside', 'Handle'); % block chosen to have 2 inports, 2 outports
+subs2i2o = get_param('slQuery_testmodel/GotoTagVisibilityInside', 'Handle'); % block chosen to have 2 inports, 2 outports
+
+linked = cellfun(@(p) get_param(p, 'Handle'), strcat('slQuery_testmodel/Sort', {'2', '4', '8'})); % blocks chosen to be library linked blocks
+children = cellfun(@(p) get_param(p, 'Handle'), strcat('slQuery_testmodel/SignalInside/', {'In', 'Out'}, '2')); % blocks chosen to have a parent block
 
 tlgain = get_param('slQuery_testmodel/Gain', 'Handle'); % block with TargetLink block mask
 tlprods = find_system(bdroot(tlgain), 'MaskType', 'TL_Product')'; % uniform set of blocks TargetLink block mask
+
+% block matrix of gcbhs (fake results)
+blk13 = repmat(gcbh, 1, 3);
+blk23 = repmat(gcbh, 2, 3);
+
+arr_param = @(arr, p) arrayfun(@(h) {get_param(h, p)}, arr);
 
 % parameter/attribute access
 
@@ -36,23 +45,23 @@ assert(x.Handle == gcbh);
 assert(isnumeric(x.Handle) && ~isa(x.Handle, 'slQuery'));
 
 %% get block handle (nonscalar selection)
-X = slQuery(gcbh * [1 1; 1 1]);
-assert(isequal(X.Handle, gcbh * [1 1; 1 1]));
+X = slQuery(blk13);
+assert(isequal(X.Handle, blk13));
 
 %% get block full name (scalar selection)
 x = slQuery.gcb;
 assert(isequal(x.fullname, gcb));
 
 %% get block full name (nonscalar selection)
-X = slQuery(gcbh * [1 1; 1 1]);
-assert(isequal(X.fullname, {gcb gcb; gcb gcb}));
+X = slQuery(blk23);
+assert(isequal(X.fullname, getfullname(blk23)));
 
 %% wrap blockref into slQuery object (scalar)
 x = slQuery.gcb;
 assert(isa(x.Parent.wrap, 'slQuery'));
 
 %% wrap blockref into slQuery object (nonscalar)
-X = slQuery(gcbh * [1 1; 1 1]);
+X = slQuery(blk23);
 assert(isa(X.Parent.wrap, 'slQuery'));
 
 %% wrap handle into slQuery object (scalar)
@@ -60,105 +69,181 @@ x = slQuery.gcb;
 assert(isa(x.Parent.Handle.wrap, 'slQuery'));
 
 %% wrap handle into slQuery object (nonscalar)
-X = slQuery(gcbh * [1 1; 1 1]);
+X = slQuery(blk23);
 assert(isa(X.Parent.Handle.wrap, 'slQuery'));
 
 %% block object parameters act as the properties
 x = slQuery.gcb;
 assert(isempty(setxor(properties(x), fieldnames(get_param(gcbh, 'ObjectParameters')))));
 
-%% get block parameter (string)
+%% get block parameter (string, scalar)
 x = slQuery.gcb;
 assert(isequal(x.BackgroundColor, get_param(gcb, 'BackgroundColor')));
 
-%% set block parameter (string)
+%% get block parameter (string, vector)
+X = slQuery(blk13);
+assert(isequal(X.BackgroundColor, repmat({get_param(gcb, 'BackgroundColor')}, 1, 3)));
+
+%% get block parameter (string, matrix)
+X = slQuery(blk23);
+assert(isequal(X.BackgroundColor, arr_param(blk23, 'BackGroundColor')));
+
+%% set block parameter (string, scalar)
 x = slQuery.gcb;
-fix = fix_param(gcb, 'BackgroundColor');
+fix = fix_param(gcb, 'BackgroundColor'); %#ok<NASGU> dtor variable
 x.BackgroundColor = 'black';
 
-%% get block parameter (scalar numeric)
+%% set block parameter (string, vector, from scalar)
+x = slQuery(blk13);
+fix = fix_param(gcb, 'BackgroundColor'); %#ok<NASGU> dtor variable
+x.BackgroundColor = 'black';
+
+%% set block parameter (string, vector, from vector)
+x = slQuery(blk13);
+fix = fix_param(gcb, 'BackgroundColor'); %#ok<NASGU> dtor variable
+x.BackgroundColor = {'red', 'yellow', 'green'};
+
+%% set block parameter (string, matrix, from scalar)
+x = slQuery(blk23);
+fix = fix_param(gcb, 'BackgroundColor'); %#ok<NASGU> dtor variable
+x.BackgroundColor = 'black';
+
+%% set block parameter (string, matrix, from vector)
+x = slQuery(blk23);
+fix = fix_param(gcb, 'BackgroundColor'); %#ok<NASGU> dtor variable
+x.BackgroundColor = {'red', 'yellow', 'green'};
+x.BackgroundColor = {'red'; 'green'};
+
+%% set block parameter (string, matrix, from matrix)
+x = slQuery(blk23);
+fix = fix_param(gcb, 'BackgroundColor'); %#ok<NASGU> dtor variable
+x.BackgroundColor = {'red', 'yellow', 'green'; 'magenta', 'orange', 'cyan'};
+
+%% get block parameter (scalar numeric, scalar)
 x = slQuery.gcb;
 assert(isequal(x.FontSize, get_param(gcb, 'FontSize')));
 
-%% set block parameter (scalar numeric)
+%% set block parameter (scalar numeric, scalar)
 x = slQuery.gcb;
-fix = fix_param(gcb, 'FontSize');
+fix = fix_param(gcb, 'FontSize'); %#ok<NASGU> dtor variable
 x.FontSize = 23;
 
-%% get block parameter (rectangle)
+%% get block parameter (rectangle, scalar)
 x = slQuery.gcb;
 assert(isequal(x.Position, get_param(gcb, 'Position')));
 
-%% set block parameter (rectangle)
+%% set block parameter (rectangle, scalar)
 x = slQuery.gcb;
-fix = fix_param(gcb, 'Position');
+fix = fix_param(gcb, 'Position'); %#ok<NASGU> dtor variable
 x.Position = [100, 200, 300, 400];
 
-%% get block parameter (structure)
-x = slQuery(subs22);
-assert(isequal(x.LineHandles, get_param(subs22, 'LineHandles')));
+%% get block parameter (structure, scalar)
+x = slQuery(subs2i2o);
+assert(isequal(x.LineHandles, get_param(subs2i2o, 'LineHandles')));
+
+% %% set block parameter (structure, scalar)
+% TODO: which struct to use?
+%x = slQuery(subs2i2o);
+%fix = fix_param(subs2i2o, ''); %#ok<NASGU> dtor variable
+%assert(false);
 
 %% get block parameter (field of a structure)
-x = slQuery(subs22);
-assert(isequal(x.LineHandles.Inport, getfield(get_param(subs22, 'LineHandles'), 'Inport')));
+x = slQuery(subs2i2o);
+assert(isequal(x.LineHandles.Inport, getfield(get_param(subs2i2o, 'LineHandles'), 'Inport')));
 
-%% get block parameter (element of an array-field of a structure)
-x = slQuery(subs22);
-assert(isequal(x.LineHandles.Inport(2), getfield(get_param(subs22, 'LineHandles'), 'Inport', {2})));
+% %% set block parameter (field of a structure)
+%TODO: which struct to use?
+%x = slQuery(subs2i2o);
+%fix = fix_param(subs2i2o, ''); %#ok<NASGU> dtor variable
+%assert(false);
 
-%% get property (tlprop, cgdata struct)
+%% get block parameter (structure-arrayfield-element, scalar)
+x = slQuery(subs2i2o);
+assert(isequal(x.LineHandles.Inport(2), getfield(get_param(subs2i2o, 'LineHandles'), 'Inport', {2})));
+
+% %% set block parameter (structure-arrayfield-element, scalar)
+% TODO: which struct to use?
+%x = slQuery(subs2i2o);
+%fix = fix_param(subs2i2o, ''); %#ok<NASGU> dtor variable
+%assert(false);
+
+%% get block parameter (tlprop, cgdata struct)
 x = slQuery(tlgain);
 assert(isequaln(x.tl, tl_get(tlgain, 'blockdatastruct')));
 
-%% get property (tlprop, cgdata substruct)
+%% get block parameter (tlprop, cgdata substruct)
 x = slQuery(tlgain);
 assert(isequaln(x.tl.output, getfield(tl_get(tlgain, 'blockdatastruct'), 'output')));
 
-%% get property (tlprop, cgdata leaf property)
+%% get block parameter (tlprop, cgdata leaf property)
 x = slQuery(tlgain);
 assert(isequal(x.tl.output.variable, tl_get(tlgain, 'output.variable')));
 
-%% set property (tlprop, cgdata struct)
-fix_param(tlgain, 'data');
+%% set block parameter (tlprop, cgdata struct)
+fix = fix_param(tlgain, 'data'); %#ok<NASGU> dtor variable
 x = slQuery(tlgain);
 s = tl_get(tlgain, 'blockdatastruct'); s.output.type = 'Int32';
 x.tl = s;
 assert(isequal(tl_get(tlgain, 'output.type'), 'Int32'));
 
-%% set property (tlprop, cgdata substruct)
-fix_param(tlgain, 'data');
+%% set block parameter (tlprop, cgdata substruct)
+fix = fix_param(tlgain, 'data'); %#ok<NASGU> dtor variable
 x = slQuery(tlgain);
 s = tl_get(tlgain, 'blockdatastruct'); s.output.type = 'Int32';
 x.tl.output = s.output;
 assert(isequal(tl_get(tlgain, 'output.type'), 'Int32'));
 
-%% set property (tlprop, cgdata leaf property)
-fix_param(tlgain, 'data');
+%% set block parameter (tlprop, cgdata leaf property)
+fix = fix_param(tlgain, 'data'); %#ok<NASGU> dtor variable
 x = slQuery(tlgain);
 x.tl.output.type = 'Int32';
 assert(isequal(tl_get(tlgain, 'output.type'), 'Int32'));
 
-%% get property (tlprop, cgdata struct, nonscalar selection)
+%% get block parameter (tlprop, cgdata struct, nonscalar selection)
 x = slQuery(tlprods);
 assert(isequaln(x.tl, tl_get(tlprods, 'blockdatastruct')));
 
-%% get property (tlprop, cgdata leaf property, nonscalar selection)
+%% get block parameter (tlprop, cgdata leaf property, nonscalar selection)
 x = slQuery(tlprods);
 assert(isequal(x.tl.output.variable, tl_get(tlprods, 'output.variable')));
 
-%% set property (tlprop, cgdata struct, nonscalar selection)
-fix_param(tlprods, 'data');
+%% set block parameter (tlprop, cgdata struct, nonscalar selection)
+fix = fix_param(tlprods, 'data'); %#ok<NASGU> dtor variable
 x = slQuery(tlprods);
 s = tl_get(tlprods, 'blockdatastruct');
 for i = 1:numel(s), s{i}.output.type = 'Int32'; end
 x.tl = s;
 assert(isequal(tl_get(tlprods, 'output.type'), repmat({'Int32'}, size(tlprods))));
 
-%% set property (tlprop, cgdata leaf property, nonscalar selection)
-fix_param(tlprods, 'data');
+%% set block parameter (tlprop, cgdata leaf property, nonscalar selection)
+fix = fix_param(tlprods, 'data'); %#ok<NASGU> dtor variable
 x = slQuery(tlprods);
 x.tl.output.type = 'Int32';
 assert(isequal(tl_get(tlprods, 'output.type'), repmat({'Int32'}, size(tlprods))));
+
+%% get block parameter (indirect, scalar)
+x = slQuery(children(1));
+assert(isequal(x.Parent.Position ...
+	, get_param(get_param(children(1), 'Parent'), 'Position')));
+
+%% get block parameter (indirect, nonscalar)
+X = slQuery(children);
+assert(isequal(X.Parent.Position ...
+	, get_param(get_param(children, 'Parent'), 'Position')'))
+
+%% set block parameter (indirect, scalar)
+x = slQuery(children(1));
+fix = fix_param(get_param(children(1), 'Parent'), 'Position'); %#ok<NASGU> dtor variable
+x.ReferenceBlock.Position = [100, 200, 300, 400];
+assert(isequal(get_param(get_param(children(1), 'Parent'), 'Position') ...
+	, [100, 200, 300, 400]));
+
+%% set block parameter (indirect, vector, from scalar)
+X = slQuery(children);
+fix = fix_param(get_param(children, 'Parent'), 'Position'); %#ok<NASGU> dtor variable
+X.ReferenceBlock.Position = [100, 200, 300, 400];
+assert(isequal(get_param(get_param(children, 'Parent'), 'Position') ...
+	, repmat({[100, 200, 300, 400]}, numel(children)) ));
 
 % selectors
 
@@ -515,7 +600,7 @@ for x = slQuery('Goto, From')
 end
 
 %% assign query to separate variables (')
-[G,F] = slQuery('Goto, From')';
+[G,F] = slQuery('Goto, From')'; %#ok<RHSFN> it can do this
 assert(size(G, 1) == 1);
 assert(size(F, 1) == 1);
 
@@ -543,12 +628,12 @@ X([2 1]).BackgroundColor = {'white'; 'white'};
 
 %% numeric indexing for columns (set parameter, distribute row as column)
 X = slQuery('Goto, From');
-fix = fix_param(double(X), 'BackgroundColor');
+fix = fix_param(double(X), 'BackgroundColor'); %#ok<NASGU> dtor variable
 X([1 2]).BackgroundColor = {'green'; 'red'};
 
 %% numeric indexing for columns (set parameter, distribute row)
 X = slQuery('Goto, From');
-fix = fix_param(double(X), 'BackgroundColor');
+fix = fix_param(double(X), 'BackgroundColor'); %#ok<NASGU> dtor variable
 X([1 2]).BackgroundColor = repmat({'green'}, [1, size(X, 2)]);
 
 %% logical indexing for rows
@@ -571,7 +656,7 @@ assert(isequal(X(2,3).BlockType, 'From'));
 X = slQuery('SubSystem / Goto');
 assert(~isempty(X));
 for x = X
-	assert(x(1).Handle == x(2).Parent.Handle)
+	assert(x(1).Handle == x(2).Parent.Handle);
 end
 
 %% descendents combinator
@@ -593,12 +678,13 @@ X = slQuery('SubSystem / Goto \ SubSystem');
 assert(isequal(X(1), X(3)));
 
 %% ascendants combinator
-[B, S] = slQuery('Goto \\ SubSystem')';
+[B, S] = slQuery('Goto \\ SubSystem')'; %#ok<RHSFN> it can do this
 assert(~isempty(B));
 while any(S) % iteratively set Bs to their parents drop them when they match S
 	B = B.Parent.Handle.wrap;
 	i = B == S; % drop all blocks that match up
-	B = B(~i); S = S(~i);
+	B = B(~i);
+	S = S(~i);
 end
 assert(isempty(B) && isempty(S));
 
@@ -625,7 +711,7 @@ end
 %% physical line combinator (indirectional)
 for x = slQuery('PMIOPort[Side=Left] - PMIOPort[Side=Right]')
 	% naive: there are no splits - same line
-	if x(1):-1j == x(2):-1j, continue, end
+	if x(1):-1j == x(2):-1j, continue, end %#ok<*BDSCA> it can do this
 	
 	% slightly less naive: at least one line is in the others LineChildren
 	if any(x(1):-1j == getfield(x(2):-1j, 'LineChildren')), continue, end %#ok<GFLD> i want `(x(2):-1j).LineChildren` syntax
@@ -689,15 +775,15 @@ end
 % numbers and the numbers in their block names match the data flow correspondence
 
 %% wiring combinator (downstream)
-[i, o] = slQuery('Inport[BackgroundColor=orange] => Outport[BackgroundColor=lightBlue]')';
+[i, o] = slQuery('Inport[BackgroundColor=orange] => Outport[BackgroundColor=lightBlue]')'; %#ok<RHSFN> it can do this
 assert(~isempty(i));
-assert(all(strcmp(regexp(i.Name, '\d+', 'match', 'once'), regexp(o.Name, '\d+', 'match', 'once'))));
+assert(all(strcmp(regexp(i.Name, '\d+', 'match', 'once'), regexp(i.Name, '\d+', 'match', 'once'))));
 assert(all(strcmp(i.Port, o.Port)));
 
 %% wiring combinator (upstream)
-[o, i] = slQuery('Outport[BackgroundColor=lightBlue] <= Inport[BackgroundColor=orange]')';
+[o, i] = slQuery('Outport[BackgroundColor=lightBlue] <= Inport[BackgroundColor=orange]')'; %#ok<RHSFN> it can do this
 assert(~isempty(o));
-assert(all(strcmp(regexp(i.Name, '\d+', 'match', 'once'), regexp(o.Name, '\d+', 'match', 'once'))));
+assert(all(strcmp(regexp(i.Name, '\d+', 'match', 'once'), regexp(i.Name, '\d+', 'match', 'once'))));
 assert(all(strcmp(i.Port, o.Port)));
 
 % TODO: wiring combinator (indirectional)
@@ -707,13 +793,13 @@ assert(all(strcmp(i.Port, o.Port)));
 % a few extra ports along the wires are places in subsystems, they are also named correctly
 
 %% wiring combinator (downstream, including virtual blocks)
-[i, o] = slQuery('Inport[BackgroundColor=orange] ~> Outport')';
+[i, o] = slQuery('Inport[BackgroundColor=orange] ~> Outport')'; %#ok<RHSFN> it can do this
 assert(~isempty(i));
 assert(any(strcmp(o.BackgroundColor, 'white')));
 assert(all(strcmp(regexp(i.Name, '\d+', 'match', 'once'), regexp(o.Name, '\d+', 'match', 'once'))));
 
 %% wiring combinator (downstream, including virtual blocks)
-[o, i] = slQuery('Outport[BackgroundColor=lightBlue] <~ Inport')';
+[o, i] = slQuery('Outport[BackgroundColor=lightBlue] <~ Inport')'; %#ok<RHSFN> it can do this
 assert(~isempty(o));
 assert(any(strcmp(i.BackgroundColor, 'white')));
 assert(all(strcmp(regexp(i.Name, '\d+', 'match', 'once'), regexp(o.Name, '\d+', 'match', 'once'))));
@@ -728,11 +814,11 @@ assert(all(strcmp(regexp(i.Name, '\d+', 'match', 'once'), regexp(o.Name, '\d+', 
 % match
 
 %% signal slicing combinator (downstream)
-[si, ~, ~, so] = slQuery('SubSystem[BackgroundColor=red] / Inport >> Outport \ SubSystem[BackgroundColor=green]')';
+[si, ~, ~, so] = slQuery('SubSystem[BackgroundColor=red] / Inport >> Outport \ SubSystem[BackgroundColor=green]')'; %#ok<RHSFN> it can do this
 assert(all(strcmp(regexp(si.Name, '\d+', 'match', 'once'), regexp(so.Name, '\d+', 'match', 'once'))));
 
 %% signal slicing combinator (upstream)
-[so, ~, ~, si] = slQuery('SubSystem[BackgroundColor=green] / Outport << Inport \ SubSystem[BackgroundColor=red]')';
+[so, ~, ~, si] = slQuery('SubSystem[BackgroundColor=green] / Outport << Inport \ SubSystem[BackgroundColor=red]')'; %#ok<RHSFN> it can do this
 assert(all(strcmp(regexp(si.Name, '\d+', 'match', 'once'), regexp(so.Name, '\d+', 'match', 'once'))));
 
 % TODO: signal slicing combinator (indirectional)
@@ -775,7 +861,7 @@ X = slQuery('slQuery_testlibrary // * @ SubSystem');
 
 %% combine results (common info)
 % $2 is handled in groups, because it repeats
-X = slQuery('Inport \ #Subsystem / Outport');
+X = slQuery('Inport \ #GotoTagVisibilityInside / Outport');
 assert(isequal(size(X), size(unique(X.handle', 'rows')')));
 
 % model manipulation
@@ -820,7 +906,7 @@ assert(all(strcmp(X.BlockType, 'Gain')));
 assert(all(X.Parent.wrap == S));
 
 %% add block to system (vector, matching block template vector)
-[S, T] = slQuery('SubSystem / Terminator')';
+[S, T] = slQuery('SubSystem / Terminator')'; %#ok<RHSFN> it can do this
 X = S ./ T;
 fix = onCleanup(@() delete_block(double(X)));
 assert(numel(X) == numel(S));
