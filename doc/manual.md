@@ -15,6 +15,13 @@ use it.
 
 Or stay on this page and look at some examples – in order of increasing fun!
 
+
+
+#### a note about vector graphics (svg) here on github
+
+The sometimes weird spacing of text in the illustrations is a result of on-the-fly svg 
+compression done by github. You can click any of the illustrations to get a better rendering.
+
 The Basic Idea
 --------------
 

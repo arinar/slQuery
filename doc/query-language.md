@@ -65,7 +65,7 @@ The following sections give an overview of all [selectors](#simple-selectors) an
 Basic Selectors
 ---------------
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Selector&nbsp;&amp;&nbsp;Syntax&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Example&nbsp;&amp;&nbsp;Illustration&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Notes
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Selector&nbsp;&amp;&nbsp;Syntax&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Example&nbsp;&amp;&nbsp;Illustration&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Notes
 :-:|:-:|-
 **any block** <br/> `slQuery('*')` | ![anyblock](selectors-anyblock.svg) | match any block, subsystem or model root
 **block type** <br/> `slQuery('〈block-type〉')` | ![blocktype](selectors-blocktype.svg) | Plainly stating a BlockType selects all blocks of that type. The block type selector is the simplest nontrivial selector
@@ -89,7 +89,7 @@ Basic Combinators
 
 These combinators impose contraints on the hierarchical relationship between two blocks.
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Combinator&nbsp;&amp;&nbsp;Syntax&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Example&nbsp;&amp;&nbsp;Illustration&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Notes
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Combinator&nbsp;&amp;&nbsp;Syntax&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Example&nbsp;&amp;&nbsp;Illustration&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Notes
 :-:|:-:|-
 **parent** <br/> `slQuery('* / *')` <br/> or **child** <br/> `slQuery('* \ *')` | ![parent-child](combinators-parent-child.svg) | The child block is directly inside a parent subsystem.
 **descendant** <br/> `slQuery('* // *')` <br/> or **ancestor** <br/> `slQuery('* \\ *')` | ![descendant-ancestor](combinators-descendant-ancestor.svg) | There are weaker forms for arbitrary descendant and arbitrary ancestor. The descendant block is somewhere below the ancestor subsystem.
@@ -99,12 +99,12 @@ These combinators impose contraints on the hierarchical relationship between two
 
 These combinators are all about the signal connections between two blocks.
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Combinator&nbsp;&amp;&nbsp;Syntax&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Example&nbsp;&amp;&nbsp;Illustration&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Notes
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Combinator&nbsp;&amp;&nbsp;Syntax&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Example&nbsp;&amp;&nbsp;Illustration&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Notes
 :-:|:-:|-
 **signal line** <br/> `slQuery('* -> *')` <br/> `slQuery('* <- *')` | ![signal-line](combinators-signal-line.svg) | The signal line combinators describe dataflow-dependency of the elements. The blocks must be directly connected with a signal flow line in the indicated direction: `->` is "feeding", `<-` is "fed by"
 **signal flow** <br/> `slQuery('* ~> *')` <br/> `slQuery('* <~ *')` | ![signal-flow](combinators-signal-flow.svg) | This pair of combinators selects on logical data dependency rather than just explicit one-hop wiring in the model. It includes dependency across routing elements like Goto/From pairs, subsystem ports, Mux/Demux pairs, busses as well as some virtual blocks that don't change the value of a signal.
-**downstream signal slice** <br/> `slQuery('* >> *')` | ![signal-slice-downstream](combinators-signal-slice-downstream.svg)(*) | Data flow slicing can be used to restrict the search to the set of blocks that are dependent on an output signal of a "cause"-block.
-**upstream signal slice** <br/> `slQuery('* << *')` | ![signal-slice-upstream](combinators-signal-slice-upstream.svg)(*)| To search for blocks, on which an input signal of an "effect" block depends, the reverse slicing combinator is the right choice.
+**downstream signal slice** <br/> `slQuery('* >> *')` | ![signal-slice-downstream](combinators-signal-slice-downstream.svg)<br/>(*) | Data flow slicing can be used to restrict the search to the set of blocks that are dependent on an output signal of a "cause"-block.
+**upstream signal slice** <br/> `slQuery('* << *')` | ![signal-slice-upstream](combinators-signal-slice-upstream.svg)<br/>(*)| To search for blocks, on which an input signal of an "effect" block depends, the reverse slicing combinator is the right choice.
 
 (*) Despite the separate illustrations, the downstream and upstream slicing combinators are 
 exact opposites just like the previous line and flow pairs.
@@ -113,7 +113,7 @@ exact opposites just like the previous line and flow pairs.
 
 A separate set of combinators is used for physical connection networks (Simscape).
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Combinator&nbsp;&amp;&nbsp;Syntax&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Example&nbsp;&amp;&nbsp;Illustration&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Notes
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Combinator&nbsp;&amp;&nbsp;Syntax&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Example&nbsp;&amp;&nbsp;Illustration&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Notes
 :-:|:-:|-
 **connection line** <br/> `slQuery('* - *')` | ![connection-line](combinators-connection-line.svg) | Two blocks are directly connected with a physical connection line
 **connection flow** <br/> `slQuery('* ~ *')` | ![connection-flow](combinators-connection-flow.svg) | Two blocks are connected logically including through virtual connection routing blocks
@@ -121,7 +121,7 @@ A separate set of combinators is used for physical connection networks (Simscape
 
 ### Miscellaneous
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Combinator&nbsp;&amp;&nbsp;Syntax&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Example&nbsp;&amp;&nbsp;Illustration&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Notes
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Combinator&nbsp;&amp;&nbsp;Syntax&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Example&nbsp;&amp;&nbsp;Illustration&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Notes
 :-:|:-:|-
 library **linked blocks** <br/> `slQuery('* § *')` <br/> or **linking blocks** <br/> `slQuery('* @ *')` | ![library-links](combinators-library-links.svg) | the model block is linked to a block in a block library
 **join** <br/> `slQuery('*, *')` | ![join](combinators-join.svg) | Any two blocks satisfy this combinator. Used on its own, it essentially yields the cartesian product of the subqueries on the left and on the right.<br />It's useful in combination with [back-references](#back-references)
@@ -164,7 +164,7 @@ the one on the "pointing-from"-end is the _source port_ specification.
 '*:〈dstport-spec〉 <- 〈srcport-spec〉:*'
 ```
 
-&nbsp;&nbsp;&nbsp;&nbsp;Port&nbsp;Specification&nbsp;&amp;&nbsp;Syntax&nbsp;&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Example&nbsp;&amp;&nbsp;Illustration&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Notes
+&nbsp;&nbsp;&nbsp;Port&nbsp;Specification&nbsp;&amp;&nbsp;Syntax&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Example&nbsp;&amp;&nbsp;Illustration&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Notes
 :-:|:-:|-
 **source port number** <br/> `slQuery('*:〈onum〉 -> *')` <br/> `slQuery('* <- 〈onum〉:*')` | ![signal-portspec-srcnum](combinators-signal-portspec-srcnum.svg) | Integers appearing as the source port spec of the combinator, specify the output port number of the adjacent source block.
 **destination port number** <br/> `slQuery('* -> 〈inum〉:*')` <br/> `slQuery('*:〈inum〉 <- *')` | ![signal-portspec-dstnum](combinators-signal-portspec-dstnum.svg) | Integers at the destination side, specify the input port number of the adjacent destination block.
@@ -188,7 +188,7 @@ _connection port_ specification.
 'Block:〈connport-spec〉  - 〈connport-spec〉:Block'
 ```
 
-&nbsp;Port&nbsp;Specification&nbsp;&amp;&nbsp;Syntax&nbsp; | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Example&nbsp;&amp;&nbsp;Illustration&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Notes
+&nbsp;&nbsp;&nbsp;Port&nbsp;Specification&nbsp;&amp;&nbsp;Syntax&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Example&nbsp;&amp;&nbsp;Illustration&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Notes
 :-:|:-:|-
 **RConn port** <br/> (natural/explicit) <br/> `slQuery('*:〈rcnum〉 - *')` <br/> `slQuery('* - 〈rcnum〉:r:*')` | ![connection-portspec-rcnum](combinators-connection-portspec-rcnum.svg) | Integers appearing as the right hand side connection port specifier or with an additional qualifier `:r:`, fix the outer RConn number of that line.
 **LConn port** <br/> (natural/explicit) <br/> `slQuery('* - 〈lcnum〉:*')` <br/> `slQuery('*:l:〈lcnum〉 - *')` | ![connection-portspec-lcnum](combinators-connection-portspec-lcnum.svg) | LConn connections are done analogously: either at the left hand side or with the qualifier `:l:`.
