@@ -6,7 +6,7 @@
                           |___/_|\___\_\\__,_|\___|_|   \__, |
                             easy-as-pie API to Simulink |___/
 
-v1.7, 2020 robert@raschhour.com
+v1.8, 2020 robert@raschhour.com
 
 slQuery is free software: you can redistribute it and/or modify it under the terms of the GNU
 General Public License as published by the Free Software Foundation, either version 3 of the
