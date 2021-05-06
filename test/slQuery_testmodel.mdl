@@ -3,7 +3,7 @@ Model {
   Version		  10.0
   SavedCharacterEncoding  "windows-1252"
   GraphicalInterface {
-    NumRootInports	    52
+    NumRootInports	    56
     Inport {
       Name		      "In1"
       BusObject		      ""
@@ -351,7 +351,6 @@ Model {
     Inport {
       Name		      "In50"
       BusObject		      ""
-      DisplayName	      ""
       OutputFunctionCall      "off"
       SampleTime	      "-1"
       UnitExpr		      "inherit"
@@ -370,7 +369,36 @@ Model {
       SampleTime	      "-1"
       UnitExpr		      "inherit"
     }
-    NumRootOutports	    52
+    Inport {
+      Name		      "In53"
+      BusObject		      ""
+      OutputFunctionCall      "off"
+      SampleTime	      "-1"
+      UnitExpr		      "inherit"
+    }
+    Inport {
+      Name		      "In54"
+      BusObject		      ""
+      DisplayName	      ""
+      OutputFunctionCall      "off"
+      SampleTime	      "-1"
+      UnitExpr		      "inherit"
+    }
+    Inport {
+      Name		      "In55"
+      BusObject		      ""
+      OutputFunctionCall      "off"
+      SampleTime	      "-1"
+      UnitExpr		      "inherit"
+    }
+    Inport {
+      Name		      "In56"
+      BusObject		      ""
+      OutputFunctionCall      "off"
+      SampleTime	      "-1"
+      UnitExpr		      "inherit"
+    }
+    NumRootOutports	    56
     Outport {
       Name		      "Out1"
       BusObject		      ""
@@ -563,21 +591,18 @@ Model {
       Name		      "Out31"
       BusObject		      ""
       BusOutputAsStruct	      "off"
-      SignalName	      "signal1"
       UnitExpr		      "inherit"
     }
     Outport {
       Name		      "Out32"
       BusObject		      ""
       BusOutputAsStruct	      "off"
-      SignalName	      "signal2"
       UnitExpr		      "inherit"
     }
     Outport {
       Name		      "Out33"
       BusObject		      ""
       BusOutputAsStruct	      "off"
-      SignalName	      "signal3"
       UnitExpr		      "inherit"
     }
     Outport {
@@ -590,18 +615,21 @@ Model {
       Name		      "Out35"
       BusObject		      ""
       BusOutputAsStruct	      "off"
+      SignalName	      "signal1"
       UnitExpr		      "inherit"
     }
     Outport {
       Name		      "Out36"
       BusObject		      ""
       BusOutputAsStruct	      "off"
+      SignalName	      "signal2"
       UnitExpr		      "inherit"
     }
     Outport {
       Name		      "Out37"
       BusObject		      ""
       BusOutputAsStruct	      "off"
+      SignalName	      "signal3"
       UnitExpr		      "inherit"
     }
     Outport {
@@ -680,7 +708,12 @@ Model {
       Name		      "Out50"
       BusObject		      ""
       BusOutputAsStruct	      "off"
-      DisplayName	      ""
+      UnitExpr		      "inherit"
+    }
+    Outport {
+      Name		      "Out51"
+      BusObject		      ""
+      BusOutputAsStruct	      "off"
       UnitExpr		      "inherit"
     }
     Outport {
@@ -690,20 +723,43 @@ Model {
       UnitExpr		      "inherit"
     }
     Outport {
-      Name		      "Out51"
+      Name		      "Out53"
+      BusObject		      ""
+      BusOutputAsStruct	      "off"
+      UnitExpr		      "inherit"
+    }
+    Outport {
+      Name		      "Out54"
+      BusObject		      ""
+      BusOutputAsStruct	      "off"
+      DisplayName	      ""
+      UnitExpr		      "inherit"
+    }
+    Outport {
+      Name		      "Out55"
+      BusObject		      ""
+      BusOutputAsStruct	      "off"
+      UnitExpr		      "inherit"
+    }
+    Outport {
+      Name		      "Out56"
       BusObject		      ""
       BusOutputAsStruct	      "off"
       UnitExpr		      "inherit"
     }
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.124"
+    ComputedModelVersion    "1.165"
     NumModelReferences	    0
     NumTestPointedSignals   0
     NumProvidedFunctions    0
     NumRequiredFunctions    0
-    NumResetEvents	    0
-    HasInitializeEvent	    0
-    HasTerminateEvent	    0
+    NumResetEvents	    1
+    ResetEvent {
+      EventName		      "reset"
+      IncludeImplicitInitialize	"off"
+    }
+    HasInitializeEvent	    1
+    HasTerminateEvent	    1
     PreCompExecutionDomainType "Unset"
     IsExportFunctionModel   0
     IsArchitectureModel	    0
@@ -758,7 +814,7 @@ Model {
       $ObjectID		      2
       $ClassName	      "Simulink.WindowInfo"
       IsActive		      [1]
-      Location		      [133.0, 108.0, 1936.0, 1216.0]
+      Location		      [1912.0, -16.0, 1936.0, 1216.0]
       Object {
 	$PropName		"ModelBrowserInfo"
 	$ObjectID		3
@@ -778,28 +834,28 @@ Model {
       }
       Array {
 	Type			"Simulink.EditorInfo"
-	Dimension		29
+	Dimension		36
 	Object {
 	  $ObjectID		  5
-	  IsActive		  [0]
-	  IsTabbed		  [1]
-	  ViewObjType		  "SimulinkSubsys"
-	  LoadSaveID		  "1272"
-	  Extents		  [1882.0, 974.0]
-	  ZoomFactor		  [2.3053254437869821]
-	  Offset		  [46.592503249478, -159.49014722536819]
-	  SceneRectInView	  [46.592503249478, -159.49014722536819, 816.37063655030806, 422.5]
-	}
-	Object {
-	  $ObjectID		  6
 	  IsActive		  [1]
 	  IsTabbed		  [1]
 	  ViewObjType		  "SimulinkTopLevel"
 	  LoadSaveID		  "0"
-	  Extents		  [1882.0, 1044.0]
-	  ZoomFactor		  [1.5]
-	  Offset		  [2827.1760879270855, -300.51409621456577]
-	  SceneRectInView	  [2827.1760879270855, -300.51409621456577, 1254.6666666666667, 696.0]
+	  Extents		  [1882.0, 951.0]
+	  ZoomFactor		  [1.25]
+	  Offset		  [2156.9238124052617, 126.44550056705179]
+	  SceneRectInView	  [2156.9238124052617, 126.44550056705179, 1505.6, 760.8]
+	}
+	Object {
+	  $ObjectID		  6
+	  IsActive		  [0]
+	  IsTabbed		  [1]
+	  ViewObjType		  "SimulinkSubsys"
+	  LoadSaveID		  "978"
+	  Extents		  [1882.0, 951.0]
+	  ZoomFactor		  [1.75]
+	  Offset		  [-62.362983630952385, -179.5666666666668]
+	  SceneRectInView	  [-62.362983630952385, -179.5666666666668, 1075.4285714285713, 543.42857142857144]
 	}
 	Object {
 	  $ObjectID		  7
@@ -808,45 +864,199 @@ Model {
 	  ViewObjType		  "SimulinkSubsys"
 	  LoadSaveID		  "981"
 	  Extents		  [1882.0, 951.0]
-	  ZoomFactor		  [1.0968776940828147]
-	  Offset		  [-561.96030538836635, -335.39654016219919]
-	  SceneRectInView	  [-561.96030538836635, -335.39654016219919, 1715.7792615827489, 867.0064175160436]
+	  ZoomFactor		  [4.0]
+	  Offset		  [38.985471897531625, -30.03578938387642]
+	  SceneRectInView	  [38.985471897531625, -30.03578938387642, 470.5, 237.75]
 	}
 	Object {
 	  $ObjectID		  8
 	  IsActive		  [0]
-	  IsTabbed		  [0]
+	  IsTabbed		  [1]
 	  ViewObjType		  "SimulinkSubsys"
-	  LoadSaveID		  "1277"
-	  Extents		  [1882.0, 1044.0]
-	  ZoomFactor		  [2.162130177514793]
-	  Offset		  [15.639501397633069, -206.07473709755729]
-	  SceneRectInView	  [15.639501397633069, -206.07473709755729, 870.43787629994529, 482.85714285714283]
+	  LoadSaveID		  "1991"
+	  Extents		  [1882.0, 951.0]
+	  ZoomFactor		  [6.0]
+	  Offset		  [170.11458333333329, 65.641160906122963]
+	  SceneRectInView	  [170.11458333333329, 65.641160906122963, 313.66666666666669, 158.5]
 	}
 	Object {
 	  $ObjectID		  9
 	  IsActive		  [0]
-	  IsTabbed		  [0]
+	  IsTabbed		  [1]
 	  ViewObjType		  "SimulinkSubsys"
 	  LoadSaveID		  "1282"
-	  Extents		  [1882.0, 1044.0]
-	  ZoomFactor		  [2.162130177514793]
-	  Offset		  [57.800535210931741, -201.53192040122985]
-	  SceneRectInView	  [57.800535210931741, -201.53192040122985, 870.43787629994529, 482.85714285714283]
+	  Extents		  [1882.0, 951.0]
+	  ZoomFactor		  [1.9695266272189349]
+	  Offset		  [15.239692678915503, -201.53192040122985]
+	  SceneRectInView	  [15.239692678915503, -201.53192040122985, 955.55956136397776, 482.85714285714283]
 	}
 	Object {
 	  $ObjectID		  10
 	  IsActive		  [0]
-	  IsTabbed		  [0]
+	  IsTabbed		  [1]
 	  ViewObjType		  "SimulinkSubsys"
-	  LoadSaveID		  "1143"
-	  Extents		  [1882.0, 1044.0]
-	  ZoomFactor		  [1.0560753070194746]
-	  Offset		  [-616.03494205896379, -404.53102590939613]
-	  SceneRectInView	  [-616.03494205896379, -404.53102590939613, 1782.0698841179276, 988.56586557870162]
+	  LoadSaveID		  "1265"
+	  Extents		  [1882.0, 951.0]
+	  ZoomFactor		  [2.2508875739644969]
+	  Offset		  [114.88521738457342, -188.41245753114407]
+	  SceneRectInView	  [114.88521738457342, -188.41245753114407, 836.11461619348063, 422.5]
 	}
 	Object {
 	  $ObjectID		  11
+	  IsActive		  [0]
+	  IsTabbed		  [1]
+	  ViewObjType		  "SimulinkSubsys"
+	  LoadSaveID		  "2361"
+	  Extents		  [1882.0, 951.0]
+	  ZoomFactor		  [2.0]
+	  Offset		  [312.21875, 105.25]
+	  SceneRectInView	  [312.21875, 105.25, 941.0, 475.5]
+	}
+	Object {
+	  $ObjectID		  12
+	  IsActive		  [0]
+	  IsTabbed		  [0]
+	  ViewObjType		  "SimulinkSubsys"
+	  LoadSaveID		  "2353"
+	  Extents		  [1882.0, 951.0]
+	  ZoomFactor		  [2.0]
+	  Offset		  [427.87142857142862, 197.87619047619046]
+	  SceneRectInView	  [427.87142857142862, 197.87619047619046, 941.0, 475.5]
+	}
+	Object {
+	  $ObjectID		  13
+	  IsActive		  [0]
+	  IsTabbed		  [0]
+	  ViewObjType		  "SimulinkSubsys"
+	  LoadSaveID		  "2365"
+	  Extents		  [1882.0, 951.0]
+	  ZoomFactor		  [2.0]
+	  Offset		  [312.21875, 105.25]
+	  SceneRectInView	  [312.21875, 105.25, 941.0, 475.5]
+	}
+	Object {
+	  $ObjectID		  14
+	  IsActive		  [0]
+	  IsTabbed		  [0]
+	  ViewObjType		  "SimulinkSubsys"
+	  LoadSaveID		  "964"
+	  Extents		  [1882.0, 951.0]
+	  ZoomFactor		  [2.8303571428571428]
+	  Offset		  [-172.73605500672625, -74.414285714285711]
+	  SceneRectInView	  [-172.73605500672625, -74.414285714285711, 664.93375394321765, 336.0]
+	}
+	Object {
+	  $ObjectID		  15
+	  IsActive		  [0]
+	  IsTabbed		  [0]
+	  ViewObjType		  "SimulinkSubsys"
+	  LoadSaveID		  "1272"
+	  Extents		  [1882.0, 951.0]
+	  ZoomFactor		  [2.2508875739644969]
+	  Offset		  [36.720513427891717, -159.49014722536819]
+	  SceneRectInView	  [36.720513427891717, -159.49014722536819, 836.11461619348063, 422.5]
+	}
+	Object {
+	  $ObjectID		  16
+	  IsActive		  [0]
+	  IsTabbed		  [0]
+	  ViewObjType		  "SimulinkSubsys"
+	  LoadSaveID		  "1277"
+	  Extents		  [1882.0, 951.0]
+	  ZoomFactor		  [1.9695266272189349]
+	  Offset		  [-26.921341134383169, -206.07473709755729]
+	  SceneRectInView	  [-26.921341134383169, -206.07473709755729, 955.55956136397776, 482.85714285714283]
+	}
+	Object {
+	  $ObjectID		  17
+	  IsActive		  [0]
+	  IsTabbed		  [0]
+	  ViewObjType		  "SimulinkSubsys"
+	  LoadSaveID		  "1299"
+	  Extents		  [1882.0, 951.0]
+	  ZoomFactor		  [2.2508875739644969]
+	  Offset		  [88.07158930558154, -196.89920724801809]
+	  SceneRectInView	  [88.07158930558154, -196.89920724801809, 836.11461619348063, 422.5]
+	}
+	Object {
+	  $ObjectID		  18
+	  IsActive		  [0]
+	  IsTabbed		  [0]
+	  ViewObjType		  "SimulinkSubsys"
+	  LoadSaveID		  "925"
+	  Extents		  [1882.0, 951.0]
+	  ZoomFactor		  [1.6982142857142857]
+	  Offset		  [-304.11146161934812, -162.5]
+	  SceneRectInView	  [-304.11146161934812, -162.5, 1108.2229232386962, 560.0]
+	}
+	Object {
+	  $ObjectID		  19
+	  IsActive		  [0]
+	  IsTabbed		  [0]
+	  ViewObjType		  "SimulinkSubsys"
+	  LoadSaveID		  "1984"
+	  Extents		  [1882.0, 951.0]
+	  ZoomFactor		  [3.0]
+	  Offset		  [-115.56510416666669, -4.3333333333333428]
+	  SceneRectInView	  [-115.56510416666669, -4.3333333333333428, 627.33333333333337, 317.0]
+	}
+	Object {
+	  $ObjectID		  20
+	  IsActive		  [0]
+	  IsTabbed		  [0]
+	  ViewObjType		  "SimulinkSubsys"
+	  LoadSaveID		  "997"
+	  Extents		  [1882.0, 951.0]
+	  ZoomFactor		  [2.0]
+	  Offset		  [-256.49933035714275, -191.99999999999994]
+	  SceneRectInView	  [-256.49933035714275, -191.99999999999994, 941.0, 475.5]
+	}
+	Object {
+	  $ObjectID		  21
+	  IsActive		  [0]
+	  IsTabbed		  [0]
+	  ViewObjType		  "SimulinkSubsys"
+	  LoadSaveID		  "1143"
+	  Extents		  [1882.0, 951.0]
+	  ZoomFactor		  [2.0]
+	  Offset		  [-206.46136145067635, -192.1148554609133]
+	  SceneRectInView	  [-206.46136145067635, -192.1148554609133, 941.0, 475.5]
+	}
+	Object {
+	  $ObjectID		  22
+	  IsActive		  [0]
+	  IsTabbed		  [0]
+	  ViewObjType		  "SimulinkSubsys"
+	  LoadSaveID		  "1969"
+	  Extents		  [1882.0, 951.0]
+	  ZoomFactor		  [1.3699999999999999]
+	  Offset		  [-308.411914015249, -171.90505862552089]
+	  SceneRectInView	  [-308.411914015249, -171.90505862552089, 1373.7226277372265, 694.16058394160586]
+	}
+	Object {
+	  $ObjectID		  23
+	  IsActive		  [0]
+	  IsTabbed		  [0]
+	  ViewObjType		  "SimulinkSubsys"
+	  LoadSaveID		  "1964"
+	  Extents		  [1882.0, 951.0]
+	  ZoomFactor		  [3.0]
+	  Offset		  [19.064034220661938, -130.34713593603706]
+	  SceneRectInView	  [19.064034220661938, -130.34713593603706, 627.33333333333337, 317.0]
+	}
+	Object {
+	  $ObjectID		  24
+	  IsActive		  [0]
+	  IsTabbed		  [0]
+	  ViewObjType		  "SimulinkSubsys"
+	  LoadSaveID		  "137"
+	  Extents		  [1882.0, 951.0]
+	  ZoomFactor		  [1.2318652849740932]
+	  Offset		  [-508.415822982387, -244.69999999999996]
+	  SceneRectInView	  [-508.415822982387, -244.69999999999996, 1527.764458464774, 772.0]
+	}
+	Object {
+	  $ObjectID		  25
 	  IsActive		  [0]
 	  IsTabbed		  [0]
 	  ViewObjType		  "SimulinkSubsys"
@@ -857,7 +1067,7 @@ Model {
 	  SceneRectInView	  [-739.83551878387618, -486.9316494374512, 2352.5, 1305.0]
 	}
 	Object {
-	  $ObjectID		  12
+	  $ObjectID		  26
 	  IsActive		  [0]
 	  IsTabbed		  [0]
 	  ViewObjType		  "SimulinkSubsys"
@@ -868,7 +1078,7 @@ Model {
 	  SceneRectInView	  [133.77129676725065, -0.8287032327492625, 752.8, 417.6]
 	}
 	Object {
-	  $ObjectID		  13
+	  $ObjectID		  27
 	  IsActive		  [0]
 	  IsTabbed		  [0]
 	  ViewObjType		  "SimulinkSubsys"
@@ -879,7 +1089,7 @@ Model {
 	  SceneRectInView	  [-191.92562590559675, -139.467706622879, 994.05035577449371, 551.42857142857144]
 	}
 	Object {
-	  $ObjectID		  14
+	  $ObjectID		  28
 	  IsActive		  [0]
 	  IsTabbed		  [0]
 	  ViewObjType		  "SimulinkSubsys"
@@ -890,40 +1100,7 @@ Model {
 	  SceneRectInView	  [-377.33333333333337, -199.16666666666669, 1254.6666666666667, 634.0]
 	}
 	Object {
-	  $ObjectID		  15
-	  IsActive		  [0]
-	  IsTabbed		  [0]
-	  ViewObjType		  "SimulinkSubsys"
-	  LoadSaveID		  "964"
-	  Extents		  [1882.0, 951.0]
-	  ZoomFactor		  [2.8303571428571428]
-	  Offset		  [-172.73605500672622, -74.414285714285711]
-	  SceneRectInView	  [-172.73605500672622, -74.414285714285711, 664.93375394321765, 336.0]
-	}
-	Object {
-	  $ObjectID		  16
-	  IsActive		  [0]
-	  IsTabbed		  [0]
-	  ViewObjType		  "SimulinkSubsys"
-	  LoadSaveID		  "1299"
-	  Extents		  [883.0, 845.0]
-	  ZoomFactor		  [2.0]
-	  Offset		  [285.37889740232185, -196.89920724801809]
-	  SceneRectInView	  [285.37889740232185, -196.89920724801809, 441.5, 422.5]
-	}
-	Object {
-	  $ObjectID		  17
-	  IsActive		  [0]
-	  IsTabbed		  [0]
-	  ViewObjType		  "SimulinkSubsys"
-	  LoadSaveID		  "1265"
-	  Extents		  [883.0, 845.0]
-	  ZoomFactor		  [2.0]
-	  Offset		  [312.19252548131374, -188.41245753114407]
-	  SceneRectInView	  [312.19252548131374, -188.41245753114407, 441.5, 422.5]
-	}
-	Object {
-	  $ObjectID		  18
+	  $ObjectID		  29
 	  IsActive		  [0]
 	  IsTabbed		  [0]
 	  ViewObjType		  "SimulinkSubsys"
@@ -934,7 +1111,7 @@ Model {
 	  SceneRectInView	  [-159.5, -118.64285714285714, 504.57142857142856, 482.85714285714283]
 	}
 	Object {
-	  $ObjectID		  19
+	  $ObjectID		  30
 	  IsActive		  [0]
 	  IsTabbed		  [0]
 	  ViewObjType		  "SimulinkSubsys"
@@ -945,7 +1122,7 @@ Model {
 	  SceneRectInView	  [-44.0, -163.83333333333337, 588.66666666666663, 563.33333333333337]
 	}
 	Object {
-	  $ObjectID		  20
+	  $ObjectID		  31
 	  IsActive		  [0]
 	  IsTabbed		  [0]
 	  ViewObjType		  "SimulinkSubsys"
@@ -956,29 +1133,7 @@ Model {
 	  SceneRectInView	  [-442.79999999999995, -117.60000000000002, 706.4, 676.0]
 	}
 	Object {
-	  $ObjectID		  21
-	  IsActive		  [0]
-	  IsTabbed		  [0]
-	  ViewObjType		  "SimulinkSubsys"
-	  LoadSaveID		  "997"
-	  Extents		  [1190.0, 845.0]
-	  ZoomFactor		  [1.0]
-	  Offset		  [-326.2421875, -359.5]
-	  SceneRectInView	  [-326.2421875, -359.5, 1190.0, 845.0]
-	}
-	Object {
-	  $ObjectID		  22
-	  IsActive		  [0]
-	  IsTabbed		  [0]
-	  ViewObjType		  "SimulinkSubsys"
-	  LoadSaveID		  "978"
-	  Extents		  [1190.0, 840.0]
-	  ZoomFactor		  [1.0]
-	  Offset		  [-319.58203125, -384.5]
-	  SceneRectInView	  [-319.58203125, -384.5, 1190.0, 840.0]
-	}
-	Object {
-	  $ObjectID		  23
+	  $ObjectID		  32
 	  IsActive		  [0]
 	  IsTabbed		  [0]
 	  ViewObjType		  "SimulinkSubsys"
@@ -989,7 +1144,7 @@ Model {
 	  SceneRectInView	  [-395.21428571428544, -165.78571428571428, 1075.4285714285713, 556.57142857142856]
 	}
 	Object {
-	  $ObjectID		  24
+	  $ObjectID		  33
 	  IsActive		  [0]
 	  IsTabbed		  [0]
 	  ViewObjType		  "SimulinkSubsys"
@@ -1000,7 +1155,7 @@ Model {
 	  SceneRectInView	  [-185.57946028472256, -94.141079430555465, 941.0, 487.0]
 	}
 	Object {
-	  $ObjectID		  25
+	  $ObjectID		  34
 	  IsActive		  [0]
 	  IsTabbed		  [0]
 	  ViewObjType		  "SimulinkSubsys"
@@ -1011,7 +1166,7 @@ Model {
 	  SceneRectInView	  [-395.21428571428567, -203.0, 1075.4285714285713, 556.57142857142856]
 	}
 	Object {
-	  $ObjectID		  26
+	  $ObjectID		  35
 	  IsActive		  [0]
 	  IsTabbed		  [0]
 	  ViewObjType		  "SimulinkSubsys"
@@ -1022,7 +1177,7 @@ Model {
 	  SceneRectInView	  [-783.5, -397.5, 1882.0, 974.0]
 	}
 	Object {
-	  $ObjectID		  27
+	  $ObjectID		  36
 	  IsActive		  [0]
 	  IsTabbed		  [0]
 	  ViewObjType		  "SimulinkSubsys"
@@ -1033,18 +1188,7 @@ Model {
 	  SceneRectInView	  [-685.93359375, -336.5, 1882.0, 974.0]
 	}
 	Object {
-	  $ObjectID		  28
-	  IsActive		  [0]
-	  IsTabbed		  [0]
-	  ViewObjType		  "SimulinkSubsys"
-	  LoadSaveID		  "137"
-	  Extents		  [1882.0, 974.0]
-	  ZoomFactor		  [1.2616580310880829]
-	  Offset		  [-490.37753625513346, -244.69999999999996]
-	  SceneRectInView	  [-490.37753625513346, -244.69999999999996, 1491.6878850102669, 772.0]
-	}
-	Object {
-	  $ObjectID		  29
+	  $ObjectID		  37
 	  IsActive		  [0]
 	  IsTabbed		  [0]
 	  ViewObjType		  "SimulinkSubsys"
@@ -1055,7 +1199,7 @@ Model {
 	  SceneRectInView	  [-250.68531827515403, -181.0, 816.37063655030806, 422.5]
 	}
 	Object {
-	  $ObjectID		  30
+	  $ObjectID		  38
 	  IsActive		  [0]
 	  IsTabbed		  [0]
 	  ViewObjType		  "SimulinkSubsys"
@@ -1066,7 +1210,7 @@ Model {
 	  SceneRectInView	  [-160.0, -181.0, 595.0, 422.5]
 	}
 	Object {
-	  $ObjectID		  31
+	  $ObjectID		  39
 	  IsActive		  [0]
 	  IsTabbed		  [0]
 	  ViewObjType		  "SimulinkSubsys"
@@ -1077,7 +1221,7 @@ Model {
 	  SceneRectInView	  [-142.5, -181.0, 595.0, 422.5]
 	}
 	Object {
-	  $ObjectID		  32
+	  $ObjectID		  40
 	  IsActive		  [0]
 	  IsTabbed		  [0]
 	  ViewObjType		  "SimulinkSubsys"
@@ -1087,39 +1231,46 @@ Model {
 	  Offset		  [-152.5, -181.0]
 	  SceneRectInView	  [-152.5, -181.0, 595.0, 422.5]
 	}
-	Object {
-	  $ObjectID		  33
-	  IsActive		  [0]
-	  IsTabbed		  [0]
-	  ViewObjType		  "SimulinkSubsys"
-	  LoadSaveID		  "925"
-	  Extents		  [1190.0, 840.0]
-	  ZoomFactor		  [1.5]
-	  Offset		  [-146.66666666666669, -162.5]
-	  SceneRectInView	  [-146.66666666666669, -162.5, 793.33333333333337, 560.0]
-	}
 	PropName		"EditorsInfo"
       }
-      Object {
-	$PropName		"DockComponentsInfo"
-	$ObjectID		34
-	$ClassName		"Simulink.DockComponentInfo"
-	Type			"GLUE2:PropertyInspector"
-	ID			"Property Inspector"
-	Visible			[0]
-	CreateCallback		""
-	UserData		""
-	Floating		[0]
-	DockPosition		"Right"
-	Width			[640]
-	Height			[480]
-	Minimized		"Unset"
+      Array {
+	Type			"Simulink.DockComponentInfo"
+	Dimension		2
+	Object {
+	  $ObjectID		  41
+	  Type			  "GLUE2:PropertyInspector"
+	  ID			  "Property Inspector"
+	  Visible		  [0]
+	  CreateCallback	  ""
+	  UserData		  ""
+	  Floating		  [0]
+	  DockPosition		  "Right"
+	  Width			  [640]
+	  Height		  [480]
+	  Minimized		  "Unset"
+	}
+	Object {
+	  $ObjectID		  42
+	  Type			  "GLUE2:SpreadSheet"
+	  ID			  "ModelData"
+	  Visible		  [0]
+	  CreateCallback	  "DataView.createSpreadSheetComponent"
+	  UserData		  ""
+	  Floating		  [0]
+	  DockPosition		  "Bottom"
+	  Width			  [640]
+	  Height		  [480]
+	  Minimized		  "Unset"
+	}
+	PropName		"DockComponentsInfo"
       }
-      WindowState	      "AAAA/wAAAAD9AAAAAgAAAAAAAAC9AAAB+PwCAAAAA/sAAAAWAEQAbwBjAGsAVwBpAGQAZwBlAHQAMwEAAAAxAAAB+AAAA"
+      WindowState	      "AAAA/wAAAAD9AAAAAwAAAAAAAAC9AAAB+PwCAAAAA/sAAAAWAEQAbwBjAGsAVwBpAGQAZwBlAHQAMwEAAAAxAAAB+AAAA"
       "AAAAAAA+wAAABYARABvAGMAawBXAGkAZABnAGUAdAA0AAAAAAD/////AAAAAAAAAAD7AAAAUgBHAEwAVQBFADIAIAB0AHIAZQBlACAAYwBvAG0Ac"
       "ABvAG4AZQBuAHQALwBHAEwAVQBFADIAIAB0AHIAZQBlACAAYwBvAG0AcABvAG4AZQBuAHQAAAAAAP////8AAABjAP///wAAAAEAAAAAAAAAAPwCA"
       "AAAAfsAAABUAEcATABVAEUAMgA6AFAAcgBvAHAAZQByAHQAeQBJAG4AcwBwAGUAYwB0AG8AcgAvAFAAcgBvAHAAZQByAHQAeQAgAEkAbgBzAHAAZ"
-      "QBjAHQAbwByAAAAAAD/////AAAAOQD///8AAAeAAAAEUQAAAAEAAAACAAAAAQAAAAL8AAAAAQAAAAIAAAAB/////wEAAAAA/////wAAAAAAAAAA"
+      "QBjAHQAbwByAAAAAAD/////AAAAOQD///8AAAADAAAHNgAAAPP8AQAAAAH7AAAANgBHAEwAVQBFADIAOgBTAHAAcgBlAGEAZABTAGgAZQBlAHQAL"
+      "wBNAG8AZABlAGwARABhAHQAYQAAAAAAAAAHNgAAARoA////AAAHgAAAA/QAAAABAAAAAgAAAAEAAAAC/AAAAAEAAAACAAAAAf////8BAAAAAP///"
+      "/8AAAAAAAAAAA=="
       Array {
 	Type			"Cell"
 	Dimension		0
@@ -1127,7 +1278,7 @@ Model {
       }
       WindowUuid	      "86186c75-3002-4a99-8226-990d2f0ca7f7"
     }
-    BDUuid		    "3cfb4980-efcc-441c-bae5-ad54a9094fa4"
+    BDUuid		    "4759f1c7-7447-4ae3-b4aa-7b88a03842f3"
   }
   HideAutomaticNames	  on
   DevelopmentMode	  "FunctionDevelopment"
@@ -1141,16 +1292,16 @@ Model {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "FO10C9R"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Wed Feb 26 23:34:23 2020"
-  RTWModifiedTimeStamp	  504660860
-  ModelVersionFormat	  "1.%<AutoIncrement:124>"
+  LastModifiedDate	  "Thu May 06 14:50:10 2021"
+  RTWModifiedTimeStamp	  542213408
+  ModelVersionFormat	  "1.%<AutoIncrement:165>"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
   LibraryLinkDisplay	  "all"
   WideLines		  on
   ShowLineDimensions	  on
   ShowPortDataTypes	  off
-  ShowAllPropagatedSignalLabels	off
+  ShowAllPropagatedSignalLabels	on
   PortDataTypeDisplayFormat "AliasTypeOnly"
   ShowEditTimeErrors	  on
   ShowEditTimeWarnings	  on
@@ -1203,7 +1354,7 @@ Model {
   TryForcingSFcnDF	  off
   Object {
     $PropName		    "DataLoggingOverride"
-    $ObjectID		    35
+    $ObjectID		    43
     $ClassName		    "Simulink.SimulationData.ModelLoggingInfo"
     model_		    "slQuery_testmodel"
     Array {
@@ -1247,7 +1398,7 @@ Model {
     Type		    "Handle"
     Dimension		    1
     Simulink.ConfigSet {
-      $ObjectID		      36
+      $ObjectID		      44
       Version		      "19.1.1"
       DisabledProps	      []
       Description	      ""
@@ -1255,7 +1406,7 @@ Model {
 	Type			"Handle"
 	Dimension		10
 	Simulink.SolverCC {
-	  $ObjectID		  37
+	  $ObjectID		  45
 	  Version		  "19.1.1"
 	  DisabledProps		  []
 	  Description		  ""
@@ -1298,7 +1449,7 @@ Model {
 	  SolverOrder		  3
 	}
 	Simulink.DataIOCC {
-	  $ObjectID		  38
+	  $ObjectID		  46
 	  Version		  "19.1.1"
 	  DisabledProps		  []
 	  Description		  ""
@@ -1340,7 +1491,7 @@ Model {
 	  LoggingIntervals	  "[-inf, inf]"
 	}
 	Simulink.OptimizationCC {
-	  $ObjectID		  39
+	  $ObjectID		  47
 	  Version		  "19.1.1"
 	  Array {
 	    Type		    "Cell"
@@ -1413,7 +1564,7 @@ Model {
 	  EfficientTunableParamExpr off
 	}
 	Simulink.DebuggingCC {
-	  $ObjectID		  40
+	  $ObjectID		  48
 	  Version		  "19.1.1"
 	  Array {
 	    Type		    "Cell"
@@ -1437,7 +1588,7 @@ Model {
 	  SaveWithDisabledLinksMsg "warning"
 	  SaveWithParameterizedLinksMsg	"none"
 	  CheckSSInitialOutputMsg on
-	  UnderspecifiedInitializationDetection	"Classic"
+	  UnderspecifiedInitializationDetection	"Simplified"
 	  MergeDetectMultiDrivingBlocksExec "none"
 	  CheckExecutionContextPreStartOutputMsg off
 	  CheckExecutionContextRuntimeOutputMsg	off
@@ -1535,7 +1686,7 @@ Model {
 	  ArithmeticOperatorsInVariantConditions "warning"
 	}
 	Simulink.HardwareCC {
-	  $ObjectID		  41
+	  $ObjectID		  49
 	  Version		  "19.1.1"
 	  DisabledProps		  []
 	  Description		  ""
@@ -1585,7 +1736,7 @@ Model {
 	  HardwareBoardFeatureSet "EmbeddedCoderHSP"
 	}
 	Simulink.ModelReferenceCC {
-	  $ObjectID		  42
+	  $ObjectID		  50
 	  Version		  "19.1.1"
 	  DisabledProps		  []
 	  Description		  ""
@@ -1605,7 +1756,7 @@ Model {
 	  SupportModelReferenceSimTargetCustomCode off
 	}
 	Simulink.SFSimCC {
-	  $ObjectID		  43
+	  $ObjectID		  51
 	  Version		  "19.1.1"
 	  DisabledProps		  []
 	  Description		  ""
@@ -1640,7 +1791,7 @@ Model {
 	}
 	Simulink.RTWCC {
 	  $BackupClass		  "Simulink.RTWCC"
-	  $ObjectID		  44
+	  $ObjectID		  52
 	  Version		  "19.1.1"
 	  Array {
 	    Type		    "Cell"
@@ -1729,7 +1880,7 @@ Model {
 	    Type		    "Handle"
 	    Dimension		    2
 	    Simulink.CodeAppCC {
-	      $ObjectID		      45
+	      $ObjectID		      53
 	      Version		      "19.1.1"
 	      Array {
 		Type			"Cell"
@@ -1820,7 +1971,7 @@ Model {
 	    }
 	    Simulink.GRTTargetCC {
 	      $BackupClass	      "Simulink.TargetCC"
-	      $ObjectID		      46
+	      $ObjectID		      54
 	      Version		      "19.1.1"
 	      Array {
 		Type			"Cell"
@@ -1928,7 +2079,7 @@ Model {
 	  }
 	}
 	SlCovCC.ConfigComp {
-	  $ObjectID		  47
+	  $ObjectID		  55
 	  Version		  "19.1.1"
 	  DisabledProps		  []
 	  Description		  "Simulink Coverage Configuration Component"
@@ -1969,7 +2120,7 @@ Model {
 	  CovMcdcMode		  "Masking"
 	}
 	SSC.SimscapeCC {
-	  $ObjectID		  48
+	  $ObjectID		  56
 	  Version		  "1.0"
 	  DisabledProps		  []
 	  Description		  ""
@@ -2006,11 +2157,11 @@ Model {
   }
   Simulink.ConfigSet {
     $PropName		    "ActiveConfigurationSet"
-    $ObjectID		    36
+    $ObjectID		    44
   }
   Object {
     $PropName		    "DataTransfer"
-    $ObjectID		    49
+    $ObjectID		    57
     $ClassName		    "Simulink.GlobalDataTransfer"
     DefaultTransitionBetweenSyncTasks "Ensure deterministic transfer (maximum delay)"
     DefaultTransitionBetweenAsyncTasks "Ensure data integrity only"
@@ -2147,6 +2298,13 @@ Model {
       Interpolate	      on
     }
     Block {
+      BlockType		      EventListener
+      EventType		      "Initialize"
+      Variant		      off
+      VariantControl	      "Variant"
+      GeneratePreprocessorConditionals off
+    }
+    Block {
       BlockType		      From
       GotoTag		      "A"
       IconDisplay	      "Tag"
@@ -2179,6 +2337,14 @@ Model {
     }
     Block {
       BlockType		      Ground
+    }
+    Block {
+      BlockType		      If
+      NumInputs		      "1"
+      IfExpression	      "u1 > 0"
+      ShowElse		      on
+      ZeroCross		      on
+      SampleTime	      "-1"
     }
     Block {
       BlockType		      InitialCondition
@@ -2345,6 +2511,12 @@ Model {
       BlockType		      SimscapeBus
     }
     Block {
+      BlockType		      StateReader
+    }
+    Block {
+      BlockType		      StateWriter
+    }
+    Block {
       BlockType		      SubSystem
       ShowPortLabels	      "FromPortIcon"
       Permissions	      "ReadWrite"
@@ -2416,7 +2588,7 @@ Model {
   }
   System {
     Name		    "slQuery_testmodel"
-    Location		    [133, 108, 2069, 1324]
+    Location		    [1912, -16, 3848, 1200]
     Open		    on
     PortBlocksUseCompactNotation off
     SetExecutionDomain	    off
@@ -2431,52 +2603,64 @@ Model {
     TiledPaperMargins	    [1.270000, 1.270000, 1.270000, 1.270000]
     TiledPageScale	    1
     ShowPageBoundaries	    off
-    ZoomFactor		    "150"
+    ZoomFactor		    "125"
     ReportName		    "simulink-default.rpt"
-    SIDHighWatermark	    "1954"
+    SIDHighWatermark	    "2489"
     SimulinkSubDomain	    "Simulink"
     Block {
       BlockType		      Inport
       Name		      "In1"
       SID		      "350"
-      Position		      [655, 103, 685, 117]
+      Position		      [655, 108, 685, 122]
       ZOrder		      255
       BackgroundColor	      "orange"
       HideAutomaticName	      off
       IconDisplay	      "Port number"
+      Port {
+	PortNumber		1
+      }
     }
     Block {
       BlockType		      Inport
       Name		      "In2"
       SID		      "352"
-      Position		      [655, 138, 685, 152]
+      Position		      [655, 148, 685, 162]
       ZOrder		      257
       BackgroundColor	      "orange"
       HideAutomaticName	      off
       Port		      "2"
       IconDisplay	      "Port number"
+      Port {
+	PortNumber		1
+      }
     }
     Block {
       BlockType		      Inport
       Name		      "In3"
       SID		      "354"
-      Position		      [655, 178, 685, 192]
+      Position		      [655, 188, 685, 202]
       ZOrder		      259
       BackgroundColor	      "orange"
       HideAutomaticName	      off
       Port		      "3"
       IconDisplay	      "Port number"
+      Port {
+	PortNumber		1
+      }
     }
     Block {
       BlockType		      Inport
       Name		      "In4"
       SID		      "356"
-      Position		      [655, 228, 685, 242]
+      Position		      [655, 238, 685, 252]
       ZOrder		      261
       BackgroundColor	      "orange"
       HideAutomaticName	      off
       Port		      "4"
       IconDisplay	      "Port number"
+      Port {
+	PortNumber		1
+      }
     }
     Block {
       BlockType		      Inport
@@ -2488,6 +2672,9 @@ Model {
       HideAutomaticName	      off
       Port		      "5"
       IconDisplay	      "Port number"
+      Port {
+	PortNumber		1
+      }
     }
     Block {
       BlockType		      Inport
@@ -2499,6 +2686,9 @@ Model {
       HideAutomaticName	      off
       Port		      "6"
       IconDisplay	      "Port number"
+      Port {
+	PortNumber		1
+      }
     }
     Block {
       BlockType		      Inport
@@ -2510,6 +2700,9 @@ Model {
       HideAutomaticName	      off
       Port		      "7"
       IconDisplay	      "Port number"
+      Port {
+	PortNumber		1
+      }
     }
     Block {
       BlockType		      Inport
@@ -2521,6 +2714,9 @@ Model {
       HideAutomaticName	      off
       Port		      "8"
       IconDisplay	      "Port number"
+      Port {
+	PortNumber		1
+      }
     }
     Block {
       BlockType		      Inport
@@ -2532,6 +2728,9 @@ Model {
       HideAutomaticName	      off
       Port		      "9"
       IconDisplay	      "Port number"
+      Port {
+	PortNumber		1
+      }
     }
     Block {
       BlockType		      Inport
@@ -2543,6 +2742,9 @@ Model {
       HideAutomaticName	      off
       Port		      "10"
       IconDisplay	      "Port number"
+      Port {
+	PortNumber		1
+      }
     }
     Block {
       BlockType		      Inport
@@ -2554,6 +2756,9 @@ Model {
       HideAutomaticName	      off
       Port		      "11"
       IconDisplay	      "Port number"
+      Port {
+	PortNumber		1
+      }
     }
     Block {
       BlockType		      Inport
@@ -2565,6 +2770,9 @@ Model {
       HideAutomaticName	      off
       Port		      "12"
       IconDisplay	      "Port number"
+      Port {
+	PortNumber		1
+      }
     }
     Block {
       BlockType		      Inport
@@ -2576,6 +2784,9 @@ Model {
       HideAutomaticName	      off
       Port		      "13"
       IconDisplay	      "Port number"
+      Port {
+	PortNumber		1
+      }
     }
     Block {
       BlockType		      Inport
@@ -2587,6 +2798,9 @@ Model {
       HideAutomaticName	      off
       Port		      "14"
       IconDisplay	      "Port number"
+      Port {
+	PortNumber		1
+      }
     }
     Block {
       BlockType		      Inport
@@ -2598,6 +2812,9 @@ Model {
       HideAutomaticName	      off
       Port		      "15"
       IconDisplay	      "Port number"
+      Port {
+	PortNumber		1
+      }
     }
     Block {
       BlockType		      Inport
@@ -2609,6 +2826,9 @@ Model {
       HideAutomaticName	      off
       Port		      "16"
       IconDisplay	      "Port number"
+      Port {
+	PortNumber		1
+      }
     }
     Block {
       BlockType		      Inport
@@ -2620,6 +2840,9 @@ Model {
       HideAutomaticName	      off
       Port		      "17"
       IconDisplay	      "Port number"
+      Port {
+	PortNumber		1
+      }
     }
     Block {
       BlockType		      Inport
@@ -2631,6 +2854,9 @@ Model {
       HideAutomaticName	      off
       Port		      "18"
       IconDisplay	      "Port number"
+      Port {
+	PortNumber		1
+      }
     }
     Block {
       BlockType		      Inport
@@ -2642,6 +2868,9 @@ Model {
       HideAutomaticName	      off
       Port		      "19"
       IconDisplay	      "Port number"
+      Port {
+	PortNumber		1
+      }
     }
     Block {
       BlockType		      Inport
@@ -2653,6 +2882,9 @@ Model {
       HideAutomaticName	      off
       Port		      "20"
       IconDisplay	      "Port number"
+      Port {
+	PortNumber		1
+      }
     }
     Block {
       BlockType		      Inport
@@ -2664,6 +2896,9 @@ Model {
       HideAutomaticName	      off
       Port		      "21"
       IconDisplay	      "Port number"
+      Port {
+	PortNumber		1
+      }
     }
     Block {
       BlockType		      Inport
@@ -2675,12 +2910,15 @@ Model {
       HideAutomaticName	      off
       Port		      "22"
       IconDisplay	      "Port number"
+      Port {
+	PortNumber		1
+      }
     }
     Block {
       BlockType		      Inport
       Name		      "In23"
       SID		      "388"
-      Position		      [655, 758, 685, 772]
+      Position		      [655, 773, 685, 787]
       ZOrder		      293
       BackgroundColor	      "orange"
       HideAutomaticName	      off
@@ -2695,316 +2933,459 @@ Model {
       BlockType		      Inport
       Name		      "In24"
       SID		      "390"
-      Position		      [655, 778, 685, 792]
+      Position		      [655, 793, 685, 807]
       ZOrder		      295
       BackgroundColor	      "orange"
       HideAutomaticName	      off
       Port		      "24"
       IconDisplay	      "Port number"
+      Port {
+	PortNumber		1
+      }
     }
     Block {
       BlockType		      Inport
       Name		      "In25"
       SID		      "392"
-      Position		      [655, 798, 685, 812]
+      Position		      [655, 813, 685, 827]
       ZOrder		      297
       BackgroundColor	      "orange"
       HideAutomaticName	      off
       Port		      "25"
       IconDisplay	      "Port number"
+      Port {
+	PortNumber		1
+      }
     }
     Block {
       BlockType		      Inport
       Name		      "In26"
       SID		      "394"
-      Position		      [655, 833, 685, 847]
+      Position		      [655, 848, 685, 862]
       ZOrder		      299
       BackgroundColor	      "orange"
       HideAutomaticName	      off
       Port		      "26"
       IconDisplay	      "Port number"
+      Port {
+	PortNumber		1
+      }
     }
     Block {
       BlockType		      Inport
       Name		      "In27"
       SID		      "396"
-      Position		      [655, 853, 685, 867]
+      Position		      [655, 868, 685, 882]
       ZOrder		      301
       BackgroundColor	      "orange"
       HideAutomaticName	      off
       Port		      "27"
       IconDisplay	      "Port number"
+      Port {
+	PortNumber		1
+      }
     }
     Block {
       BlockType		      Inport
       Name		      "In28"
       SID		      "1089"
-      Position		      [655, 908, 685, 922]
+      Position		      [655, 923, 685, 937]
       ZOrder		      2248
       BackgroundColor	      "orange"
       HideAutomaticName	      off
       Port		      "28"
       IconDisplay	      "Port number"
+      Port {
+	PortNumber		1
+      }
     }
     Block {
       BlockType		      Inport
       Name		      "In29"
       SID		      "1090"
-      Position		      [655, 928, 685, 942]
+      Position		      [655, 943, 685, 957]
       ZOrder		      2250
       BackgroundColor	      "orange"
       HideAutomaticName	      off
       Port		      "29"
       IconDisplay	      "Port number"
+      Port {
+	PortNumber		1
+      }
     }
     Block {
       BlockType		      Inport
       Name		      "In30"
       SID		      "1118"
-      Position		      [655, 1003, 685, 1017]
+      Position		      [655, 1018, 685, 1032]
       ZOrder		      2274
       BackgroundColor	      "orange"
       HideAutomaticName	      off
       Port		      "30"
       IconDisplay	      "Port number"
+      Port {
+	PortNumber		1
+      }
     }
     Block {
       BlockType		      Inport
       Name		      "In31"
-      SID		      "402"
+      SID		      "1998"
       Position		      [655, 1088, 685, 1102]
-      ZOrder		      309
+      ZOrder		      2415
       BackgroundColor	      "orange"
       HideAutomaticName	      off
       Port		      "31"
       IconDisplay	      "Port number"
+      Port {
+	PortNumber		1
+      }
     }
     Block {
       BlockType		      Inport
       Name		      "In32"
-      SID		      "403"
-      Position		      [655, 1068, 685, 1082]
-      ZOrder		      311
+      SID		      "1999"
+      Position		      [655, 1108, 685, 1122]
+      ZOrder		      2414
       BackgroundColor	      "orange"
       HideAutomaticName	      off
       Port		      "32"
       IconDisplay	      "Port number"
+      Port {
+	PortNumber		1
+      }
     }
     Block {
       BlockType		      Inport
       Name		      "In33"
-      SID		      "414"
-      Position		      [655, 1108, 685, 1122]
-      ZOrder		      318
+      SID		      "2000"
+      Position		      [655, 1128, 685, 1142]
+      ZOrder		      2416
       BackgroundColor	      "orange"
       HideAutomaticName	      off
       Port		      "33"
       IconDisplay	      "Port number"
+      Port {
+	PortNumber		1
+      }
     }
     Block {
       BlockType		      Inport
       Name		      "In34"
-      SID		      "502"
-      Position		      [655, 1153, 685, 1167]
-      ZOrder		      346
+      SID		      "2009"
+      Position		      [655, 1148, 685, 1162]
+      ZOrder		      2421
       BackgroundColor	      "orange"
       HideAutomaticName	      off
       Port		      "34"
       IconDisplay	      "Port number"
+      Port {
+	PortNumber		1
+      }
     }
     Block {
       BlockType		      Inport
       Name		      "In35"
-      SID		      "503"
-      Position		      [655, 1178, 685, 1192]
-      ZOrder		      347
+      SID		      "402"
+      Position		      [655, 1233, 685, 1247]
+      ZOrder		      309
       BackgroundColor	      "orange"
       HideAutomaticName	      off
       Port		      "35"
       IconDisplay	      "Port number"
+      Port {
+	PortNumber		1
+      }
     }
     Block {
       BlockType		      Inport
       Name		      "In36"
-      SID		      "504"
+      SID		      "403"
       Position		      [655, 1213, 685, 1227]
-      ZOrder		      348
+      ZOrder		      311
       BackgroundColor	      "orange"
       HideAutomaticName	      off
       Port		      "36"
       IconDisplay	      "Port number"
+      Port {
+	PortNumber		1
+      }
     }
     Block {
       BlockType		      Inport
       Name		      "In37"
-      SID		      "505"
-      Position		      [655, 1263, 685, 1277]
-      ZOrder		      349
+      SID		      "414"
+      Position		      [655, 1253, 685, 1267]
+      ZOrder		      318
       BackgroundColor	      "orange"
       HideAutomaticName	      off
       Port		      "37"
       IconDisplay	      "Port number"
+      Port {
+	PortNumber		1
+      }
     }
     Block {
       BlockType		      Inport
       Name		      "In38"
-      SID		      "511"
-      Position		      [655, 1303, 685, 1317]
-      ZOrder		      356
+      SID		      "502"
+      Position		      [655, 1318, 685, 1332]
+      ZOrder		      346
       BackgroundColor	      "orange"
       HideAutomaticName	      off
       Port		      "38"
       IconDisplay	      "Port number"
+      Port {
+	PortNumber		1
+      }
     }
     Block {
       BlockType		      Inport
       Name		      "In39"
+      SID		      "503"
+      Position		      [655, 1343, 685, 1357]
+      ZOrder		      347
+      BackgroundColor	      "orange"
+      HideAutomaticName	      off
+      Port		      "39"
+      IconDisplay	      "Port number"
+      Port {
+	PortNumber		1
+      }
+    }
+    Block {
+      BlockType		      Inport
+      Name		      "In40"
+      SID		      "504"
+      Position		      [655, 1378, 685, 1392]
+      ZOrder		      348
+      BackgroundColor	      "orange"
+      HideAutomaticName	      off
+      Port		      "40"
+      IconDisplay	      "Port number"
+      Port {
+	PortNumber		1
+      }
+    }
+    Block {
+      BlockType		      Inport
+      Name		      "In41"
+      SID		      "505"
+      Position		      [655, 1428, 685, 1442]
+      ZOrder		      349
+      BackgroundColor	      "orange"
+      HideAutomaticName	      off
+      Port		      "41"
+      IconDisplay	      "Port number"
+      Port {
+	PortNumber		1
+      }
+    }
+    Block {
+      BlockType		      Inport
+      Name		      "In42"
+      SID		      "511"
+      Position		      [655, 1488, 685, 1502]
+      ZOrder		      356
+      BackgroundColor	      "orange"
+      HideAutomaticName	      off
+      Port		      "42"
+      IconDisplay	      "Port number"
+      Port {
+	PortNumber		1
+      }
+    }
+    Block {
+      BlockType		      Inport
+      Name		      "In43"
       SID		      "787"
       Position		      [1320, 108, 1350, 122]
       ZOrder		      465
       BackgroundColor	      "green"
       HideAutomaticName	      off
-      Port		      "39"
+      Port		      "43"
       IconDisplay	      "Port number"
+      Port {
+	PortNumber		1
+      }
     }
     Block {
       BlockType		      Inport
-      Name		      "In40"
+      Name		      "In44"
       SID		      "788"
       Position		      [1320, 173, 1350, 187]
       ZOrder		      466
       BackgroundColor	      "green"
       HideAutomaticName	      off
-      Port		      "40"
+      Port		      "44"
       IconDisplay	      "Port number"
+      Port {
+	PortNumber		1
+      }
     }
     Block {
       BlockType		      Inport
-      Name		      "In41"
+      Name		      "In45"
       SID		      "789"
       Position		      [1320, 253, 1350, 267]
       ZOrder		      467
       BackgroundColor	      "green"
       HideAutomaticName	      off
-      Port		      "41"
+      Port		      "45"
       IconDisplay	      "Port number"
+      Port {
+	PortNumber		1
+      }
     }
     Block {
       BlockType		      Inport
-      Name		      "In42"
+      Name		      "In46"
       SID		      "932"
       Position		      [1320, 378, 1350, 392]
       ZOrder		      521
       BackgroundColor	      "green"
       HideAutomaticName	      off
-      Port		      "42"
+      Port		      "46"
       IconDisplay	      "Port number"
+      Port {
+	PortNumber		1
+      }
     }
     Block {
       BlockType		      Inport
-      Name		      "In43"
+      Name		      "In47"
       SID		      "790"
       Position		      [1320, 633, 1350, 647]
       ZOrder		      468
       BackgroundColor	      "green"
       HideAutomaticName	      off
-      Port		      "43"
+      Port		      "47"
       IconDisplay	      "Port number"
+      Port {
+	PortNumber		1
+      }
     }
     Block {
       BlockType		      Inport
-      Name		      "In44"
+      Name		      "In48"
       SID		      "792"
       Position		      [1320, 703, 1350, 717]
       ZOrder		      470
       BackgroundColor	      "green"
       HideAutomaticName	      off
-      Port		      "44"
+      Port		      "48"
       IconDisplay	      "Port number"
+      Port {
+	PortNumber		1
+      }
     }
     Block {
       BlockType		      Inport
-      Name		      "In45"
+      Name		      "In49"
       SID		      "791"
       Position		      [1320, 783, 1350, 797]
       ZOrder		      469
       BackgroundColor	      "green"
       HideAutomaticName	      off
-      Port		      "45"
+      Port		      "49"
       IconDisplay	      "Port number"
+      Port {
+	PortNumber		1
+      }
     }
     Block {
       BlockType		      Inport
-      Name		      "In46"
+      Name		      "In50"
       SID		      "793"
       Position		      [1320, 878, 1350, 892]
       ZOrder		      471
       BackgroundColor	      "green"
       HideAutomaticName	      off
-      Port		      "46"
+      Port		      "50"
       IconDisplay	      "Port number"
+      Port {
+	PortNumber		1
+      }
     }
     Block {
       BlockType		      Inport
-      Name		      "In47"
+      Name		      "In51"
       SID		      "810"
       Position		      [1320, 988, 1350, 1002]
       ZOrder		      497
       BackgroundColor	      "green"
       HideAutomaticName	      off
-      Port		      "47"
+      Port		      "51"
       IconDisplay	      "Port number"
+      Port {
+	PortNumber		1
+      }
     }
     Block {
       BlockType		      Inport
-      Name		      "In48"
+      Name		      "In52"
       SID		      "811"
       Position		      [1320, 1118, 1350, 1132]
       ZOrder		      498
       BackgroundColor	      "green"
       HideAutomaticName	      off
-      Port		      "48"
+      Port		      "52"
       IconDisplay	      "Port number"
+      Port {
+	PortNumber		1
+      }
     }
     Block {
       BlockType		      Inport
-      Name		      "In49"
+      Name		      "In53"
       SID		      "812"
       Position		      [1320, 1243, 1350, 1257]
       ZOrder		      499
       BackgroundColor	      "green"
       HideAutomaticName	      off
-      Port		      "49"
+      Port		      "53"
       IconDisplay	      "Port number"
+      Port {
+	PortNumber		1
+      }
     }
     Block {
       BlockType		      Inport
-      Name		      "In50"
+      Name		      "In54"
       SID		      "1255"
       Position		      [2810, 108, 2840, 122]
       ZOrder		      2340
       BackgroundColor	      "orange"
       ShowName		      off
-      Port		      "50"
+      Port		      "54"
       IconDisplay	      "Port number"
+      Port {
+	PortNumber		1
+      }
     }
     Block {
       BlockType		      Inport
-      Name		      "In51"
+      Name		      "In55"
       SID		      "1377"
       Position		      [1955, 888, 1985, 902]
       ZOrder		      2392
-      Port		      "51"
+      Port		      "55"
       IconDisplay	      "Port number"
+      Port {
+	PortNumber		1
+      }
     }
     Block {
       BlockType		      Inport
-      Name		      "In52"
+      Name		      "In56"
       SID		      "1378"
       Position		      [1955, 948, 1985, 962]
       ZOrder		      2393
-      Port		      "52"
+      Port		      "56"
       IconDisplay	      "Port number"
+      Port {
+	PortNumber		1
+      }
     }
     Block {
       BlockType		      SubSystem
@@ -3015,9 +3396,12 @@ Model {
       ZOrder		      2347
       RequestExecContextInheritance off
       ContentPreviewEnabled   on
+      Port {
+	PortNumber		1
+      }
       System {
 	Name			"ActionElse"
-	Location		[133, 108, 2069, 1324]
+	Location		[1912, -16, 3848, 1200]
 	Open			off
 	PortBlocksUseCompactNotation off
 	SetExecutionDomain	off
@@ -3032,16 +3416,19 @@ Model {
 	TiledPaperMargins	[0.500000, 0.500000, 0.500000, 0.500000]
 	TiledPageScale		1
 	ShowPageBoundaries	off
-	ZoomFactor		"216"
+	ZoomFactor		"197"
 	SimulinkSubDomain	"Simulink"
 	Block {
 	  BlockType		  Inport
-	  Name			  "In50"
+	  Name			  "In54"
 	  SID			  "1278"
 	  Position		  [415, -2, 445, 12]
 	  ZOrder		  2891
 	  HideAutomaticName	  off
 	  IconDisplay		  "Port number"
+	  Port {
+	    PortNumber		    1
+	  }
 	}
 	Block {
 	  BlockType		  ActionPort
@@ -3049,10 +3436,11 @@ Model {
 	  SID			  "1292"
 	  Position		  [460, -50, 509, -27]
 	  ZOrder		  2895
+	  ActionPortLabel	  "if(u1 > 0)"
 	}
 	Block {
 	  BlockType		  PMIOPort
-	  Name			  "LConn14"
+	  Name			  "LConn15"
 	  SID			  "1279"
 	  Position		  [415, 28, 445, 42]
 	  ZOrder		  2893
@@ -3061,7 +3449,7 @@ Model {
 	}
 	Block {
 	  BlockType		  PMIOPort
-	  Name			  "RConn14"
+	  Name			  "RConn15"
 	  SID			  "1280"
 	  Position		  [530, 28, 560, 42]
 	  ZOrder		  2894
@@ -3072,7 +3460,7 @@ Model {
 	}
 	Block {
 	  BlockType		  Outport
-	  Name			  "Out50"
+	  Name			  "Out54"
 	  SID			  "1281"
 	  Position		  [530, -2, 560, 12]
 	  ZOrder		  2892
@@ -3082,16 +3470,17 @@ Model {
 	Line {
 	  LineType		  "Connection"
 	  ZOrder		  1
-	  SrcBlock		  "RConn14"
+	  SrcBlock		  "RConn15"
 	  SrcPort		  RConn1
-	  DstBlock		  "LConn14"
+	  DstBlock		  "LConn15"
 	  DstPort		  RConn1
 	}
 	Line {
 	  ZOrder		  2
-	  SrcBlock		  "In50"
+	  Labels		  [0, 0]
+	  SrcBlock		  "In54"
 	  SrcPort		  1
-	  DstBlock		  "Out50"
+	  DstBlock		  "Out54"
 	  DstPort		  1
 	}
       }
@@ -3105,10 +3494,13 @@ Model {
       ZOrder		      2348
       RequestExecContextInheritance off
       ContentPreviewEnabled   on
+      Port {
+	PortNumber		1
+      }
       System {
 	Name			"ActionIf"
-	Location		[133, 108, 2069, 1324]
-	Open			off
+	Location		[1912, -16, 3848, 1200]
+	Open			on
 	PortBlocksUseCompactNotation off
 	SetExecutionDomain	off
 	ExecutionDomainType	"Deduce"
@@ -3122,16 +3514,19 @@ Model {
 	TiledPaperMargins	[0.500000, 0.500000, 0.500000, 0.500000]
 	TiledPageScale		1
 	ShowPageBoundaries	off
-	ZoomFactor		"216"
+	ZoomFactor		"197"
 	SimulinkSubDomain	"Simulink"
 	Block {
 	  BlockType		  Inport
-	  Name			  "In50"
+	  Name			  "In54"
 	  SID			  "1283"
 	  Position		  [415, -2, 445, 12]
 	  ZOrder		  2891
 	  HideAutomaticName	  off
 	  IconDisplay		  "Port number"
+	  Port {
+	    PortNumber		    1
+	  }
 	}
 	Block {
 	  BlockType		  ActionPort
@@ -3139,10 +3534,11 @@ Model {
 	  SID			  "1304"
 	  Position		  [460, -50, 509, -27]
 	  ZOrder		  2896
+	  ActionPortLabel	  "else"
 	}
 	Block {
 	  BlockType		  PMIOPort
-	  Name			  "LConn14"
+	  Name			  "LConn15"
 	  SID			  "1284"
 	  Position		  [415, 28, 445, 42]
 	  ZOrder		  2893
@@ -3151,7 +3547,7 @@ Model {
 	}
 	Block {
 	  BlockType		  PMIOPort
-	  Name			  "RConn14"
+	  Name			  "RConn15"
 	  SID			  "1285"
 	  Position		  [530, 28, 560, 42]
 	  ZOrder		  2894
@@ -3162,7 +3558,7 @@ Model {
 	}
 	Block {
 	  BlockType		  Outport
-	  Name			  "Out50"
+	  Name			  "Out54"
 	  SID			  "1286"
 	  Position		  [530, -2, 560, 12]
 	  ZOrder		  2892
@@ -3171,17 +3567,18 @@ Model {
 	}
 	Line {
 	  ZOrder		  1
-	  SrcBlock		  "In50"
+	  Labels		  [0, 0]
+	  SrcBlock		  "In54"
 	  SrcPort		  1
-	  DstBlock		  "Out50"
+	  DstBlock		  "Out54"
 	  DstPort		  1
 	}
 	Line {
 	  LineType		  "Connection"
 	  ZOrder		  2
-	  SrcBlock		  "RConn14"
+	  SrcBlock		  "RConn15"
 	  SrcPort		  RConn1
-	  DstBlock		  "LConn14"
+	  DstBlock		  "LConn15"
 	  DstPort		  RConn1
 	}
       }
@@ -3198,120 +3595,150 @@ Model {
       IndexOptions	      "Index vector (dialog)"
       Indices		      "[1 3]"
       OutputSizes	      "1"
+      Port {
+	PortNumber		1
+      }
     }
     Block {
       BlockType		      Assignment
       Name		      "Assignment1"
       SID		      "436"
       Ports		      [3, 1]
-      Position		      [565, 1604, 620, 1646]
+      Position		      [565, 1859, 620, 1901]
       ZOrder		      334
       Commented		      "on"
       DiagnosticForDimensions "Warning"
       IndexOptions	      "Index vector (port)"
       Indices		      "[1 3]"
       OutputSizes	      "1"
+      Port {
+	PortNumber		1
+      }
     }
     Block {
       BlockType		      BusAssignment
       Name		      "Bus Assignment"
       SID		      "411"
       Ports		      [3, 1]
-      Position		      [865, 1067, 945, 1123]
+      Position		      [865, 1212, 945, 1268]
       ZOrder		      315
       ShowName		      off
       AssignedSignals	      "signal1,signal3"
+      Port {
+	PortNumber		1
+      }
     }
     Block {
       BlockType		      BusCreator
       Name		      "Bus Creator"
       SID		      "344"
       Ports		      [3, 1]
-      Position		      [840, 757, 845, 813]
+      Position		      [840, 772, 845, 828]
       ZOrder		      249
       ShowName		      off
       Inputs		      "3"
       DisplayOption	      "bar"
       InheritFromInputs	      on
+      Port {
+	PortNumber		1
+      }
     }
     Block {
       BlockType		      BusCreator
       Name		      "Bus Creator1"
       SID		      "346"
       Ports		      [2, 1]
-      Position		      [840, 831, 845, 869]
+      Position		      [840, 846, 845, 884]
       ZOrder		      251
       ShowName		      off
       Inputs		      "2"
       DisplayOption	      "bar"
       InheritFromInputs	      on
+      Port {
+	PortNumber		1
+      }
     }
     Block {
       BlockType		      BusCreator
       Name		      "Bus Creator2"
       SID		      "348"
       Ports		      [2, 1]
-      Position		      [880, 835, 885, 895]
+      Position		      [880, 850, 885, 910]
       ZOrder		      253
       ShowName		      off
       Inputs		      "2"
       DisplayOption	      "bar"
       InheritFromInputs	      on
+      Port {
+	PortNumber		1
+      }
     }
     Block {
       BlockType		      BusCreator
       Name		      "Bus Creator3"
       SID		      "405"
       Ports		      [3, 1]
-      Position		      [840, 1053, 845, 1097]
+      Position		      [840, 1198, 845, 1242]
       ZOrder		      307
       ShowName		      off
       Inputs		      "3"
       DisplayOption	      "bar"
       InheritFromInputs	      on
+      Port {
+	PortNumber		1
+      }
     }
     Block {
       BlockType		      BusCreator
       Name		      "Bus Creator4"
       SID		      "1092"
       Ports		      [2, 1]
-      Position		      [840, 906, 845, 944]
+      Position		      [840, 921, 845, 959]
       ZOrder		      2244
       ShowName		      off
       Inputs		      "2"
       DisplayOption	      "bar"
       InheritFromInputs	      on
+      Port {
+	PortNumber		1
+      }
     }
     Block {
       BlockType		      BusCreator
       Name		      "Bus Creator5"
       SID		      "1093"
       Ports		      [2, 1]
-      Position		      [880, 910, 885, 970]
+      Position		      [880, 925, 885, 985]
       ZOrder		      2246
       ShowName		      off
       Inputs		      "2"
       DisplayOption	      "bar"
       InheritFromInputs	      on
+      Port {
+	PortNumber		1
+      }
     }
     Block {
       BlockType		      BusCreator
       Name		      "Bus Creator6"
       SID		      "1119"
       Ports		      [3, 1]
-      Position		      [840, 981, 845, 1039]
+      Position		      [840, 996, 845, 1054]
       ZOrder		      2269
       ShowName		      off
       Inputs		      "3"
       DisplayOption	      "bar"
       InheritFromInputs	      on
+      Port {
+	PortNumber		1
+      }
     }
     Block {
       BlockType		      BusSelector
       Name		      "Bus Selector"
       SID		      "345"
       Ports		      [1, 3]
-      Position		      [965, 757, 970, 813]
+      Position		      [965, 772, 970, 828]
       ZOrder		      250
       ShowName		      off
       OutputSignals	      "explicit_name,signal2,signal3"
@@ -3334,7 +3761,7 @@ Model {
       Name		      "Bus Selector1"
       SID		      "347"
       Ports		      [1, 2]
-      Position		      [965, 831, 970, 869]
+      Position		      [965, 846, 970, 884]
       ZOrder		      252
       ShowName		      off
       OutputSignals	      "signal1,signal2"
@@ -3353,7 +3780,7 @@ Model {
       Name		      "Bus Selector2"
       SID		      "349"
       Ports		      [1, 2]
-      Position		      [925, 835, 930, 895]
+      Position		      [925, 850, 930, 910]
       ZOrder		      254
       ShowName		      off
       OutputSignals	      "signal1,signal2"
@@ -3372,7 +3799,7 @@ Model {
       Name		      "Bus Selector3"
       SID		      "406"
       Ports		      [1, 3]
-      Position		      [965, 1067, 970, 1123]
+      Position		      [965, 1212, 970, 1268]
       ZOrder		      308
       ShowName		      off
       OutputSignals	      "signal1,signal2,signal3"
@@ -3395,18 +3822,21 @@ Model {
       Name		      "Bus Selector4"
       SID		      "1121"
       Ports		      [1, 1]
-      Position		      [905, 992, 910, 1028]
+      Position		      [905, 1007, 910, 1043]
       ZOrder		      2271
       ShowName		      off
       OutputSignals	      "signal1,signal2"
       OutputAsBus	      on
+      Port {
+	PortNumber		1
+      }
     }
     Block {
       BlockType		      BusSelector
       Name		      "Bus Selector5"
       SID		      "1095"
       Ports		      [1, 3]
-      Position		      [925, 910, 930, 970]
+      Position		      [925, 925, 930, 985]
       ZOrder		      2247
       ShowName		      off
       OutputSignals	      "signal1.signal1,signal1.signal2,signal2"
@@ -3429,7 +3859,7 @@ Model {
       Name		      "Bus Selector6"
       SID		      "1128"
       Ports		      [1, 2]
-      Position		      [965, 991, 970, 1029]
+      Position		      [965, 1006, 970, 1044]
       ZOrder		      2279
       ShowName		      off
       OutputSignals	      "signal1,signal2"
@@ -3447,9 +3877,12 @@ Model {
       BlockType		      BusToVector
       Name		      "Bus to Vector"
       SID		      "422"
-      Position		      [755, 1464, 810, 1506]
+      Position		      [755, 1719, 810, 1761]
       ZOrder		      321
       Commented		      "on"
+      Port {
+	PortNumber		1
+      }
     }
     Block {
       BlockType		      ConnectionLabel
@@ -3482,8 +3915,8 @@ Model {
       ContentPreviewEnabled   on
       System {
 	Name			"ConnectionInside"
-	Location		[83, 8, 2019, 1108]
-	Open			off
+	Location		[1912, -16, 3848, 1200]
+	Open			on
 	PortBlocksUseCompactNotation off
 	SetExecutionDomain	off
 	ExecutionDomainType	"Deduce"
@@ -3497,7 +3930,7 @@ Model {
 	TiledPaperMargins	[0.500000, 0.500000, 0.500000, 0.500000]
 	TiledPageScale		1
 	ShowPageBoundaries	off
-	ZoomFactor		"100"
+	ZoomFactor		"175"
 	SimulinkSubDomain	"Simulink"
 	Block {
 	  BlockType		  PMIOPort
@@ -3543,7 +3976,7 @@ Model {
       ContentPreviewEnabled   on
       System {
 	Name			"ConnectionLSplitInside"
-	Location		[83, 8, 2019, 1108]
+	Location		[1912, -16, 3848, 1200]
 	Open			off
 	PortBlocksUseCompactNotation off
 	SetExecutionDomain	off
@@ -3558,7 +3991,7 @@ Model {
 	TiledPaperMargins	[0.500000, 0.500000, 0.500000, 0.500000]
 	TiledPageScale		1
 	ShowPageBoundaries	off
-	ZoomFactor		"100"
+	ZoomFactor		"200"
 	SimulinkSubDomain	"Simulink"
 	Block {
 	  BlockType		  PMIOPort
@@ -3626,7 +4059,7 @@ Model {
       ContentPreviewEnabled   on
       System {
 	Name			"ConnectionLabelInside"
-	Location		[133, 108, 2069, 1324]
+	Location		[1909, 89, 3845, 1305]
 	Open			off
 	PortBlocksUseCompactNotation off
 	SetExecutionDomain	off
@@ -3641,7 +4074,7 @@ Model {
 	TiledPaperMargins	[0.500000, 0.500000, 0.500000, 0.500000]
 	TiledPageScale		1
 	ShowPageBoundaries	off
-	ZoomFactor		"106"
+	ZoomFactor		"200"
 	SimulinkSubDomain	"Simulink"
 	Block {
 	  BlockType		  ConnectionLabel
@@ -3710,7 +4143,7 @@ Model {
       ContentPreviewEnabled   on
       System {
 	Name			"ConnectionRSplitInside"
-	Location		[133, 108, 2069, 1324]
+	Location		[1912, -16, 3848, 1200]
 	Open			on
 	PortBlocksUseCompactNotation off
 	SetExecutionDomain	off
@@ -3725,7 +4158,7 @@ Model {
 	TiledPaperMargins	[0.500000, 0.500000, 0.500000, 0.500000]
 	TiledPageScale		1
 	ShowPageBoundaries	off
-	ZoomFactor		"110"
+	ZoomFactor		"400"
 	SimulinkSubDomain	"Simulink"
 	Block {
 	  BlockType		  PMIOPort
@@ -3744,7 +4177,6 @@ Model {
 	  Position		  [500, 23, 530, 37]
 	  ZOrder		  544
 	  BlockMirror		  on
-	  BackgroundColor	  "automatic"
 	  HideAutomaticName	  off
 	  Port			  "2"
 	  Side			  "Right"
@@ -3753,7 +4185,7 @@ Model {
 	  BlockType		  PMIOPort
 	  Name			  "RConn3_copy"
 	  SID			  "986"
-	  Position		  [500, 73, 530, 87]
+	  Position		  [500, 78, 530, 92]
 	  ZOrder		  545
 	  BlockMirror		  on
 	  BackgroundColor	  "automatic"
@@ -3763,13 +4195,13 @@ Model {
 	}
 	Line {
 	  LineType		  "Connection"
-	  ZOrder		  20
+	  ZOrder		  36
 	  SrcBlock		  "LConn3"
 	  SrcPort		  RConn1
-	  Points		  [215, 0]
+	  Points		  [213, 0]
 	  Branch {
 	    ConnectType		    "DEST_SRC"
-	    Points		    [0, 50]
+	    Points		    [0, 55]
 	    DstBlock		    "RConn3_copy"
 	    DstPort		    RConn1
 	  }
@@ -3785,11 +4217,14 @@ Model {
       BlockType		      DataTypeConversion
       Name		      "Data Type Conversion"
       SID		      "424"
-      Position		      [840, 1177, 970, 1193]
+      Position		      [840, 1342, 970, 1358]
       ZOrder		      323
       ShowName		      off
       RndMeth		      "Floor"
       SaturateOnIntegerOverflow	off
+      Port {
+	PortNumber		1
+      }
     }
     Block {
       BlockType		      Demux
@@ -3803,6 +4238,15 @@ Model {
       ShowName		      off
       Outputs		      "3"
       DisplayOption	      "bar"
+      Port {
+	PortNumber		1
+      }
+      Port {
+	PortNumber		2
+      }
+      Port {
+	PortNumber		3
+      }
     }
     Block {
       BlockType		      Demux
@@ -3816,6 +4260,12 @@ Model {
       ShowName		      off
       Outputs		      "2"
       DisplayOption	      "bar"
+      Port {
+	PortNumber		1
+      }
+      Port {
+	PortNumber		2
+      }
     }
     Block {
       BlockType		      Demux
@@ -3829,6 +4279,15 @@ Model {
       ShowName		      off
       Outputs		      "3"
       DisplayOption	      "bar"
+      Port {
+	PortNumber		1
+      }
+      Port {
+	PortNumber		2
+      }
+      Port {
+	PortNumber		3
+      }
     }
     Block {
       BlockType		      Demux
@@ -3841,6 +4300,15 @@ Model {
       ShowName		      off
       Outputs		      "3"
       DisplayOption	      "bar"
+      Port {
+	PortNumber		1
+      }
+      Port {
+	PortNumber		2
+      }
+      Port {
+	PortNumber		3
+      }
     }
     Block {
       BlockType		      Demux
@@ -3854,6 +4322,12 @@ Model {
       ShowName		      off
       Outputs		      "2"
       DisplayOption	      "bar"
+      Port {
+	PortNumber		1
+      }
+      Port {
+	PortNumber		2
+      }
     }
     Block {
       BlockType		      Demux
@@ -3867,6 +4341,12 @@ Model {
       ShowName		      off
       Outputs		      "2"
       DisplayOption	      "bar"
+      Port {
+	PortNumber		1
+      }
+      Port {
+	PortNumber		2
+      }
     }
     Block {
       BlockType		      Demux
@@ -3878,17 +4358,35 @@ Model {
       ShowName		      off
       Outputs		      "3"
       DisplayOption	      "bar"
+      Port {
+	PortNumber		1
+      }
+      Port {
+	PortNumber		2
+      }
+      Port {
+	PortNumber		3
+      }
     }
     Block {
       BlockType		      Demux
       Name		      "Demux5"
       SID		      "514"
       Ports		      [1, 3]
-      Position		      [840, 1323, 845, 1377]
+      Position		      [840, 1508, 845, 1562]
       ZOrder		      355
       ShowName		      off
       Outputs		      "3"
       DisplayOption	      "bar"
+      Port {
+	PortNumber		1
+      }
+      Port {
+	PortNumber		2
+      }
+      Port {
+	PortNumber		3
+      }
     }
     Block {
       BlockType		      Demux
@@ -3901,6 +4399,15 @@ Model {
       ShowName		      off
       Outputs		      "3"
       DisplayOption	      "bar"
+      Port {
+	PortNumber		1
+      }
+      Port {
+	PortNumber		2
+      }
+      Port {
+	PortNumber		3
+      }
     }
     Block {
       BlockType		      SubSystem
@@ -3913,15 +4420,18 @@ Model {
       ContentPreviewEnabled   on
       Object {
 	$PropName		"MaskObject"
-	$ObjectID		50
+	$ObjectID		58
 	$ClassName		"Simulink.Mask"
 	IconOpaque		"opaque-with-ports"
 	RunInitForIconRedraw	"off"
       }
+      Port {
+	PortNumber		1
+      }
       System {
 	Name			"Enabled"
-	Location		[990, 0, 1927, 1087]
-	Open			off
+	Location		[1912, -16, 3848, 1200]
+	Open			on
 	PortBlocksUseCompactNotation off
 	SetExecutionDomain	off
 	ExecutionDomainType	"Deduce"
@@ -3935,16 +4445,19 @@ Model {
 	TiledPaperMargins	[0.500000, 0.500000, 0.500000, 0.500000]
 	TiledPageScale		1
 	ShowPageBoundaries	off
-	ZoomFactor		"200"
+	ZoomFactor		"225"
 	SimulinkSubDomain	"Simulink"
 	Block {
 	  BlockType		  Inport
-	  Name			  "In50"
+	  Name			  "In54"
 	  SID			  "1266"
 	  Position		  [415, -2, 445, 12]
 	  ZOrder		  2891
 	  HideAutomaticName	  off
 	  IconDisplay		  "Port number"
+	  Port {
+	    PortNumber		    1
+	  }
 	}
 	Block {
 	  BlockType		  EnablePort
@@ -3956,7 +4469,7 @@ Model {
 	}
 	Block {
 	  BlockType		  PMIOPort
-	  Name			  "LConn14"
+	  Name			  "LConn15"
 	  SID			  "1268"
 	  Position		  [415, 28, 445, 42]
 	  ZOrder		  2893
@@ -3965,7 +4478,7 @@ Model {
 	}
 	Block {
 	  BlockType		  PMIOPort
-	  Name			  "RConn14"
+	  Name			  "RConn15"
 	  SID			  "1269"
 	  Position		  [530, 28, 560, 42]
 	  ZOrder		  2894
@@ -3976,7 +4489,7 @@ Model {
 	}
 	Block {
 	  BlockType		  Outport
-	  Name			  "Out50"
+	  Name			  "Out54"
 	  SID			  "1267"
 	  Position		  [530, -2, 560, 12]
 	  ZOrder		  2892
@@ -3986,16 +4499,17 @@ Model {
 	Line {
 	  LineType		  "Connection"
 	  ZOrder		  1458
-	  SrcBlock		  "RConn14"
+	  SrcBlock		  "RConn15"
 	  SrcPort		  RConn1
-	  DstBlock		  "LConn14"
+	  DstBlock		  "LConn15"
 	  DstPort		  RConn1
 	}
 	Line {
 	  ZOrder		  1460
-	  SrcBlock		  "In50"
+	  Labels		  [0, 0]
+	  SrcBlock		  "In54"
 	  SrcPort		  1
-	  DstBlock		  "Out50"
+	  DstBlock		  "Out54"
 	  DstPort		  1
 	}
       }
@@ -4007,6 +4521,9 @@ Model {
       Position		      [930, 282, 970, 298]
       ZOrder		      102
       ShowName		      off
+      Port {
+	PortNumber		1
+      }
     }
     Block {
       BlockType		      From
@@ -4017,6 +4534,9 @@ Model {
       ShowName		      off
       GotoTag		      "B"
       TagVisibility	      "scoped"
+      Port {
+	PortNumber		1
+      }
     }
     Block {
       BlockType		      From
@@ -4027,6 +4547,9 @@ Model {
       ShowName		      off
       GotoTag		      "D"
       TagVisibility	      "global"
+      Port {
+	PortNumber		1
+      }
     }
     Block {
       BlockType		      Gain
@@ -4046,7 +4569,7 @@ Model {
       SaturateOnIntegerOverflow	off
       Object {
 	$PropName		"MaskObject"
-	$ObjectID		51
+	$ObjectID		59
 	$ClassName		"Simulink.Mask"
 	Type			"TL_Gain"
 	Help			"eval(['if exist(''tl_online_help'',''file'') == 2, tl_online_help(''Topic'',''TL_Gain''),else, web([''jar:fil"
@@ -4059,7 +4582,7 @@ Model {
 	IconUnits		"normalized"
 	Object {
 	  $PropName		  "Parameters"
-	  $ObjectID		  52
+	  $ObjectID		  60
 	  $ClassName		  "Simulink.MaskParameter"
 	  Type			  "edit"
 	  Name			  "data"
@@ -4068,6 +4591,9 @@ Model {
 	  Evaluate		  "off"
 	  Visible		  "off"
 	}
+      }
+      Port {
+	PortNumber		1
       }
     }
     Block {
@@ -4079,6 +4605,9 @@ Model {
       ZOrder		      191
       ShowName		      off
       RequestExecContextInheritance off
+      Port {
+	PortNumber		1
+      }
       System {
 	Name			"GlobalFromIside"
 	Location		[683, 0, 1927, 1087]
@@ -4107,6 +4636,9 @@ Model {
 	  ShowName		  off
 	  GotoTag		  "E"
 	  TagVisibility		  "global"
+	  Port {
+	    PortNumber		    1
+	  }
 	}
 	Block {
 	  BlockType		  Outport
@@ -4119,6 +4651,7 @@ Model {
 	}
 	Line {
 	  ZOrder		  249
+	  Labels		  [0, 0]
 	  SrcBlock		  "From6"
 	  SrcPort		  1
 	  DstBlock		  "Out12"
@@ -4161,6 +4694,9 @@ Model {
 	  Position		  [20, 23, 50, 37]
 	  ZOrder		  188
 	  IconDisplay		  "Port number"
+	  Port {
+	    PortNumber		    1
+	  }
 	}
 	Block {
 	  BlockType		  Goto
@@ -4174,6 +4710,7 @@ Model {
 	}
 	Line {
 	  ZOrder		  246
+	  Labels		  [0, 0]
 	  SrcBlock		  "In11"
 	  SrcPort		  1
 	  DstBlock		  "Goto3"
@@ -4237,6 +4774,9 @@ Model {
       ShowName		      off
       TreatAsAtomicUnit	      on
       RequestExecContextInheritance off
+      Port {
+	PortNumber		1
+      }
       System {
 	Name			"GotoFromInside"
 	Location		[133, 108, 2069, 1324]
@@ -4263,6 +4803,9 @@ Model {
 	  Position		  [20, 23, 50, 37]
 	  ZOrder		  174
 	  IconDisplay		  "Port number"
+	  Port {
+	    PortNumber		    1
+	  }
 	}
 	Block {
 	  BlockType		  From
@@ -4271,6 +4814,9 @@ Model {
 	  Position		  [280, 22, 320, 38]
 	  ZOrder		  173
 	  ShowName		  off
+	  Port {
+	    PortNumber		    1
+	  }
 	}
 	Block {
 	  BlockType		  Goto
@@ -4291,6 +4837,7 @@ Model {
 	}
 	Line {
 	  ZOrder		  231
+	  Labels		  [0, 0]
 	  SrcBlock		  "In6"
 	  SrcPort		  1
 	  DstBlock		  "Goto2"
@@ -4298,6 +4845,7 @@ Model {
 	}
 	Line {
 	  ZOrder		  232
+	  Labels		  [0, 0]
 	  SrcBlock		  "From4"
 	  SrcPort		  1
 	  DstBlock		  "Out6"
@@ -4317,9 +4865,15 @@ Model {
       RequestExecContextInheritance off
       Object {
 	$PropName		"MaskObject"
-	$ObjectID		53
+	$ObjectID		61
 	$ClassName		"Simulink.Mask"
 	Type			"TestMask"
+      }
+      Port {
+	PortNumber		1
+      }
+      Port {
+	PortNumber		2
       }
       System {
 	Name			"GotoTagVisibilityInside"
@@ -4347,6 +4901,9 @@ Model {
 	  Position		  [20, 18, 50, 32]
 	  ZOrder		  202
 	  IconDisplay		  "Port number"
+	  Port {
+	    PortNumber		    1
+	  }
 	}
 	Block {
 	  BlockType		  Inport
@@ -4356,6 +4913,9 @@ Model {
 	  ZOrder		  206
 	  Port			  "2"
 	  IconDisplay		  "Port number"
+	  Port {
+	    PortNumber		    1
+	  }
 	}
 	Block {
 	  BlockType		  From
@@ -4365,6 +4925,9 @@ Model {
 	  ZOrder		  194
 	  GotoTag		  "B"
 	  TagVisibility		  "scoped"
+	  Port {
+	    PortNumber		    1
+	  }
 	}
 	Block {
 	  BlockType		  GotoTagVisibility
@@ -4399,6 +4962,9 @@ Model {
 	  Position		  [295, 57, 335, 73]
 	  ZOrder		  201
 	  RequestExecContextInheritance	off
+	  Port {
+	    PortNumber		    1
+	  }
 	  System {
 	    Name		    "Subsystem10"
 	    Location		    [683, 0, 1927, 1087]
@@ -4427,6 +4993,9 @@ Model {
 	      ShowName		      off
 	      GotoTag		      "C"
 	      TagVisibility	      "scoped"
+	      Port {
+		PortNumber		1
+	      }
 	    }
 	    Block {
 	      BlockType		      Outport
@@ -4439,6 +5008,7 @@ Model {
 	    }
 	    Line {
 	      ZOrder		      1
+	      Labels		      [0, 0]
 	      SrcBlock		      "From9"
 	      SrcPort		      1
 	      DstBlock		      "Out10"
@@ -4480,6 +5050,9 @@ Model {
 	      Position		      [20, 23, 50, 37]
 	      ZOrder		      137
 	      IconDisplay	      "Port number"
+	      Port {
+		PortNumber		1
+	      }
 	    }
 	    Block {
 	      BlockType		      Goto
@@ -4493,6 +5066,7 @@ Model {
 	    }
 	    Line {
 	      ZOrder		      1
+	      Labels		      [0, 0]
 	      SrcBlock		      "In9"
 	      SrcPort		      1
 	      DstBlock		      "Goto2"
@@ -4521,6 +5095,7 @@ Model {
 	}
 	Line {
 	  ZOrder		  258
+	  Labels		  [0, 0]
 	  SrcBlock		  "Subsystem10"
 	  SrcPort		  1
 	  DstBlock		  "Out10"
@@ -4528,6 +5103,7 @@ Model {
 	}
 	Line {
 	  ZOrder		  257
+	  Labels		  [0, 0]
 	  SrcBlock		  "From4"
 	  SrcPort		  1
 	  DstBlock		  "Out9"
@@ -4535,6 +5111,7 @@ Model {
 	}
 	Line {
 	  ZOrder		  255
+	  Labels		  [0, 0]
 	  SrcBlock		  "In9"
 	  SrcPort		  1
 	  DstBlock		  "Subsystem7"
@@ -4542,6 +5119,7 @@ Model {
 	}
 	Line {
 	  ZOrder		  264
+	  Labels		  [0, 0]
 	  SrcBlock		  "In10"
 	  SrcPort		  1
 	  DstBlock		  "Goto2"
@@ -4553,9 +5131,12 @@ Model {
       BlockType		      Ground
       Name		      "Ground"
       SID		      "412"
-      Position		      [775, 1052, 790, 1068]
+      Position		      [775, 1197, 790, 1213]
       ZOrder		      316
       ShowName		      off
+      Port {
+	PortNumber		1
+      }
     }
     Block {
       BlockType		      Ground
@@ -4564,6 +5145,9 @@ Model {
       Position		      [775, 652, 790, 668]
       ZOrder		      344
       ShowName		      off
+      Port {
+	PortNumber		1
+      }
     }
     Block {
       BlockType		      Ground
@@ -4572,6 +5156,9 @@ Model {
       Position		      [1400, 477, 1415, 493]
       ZOrder		      534
       ShowName		      off
+      Port {
+	PortNumber		1
+      }
     }
     Block {
       BlockType		      Ground
@@ -4580,6 +5167,9 @@ Model {
       Position		      [1400, 497, 1415, 513]
       ZOrder		      535
       ShowName		      off
+      Port {
+	PortNumber		1
+      }
     }
     Block {
       BlockType		      Ground
@@ -4588,38 +5178,53 @@ Model {
       Position		      [1400, 517, 1415, 533]
       ZOrder		      536
       ShowName		      off
+      Port {
+	PortNumber		1
+      }
     }
     Block {
       BlockType		      Ground
       Name		      "Ground13"
       SID		      "1101"
-      Position		      [775, 947, 790, 963]
+      Position		      [775, 962, 790, 978]
       ZOrder		      2254
       ShowName		      off
+      Port {
+	PortNumber		1
+      }
     }
     Block {
       BlockType		      Ground
       Name		      "Ground14"
       SID		      "1102"
-      Position		      [775, 872, 790, 888]
+      Position		      [775, 887, 790, 903]
       ZOrder		      2255
       ShowName		      off
+      Port {
+	PortNumber		1
+      }
     }
     Block {
       BlockType		      Ground
       Name		      "Ground15"
       SID		      "1122"
-      Position		      [775, 1022, 790, 1038]
+      Position		      [775, 1037, 790, 1053]
       ZOrder		      2276
       ShowName		      off
+      Port {
+	PortNumber		1
+      }
     }
     Block {
       BlockType		      Ground
       Name		      "Ground16"
       SID		      "1127"
-      Position		      [775, 982, 790, 998]
+      Position		      [775, 997, 790, 1013]
       ZOrder		      2278
       ShowName		      off
+      Port {
+	PortNumber		1
+      }
     }
     Block {
       BlockType		      Ground
@@ -4628,6 +5233,9 @@ Model {
       Position		      [1400, 192, 1415, 208]
       ZOrder		      461
       ShowName		      off
+      Port {
+	PortNumber		1
+      }
     }
     Block {
       BlockType		      Ground
@@ -4636,6 +5244,9 @@ Model {
       Position		      [1400, 272, 1415, 288]
       ZOrder		      462
       ShowName		      off
+      Port {
+	PortNumber		1
+      }
     }
     Block {
       BlockType		      Ground
@@ -4644,6 +5255,9 @@ Model {
       Position		      [1400, 292, 1415, 308]
       ZOrder		      463
       ShowName		      off
+      Port {
+	PortNumber		1
+      }
     }
     Block {
       BlockType		      Ground
@@ -4652,6 +5266,9 @@ Model {
       Position		      [1400, 312, 1415, 328]
       ZOrder		      464
       ShowName		      off
+      Port {
+	PortNumber		1
+      }
     }
     Block {
       BlockType		      Ground
@@ -4660,6 +5277,9 @@ Model {
       Position		      [1400, 397, 1415, 413]
       ZOrder		      518
       ShowName		      off
+      Port {
+	PortNumber		1
+      }
     }
     Block {
       BlockType		      Ground
@@ -4668,6 +5288,9 @@ Model {
       Position		      [1400, 417, 1415, 433]
       ZOrder		      519
       ShowName		      off
+      Port {
+	PortNumber		1
+      }
     }
     Block {
       BlockType		      Ground
@@ -4676,6 +5299,9 @@ Model {
       Position		      [1400, 437, 1415, 453]
       ZOrder		      520
       ShowName		      off
+      Port {
+	PortNumber		1
+      }
     }
     Block {
       BlockType		      Ground
@@ -4684,85 +5310,202 @@ Model {
       Position		      [1400, 457, 1415, 473]
       ZOrder		      533
       ShowName		      off
+      Port {
+	PortNumber		1
+      }
     }
     Block {
       BlockType		      Ground
       Name		      "Ground_1"
-      SID		      "1954"
-      Position		      [3330, 50, 3350, 70]
-      ZOrder		      2397
+      SID		      "1983"
+      Position		      [3265, 30, 3285, 50]
+      ZOrder		      2411
       BlockRotation	      270
       BlockMirror	      on
-      NamePlacement	      "alternate"
       ShowName		      off
-    }
-    Block {
-      BlockType		      Ground
-      Name		      "Ground_18"
-      SID		      "1315"
-      Position		      [3195, 50, 3215, 70]
-      ZOrder		      2355
-      BlockRotation	      270
-      BlockMirror	      on
-      NamePlacement	      "alternate"
-      ShowName		      off
+      Port {
+	PortNumber		1
+      }
     }
     Block {
       BlockType		      Ground
       Name		      "Ground_19"
       SID		      "1316"
-      Position		      [3410, -20, 3430, 0]
+      Position		      [2885, 275, 2905, 295]
       ZOrder		      2356
       ShowName		      off
+      Port {
+	PortNumber		1
+      }
+    }
+    Block {
+      BlockType		      Ground
+      Name		      "Ground_2"
+      SID		      "2377"
+      Position		      [3145, 275, 3165, 295]
+      ZOrder		      2486
+      ShowName		      off
+      Port {
+	PortNumber		1
+      }
     }
     Block {
       BlockType		      Ground
       Name		      "Ground_20"
       SID		      "1319"
-      Position		      [2925, 50, 2945, 70]
+      Position		      [2925, 30, 2945, 50]
       ZOrder		      2359
       BlockRotation	      270
       BlockMirror	      on
       ShowName		      off
+      Port {
+	PortNumber		1
+      }
     }
     Block {
       BlockType		      Ground
       Name		      "Ground_21"
       SID		      "1320"
-      Position		      [3060, 50, 3080, 70]
+      Position		      [3060, 30, 3080, 50]
       ZOrder		      2360
       BlockRotation	      270
       BlockMirror	      on
       ShowName		      off
+      Port {
+	PortNumber		1
+      }
     }
     Block {
       BlockType		      Ground
       Name		      "Ground_22"
       SID		      "1321"
-      Position		      [3465, 55, 3485, 75]
+      Position		      [3465, 30, 3485, 50]
       ZOrder		      2361
       BlockRotation	      270
       BlockMirror	      on
       ShowName		      off
+      Port {
+	PortNumber		1
+      }
+    }
+    Block {
+      BlockType		      Ground
+      Name		      "Ground_3"
+      SID		      "2380"
+      Position		      [3010, 275, 3030, 295]
+      ZOrder		      2489
+      ShowName		      off
+      Port {
+	PortNumber		1
+      }
     }
     Block {
       BlockType		      InitialCondition
       Name		      "IC"
       SID		      "427"
-      Position		      [885, 1251, 925, 1289]
+      Position		      [885, 1416, 925, 1454]
       ZOrder		      326
       ShowName		      off
+      Port {
+	PortNumber		1
+      }
+    }
+    Block {
+      BlockType		      If
+      Name		      "If"
+      SID		      "1982"
+      Ports		      [1, 2]
+      Position		      [3135, 60, 3410, 85]
+      ZOrder		      2410
+      BlockRotation	      270
+      BlockMirror	      on
+      NamePlacement	      "alternate"
+      Port {
+	PortNumber		1
+      }
+      Port {
+	PortNumber		2
+      }
+    }
+    Block {
+      BlockType		      SubSystem
+      Name		      "Initialize"
+      SID		      "2353"
+      Ports		      []
+      Position		      [3025, 386, 3115, 444]
+      ZOrder		      2473
+      RequestExecContextInheritance off
+      ContentPreviewEnabled   on
+      System {
+	Name			"Initialize"
+	Location		[1912, -16, 3848, 1200]
+	Open			off
+	PortBlocksUseCompactNotation off
+	SetExecutionDomain	off
+	ExecutionDomainType	"Deduce"
+	ModelBrowserVisibility	off
+	ModelBrowserWidth	200
+	ScreenColor		"white"
+	PaperOrientation	"landscape"
+	PaperPositionMode	"auto"
+	PaperType		"usletter"
+	PaperUnits		"inches"
+	TiledPaperMargins	[0.500000, 0.500000, 0.500000, 0.500000]
+	TiledPageScale		1
+	ShowPageBoundaries	off
+	ZoomFactor		"200"
+	SimulinkSubDomain	"Simulink"
+	Block {
+	  BlockType		  EventListener
+	  Name			  "Event Listener"
+	  SID			  "2360"
+	  Position		  [760, 295, 780, 315]
+	  ZOrder		  665
+	  DisableCoverage	  on
+	  EventName		  "reset"
+	}
+	Block {
+	  BlockType		  Ground
+	  Name			  "Ground"
+	  SID			  "2379"
+	  Position		  [720, 365, 740, 385]
+	  ZOrder		  666
+	  Port {
+	    PortNumber		    1
+	  }
+	}
+	Block {
+	  BlockType		  StateWriter
+	  Name			  "State Writer"
+	  SID			  "2356"
+	  Position		  [820, 365, 840, 385]
+	  ZOrder		  21
+	  StateOwnerBlock	  "slQuery_testmodel/StateWriterIntegrator"
+	  StateName		  "StateWriterState"
+	}
+	Line {
+	  ZOrder		  4
+	  Labels		  [0, 0]
+	  SrcBlock		  "Ground"
+	  SrcPort		  1
+	  DstBlock		  "State Writer"
+	  DstPort		  1
+	}
+      }
     }
     Block {
       BlockType		      Concatenate
       Name		      "Matrix\nConcatenate"
       SID		      "433"
       Ports		      [2, 1]
-      Position		      [565, 1464, 620, 1506]
+      Position		      [565, 1719, 620, 1761]
       ZOrder		      332
       Commented		      "on"
       Mode		      "Multidimensional array"
       ConcatenateDimension    "2"
+      Port {
+	PortNumber		1
+      }
     }
     Block {
       BlockType		      Memory
@@ -4772,6 +5515,9 @@ Model {
       ZOrder		      406
       BlockMirror	      on
       ShowName		      off
+      Port {
+	PortNumber		1
+      }
     }
     Block {
       BlockType		      Memory
@@ -4781,6 +5527,9 @@ Model {
       ZOrder		      486
       BlockMirror	      on
       ShowName		      off
+      Port {
+	PortNumber		1
+      }
     }
     Block {
       BlockType		      Memory
@@ -4790,6 +5539,9 @@ Model {
       ZOrder		      417
       BlockMirror	      on
       ShowName		      off
+      Port {
+	PortNumber		1
+      }
     }
     Block {
       BlockType		      Memory
@@ -4799,6 +5551,9 @@ Model {
       ZOrder		      423
       BlockMirror	      on
       ShowName		      off
+      Port {
+	PortNumber		1
+      }
     }
     Block {
       BlockType		      Memory
@@ -4808,6 +5563,9 @@ Model {
       ZOrder		      424
       BlockMirror	      on
       ShowName		      off
+      Port {
+	PortNumber		1
+      }
     }
     Block {
       BlockType		      Memory
@@ -4817,6 +5575,9 @@ Model {
       ZOrder		      433
       BlockMirror	      on
       ShowName		      off
+      Port {
+	PortNumber		1
+      }
     }
     Block {
       BlockType		      Memory
@@ -4826,6 +5587,9 @@ Model {
       ZOrder		      434
       BlockMirror	      on
       ShowName		      off
+      Port {
+	PortNumber		1
+      }
     }
     Block {
       BlockType		      Memory
@@ -4835,6 +5599,9 @@ Model {
       ZOrder		      504
       BlockMirror	      on
       ShowName		      off
+      Port {
+	PortNumber		1
+      }
     }
     Block {
       BlockType		      Memory
@@ -4844,6 +5611,9 @@ Model {
       ZOrder		      505
       BackgroundColor	      "gray"
       ShowName		      off
+      Port {
+	PortNumber		1
+      }
     }
     Block {
       BlockType		      Mux
@@ -4857,6 +5627,9 @@ Model {
       ShowName		      off
       Inputs		      "3"
       DisplayOption	      "bar"
+      Port {
+	PortNumber		1
+      }
     }
     Block {
       BlockType		      Mux
@@ -4870,6 +5643,9 @@ Model {
       ShowName		      off
       Inputs		      "2"
       DisplayOption	      "bar"
+      Port {
+	PortNumber		1
+      }
     }
     Block {
       BlockType		      Mux
@@ -4882,6 +5658,9 @@ Model {
       ShowName		      off
       Inputs		      "3"
       DisplayOption	      "bar"
+      Port {
+	PortNumber		1
+      }
     }
     Block {
       BlockType		      Mux
@@ -4894,6 +5673,9 @@ Model {
       ShowName		      off
       Inputs		      "3"
       DisplayOption	      "bar"
+      Port {
+	PortNumber		1
+      }
     }
     Block {
       BlockType		      Mux
@@ -4905,6 +5687,9 @@ Model {
       ShowName		      off
       Inputs		      "3"
       DisplayOption	      "bar"
+      Port {
+	PortNumber		1
+      }
     }
     Block {
       BlockType		      Mux
@@ -4918,6 +5703,9 @@ Model {
       ShowName		      off
       Inputs		      "2"
       DisplayOption	      "bar"
+      Port {
+	PortNumber		1
+      }
     }
     Block {
       BlockType		      Mux
@@ -4931,6 +5719,9 @@ Model {
       ShowName		      off
       Inputs		      "2"
       DisplayOption	      "bar"
+      Port {
+	PortNumber		1
+      }
     }
     Block {
       BlockType		      Mux
@@ -4942,6 +5733,9 @@ Model {
       ShowName		      off
       Inputs		      "3"
       DisplayOption	      "bar"
+      Port {
+	PortNumber		1
+      }
     }
     Block {
       BlockType		      Mux
@@ -4953,25 +5747,34 @@ Model {
       ShowName		      off
       Inputs		      "2"
       DisplayOption	      "bar"
+      Port {
+	PortNumber		1
+      }
     }
     Block {
       BlockType		      Mux
       Name		      "Mux6"
       SID		      "515"
       Ports		      [3, 1]
-      Position		      [965, 1303, 970, 1357]
+      Position		      [965, 1488, 970, 1542]
       ZOrder		      354
       ShowName		      off
       Inputs		      "3"
       DisplayOption	      "bar"
+      Port {
+	PortNumber		1
+      }
     }
     Block {
       BlockType		      PermuteDimensions
       Name		      "Permute\nDimensions"
       SID		      "430"
-      Position		      [660, 1464, 715, 1506]
+      Position		      [660, 1719, 715, 1761]
       ZOrder		      329
       Commented		      "on"
+      Port {
+	PortNumber		1
+      }
     }
     Block {
       BlockType		      Product
@@ -4980,170 +5783,6 @@ Model {
       Ports		      [2, 1]
       Position		      [1550, 705, 1570, 725]
       ZOrder		      407
-      ShowName		      off
-      CopyFcn		      "if exist('tl_reset_reviewflag','file')==2,tl_reset_reviewflag(gcbh);end"
-      DeleteFcn		      "if exist('delete_tlblock','file')==2,delete_tlblock(gcbh);end"
-      NameChangeFcn	      "if exist('rename_tlblock','file')==2,rename_tlblock(gcbh);end"
-      OpenFcn		      "if exist('tl_open_blockdlg','file')==2,tl_open_blockdlg(gcbh);else,open_system(gcbh,'parameter')"
-      ";end"
-      InputSameDT	      off
-      OutDataTypeStr	      "Inherit: Inherit via internal rule"
-      RndMeth		      "Floor"
-      SaturateOnIntegerOverflow	off
-      Object {
-	$PropName		"MaskObject"
-	$ObjectID		54
-	$ClassName		"Simulink.Mask"
-	Type			"TL_Product"
-	Help			"eval(['if exist(''tl_online_help'',''file'') == 2, tl_online_help(''Topic'',''TL_Product''),else, web([''jar:"
-	"file:///'',matlabroot,''/help/toolbox/simulink/help.jar!/slref/' lower(get_param(gcbh,'Blocktype')) '.html''], ''-hel"
-	"pbrowser''),end'])"
-	Display			"plot([-0.1, 1.05, NaN, -0.1, 1.05],[.01, .01, NaN, .99, .99]);\n"
-	IconOpaque		"transparent"
-	IconUnits		"normalized"
-	Object {
-	  $PropName		  "Parameters"
-	  $ObjectID		  55
-	  $ClassName		  "Simulink.MaskParameter"
-	  Type			  "edit"
-	  Name			  "data"
-	  Prompt		  "data"
-	  Value			  "{'date',737609.79318274301}"
-	  Evaluate		  "off"
-	  Visible		  "off"
-	}
-      }
-    }
-    Block {
-      BlockType		      Product
-      Name		      "Product10"
-      SID		      "822"
-      Ports		      [2, 1]
-      Position		      [1550, 990, 1570, 1010]
-      ZOrder		      485
-      ShowName		      off
-      CopyFcn		      "if exist('tl_reset_reviewflag','file')==2,tl_reset_reviewflag(gcbh);end"
-      DeleteFcn		      "if exist('delete_tlblock','file')==2,delete_tlblock(gcbh);end"
-      NameChangeFcn	      "if exist('rename_tlblock','file')==2,rename_tlblock(gcbh);end"
-      OpenFcn		      "if exist('tl_open_blockdlg','file')==2,tl_open_blockdlg(gcbh);else,open_system(gcbh,'parameter')"
-      ";end"
-      InputSameDT	      off
-      OutDataTypeStr	      "Inherit: Inherit via internal rule"
-      RndMeth		      "Floor"
-      SaturateOnIntegerOverflow	off
-      Object {
-	$PropName		"MaskObject"
-	$ObjectID		56
-	$ClassName		"Simulink.Mask"
-	Type			"TL_Product"
-	Help			"eval(['if exist(''tl_online_help'',''file'') == 2, tl_online_help(''Topic'',''TL_Product''),else, web([''jar:"
-	"file:///'',matlabroot,''/help/toolbox/simulink/help.jar!/slref/' lower(get_param(gcbh,'Blocktype')) '.html''], ''-hel"
-	"pbrowser''),end'])"
-	Display			"plot([-0.1, 1.05, NaN, -0.1, 1.05],[.01, .01, NaN, .99, .99]);\n"
-	IconOpaque		"transparent"
-	IconUnits		"normalized"
-	Object {
-	  $PropName		  "Parameters"
-	  $ObjectID		  57
-	  $ClassName		  "Simulink.MaskParameter"
-	  Type			  "edit"
-	  Name			  "data"
-	  Prompt		  "data"
-	  Value			  "{'output',{'type','UInt8'},'date',737609.79343885416}"
-	  Evaluate		  "off"
-	  Visible		  "off"
-	}
-      }
-    }
-    Block {
-      BlockType		      Product
-      Name		      "Product11"
-      SID		      "823"
-      Ports		      [2, 1]
-      Position		      [1550, 1120, 1570, 1140]
-      ZOrder		      489
-      ShowName		      off
-      CopyFcn		      "if exist('tl_reset_reviewflag','file')==2,tl_reset_reviewflag(gcbh);end"
-      DeleteFcn		      "if exist('delete_tlblock','file')==2,delete_tlblock(gcbh);end"
-      NameChangeFcn	      "if exist('rename_tlblock','file')==2,rename_tlblock(gcbh);end"
-      OpenFcn		      "if exist('tl_open_blockdlg','file')==2,tl_open_blockdlg(gcbh);else,open_system(gcbh,'parameter')"
-      ";end"
-      InputSameDT	      off
-      OutDataTypeStr	      "Inherit: Inherit via internal rule"
-      RndMeth		      "Floor"
-      SaturateOnIntegerOverflow	off
-      Object {
-	$PropName		"MaskObject"
-	$ObjectID		58
-	$ClassName		"Simulink.Mask"
-	Type			"TL_Product"
-	Help			"eval(['if exist(''tl_online_help'',''file'') == 2, tl_online_help(''Topic'',''TL_Product''),else, web([''jar:"
-	"file:///'',matlabroot,''/help/toolbox/simulink/help.jar!/slref/' lower(get_param(gcbh,'Blocktype')) '.html''], ''-hel"
-	"pbrowser''),end'])"
-	Display			"plot([-0.1, 1.05, NaN, -0.1, 1.05],[.01, .01, NaN, .99, .99]);\n"
-	IconOpaque		"transparent"
-	IconUnits		"normalized"
-	Object {
-	  $PropName		  "Parameters"
-	  $ObjectID		  59
-	  $ClassName		  "Simulink.MaskParameter"
-	  Type			  "edit"
-	  Name			  "data"
-	  Prompt		  "data"
-	  Value			  "{'output',{'type','UInt16'},'date',737609.79352688661}"
-	  Evaluate		  "off"
-	  Visible		  "off"
-	}
-      }
-    }
-    Block {
-      BlockType		      Product
-      Name		      "Product12"
-      SID		      "824"
-      Ports		      [2, 1]
-      Position		      [1550, 1245, 1570, 1265]
-      ZOrder		      493
-      ShowName		      off
-      CopyFcn		      "if exist('tl_reset_reviewflag','file')==2,tl_reset_reviewflag(gcbh);end"
-      DeleteFcn		      "if exist('delete_tlblock','file')==2,delete_tlblock(gcbh);end"
-      NameChangeFcn	      "if exist('rename_tlblock','file')==2,rename_tlblock(gcbh);end"
-      OpenFcn		      "if exist('tl_open_blockdlg','file')==2,tl_open_blockdlg(gcbh);else,open_system(gcbh,'parameter')"
-      ";end"
-      InputSameDT	      off
-      OutDataTypeStr	      "Inherit: Inherit via internal rule"
-      RndMeth		      "Floor"
-      SaturateOnIntegerOverflow	off
-      Object {
-	$PropName		"MaskObject"
-	$ObjectID		60
-	$ClassName		"Simulink.Mask"
-	Type			"TL_Product"
-	Help			"eval(['if exist(''tl_online_help'',''file'') == 2, tl_online_help(''Topic'',''TL_Product''),else, web([''jar:"
-	"file:///'',matlabroot,''/help/toolbox/simulink/help.jar!/slref/' lower(get_param(gcbh,'Blocktype')) '.html''], ''-hel"
-	"pbrowser''),end'])"
-	Display			"plot([-0.1, 1.05, NaN, -0.1, 1.05],[.01, .01, NaN, .99, .99]);\n"
-	IconOpaque		"transparent"
-	IconUnits		"normalized"
-	Object {
-	  $PropName		  "Parameters"
-	  $ObjectID		  61
-	  $ClassName		  "Simulink.MaskParameter"
-	  Type			  "edit"
-	  Name			  "data"
-	  Prompt		  "data"
-	  Value			  "{'output',{'type','UInt32'},'date',737609.79361886578}"
-	  Evaluate		  "off"
-	  Visible		  "off"
-	}
-      }
-    }
-    Block {
-      BlockType		      Product
-      Name		      "Product3"
-      SID		      "716"
-      Ports		      [2, 1]
-      Position		      [1550, 635, 1570, 655]
-      ZOrder		      418
       ShowName		      off
       CopyFcn		      "if exist('tl_reset_reviewflag','file')==2,tl_reset_reviewflag(gcbh);end"
       DeleteFcn		      "if exist('delete_tlblock','file')==2,delete_tlblock(gcbh);end"
@@ -5172,19 +5811,22 @@ Model {
 	  Type			  "edit"
 	  Name			  "data"
 	  Prompt		  "data"
-	  Value			  "{'output',{'type','Int8'},'date',737609.79310484952}"
+	  Value			  "{'date',737609.79318274301}"
 	  Evaluate		  "off"
 	  Visible		  "off"
 	}
       }
+      Port {
+	PortNumber		1
+      }
     }
     Block {
       BlockType		      Product
-      Name		      "Product4"
-      SID		      "723"
+      Name		      "Product10"
+      SID		      "822"
       Ports		      [2, 1]
-      Position		      [1565, 785, 1585, 805]
-      ZOrder		      421
+      Position		      [1550, 990, 1570, 1010]
+      ZOrder		      485
       ShowName		      off
       CopyFcn		      "if exist('tl_reset_reviewflag','file')==2,tl_reset_reviewflag(gcbh);end"
       DeleteFcn		      "if exist('delete_tlblock','file')==2,delete_tlblock(gcbh);end"
@@ -5213,19 +5855,22 @@ Model {
 	  Type			  "edit"
 	  Name			  "data"
 	  Prompt		  "data"
-	  Value			  "{'output',{'type','Int32'},'date',737609.79325869214}"
+	  Value			  "{'output',{'type','UInt8'},'date',737609.79343885416}"
 	  Evaluate		  "off"
 	  Visible		  "off"
 	}
       }
+      Port {
+	PortNumber		1
+      }
     }
     Block {
       BlockType		      Product
-      Name		      "Product5"
-      SID		      "724"
+      Name		      "Product11"
+      SID		      "823"
       Ports		      [2, 1]
-      Position		      [1520, 800, 1540, 820]
-      ZOrder		      422
+      Position		      [1550, 1120, 1570, 1140]
+      ZOrder		      489
       ShowName		      off
       CopyFcn		      "if exist('tl_reset_reviewflag','file')==2,tl_reset_reviewflag(gcbh);end"
       DeleteFcn		      "if exist('delete_tlblock','file')==2,delete_tlblock(gcbh);end"
@@ -5254,19 +5899,22 @@ Model {
 	  Type			  "edit"
 	  Name			  "data"
 	  Prompt		  "data"
-	  Value			  "{'output',{'type','Float32'},'date',737609.79287188663}"
+	  Value			  "{'output',{'type','UInt16'},'date',737609.79352688661}"
 	  Evaluate		  "off"
 	  Visible		  "off"
 	}
       }
+      Port {
+	PortNumber		1
+      }
     }
     Block {
       BlockType		      Product
-      Name		      "Product6"
-      SID		      "733"
+      Name		      "Product12"
+      SID		      "824"
       Ports		      [2, 1]
-      Position		      [1550, 880, 1570, 900]
-      ZOrder		      431
+      Position		      [1550, 1245, 1570, 1265]
+      ZOrder		      493
       ShowName		      off
       CopyFcn		      "if exist('tl_reset_reviewflag','file')==2,tl_reset_reviewflag(gcbh);end"
       DeleteFcn		      "if exist('delete_tlblock','file')==2,delete_tlblock(gcbh);end"
@@ -5295,24 +5943,203 @@ Model {
 	  Type			  "edit"
 	  Name			  "data"
 	  Prompt		  "data"
+	  Value			  "{'output',{'type','UInt32'},'date',737609.79361886578}"
+	  Evaluate		  "off"
+	  Visible		  "off"
+	}
+      }
+      Port {
+	PortNumber		1
+      }
+    }
+    Block {
+      BlockType		      Product
+      Name		      "Product3"
+      SID		      "716"
+      Ports		      [2, 1]
+      Position		      [1550, 635, 1570, 655]
+      ZOrder		      418
+      ShowName		      off
+      CopyFcn		      "if exist('tl_reset_reviewflag','file')==2,tl_reset_reviewflag(gcbh);end"
+      DeleteFcn		      "if exist('delete_tlblock','file')==2,delete_tlblock(gcbh);end"
+      NameChangeFcn	      "if exist('rename_tlblock','file')==2,rename_tlblock(gcbh);end"
+      OpenFcn		      "if exist('tl_open_blockdlg','file')==2,tl_open_blockdlg(gcbh);else,open_system(gcbh,'parameter')"
+      ";end"
+      InputSameDT	      off
+      OutDataTypeStr	      "Inherit: Inherit via internal rule"
+      RndMeth		      "Floor"
+      SaturateOnIntegerOverflow	off
+      Object {
+	$PropName		"MaskObject"
+	$ObjectID		70
+	$ClassName		"Simulink.Mask"
+	Type			"TL_Product"
+	Help			"eval(['if exist(''tl_online_help'',''file'') == 2, tl_online_help(''Topic'',''TL_Product''),else, web([''jar:"
+	"file:///'',matlabroot,''/help/toolbox/simulink/help.jar!/slref/' lower(get_param(gcbh,'Blocktype')) '.html''], ''-hel"
+	"pbrowser''),end'])"
+	Display			"plot([-0.1, 1.05, NaN, -0.1, 1.05],[.01, .01, NaN, .99, .99]);\n"
+	IconOpaque		"transparent"
+	IconUnits		"normalized"
+	Object {
+	  $PropName		  "Parameters"
+	  $ObjectID		  71
+	  $ClassName		  "Simulink.MaskParameter"
+	  Type			  "edit"
+	  Name			  "data"
+	  Prompt		  "data"
+	  Value			  "{'output',{'type','Int8'},'date',737609.79310484952}"
+	  Evaluate		  "off"
+	  Visible		  "off"
+	}
+      }
+      Port {
+	PortNumber		1
+      }
+    }
+    Block {
+      BlockType		      Product
+      Name		      "Product4"
+      SID		      "723"
+      Ports		      [2, 1]
+      Position		      [1565, 785, 1585, 805]
+      ZOrder		      421
+      ShowName		      off
+      CopyFcn		      "if exist('tl_reset_reviewflag','file')==2,tl_reset_reviewflag(gcbh);end"
+      DeleteFcn		      "if exist('delete_tlblock','file')==2,delete_tlblock(gcbh);end"
+      NameChangeFcn	      "if exist('rename_tlblock','file')==2,rename_tlblock(gcbh);end"
+      OpenFcn		      "if exist('tl_open_blockdlg','file')==2,tl_open_blockdlg(gcbh);else,open_system(gcbh,'parameter')"
+      ";end"
+      InputSameDT	      off
+      OutDataTypeStr	      "Inherit: Inherit via internal rule"
+      RndMeth		      "Floor"
+      SaturateOnIntegerOverflow	off
+      Object {
+	$PropName		"MaskObject"
+	$ObjectID		72
+	$ClassName		"Simulink.Mask"
+	Type			"TL_Product"
+	Help			"eval(['if exist(''tl_online_help'',''file'') == 2, tl_online_help(''Topic'',''TL_Product''),else, web([''jar:"
+	"file:///'',matlabroot,''/help/toolbox/simulink/help.jar!/slref/' lower(get_param(gcbh,'Blocktype')) '.html''], ''-hel"
+	"pbrowser''),end'])"
+	Display			"plot([-0.1, 1.05, NaN, -0.1, 1.05],[.01, .01, NaN, .99, .99]);\n"
+	IconOpaque		"transparent"
+	IconUnits		"normalized"
+	Object {
+	  $PropName		  "Parameters"
+	  $ObjectID		  73
+	  $ClassName		  "Simulink.MaskParameter"
+	  Type			  "edit"
+	  Name			  "data"
+	  Prompt		  "data"
+	  Value			  "{'output',{'type','Int32'},'date',737609.79325869214}"
+	  Evaluate		  "off"
+	  Visible		  "off"
+	}
+      }
+      Port {
+	PortNumber		1
+      }
+    }
+    Block {
+      BlockType		      Product
+      Name		      "Product5"
+      SID		      "724"
+      Ports		      [2, 1]
+      Position		      [1520, 800, 1540, 820]
+      ZOrder		      422
+      ShowName		      off
+      CopyFcn		      "if exist('tl_reset_reviewflag','file')==2,tl_reset_reviewflag(gcbh);end"
+      DeleteFcn		      "if exist('delete_tlblock','file')==2,delete_tlblock(gcbh);end"
+      NameChangeFcn	      "if exist('rename_tlblock','file')==2,rename_tlblock(gcbh);end"
+      OpenFcn		      "if exist('tl_open_blockdlg','file')==2,tl_open_blockdlg(gcbh);else,open_system(gcbh,'parameter')"
+      ";end"
+      InputSameDT	      off
+      OutDataTypeStr	      "Inherit: Inherit via internal rule"
+      RndMeth		      "Floor"
+      SaturateOnIntegerOverflow	off
+      Object {
+	$PropName		"MaskObject"
+	$ObjectID		74
+	$ClassName		"Simulink.Mask"
+	Type			"TL_Product"
+	Help			"eval(['if exist(''tl_online_help'',''file'') == 2, tl_online_help(''Topic'',''TL_Product''),else, web([''jar:"
+	"file:///'',matlabroot,''/help/toolbox/simulink/help.jar!/slref/' lower(get_param(gcbh,'Blocktype')) '.html''], ''-hel"
+	"pbrowser''),end'])"
+	Display			"plot([-0.1, 1.05, NaN, -0.1, 1.05],[.01, .01, NaN, .99, .99]);\n"
+	IconOpaque		"transparent"
+	IconUnits		"normalized"
+	Object {
+	  $PropName		  "Parameters"
+	  $ObjectID		  75
+	  $ClassName		  "Simulink.MaskParameter"
+	  Type			  "edit"
+	  Name			  "data"
+	  Prompt		  "data"
+	  Value			  "{'output',{'type','Float32'},'date',737609.79287188663}"
+	  Evaluate		  "off"
+	  Visible		  "off"
+	}
+      }
+      Port {
+	PortNumber		1
+      }
+    }
+    Block {
+      BlockType		      Product
+      Name		      "Product6"
+      SID		      "733"
+      Ports		      [2, 1]
+      Position		      [1550, 880, 1570, 900]
+      ZOrder		      431
+      ShowName		      off
+      CopyFcn		      "if exist('tl_reset_reviewflag','file')==2,tl_reset_reviewflag(gcbh);end"
+      DeleteFcn		      "if exist('delete_tlblock','file')==2,delete_tlblock(gcbh);end"
+      NameChangeFcn	      "if exist('rename_tlblock','file')==2,rename_tlblock(gcbh);end"
+      OpenFcn		      "if exist('tl_open_blockdlg','file')==2,tl_open_blockdlg(gcbh);else,open_system(gcbh,'parameter')"
+      ";end"
+      InputSameDT	      off
+      OutDataTypeStr	      "Inherit: Inherit via internal rule"
+      RndMeth		      "Floor"
+      SaturateOnIntegerOverflow	off
+      Object {
+	$PropName		"MaskObject"
+	$ObjectID		76
+	$ClassName		"Simulink.Mask"
+	Type			"TL_Product"
+	Help			"eval(['if exist(''tl_online_help'',''file'') == 2, tl_online_help(''Topic'',''TL_Product''),else, web([''jar:"
+	"file:///'',matlabroot,''/help/toolbox/simulink/help.jar!/slref/' lower(get_param(gcbh,'Blocktype')) '.html''], ''-hel"
+	"pbrowser''),end'])"
+	Display			"plot([-0.1, 1.05, NaN, -0.1, 1.05],[.01, .01, NaN, .99, .99]);\n"
+	IconOpaque		"transparent"
+	IconUnits		"normalized"
+	Object {
+	  $PropName		  "Parameters"
+	  $ObjectID		  77
+	  $ClassName		  "Simulink.MaskParameter"
+	  Type			  "edit"
+	  Name			  "data"
+	  Prompt		  "data"
 	  Value			  "{'output',{'type','Float64'},'date',737609.79334344913}"
 	  Evaluate		  "off"
 	  Visible		  "off"
 	}
       }
+      Port {
+	PortNumber		1
+      }
     }
     Block {
       BlockType		      SubSystem
-      Name		      "Resettable"
-      SID		      "1299"
-      Ports		      [1, 1, 0, 0, 0, 1, 1, 0, 1]
-      Position		      [3430, 101, 3520, 159]
-      ZOrder		      2353
+      Name		      "Reset"
+      SID		      "2365"
+      Ports		      []
+      Position		      [3295, 386, 3385, 444]
+      ZOrder		      2475
       RequestExecContextInheritance off
       ContentPreviewEnabled   on
       System {
-	Name			"Resettable"
-	Location		[990, 0, 1927, 1087]
+	Name			"Reset"
+	Location		[1912, -16, 3848, 1200]
 	Open			off
 	PortBlocksUseCompactNotation off
 	SetExecutionDomain	off
@@ -5330,13 +6157,59 @@ Model {
 	ZoomFactor		"200"
 	SimulinkSubDomain	"Simulink"
 	Block {
+	  BlockType		  EventListener
+	  Name			  "Event Listener"
+	  SID			  "2367"
+	  Position		  [760, 295, 780, 315]
+	  ZOrder		  665
+	  DisableCoverage	  on
+	  EventType		  "Reset"
+	  EventName		  "reset"
+	}
+      }
+    }
+    Block {
+      BlockType		      SubSystem
+      Name		      "Resettable"
+      SID		      "1299"
+      Ports		      [1, 1, 0, 0, 0, 1, 1, 0, 1]
+      Position		      [3430, 101, 3520, 159]
+      ZOrder		      2353
+      RequestExecContextInheritance off
+      ContentPreviewEnabled   on
+      Port {
+	PortNumber		1
+      }
+      System {
+	Name			"Resettable"
+	Location		[1912, -16, 3848, 1200]
+	Open			off
+	PortBlocksUseCompactNotation off
+	SetExecutionDomain	off
+	ExecutionDomainType	"Deduce"
+	ModelBrowserVisibility	off
+	ModelBrowserWidth	200
+	ScreenColor		"white"
+	PaperOrientation	"landscape"
+	PaperPositionMode	"auto"
+	PaperType		"usletter"
+	PaperUnits		"inches"
+	TiledPaperMargins	[0.500000, 0.500000, 0.500000, 0.500000]
+	TiledPageScale		1
+	ShowPageBoundaries	off
+	ZoomFactor		"225"
+	SimulinkSubDomain	"Simulink"
+	Block {
 	  BlockType		  Inport
-	  Name			  "In50"
+	  Name			  "In54"
 	  SID			  "1300"
 	  Position		  [415, -2, 445, 12]
 	  ZOrder		  2891
 	  HideAutomaticName	  off
 	  IconDisplay		  "Port number"
+	  Port {
+	    PortNumber		    1
+	  }
 	}
 	Block {
 	  BlockType		  ResetPort
@@ -5348,7 +6221,7 @@ Model {
 	}
 	Block {
 	  BlockType		  PMIOPort
-	  Name			  "LConn14"
+	  Name			  "LConn15"
 	  SID			  "1301"
 	  Position		  [415, 28, 445, 42]
 	  ZOrder		  2893
@@ -5357,7 +6230,7 @@ Model {
 	}
 	Block {
 	  BlockType		  PMIOPort
-	  Name			  "RConn14"
+	  Name			  "RConn15"
 	  SID			  "1302"
 	  Position		  [530, 28, 560, 42]
 	  ZOrder		  2894
@@ -5368,7 +6241,7 @@ Model {
 	}
 	Block {
 	  BlockType		  Outport
-	  Name			  "Out50"
+	  Name			  "Out54"
 	  SID			  "1303"
 	  Position		  [530, -2, 560, 12]
 	  ZOrder		  2892
@@ -5378,16 +6251,17 @@ Model {
 	Line {
 	  LineType		  "Connection"
 	  ZOrder		  1
-	  SrcBlock		  "RConn14"
+	  SrcBlock		  "RConn15"
 	  SrcPort		  RConn1
-	  DstBlock		  "LConn14"
+	  DstBlock		  "LConn15"
 	  DstPort		  RConn1
 	}
 	Line {
 	  ZOrder		  2
-	  SrcBlock		  "In50"
+	  Labels		  [0, 0]
+	  SrcBlock		  "In54"
 	  SrcPort		  1
-	  DstBlock		  "Out50"
+	  DstBlock		  "Out54"
 	  DstPort		  1
 	}
       }
@@ -5397,9 +6271,12 @@ Model {
       Name		      "Reshape"
       SID		      "498"
       Ports		      [1, 1]
-      Position		      [565, 1679, 620, 1721]
+      Position		      [565, 1934, 620, 1976]
       ZOrder		      345
       Commented		      "on"
+      Port {
+	PortNumber		1
+      }
     }
     Block {
       BlockType		      SubSystem
@@ -5410,6 +6287,9 @@ Model {
       ZOrder		      169
       ShowName		      off
       RequestExecContextInheritance off
+      Port {
+	PortNumber		1
+      }
       System {
 	Name			"ScopedFromInside"
 	Location		[997, 0, 1920, 1200]
@@ -5438,6 +6318,9 @@ Model {
 	  ShowName		  off
 	  GotoTag		  "C"
 	  TagVisibility		  "scoped"
+	  Port {
+	    PortNumber		    1
+	  }
 	}
 	Block {
 	  BlockType		  Outport
@@ -5450,6 +6333,7 @@ Model {
 	}
 	Line {
 	  ZOrder		  220
+	  Labels		  [0, 0]
 	  SrcBlock		  "From9"
 	  SrcPort		  1
 	  DstBlock		  "Out8"
@@ -5492,6 +6376,9 @@ Model {
 	  Position		  [20, 23, 50, 37]
 	  ZOrder		  137
 	  IconDisplay		  "Port number"
+	  Port {
+	    PortNumber		    1
+	  }
 	}
 	Block {
 	  BlockType		  Goto
@@ -5505,6 +6392,7 @@ Model {
 	}
 	Line {
 	  ZOrder		  201
+	  Labels		  [0, 0]
 	  SrcBlock		  "In7"
 	  SrcPort		  1
 	  DstBlock		  "Goto2"
@@ -5517,47 +6405,62 @@ Model {
       Name		      "Selector"
       SID		      "421"
       Ports		      [1, 1]
-      Position		      [660, 1604, 715, 1646]
+      Position		      [660, 1859, 715, 1901]
       ZOrder		      320
       Commented		      "on"
       InputPortWidth	      "3"
       IndexOptions	      "Index vector (dialog)"
       Indices		      "[1 3]"
       OutputSizes	      "1"
+      Port {
+	PortNumber		1
+      }
     }
     Block {
       BlockType		      SignalConversion
       Name		      "Signal\nConversion"
       SID		      "423"
-      Position		      [885, 1201, 925, 1239]
+      Position		      [885, 1366, 925, 1404]
       ZOrder		      322
       ShowName		      off
       OverrideOpt	      off
+      Port {
+	PortNumber		1
+      }
     }
     Block {
       BlockType		      SignalSpecification
       Name		      "Signal Specification"
       SID		      "426"
-      Position		      [840, 1152, 970, 1168]
+      Position		      [840, 1317, 970, 1333]
       ZOrder		      325
       ShowName		      off
       SignalType	      "real"
+      Port {
+	PortNumber		1
+      }
     }
     Block {
       BlockType		      SubSystem
       Name		      "SignalCopyInside"
       SID		      "144"
       Ports		      [1, 2]
-      Position		      [840, 217, 970, 253]
+      Position		      [840, 227, 970, 263]
       ZOrder		      97
       ShowName		      off
       TreatAsAtomicUnit	      on
       RequestExecContextInheritance off
       Object {
 	$PropName		"MaskObject"
-	$ObjectID		70
+	$ObjectID		78
 	$ClassName		"Simulink.Mask"
 	Type			"TestMask"
+      }
+      Port {
+	PortNumber		1
+      }
+      Port {
+	PortNumber		2
       }
       System {
 	Name			"SignalCopyInside"
@@ -5585,6 +6488,9 @@ Model {
 	  Position		  [110, 103, 140, 117]
 	  ZOrder		  -1
 	  IconDisplay		  "Port number"
+	  Port {
+	    PortNumber		    1
+	  }
 	}
 	Block {
 	  BlockType		  InportShadow
@@ -5593,6 +6499,9 @@ Model {
 	  Position		  [280, 133, 310, 147]
 	  ZOrder		  2
 	  IconDisplay		  "Port number"
+	  Port {
+	    PortNumber		    1
+	  }
 	}
 	Block {
 	  BlockType		  InportShadow
@@ -5601,6 +6510,9 @@ Model {
 	  Position		  [280, 168, 310, 182]
 	  ZOrder		  309
 	  IconDisplay		  "Port number"
+	  Port {
+	    PortNumber		    1
+	  }
 	}
 	Block {
 	  BlockType		  Terminator
@@ -5629,6 +6541,7 @@ Model {
 	}
 	Line {
 	  ZOrder		  1
+	  Labels		  [0, 0]
 	  SrcBlock		  "In4"
 	  SrcPort		  1
 	  DstBlock		  "Out4"
@@ -5636,6 +6549,7 @@ Model {
 	}
 	Line {
 	  ZOrder		  5
+	  Labels		  [0, 0]
 	  SrcBlock		  "In4_copy1"
 	  SrcPort		  1
 	  DstBlock		  "Out4_copy"
@@ -5643,6 +6557,7 @@ Model {
 	}
 	Line {
 	  ZOrder		  7
+	  Labels		  [0, 0]
 	  SrcBlock		  "In4_copy2"
 	  SrcPort		  1
 	  DstBlock		  "Terminator"
@@ -5655,11 +6570,14 @@ Model {
       Name		      "SignalInside"
       SID		      "133"
       Ports		      [1, 1]
-      Position		      [840, 137, 970, 153]
+      Position		      [840, 147, 970, 163]
       ZOrder		      90
       ShowName		      off
       TreatAsAtomicUnit	      on
       RequestExecContextInheritance off
+      Port {
+	PortNumber		1
+      }
       System {
 	Name			"SignalInside"
 	Location		[133, 108, 2069, 1324]
@@ -5687,6 +6605,9 @@ Model {
 	  ZOrder		  -1
 	  BackgroundColor	  "automatic"
 	  IconDisplay		  "Port number"
+	  Port {
+	    PortNumber		    1
+	  }
 	}
 	Block {
 	  BlockType		  Outport
@@ -5699,6 +6620,7 @@ Model {
 	}
 	Line {
 	  ZOrder		  1
+	  Labels		  [0, 0]
 	  SrcBlock		  "In2"
 	  SrcPort		  1
 	  DstBlock		  "Out2"
@@ -5711,14 +6633,20 @@ Model {
       Name		      "SignalSplitInside"
       SID		      "137"
       Ports		      [1, 2]
-      Position		      [840, 167, 970, 203]
+      Position		      [840, 177, 970, 213]
       ZOrder		      93
       ShowName		      off
       TreatAsAtomicUnit	      on
       RequestExecContextInheritance off
+      Port {
+	PortNumber		1
+      }
+      Port {
+	PortNumber		2
+      }
       System {
 	Name			"SignalSplitInside"
-	Location		[1912, -8, 3848, 1208]
+	Location		[133, 108, 2069, 1324]
 	Open			off
 	PortBlocksUseCompactNotation off
 	SetExecutionDomain	off
@@ -5733,7 +6661,7 @@ Model {
 	TiledPaperMargins	[1.270000, 1.270000, 1.270000, 1.270000]
 	TiledPageScale		1
 	ShowPageBoundaries	off
-	ZoomFactor		"126"
+	ZoomFactor		"123"
 	SimulinkSubDomain	"Simulink"
 	Block {
 	  BlockType		  Inport
@@ -5742,6 +6670,9 @@ Model {
 	  Position		  [110, 103, 140, 117]
 	  ZOrder		  -1
 	  IconDisplay		  "Port number"
+	  Port {
+	    PortNumber		    1
+	  }
 	}
 	Block {
 	  BlockType		  Terminator
@@ -5751,7 +6682,7 @@ Model {
 	  ZOrder		  306
 	  Object {
 	    $PropName		    "MaskObject"
-	    $ObjectID		    71
+	    $ObjectID		    79
 	    $ClassName		    "Simulink.Mask"
 	    Type		    "T900"
 	  }
@@ -5777,6 +6708,7 @@ Model {
 	}
 	Line {
 	  ZOrder		  1
+	  Labels		  [0, 0]
 	  SrcBlock		  "In3"
 	  SrcPort		  1
 	  Points		  [187, 0]
@@ -5808,19 +6740,19 @@ Model {
       Name		      "Simscape Bus"
       SID		      "1015"
       Ports		      [0, 0, 0, 0, 0, 3, 1]
-      Position		      [2145, 429, 2195, 521]
+      Position		      [2135, 429, 2195, 521]
       ZOrder		      2190
-      HierarchyStrings	      "Conn7;Conn8;Conn9"
+      HierarchyStrings	      "con1;con8;con9"
     }
     Block {
       BlockType		      SimscapeBus
       Name		      "Simscape Bus1"
       SID		      "1016"
       Ports		      [0, 0, 0, 0, 0, 3, 1]
-      Position		      [2220, 428, 2270, 522]
+      Position		      [2220, 428, 2280, 522]
       ZOrder		      2191
       BlockMirror	      on
-      HierarchyStrings	      "Conn7;Conn8;Conn9"
+      HierarchyStrings	      "con1;con8;con9"
     }
     Block {
       BlockType		      SimscapeBus
@@ -5829,55 +6761,55 @@ Model {
       Ports		      [0, 0, 0, 0, 0, 3, 1]
       Position		      [2220, 704, 2270, 796]
       ZOrder		      2200
-      HierarchyStrings	      "Conn5;Conn6;Conn7"
+      HierarchyStrings	      "con1;con2;con3"
     }
     Block {
       BlockType		      SimscapeBus
       Name		      "Simscape Bus3"
       SID		      "1023"
       Ports		      [0, 0, 0, 0, 0, 3, 1]
-      Position		      [2145, 735, 2195, 825]
+      Position		      [2140, 735, 2190, 825]
       ZOrder		      2201
       BlockMirror	      on
-      HierarchyStrings	      "Conn5;Conn6;Conn7"
+      HierarchyStrings	      "con1;con2;con3"
     }
     Block {
       BlockType		      SimscapeBus
       Name		      "Simscape Bus4"
       SID		      "1082"
       Ports		      [0, 0, 0, 0, 0, 2, 1]
-      Position		      [2075, 561, 2125, 619]
+      Position		      [2030, 556, 2090, 614]
       ZOrder		      2240
-      HierarchyStrings	      "Conn11;Conn12"
+      HierarchyStrings	      "con1;con2"
     }
     Block {
       BlockType		      SimscapeBus
       Name		      "Simscape Bus5"
       SID		      "1083"
-      Ports		      [0, 0, 0, 0, 0, 2, 1]
-      Position		      [2145, 568, 2195, 657]
+      Ports		      [0, 0, 0, 0, 0, 3, 1]
+      Position		      [2135, 547, 2195, 683]
       ZOrder		      2241
-      HierarchyStrings	      "Nest;Conn13"
+      HierarchyStrings	      "nest1;nest2.con1;nest2.con2"
     }
     Block {
       BlockType		      SimscapeBus
       Name		      "Simscape Bus6"
       SID		      "1084"
-      Ports		      [0, 0, 0, 0, 0, 2, 1]
-      Position		      [2220, 568, 2270, 657]
+      Ports		      [0, 0, 0, 0, 0, 3, 1]
+      Position		      [2220, 547, 2280, 683]
       ZOrder		      2242
       BlockMirror	      on
-      HierarchyStrings	      "Nest;Conn13"
+      HierarchyStrings	      "nest1.con1;nest1.con2;nest2"
     }
     Block {
       BlockType		      SimscapeBus
       Name		      "Simscape Bus7"
       SID		      "1085"
       Ports		      [0, 0, 0, 0, 0, 2, 1]
-      Position		      [2285, 561, 2335, 619]
+      Position		      [2325, 616, 2385, 674]
       ZOrder		      2243
       BlockMirror	      on
-      HierarchyStrings	      "Conn11;Conn12"
+      HierarchyStrings	      "con1;con2"
     }
     Block {
       BlockType		      Reference
@@ -5887,7 +6819,7 @@ Model {
       Position		      [1540, 172, 1585, 208]
       ZOrder		      508
       HideAutomaticName	      off
-      LibraryVersion	      "1.6"
+      LibraryVersion	      "1.7"
       SourceBlock	      "slQuery_testlibrary/Sort2"
       SourceType	      "Sort"
       ShowPortLabels	      "FromPortIcon"
@@ -5898,6 +6830,12 @@ Model {
       ContentPreviewEnabled   off
       Latency		      "0"
       AutoFrameSizeCalculation off
+      Port {
+	PortNumber		1
+      }
+      Port {
+	PortNumber		2
+      }
     }
     Block {
       BlockType		      Reference
@@ -5907,7 +6845,7 @@ Model {
       Position		      [1540, 246, 1585, 334]
       ZOrder		      530
       HideAutomaticName	      off
-      LibraryVersion	      "1.6"
+      LibraryVersion	      "1.7"
       SourceBlock	      "slQuery_testlibrary/Sort4"
       SourceType	      "Sort"
       ShowPortLabels	      "FromPortIcon"
@@ -5918,6 +6856,18 @@ Model {
       ContentPreviewEnabled   off
       Latency		      "0"
       AutoFrameSizeCalculation off
+      Port {
+	PortNumber		1
+      }
+      Port {
+	PortNumber		2
+      }
+      Port {
+	PortNumber		3
+      }
+      Port {
+	PortNumber		4
+      }
     }
     Block {
       BlockType		      Reference
@@ -5927,7 +6877,7 @@ Model {
       Position		      [1540, 374, 1585, 536]
       ZOrder		      532
       HideAutomaticName	      off
-      LibraryVersion	      "1.6"
+      LibraryVersion	      "1.7"
       SourceBlock	      "slQuery_testlibrary/Sort8"
       SourceType	      "Sort"
       ShowPortLabels	      "FromPortIcon"
@@ -5938,21 +6888,547 @@ Model {
       ContentPreviewEnabled   off
       Latency		      "0"
       AutoFrameSizeCalculation off
+      Port {
+	PortNumber		1
+      }
+      Port {
+	PortNumber		2
+      }
+      Port {
+	PortNumber		3
+      }
+      Port {
+	PortNumber		4
+      }
+      Port {
+	PortNumber		5
+      }
+      Port {
+	PortNumber		6
+      }
+      Port {
+	PortNumber		7
+      }
+      Port {
+	PortNumber		8
+      }
     }
     Block {
       BlockType		      Integrator
-      Name		      "StatePortHaving"
+      Name		      "StatePortIntegrator"
       SID		      "1314"
       Ports		      [1, 1, 0, 0, 1]
-      Position		      [3445, -25, 3475, 5]
+      Position		      [2920, 269, 2950, 301]
       ZOrder		      2354
       ShowStatePort	      on
+      ContinuousStateAttributes	"'StatePortState'"
+      Port {
+	PortNumber		1
+      }
+      Port {
+	PortNumber		2
+      }
+    }
+    Block {
+      BlockType		      Integrator
+      Name		      "StateReaderIntegrator"
+      SID		      "2374"
+      Ports		      [1, 1]
+      Position		      [3190, 270, 3220, 300]
+      ZOrder		      2484
+      ContinuousStateAttributes	"'StateReaderState'"
+      Port {
+	PortNumber		1
+      }
+    }
+    Block {
+      BlockType		      Integrator
+      Name		      "StateWriterIntegrator"
+      SID		      "2381"
+      Ports		      [1, 1]
+      Position		      [3055, 270, 3085, 300]
+      ZOrder		      2488
+      ContinuousStateAttributes	"'StateWriterState'"
+      Port {
+	PortNumber		1
+      }
+    }
+    Block {
+      BlockType		      SubSystem
+      Name		      "Subsystem"
+      SID		      "1984"
+      Ports		      [1, 4]
+      Position		      [935, 1087, 995, 1163]
+      ZOrder		      2412
+      RequestExecContextInheritance off
+      Port {
+	PortNumber		1
+	PropagatedSignals	"signal1"
+      }
+      Port {
+	PortNumber		2
+	PropagatedSignals	"signal2"
+      }
+      Port {
+	PortNumber		3
+	PropagatedSignals	"signal1"
+      }
+      Port {
+	PortNumber		4
+	PropagatedSignals	"signal2"
+      }
+      System {
+	Name			"Subsystem"
+	Location		[1912, -16, 3848, 1200]
+	Open			off
+	PortBlocksUseCompactNotation off
+	SetExecutionDomain	off
+	ExecutionDomainType	"Deduce"
+	ModelBrowserVisibility	off
+	ModelBrowserWidth	200
+	ScreenColor		"white"
+	PaperOrientation	"landscape"
+	PaperPositionMode	"auto"
+	PaperType		"usletter"
+	PaperUnits		"inches"
+	TiledPaperMargins	[0.500000, 0.500000, 0.500000, 0.500000]
+	TiledPageScale		1
+	ShowPageBoundaries	off
+	ZoomFactor		"300"
+	SimulinkSubDomain	"Simulink"
+	Block {
+	  BlockType		  Inport
+	  Name			  "In"
+	  SID			  "1985"
+	  Position		  [180, 115, 190, 125]
+	  ZOrder		  35
+	  BackgroundColor	  "black"
+	  HideAutomaticName	  off
+	  List {
+	    ListType		    InterfaceData
+	    Version		    "0"
+	    PortNumber		    "1"
+	    PortName		    "InBus"
+	    Element		    "signal1"
+	    PortBlockIndex	    "1"
+	    IsComposite		    "1"
+	  }
+	  IconDisplay		  "Port number"
+	  Port {
+	    PortNumber		    1
+	  }
+	}
+	Block {
+	  BlockType		  Inport
+	  Name			  "In34"
+	  SID			  "1987"
+	  Position		  [180, 215, 190, 225]
+	  ZOrder		  37
+	  BackgroundColor	  "black"
+	  HideAutomaticName	  off
+	  List {
+	    ListType		    InterfaceData
+	    Version		    "0"
+	    PortNumber		    "1"
+	    PortName		    "InBus"
+	    Element		    "signal2.signal2"
+	    PortBlockIndex	    "2"
+	    IsComposite		    "1"
+	  }
+	  IconDisplay		  "Port number"
+	  Port {
+	    PortNumber		    1
+	  }
+	}
+	Block {
+	  BlockType		  Inport
+	  Name			  "In33"
+	  SID			  "1986"
+	  Position		  [180, 175, 190, 185]
+	  ZOrder		  36
+	  BackgroundColor	  "black"
+	  HideAutomaticName	  off
+	  List {
+	    ListType		    InterfaceData
+	    Version		    "0"
+	    PortNumber		    "1"
+	    PortName		    "InBus"
+	    Element		    "signal2.signal1"
+	    PortBlockIndex	    "3"
+	    IsComposite		    "1"
+	  }
+	  IconDisplay		  "Port number"
+	  Port {
+	    PortNumber		    1
+	  }
+	}
+	Block {
+	  BlockType		  BusSelector
+	  Name			  "Bus\nSelector"
+	  SID			  "2010"
+	  Ports			  [1, 2]
+	  Position		  [215, 81, 220, 159]
+	  ZOrder		  40
+	  ShowName		  off
+	  OutputSignals		  "signal1,signal2"
+	  OutputAsBus		  off
+	  Port {
+	    PortNumber		    1
+	    Name		    "<signal1>"
+	  }
+	  Port {
+	    PortNumber		    2
+	    Name		    "<signal2>"
+	  }
+	}
+	Block {
+	  BlockType		  Outport
+	  Name			  "Out31"
+	  SID			  "1988"
+	  Position		  [285, 93, 315, 107]
+	  ZOrder		  32
+	  IconDisplay		  "Port number"
+	  VectorParamsAs1DForOutWhenUnconnected	off
+	}
+	Block {
+	  BlockType		  Outport
+	  Name			  "Out32"
+	  SID			  "1989"
+	  Position		  [285, 133, 315, 147]
+	  ZOrder		  33
+	  Port			  "2"
+	  IconDisplay		  "Port number"
+	  VectorParamsAs1DForOutWhenUnconnected	off
+	}
+	Block {
+	  BlockType		  Outport
+	  Name			  "Out33"
+	  SID			  "1990"
+	  Position		  [285, 173, 315, 187]
+	  ZOrder		  34
+	  Port			  "3"
+	  IconDisplay		  "Port number"
+	  VectorParamsAs1DForOutWhenUnconnected	off
+	}
+	Block {
+	  BlockType		  Outport
+	  Name			  "Out34"
+	  SID			  "2006"
+	  Position		  [285, 213, 315, 227]
+	  ZOrder		  38
+	  Port			  "4"
+	  IconDisplay		  "Port number"
+	  VectorParamsAs1DForOutWhenUnconnected	off
+	}
+	Line {
+	  ZOrder		  5
+	  Labels		  [0, 0]
+	  SrcBlock		  "In33"
+	  SrcPort		  1
+	  DstBlock		  "Out33"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  6
+	  Labels		  [0, 0]
+	  SrcBlock		  "In34"
+	  SrcPort		  1
+	  DstBlock		  "Out34"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  10
+	  Labels		  [0, 0]
+	  SrcBlock		  "In"
+	  SrcPort		  1
+	  DstBlock		  "Bus\nSelector"
+	  DstPort		  1
+	}
+	Line {
+	  Name			  "<signal1>"
+	  ZOrder		  11
+	  Labels		  [0, 0]
+	  SrcBlock		  "Bus\nSelector"
+	  SrcPort		  1
+	  DstBlock		  "Out31"
+	  DstPort		  1
+	}
+	Line {
+	  Name			  "<signal2>"
+	  ZOrder		  12
+	  Labels		  [0, 0]
+	  SrcBlock		  "Bus\nSelector"
+	  SrcPort		  2
+	  DstBlock		  "Out32"
+	  DstPort		  1
+	}
+      }
+    }
+    Block {
+      BlockType		      SubSystem
+      Name		      "Subsystem1"
+      SID		      "1991"
+      Ports		      [4, 1]
+      Position		      [810, 1087, 870, 1163]
+      ZOrder		      2413
+      RequestExecContextInheritance off
+      Port {
+	PortNumber		1
+      }
+      System {
+	Name			"Subsystem1"
+	Location		[1912, -16, 3848, 1200]
+	Open			on
+	PortBlocksUseCompactNotation off
+	SetExecutionDomain	off
+	ExecutionDomainType	"Deduce"
+	ModelBrowserVisibility	off
+	ModelBrowserWidth	200
+	ScreenColor		"white"
+	PaperOrientation	"landscape"
+	PaperPositionMode	"auto"
+	PaperType		"usletter"
+	PaperUnits		"inches"
+	TiledPaperMargins	[0.500000, 0.500000, 0.500000, 0.500000]
+	TiledPageScale		1
+	ShowPageBoundaries	off
+	ZoomFactor		"600"
+	SimulinkSubDomain	"Simulink"
+	Block {
+	  BlockType		  Inport
+	  Name			  "In31"
+	  SID			  "1992"
+	  Position		  [185, 93, 215, 107]
+	  ZOrder		  32
+	  IconDisplay		  "Port number"
+	  Port {
+	    PortNumber		    1
+	  }
+	}
+	Block {
+	  BlockType		  Inport
+	  Name			  "In32"
+	  SID			  "1993"
+	  Position		  [185, 133, 215, 147]
+	  ZOrder		  34
+	  Port			  "2"
+	  IconDisplay		  "Port number"
+	  Port {
+	    PortNumber		    1
+	  }
+	}
+	Block {
+	  BlockType		  Inport
+	  Name			  "In33"
+	  SID			  "1994"
+	  Position		  [185, 173, 215, 187]
+	  ZOrder		  35
+	  Port			  "3"
+	  IconDisplay		  "Port number"
+	  Port {
+	    PortNumber		    1
+	  }
+	}
+	Block {
+	  BlockType		  Inport
+	  Name			  "In34"
+	  SID			  "2004"
+	  Position		  [185, 213, 215, 227]
+	  ZOrder		  37
+	  Port			  "4"
+	  IconDisplay		  "Port number"
+	  Port {
+	    PortNumber		    1
+	  }
+	}
+	Block {
+	  BlockType		  BusCreator
+	  Name			  "Bus\nCreator"
+	  SID			  "2005"
+	  Ports			  [2, 1]
+	  Position		  [270, 160, 275, 240]
+	  ZOrder		  38
+	  ShowName		  off
+	  Inputs		  "2"
+	  DisplayOption		  "bar"
+	  InheritFromInputs	  on
+	  Port {
+	    PortNumber		    1
+	  }
+	}
+	Block {
+	  BlockType		  Outport
+	  Name			  "Out31"
+	  SID			  "1995"
+	  Position		  [325, 95, 335, 105]
+	  ZOrder		  24
+	  BackgroundColor	  "black"
+	  HideAutomaticName	  off
+	  List {
+	    ListType		    InterfaceData
+	    Version		    "0"
+	    PortNumber		    "1"
+	    PortName		    "OutBus"
+	    Element		    "signal1.signal1"
+	    PortBlockIndex	    "1"
+	    IsComposite		    "1"
+	  }
+	  IconDisplay		  "Port number"
+	  VectorParamsAs1DForOutWhenUnconnected	off
+	}
+	Block {
+	  BlockType		  Outport
+	  Name			  "Out32"
+	  SID			  "1996"
+	  Position		  [325, 135, 335, 145]
+	  ZOrder		  30
+	  BackgroundColor	  "black"
+	  HideAutomaticName	  off
+	  List {
+	    ListType		    InterfaceData
+	    Version		    "0"
+	    PortNumber		    "1"
+	    PortName		    "OutBus"
+	    Element		    "signal1.signal2"
+	    PortBlockIndex	    "2"
+	    IsComposite		    "1"
+	  }
+	  IconDisplay		  "Port number"
+	  VectorParamsAs1DForOutWhenUnconnected	off
+	}
+	Block {
+	  BlockType		  Outport
+	  Name			  "Out"
+	  SID			  "1997"
+	  Position		  [325, 195, 335, 205]
+	  ZOrder		  36
+	  BackgroundColor	  "black"
+	  HideAutomaticName	  off
+	  List {
+	    ListType		    InterfaceData
+	    Version		    "0"
+	    PortNumber		    "1"
+	    PortName		    "OutBus"
+	    Element		    "signal2"
+	    PortBlockIndex	    "3"
+	    IsComposite		    "1"
+	  }
+	  IconDisplay		  "Port number"
+	}
+	Line {
+	  ZOrder		  1
+	  Labels		  [0, 0]
+	  SrcBlock		  "In31"
+	  SrcPort		  1
+	  DstBlock		  "Out31"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  2
+	  Labels		  [0, 0]
+	  SrcBlock		  "In32"
+	  SrcPort		  1
+	  DstBlock		  "Out32"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  4
+	  Labels		  [0, 1]
+	  SrcBlock		  "Bus\nCreator"
+	  SrcPort		  1
+	  DstBlock		  "Out"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  5
+	  Labels		  [0, 0]
+	  SrcBlock		  "In33"
+	  SrcPort		  1
+	  DstBlock		  "Bus\nCreator"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  6
+	  Labels		  [0, 0]
+	  SrcBlock		  "In34"
+	  SrcPort		  1
+	  DstBlock		  "Bus\nCreator"
+	  DstPort		  2
+	}
+      }
+    }
+    Block {
+      BlockType		      SubSystem
+      Name		      "Terminate"
+      SID		      "2361"
+      Ports		      []
+      Position		      [3160, 386, 3250, 444]
+      ZOrder		      2474
+      RequestExecContextInheritance off
+      ContentPreviewEnabled   on
+      System {
+	Name			"Terminate"
+	Location		[1912, -16, 3848, 1200]
+	Open			on
+	PortBlocksUseCompactNotation off
+	SetExecutionDomain	off
+	ExecutionDomainType	"Deduce"
+	ModelBrowserVisibility	off
+	ModelBrowserWidth	200
+	ScreenColor		"white"
+	PaperOrientation	"landscape"
+	PaperPositionMode	"auto"
+	PaperType		"usletter"
+	PaperUnits		"inches"
+	TiledPaperMargins	[0.500000, 0.500000, 0.500000, 0.500000]
+	TiledPageScale		1
+	ShowPageBoundaries	off
+	ZoomFactor		"200"
+	SimulinkSubDomain	"Simulink"
+	Block {
+	  BlockType		  EventListener
+	  Name			  "Event Listener"
+	  SID			  "2363"
+	  Position		  [760, 295, 780, 315]
+	  ZOrder		  665
+	  DisableCoverage	  on
+	  EventType		  "Terminate"
+	  EventName		  "reset"
+	}
+	Block {
+	  BlockType		  StateReader
+	  Name			  "State Reader"
+	  SID			  "2369"
+	  Position		  [695, 365, 715, 385]
+	  ZOrder		  666
+	  StateOwnerBlock	  "slQuery_testmodel/StateReaderIntegrator"
+	  StateName		  "StateReaderState"
+	  Port {
+	    PortNumber		    1
+	  }
+	}
+	Block {
+	  BlockType		  Terminator
+	  Name			  "Terminator"
+	  SID			  "2435"
+	  Position		  [795, 365, 815, 385]
+	  ZOrder		  669
+	}
+	Line {
+	  ZOrder		  4
+	  Labels		  [0, 0]
+	  SrcBlock		  "State Reader"
+	  SrcPort		  1
+	  DstBlock		  "Terminator"
+	  DstPort		  1
+	}
+      }
     }
     Block {
       BlockType		      Terminator
       Name		      "Terminator1"
       SID		      "400"
-      Position		      [1060, 187, 1075, 203]
+      Position		      [1060, 197, 1075, 213]
       ZOrder		      305
       ShowName		      off
     }
@@ -5992,7 +7468,7 @@ Model {
       BlockType		      Terminator
       Name		      "Terminator14"
       SID		      "1103"
-      Position		      [1020, 952, 1035, 968]
+      Position		      [1020, 967, 1035, 983]
       ZOrder		      2256
       ShowName		      off
     }
@@ -6000,7 +7476,7 @@ Model {
       BlockType		      Terminator
       Name		      "Terminator15"
       SID		      "1104"
-      Position		      [1020, 872, 1035, 888]
+      Position		      [1020, 887, 1035, 903]
       ZOrder		      2257
       ShowName		      off
     }
@@ -6008,7 +7484,7 @@ Model {
       BlockType		      Terminator
       Name		      "Terminator16"
       SID		      "1123"
-      Position		      [1025, 992, 1040, 1008]
+      Position		      [1025, 1007, 1040, 1023]
       ZOrder		      2277
       ShowName		      off
     }
@@ -6016,7 +7492,7 @@ Model {
       BlockType		      Terminator
       Name		      "Terminator2"
       SID		      "401"
-      Position		      [1060, 237, 1075, 253]
+      Position		      [1060, 247, 1075, 263]
       ZOrder		      306
       ShowName		      off
     }
@@ -6078,9 +7554,17 @@ Model {
     }
     Block {
       BlockType		      Terminator
+      Name		      "Terminator_1"
+      SID		      "2378"
+      Position		      [3245, 275, 3260, 295]
+      ZOrder		      2487
+      ShowName		      off
+    }
+    Block {
+      BlockType		      Terminator
       Name		      "Terminator_17"
       SID		      "1317"
-      Position		      [3495, -20, 3510, 0]
+      Position		      [2970, 275, 2985, 295]
       ZOrder		      2357
       ShowName		      off
     }
@@ -6088,9 +7572,17 @@ Model {
       BlockType		      Terminator
       Name		      "Terminator_18"
       SID		      "1318"
-      Position		      [3452, -75, 3468, -55]
+      Position		      [2927, 225, 2943, 245]
       ZOrder		      2358
       BlockRotation	      270
+      ShowName		      off
+    }
+    Block {
+      BlockType		      Terminator
+      Name		      "Terminator_2"
+      SID		      "2382"
+      Position		      [3110, 275, 3125, 295]
+      ZOrder		      2490
       ShowName		      off
     }
     Block {
@@ -6102,10 +7594,13 @@ Model {
       ZOrder		      2346
       RequestExecContextInheritance off
       ContentPreviewEnabled   on
+      Port {
+	PortNumber		1
+      }
       System {
 	Name			"Triggered"
-	Location		[133, 108, 2069, 1324]
-	Open			on
+	Location		[1912, -16, 3848, 1200]
+	Open			off
 	PortBlocksUseCompactNotation off
 	SetExecutionDomain	off
 	ExecutionDomainType	"Deduce"
@@ -6119,16 +7614,19 @@ Model {
 	TiledPaperMargins	[0.500000, 0.500000, 0.500000, 0.500000]
 	TiledPageScale		1
 	ShowPageBoundaries	off
-	ZoomFactor		"231"
+	ZoomFactor		"225"
 	SimulinkSubDomain	"Simulink"
 	Block {
 	  BlockType		  Inport
-	  Name			  "In50"
+	  Name			  "In54"
 	  SID			  "1273"
 	  Position		  [415, -2, 445, 12]
 	  ZOrder		  2891
 	  HideAutomaticName	  off
 	  IconDisplay		  "Port number"
+	  Port {
+	    PortNumber		    1
+	  }
 	}
 	Block {
 	  BlockType		  TriggerPort
@@ -6143,7 +7641,7 @@ Model {
 	}
 	Block {
 	  BlockType		  PMIOPort
-	  Name			  "LConn14"
+	  Name			  "LConn15"
 	  SID			  "1274"
 	  Position		  [415, 28, 445, 42]
 	  ZOrder		  2893
@@ -6152,7 +7650,7 @@ Model {
 	}
 	Block {
 	  BlockType		  PMIOPort
-	  Name			  "RConn14"
+	  Name			  "RConn15"
 	  SID			  "1275"
 	  Position		  [530, 28, 560, 42]
 	  ZOrder		  2894
@@ -6163,7 +7661,7 @@ Model {
 	}
 	Block {
 	  BlockType		  Outport
-	  Name			  "Out50"
+	  Name			  "Out54"
 	  SID			  "1276"
 	  Position		  [530, -2, 560, 12]
 	  ZOrder		  2892
@@ -6172,17 +7670,18 @@ Model {
 	}
 	Line {
 	  ZOrder		  1
-	  SrcBlock		  "In50"
+	  Labels		  [0, 0]
+	  SrcBlock		  "In54"
 	  SrcPort		  1
-	  DstBlock		  "Out50"
+	  DstBlock		  "Out54"
 	  DstPort		  1
 	}
 	Line {
 	  LineType		  "Connection"
 	  ZOrder		  2
-	  SrcBlock		  "RConn14"
+	  SrcBlock		  "RConn15"
 	  SrcPort		  RConn1
-	  DstBlock		  "LConn14"
+	  DstBlock		  "LConn15"
 	  DstPort		  RConn1
 	}
       }
@@ -6194,6 +7693,9 @@ Model {
       Ports		      [1, 1, 0, 0, 0, 0, 1]
       Position		      [2180, 877, 2210, 908]
       ZOrder		      2389
+      Port {
+	PortNumber		1
+      }
     }
     Block {
       BlockType		      TwoWayConnection
@@ -6202,16 +7704,22 @@ Model {
       Ports		      [1, 1, 0, 0, 0, 0, 1]
       Position		      [2180, 937, 2210, 968]
       ZOrder		      2390
+      Port {
+	PortNumber		1
+      }
     }
     Block {
       BlockType		      Concatenate
       Name		      "Vector\nConcatenate"
       SID		      "431"
       Ports		      [2, 1]
-      Position		      [590, 1536, 595, 1574]
+      Position		      [590, 1791, 595, 1829]
       ZOrder		      330
       ShowName		      off
       Commented		      "on"
+      Port {
+	PortNumber		1
+      }
     }
     Block {
       BlockType		      PMIOPort
@@ -6421,9 +7929,9 @@ Model {
     }
     Block {
       BlockType		      PMIOPort
-      Name		      "LConn11"
+      Name		      "LConn10"
       SID		      "1076"
-      Position		      [1955, 568, 1985, 582]
+      Position		      [1955, 563, 1985, 577]
       ZOrder		      2232
       BackgroundColor	      "magenta"
       HideAutomaticName	      off
@@ -6432,9 +7940,9 @@ Model {
     }
     Block {
       BlockType		      PMIOPort
-      Name		      "RConn11"
+      Name		      "RConn10"
       SID		      "1078"
-      Position		      [2405, 568, 2435, 582]
+      Position		      [2405, 563, 2435, 577]
       ZOrder		      2234
       BlockMirror	      on
       BackgroundColor	      "cyan"
@@ -6444,9 +7952,9 @@ Model {
     }
     Block {
       BlockType		      PMIOPort
-      Name		      "LConn12"
+      Name		      "LConn11"
       SID		      "1077"
-      Position		      [1955, 598, 1985, 612]
+      Position		      [1955, 593, 1985, 607]
       ZOrder		      2233
       BackgroundColor	      "magenta"
       HideAutomaticName	      off
@@ -6455,9 +7963,9 @@ Model {
     }
     Block {
       BlockType		      PMIOPort
-      Name		      "RConn12"
+      Name		      "RConn11"
       SID		      "1079"
-      Position		      [2405, 598, 2435, 612]
+      Position		      [2405, 593, 2435, 607]
       ZOrder		      2235
       BlockMirror	      on
       BackgroundColor	      "cyan"
@@ -6467,9 +7975,9 @@ Model {
     }
     Block {
       BlockType		      PMIOPort
-      Name		      "LConn13"
+      Name		      "LConn12"
       SID		      "1080"
-      Position		      [1955, 628, 1985, 642]
+      Position		      [1955, 623, 1985, 637]
       ZOrder		      2238
       BackgroundColor	      "magenta"
       HideAutomaticName	      off
@@ -6478,9 +7986,9 @@ Model {
     }
     Block {
       BlockType		      PMIOPort
-      Name		      "RConn13"
+      Name		      "RConn12"
       SID		      "1081"
-      Position		      [2405, 628, 2435, 642]
+      Position		      [2405, 623, 2435, 637]
       ZOrder		      2239
       BlockMirror	      on
       BackgroundColor	      "cyan"
@@ -6490,10 +7998,10 @@ Model {
     }
     Block {
       BlockType		      PMIOPort
-      Name		      "LConn10"
-      SID		      "1024"
-      Position		      [1955, 713, 1985, 727]
-      ZOrder		      2196
+      Name		      "LConn13"
+      SID		      "2153"
+      Position		      [1955, 653, 1985, 667]
+      ZOrder		      2469
       BackgroundColor	      "magenta"
       HideAutomaticName	      off
       Port		      "25"
@@ -6501,10 +8009,10 @@ Model {
     }
     Block {
       BlockType		      PMIOPort
-      Name		      "RConn10"
-      SID		      "1029"
-      Position		      [2405, 803, 2435, 817]
-      ZOrder		      2203
+      Name		      "RConn13"
+      SID		      "2152"
+      Position		      [2405, 653, 2435, 667]
+      ZOrder		      2468
       BlockMirror	      on
       BackgroundColor	      "cyan"
       HideAutomaticName	      off
@@ -6514,9 +8022,9 @@ Model {
     Block {
       BlockType		      PMIOPort
       Name		      "LConn14"
-      SID		      "1262"
-      Position		      [2810, 138, 2840, 152]
-      ZOrder		      2342
+      SID		      "1024"
+      Position		      [1955, 713, 1985, 727]
+      ZOrder		      2196
       BackgroundColor	      "magenta"
       HideAutomaticName	      off
       Port		      "27"
@@ -6525,9 +8033,9 @@ Model {
     Block {
       BlockType		      PMIOPort
       Name		      "RConn14"
-      SID		      "1263"
-      Position		      [3600, 138, 3630, 152]
-      ZOrder		      2343
+      SID		      "1029"
+      Position		      [2405, 803, 2435, 817]
+      ZOrder		      2203
       BlockMirror	      on
       BackgroundColor	      "cyan"
       HideAutomaticName	      off
@@ -6535,10 +8043,33 @@ Model {
       Side		      "Right"
     }
     Block {
+      BlockType		      PMIOPort
+      Name		      "LConn15"
+      SID		      "1262"
+      Position		      [2810, 138, 2840, 152]
+      ZOrder		      2342
+      BackgroundColor	      "magenta"
+      HideAutomaticName	      off
+      Port		      "29"
+      Side		      "Left"
+    }
+    Block {
+      BlockType		      PMIOPort
+      Name		      "RConn15"
+      SID		      "1263"
+      Position		      [3600, 138, 3630, 152]
+      ZOrder		      2343
+      BlockMirror	      on
+      BackgroundColor	      "cyan"
+      HideAutomaticName	      off
+      Port		      "30"
+      Side		      "Right"
+    }
+    Block {
       BlockType		      Outport
       Name		      "Out1"
       SID		      "351"
-      Position		      [1105, 103, 1135, 117]
+      Position		      [1105, 108, 1135, 122]
       ZOrder		      256
       BackgroundColor	      "lightBlue"
       HideAutomaticName	      off
@@ -6548,7 +8079,7 @@ Model {
       BlockType		      Outport
       Name		      "Out2"
       SID		      "353"
-      Position		      [1105, 138, 1135, 152]
+      Position		      [1105, 148, 1135, 162]
       ZOrder		      258
       BackgroundColor	      "lightBlue"
       HideAutomaticName	      off
@@ -6559,7 +8090,7 @@ Model {
       BlockType		      Outport
       Name		      "Out3"
       SID		      "355"
-      Position		      [1105, 168, 1135, 182]
+      Position		      [1105, 178, 1135, 192]
       ZOrder		      260
       BackgroundColor	      "lightBlue"
       HideAutomaticName	      off
@@ -6570,7 +8101,7 @@ Model {
       BlockType		      Outport
       Name		      "Out4"
       SID		      "357"
-      Position		      [1105, 218, 1135, 232]
+      Position		      [1105, 228, 1135, 242]
       ZOrder		      262
       BackgroundColor	      "lightBlue"
       HideAutomaticName	      off
@@ -6779,7 +8310,7 @@ Model {
       BlockType		      Outport
       Name		      "Out23"
       SID		      "389"
-      Position		      [1105, 758, 1135, 772]
+      Position		      [1105, 773, 1135, 787]
       ZOrder		      294
       BackgroundColor	      "lightBlue"
       HideAutomaticName	      off
@@ -6790,7 +8321,7 @@ Model {
       BlockType		      Outport
       Name		      "Out24"
       SID		      "391"
-      Position		      [1105, 778, 1135, 792]
+      Position		      [1105, 793, 1135, 807]
       ZOrder		      296
       BackgroundColor	      "lightBlue"
       HideAutomaticName	      off
@@ -6801,7 +8332,7 @@ Model {
       BlockType		      Outport
       Name		      "Out25"
       SID		      "393"
-      Position		      [1105, 798, 1135, 812]
+      Position		      [1105, 813, 1135, 827]
       ZOrder		      298
       BackgroundColor	      "lightBlue"
       HideAutomaticName	      off
@@ -6812,7 +8343,7 @@ Model {
       BlockType		      Outport
       Name		      "Out26"
       SID		      "395"
-      Position		      [1105, 833, 1135, 847]
+      Position		      [1105, 848, 1135, 862]
       ZOrder		      300
       BackgroundColor	      "lightBlue"
       HideAutomaticName	      off
@@ -6823,7 +8354,7 @@ Model {
       BlockType		      Outport
       Name		      "Out27"
       SID		      "397"
-      Position		      [1105, 853, 1135, 867]
+      Position		      [1105, 868, 1135, 882]
       ZOrder		      302
       BackgroundColor	      "lightBlue"
       HideAutomaticName	      off
@@ -6834,7 +8365,7 @@ Model {
       BlockType		      Outport
       Name		      "Out28"
       SID		      "1096"
-      Position		      [1105, 913, 1135, 927]
+      Position		      [1105, 928, 1135, 942]
       ZOrder		      2249
       BackgroundColor	      "lightBlue"
       HideAutomaticName	      off
@@ -6845,7 +8376,7 @@ Model {
       BlockType		      Outport
       Name		      "Out29"
       SID		      "1097"
-      Position		      [1105, 933, 1135, 947]
+      Position		      [1105, 948, 1135, 962]
       ZOrder		      2251
       BackgroundColor	      "lightBlue"
       HideAutomaticName	      off
@@ -6856,7 +8387,7 @@ Model {
       BlockType		      Outport
       Name		      "Out30"
       SID		      "1125"
-      Position		      [1105, 1013, 1135, 1027]
+      Position		      [1105, 1028, 1135, 1042]
       ZOrder		      2275
       BackgroundColor	      "lightBlue"
       HideAutomaticName	      off
@@ -6866,9 +8397,9 @@ Model {
     Block {
       BlockType		      Outport
       Name		      "Out31"
-      SID		      "407"
-      Position		      [1105, 1068, 1135, 1082]
-      ZOrder		      310
+      SID		      "2001"
+      Position		      [1105, 1088, 1135, 1102]
+      ZOrder		      2417
       BackgroundColor	      "lightBlue"
       HideAutomaticName	      off
       Port		      "31"
@@ -6877,9 +8408,9 @@ Model {
     Block {
       BlockType		      Outport
       Name		      "Out32"
-      SID		      "408"
-      Position		      [1105, 1088, 1135, 1102]
-      ZOrder		      312
+      SID		      "2002"
+      Position		      [1105, 1108, 1135, 1122]
+      ZOrder		      2418
       BackgroundColor	      "lightBlue"
       HideAutomaticName	      off
       Port		      "32"
@@ -6888,9 +8419,9 @@ Model {
     Block {
       BlockType		      Outport
       Name		      "Out33"
-      SID		      "415"
-      Position		      [1105, 1108, 1135, 1122]
-      ZOrder		      319
+      SID		      "2003"
+      Position		      [1105, 1128, 1135, 1142]
+      ZOrder		      2419
       BackgroundColor	      "lightBlue"
       HideAutomaticName	      off
       Port		      "33"
@@ -6899,9 +8430,9 @@ Model {
     Block {
       BlockType		      Outport
       Name		      "Out34"
-      SID		      "506"
-      Position		      [1105, 1153, 1135, 1167]
-      ZOrder		      350
+      SID		      "2008"
+      Position		      [1105, 1148, 1135, 1162]
+      ZOrder		      2420
       BackgroundColor	      "lightBlue"
       HideAutomaticName	      off
       Port		      "34"
@@ -6910,9 +8441,9 @@ Model {
     Block {
       BlockType		      Outport
       Name		      "Out35"
-      SID		      "507"
-      Position		      [1105, 1178, 1135, 1192]
-      ZOrder		      351
+      SID		      "407"
+      Position		      [1105, 1213, 1135, 1227]
+      ZOrder		      310
       BackgroundColor	      "lightBlue"
       HideAutomaticName	      off
       Port		      "35"
@@ -6921,9 +8452,9 @@ Model {
     Block {
       BlockType		      Outport
       Name		      "Out36"
-      SID		      "508"
-      Position		      [1105, 1213, 1135, 1227]
-      ZOrder		      352
+      SID		      "408"
+      Position		      [1105, 1233, 1135, 1247]
+      ZOrder		      312
       BackgroundColor	      "lightBlue"
       HideAutomaticName	      off
       Port		      "36"
@@ -6932,9 +8463,9 @@ Model {
     Block {
       BlockType		      Outport
       Name		      "Out37"
-      SID		      "509"
-      Position		      [1105, 1263, 1135, 1277]
-      ZOrder		      353
+      SID		      "415"
+      Position		      [1105, 1253, 1135, 1267]
+      ZOrder		      319
       BackgroundColor	      "lightBlue"
       HideAutomaticName	      off
       Port		      "37"
@@ -6943,22 +8474,21 @@ Model {
     Block {
       BlockType		      Outport
       Name		      "Out38"
-      SID		      "518"
-      Position		      [1105, 1363, 1135, 1377]
-      ZOrder		      361
+      SID		      "506"
+      Position		      [1105, 1318, 1135, 1332]
+      ZOrder		      350
       BackgroundColor	      "lightBlue"
       HideAutomaticName	      off
       Port		      "38"
       IconDisplay	      "Port number"
-      OutMin		      "42"
     }
     Block {
       BlockType		      Outport
       Name		      "Out39"
-      SID		      "797"
-      Position		      [1770, 108, 1800, 122]
-      ZOrder		      475
-      BackgroundColor	      "red"
+      SID		      "507"
+      Position		      [1105, 1343, 1135, 1357]
+      ZOrder		      351
+      BackgroundColor	      "lightBlue"
       HideAutomaticName	      off
       Port		      "39"
       IconDisplay	      "Port number"
@@ -6966,10 +8496,10 @@ Model {
     Block {
       BlockType		      Outport
       Name		      "Out40"
-      SID		      "798"
-      Position		      [1770, 193, 1800, 207]
-      ZOrder		      476
-      BackgroundColor	      "red"
+      SID		      "508"
+      Position		      [1105, 1378, 1135, 1392]
+      ZOrder		      352
+      BackgroundColor	      "lightBlue"
       HideAutomaticName	      off
       Port		      "40"
       IconDisplay	      "Port number"
@@ -6977,10 +8507,10 @@ Model {
     Block {
       BlockType		      Outport
       Name		      "Out41"
-      SID		      "799"
-      Position		      [1770, 313, 1800, 327]
-      ZOrder		      477
-      BackgroundColor	      "red"
+      SID		      "509"
+      Position		      [1105, 1428, 1135, 1442]
+      ZOrder		      353
+      BackgroundColor	      "lightBlue"
       HideAutomaticName	      off
       Port		      "41"
       IconDisplay	      "Port number"
@@ -6988,20 +8518,21 @@ Model {
     Block {
       BlockType		      Outport
       Name		      "Out42"
-      SID		      "945"
-      Position		      [1770, 518, 1800, 532]
-      ZOrder		      522
-      BackgroundColor	      "red"
+      SID		      "518"
+      Position		      [1105, 1548, 1135, 1562]
+      ZOrder		      361
+      BackgroundColor	      "lightBlue"
       HideAutomaticName	      off
       Port		      "42"
       IconDisplay	      "Port number"
+      OutMin		      "42"
     }
     Block {
       BlockType		      Outport
       Name		      "Out43"
-      SID		      "800"
-      Position		      [1770, 638, 1800, 652]
-      ZOrder		      478
+      SID		      "797"
+      Position		      [1770, 108, 1800, 122]
+      ZOrder		      475
       BackgroundColor	      "red"
       HideAutomaticName	      off
       Port		      "43"
@@ -7010,9 +8541,9 @@ Model {
     Block {
       BlockType		      Outport
       Name		      "Out44"
-      SID		      "802"
-      Position		      [1770, 723, 1800, 737]
-      ZOrder		      480
+      SID		      "798"
+      Position		      [1770, 193, 1800, 207]
+      ZOrder		      476
       BackgroundColor	      "red"
       HideAutomaticName	      off
       Port		      "44"
@@ -7021,9 +8552,9 @@ Model {
     Block {
       BlockType		      Outport
       Name		      "Out45"
-      SID		      "801"
-      Position		      [1770, 803, 1800, 817]
-      ZOrder		      479
+      SID		      "799"
+      Position		      [1770, 313, 1800, 327]
+      ZOrder		      477
       BackgroundColor	      "red"
       HideAutomaticName	      off
       Port		      "45"
@@ -7032,9 +8563,9 @@ Model {
     Block {
       BlockType		      Outport
       Name		      "Out46"
-      SID		      "803"
-      Position		      [1770, 883, 1800, 897]
-      ZOrder		      481
+      SID		      "945"
+      Position		      [1770, 518, 1800, 532]
+      ZOrder		      522
       BackgroundColor	      "red"
       HideAutomaticName	      off
       Port		      "46"
@@ -7043,9 +8574,9 @@ Model {
     Block {
       BlockType		      Outport
       Name		      "Out47"
-      SID		      "825"
-      Position		      [1770, 993, 1800, 1007]
-      ZOrder		      500
+      SID		      "800"
+      Position		      [1770, 638, 1800, 652]
+      ZOrder		      478
       BackgroundColor	      "red"
       HideAutomaticName	      off
       Port		      "47"
@@ -7054,9 +8585,9 @@ Model {
     Block {
       BlockType		      Outport
       Name		      "Out48"
-      SID		      "826"
-      Position		      [1770, 1123, 1800, 1137]
-      ZOrder		      501
+      SID		      "802"
+      Position		      [1770, 723, 1800, 737]
+      ZOrder		      480
       BackgroundColor	      "red"
       HideAutomaticName	      off
       Port		      "48"
@@ -7065,9 +8596,9 @@ Model {
     Block {
       BlockType		      Outport
       Name		      "Out49"
-      SID		      "827"
-      Position		      [1770, 1248, 1800, 1262]
-      ZOrder		      502
+      SID		      "801"
+      Position		      [1770, 803, 1800, 817]
+      ZOrder		      479
       BackgroundColor	      "red"
       HideAutomaticName	      off
       Port		      "49"
@@ -7076,34 +8607,79 @@ Model {
     Block {
       BlockType		      Outport
       Name		      "Out50"
-      SID		      "1264"
-      Position		      [3600, 108, 3630, 122]
-      ZOrder		      2341
-      BackgroundColor	      "lightBlue"
-      ShowName		      off
+      SID		      "803"
+      Position		      [1770, 883, 1800, 897]
+      ZOrder		      481
+      BackgroundColor	      "red"
+      HideAutomaticName	      off
       Port		      "50"
       IconDisplay	      "Port number"
     }
     Block {
       BlockType		      Outport
-      Name		      "Out52"
-      SID		      "1380"
-      Position		      [2405, 938, 2435, 952]
-      ZOrder		      2395
+      Name		      "Out51"
+      SID		      "825"
+      Position		      [1770, 993, 1800, 1007]
+      ZOrder		      500
+      BackgroundColor	      "red"
+      HideAutomaticName	      off
       Port		      "51"
       IconDisplay	      "Port number"
     }
     Block {
       BlockType		      Outport
-      Name		      "Out51"
+      Name		      "Out52"
+      SID		      "826"
+      Position		      [1770, 1123, 1800, 1137]
+      ZOrder		      501
+      BackgroundColor	      "red"
+      HideAutomaticName	      off
+      Port		      "52"
+      IconDisplay	      "Port number"
+    }
+    Block {
+      BlockType		      Outport
+      Name		      "Out53"
+      SID		      "827"
+      Position		      [1770, 1248, 1800, 1262]
+      ZOrder		      502
+      BackgroundColor	      "red"
+      HideAutomaticName	      off
+      Port		      "53"
+      IconDisplay	      "Port number"
+    }
+    Block {
+      BlockType		      Outport
+      Name		      "Out54"
+      SID		      "1264"
+      Position		      [3600, 108, 3630, 122]
+      ZOrder		      2341
+      BackgroundColor	      "lightBlue"
+      ShowName		      off
+      Port		      "54"
+      IconDisplay	      "Port number"
+    }
+    Block {
+      BlockType		      Outport
+      Name		      "Out55"
+      SID		      "1380"
+      Position		      [2405, 938, 2435, 952]
+      ZOrder		      2395
+      Port		      "55"
+      IconDisplay	      "Port number"
+    }
+    Block {
+      BlockType		      Outport
+      Name		      "Out56"
       SID		      "1379"
       Position		      [2405, 878, 2435, 892]
       ZOrder		      2394
-      Port		      "52"
+      Port		      "56"
       IconDisplay	      "Port number"
     }
     Line {
       ZOrder		      329
+      Labels		      [0, 0]
       SrcBlock		      "In1"
       SrcPort		      1
       DstBlock		      "Out1"
@@ -7111,6 +8687,7 @@ Model {
     }
     Line {
       ZOrder		      331
+      Labels		      [0, 0]
       SrcBlock		      "In2"
       SrcPort		      1
       DstBlock		      "SignalInside"
@@ -7118,6 +8695,7 @@ Model {
     }
     Line {
       ZOrder		      330
+      Labels		      [0, 0]
       SrcBlock		      "SignalInside"
       SrcPort		      1
       DstBlock		      "Out2"
@@ -7125,6 +8703,7 @@ Model {
     }
     Line {
       ZOrder		      332
+      Labels		      [0, 0]
       SrcBlock		      "In3"
       SrcPort		      1
       DstBlock		      "SignalSplitInside"
@@ -7132,6 +8711,7 @@ Model {
     }
     Line {
       ZOrder		      376
+      Labels		      [0, 0]
       SrcBlock		      "SignalSplitInside"
       SrcPort		      1
       DstBlock		      "Out3"
@@ -7139,6 +8719,7 @@ Model {
     }
     Line {
       ZOrder		      380
+      Labels		      [0, 0]
       SrcBlock		      "SignalSplitInside"
       SrcPort		      2
       DstBlock		      "Terminator1"
@@ -7146,6 +8727,7 @@ Model {
     }
     Line {
       ZOrder		      333
+      Labels		      [0, 0]
       SrcBlock		      "In4"
       SrcPort		      1
       DstBlock		      "SignalCopyInside"
@@ -7153,6 +8735,7 @@ Model {
     }
     Line {
       ZOrder		      377
+      Labels		      [0, 0]
       SrcBlock		      "SignalCopyInside"
       SrcPort		      1
       DstBlock		      "Out4"
@@ -7160,6 +8743,7 @@ Model {
     }
     Line {
       ZOrder		      381
+      Labels		      [0, 0]
       SrcBlock		      "SignalCopyInside"
       SrcPort		      2
       DstBlock		      "Terminator2"
@@ -7167,6 +8751,7 @@ Model {
     }
     Line {
       ZOrder		      335
+      Labels		      [0, 0]
       SrcBlock		      "From1"
       SrcPort		      1
       DstBlock		      "Out5"
@@ -7181,6 +8766,7 @@ Model {
     }
     Line {
       ZOrder		      339
+      Labels		      [0, 0]
       SrcBlock		      "From2"
       SrcPort		      1
       DstBlock		      "Out7"
@@ -7188,6 +8774,7 @@ Model {
     }
     Line {
       ZOrder		      347
+      Labels		      [0, 0]
       SrcBlock		      "From3"
       SrcPort		      1
       DstBlock		      "Out11"
@@ -7223,6 +8810,7 @@ Model {
     }
     Line {
       ZOrder		      341
+      Labels		      [0, 0]
       SrcBlock		      "ScopedFromInside"
       SrcPort		      1
       DstBlock		      "Out8"
@@ -7230,6 +8818,7 @@ Model {
     }
     Line {
       ZOrder		      348
+      Labels		      [0, 0]
       SrcBlock		      "GlobalFromIside"
       SrcPort		      1
       DstBlock		      "Out12"
@@ -7244,6 +8833,7 @@ Model {
     }
     Line {
       ZOrder		      337
+      Labels		      [0, 0]
       SrcBlock		      "GotoFromInside"
       SrcPort		      1
       DstBlock		      "Out6"
@@ -7265,6 +8855,7 @@ Model {
     }
     Line {
       ZOrder		      342
+      Labels		      [0, 0]
       SrcBlock		      "GotoTagVisibilityInside"
       SrcPort		      1
       DstBlock		      "Out9"
@@ -7272,6 +8863,7 @@ Model {
     }
     Line {
       ZOrder		      345
+      Labels		      [0, 0]
       SrcBlock		      "GotoTagVisibilityInside"
       SrcPort		      2
       DstBlock		      "Out10"
@@ -7419,6 +9011,7 @@ Model {
     }
     Line {
       ZOrder		      369
+      Labels		      [0, 0]
       SrcBlock		      "In25"
       SrcPort		      1
       DstBlock		      "Bus Creator"
@@ -7435,6 +9028,7 @@ Model {
     }
     Line {
       ZOrder		      366
+      Labels		      [0, 0]
       SrcBlock		      "In24"
       SrcPort		      1
       DstBlock		      "Bus Creator"
@@ -7469,6 +9063,7 @@ Model {
     }
     Line {
       ZOrder		      370
+      Labels		      [0, 0]
       SrcBlock		      "In26"
       SrcPort		      1
       DstBlock		      "Bus Creator1"
@@ -7476,6 +9071,7 @@ Model {
     }
     Line {
       ZOrder		      373
+      Labels		      [0, 0]
       SrcBlock		      "In27"
       SrcPort		      1
       DstBlock		      "Bus Creator1"
@@ -7510,6 +9106,7 @@ Model {
     }
     Line {
       ZOrder		      310
+      Labels		      [0, 0]
       SrcBlock		      "Bus Creator"
       SrcPort		      1
       DstBlock		      "Bus Selector"
@@ -7517,6 +9114,7 @@ Model {
     }
     Line {
       ZOrder		      323
+      Labels		      [0, 0]
       SrcBlock		      "Bus Creator2"
       SrcPort		      1
       DstBlock		      "Bus Selector2"
@@ -7524,6 +9122,7 @@ Model {
     }
     Line {
       ZOrder		      327
+      Labels		      [0, 0]
       SrcBlock		      "Bus Creator1"
       SrcPort		      1
       DstBlock		      "Bus Creator2"
@@ -7531,14 +9130,16 @@ Model {
     }
     Line {
       ZOrder		      460
-      SrcBlock		      "In32"
+      Labels		      [0, 0]
+      SrcBlock		      "In36"
       SrcPort		      1
       DstBlock		      "Bus Creator3"
       DstPort		      2
     }
     Line {
       ZOrder		      461
-      SrcBlock		      "In31"
+      Labels		      [0, 0]
+      SrcBlock		      "In35"
       SrcPort		      1
       DstBlock		      "Bus Assignment"
       DstPort		      2
@@ -7549,7 +9150,7 @@ Model {
       Labels		      [0, 0]
       SrcBlock		      "Bus Selector3"
       SrcPort		      2
-      DstBlock		      "Out32"
+      DstBlock		      "Out36"
       DstPort		      1
     }
     Line {
@@ -7558,11 +9159,12 @@ Model {
       Labels		      [0, 0]
       SrcBlock		      "Bus Selector3"
       SrcPort		      1
-      DstBlock		      "Out31"
+      DstBlock		      "Out35"
       DstPort		      1
     }
     Line {
       ZOrder		      446
+      Labels		      [0, 0]
       SrcBlock		      "Bus Assignment"
       SrcPort		      1
       DstBlock		      "Bus Selector3"
@@ -7570,6 +9172,7 @@ Model {
     }
     Line {
       ZOrder		      447
+      Labels		      [0, 0]
       SrcBlock		      "Bus Creator3"
       SrcPort		      1
       DstBlock		      "Bus Assignment"
@@ -7577,6 +9180,7 @@ Model {
     }
     Line {
       ZOrder		      453
+      Labels		      [0, 0]
       SrcBlock		      "Ground"
       SrcPort		      1
       Points		      [17, 0]
@@ -7594,7 +9198,8 @@ Model {
     }
     Line {
       ZOrder		      454
-      SrcBlock		      "In33"
+      Labels		      [0, 0]
+      SrcBlock		      "In37"
       SrcPort		      1
       DstBlock		      "Bus Assignment"
       DstPort		      3
@@ -7605,11 +9210,12 @@ Model {
       Labels		      [0, 0]
       SrcBlock		      "Bus Selector3"
       SrcPort		      3
-      DstBlock		      "Out33"
+      DstBlock		      "Out37"
       DstPort		      1
     }
     Line {
       ZOrder		      482
+      Labels		      [0, 0]
       SrcBlock		      "In22"
       SrcPort		      1
       DstBlock		      "Mux5"
@@ -7617,6 +9223,7 @@ Model {
     }
     Line {
       ZOrder		      480
+      Labels		      [0, 0]
       SrcBlock		      "In21"
       SrcPort		      1
       DstBlock		      "Mux4"
@@ -7624,6 +9231,7 @@ Model {
     }
     Line {
       ZOrder		      483
+      Labels		      [0, 0]
       SrcBlock		      "In20"
       SrcPort		      1
       DstBlock		      "Mux5"
@@ -7690,76 +9298,87 @@ Model {
     }
     Line {
       ZOrder		      550
-      SrcBlock		      "In34"
+      Labels		      [0, 0]
+      SrcBlock		      "In38"
       SrcPort		      1
       DstBlock		      "Signal Specification"
       DstPort		      1
     }
     Line {
       ZOrder		      551
+      Labels		      [0, 0]
       SrcBlock		      "Signal Specification"
       SrcPort		      1
-      DstBlock		      "Out34"
+      DstBlock		      "Out38"
       DstPort		      1
     }
     Line {
       ZOrder		      552
-      SrcBlock		      "In35"
+      Labels		      [0, 0]
+      SrcBlock		      "In39"
       SrcPort		      1
       DstBlock		      "Data Type Conversion"
       DstPort		      1
     }
     Line {
       ZOrder		      553
+      Labels		      [0, 0]
       SrcBlock		      "Data Type Conversion"
       SrcPort		      1
-      DstBlock		      "Out35"
+      DstBlock		      "Out39"
       DstPort		      1
     }
     Line {
       ZOrder		      554
-      SrcBlock		      "In36"
+      Labels		      [0, 0]
+      SrcBlock		      "In40"
       SrcPort		      1
       DstBlock		      "Signal\nConversion"
       DstPort		      1
     }
     Line {
       ZOrder		      555
+      Labels		      [0, 0]
       SrcBlock		      "Signal\nConversion"
       SrcPort		      1
-      DstBlock		      "Out36"
+      DstBlock		      "Out40"
       DstPort		      1
     }
     Line {
       ZOrder		      556
-      SrcBlock		      "In37"
+      Labels		      [0, 0]
+      SrcBlock		      "In41"
       SrcPort		      1
       DstBlock		      "IC"
       DstPort		      1
     }
     Line {
       ZOrder		      557
+      Labels		      [0, 0]
       SrcBlock		      "IC"
       SrcPort		      1
-      DstBlock		      "Out37"
+      DstBlock		      "Out41"
       DstPort		      1
     }
     Line {
       ZOrder		      560
-      SrcBlock		      "In38"
+      Labels		      [0, 0]
+      SrcBlock		      "In42"
       SrcPort		      1
       DstBlock		      "Mux6"
       DstPort		      1
     }
     Line {
       ZOrder		      562
+      Labels		      [0, 0]
       SrcBlock		      "Demux5"
       SrcPort		      3
-      DstBlock		      "Out38"
+      DstBlock		      "Out42"
       DstPort		      1
     }
     Line {
       ZOrder		      565
+      Labels		      [0, 0]
       SrcBlock		      "Demux5"
       SrcPort		      1
       DstBlock		      "Mux6"
@@ -7767,6 +9386,7 @@ Model {
     }
     Line {
       ZOrder		      566
+      Labels		      [0, 0]
       SrcBlock		      "Demux5"
       SrcPort		      2
       DstBlock		      "Mux6"
@@ -7774,13 +9394,14 @@ Model {
     }
     Line {
       ZOrder		      884
-      SrcBlock		      "In39"
+      SrcBlock		      "In43"
       SrcPort		      1
       DstBlock		      "Gain"
       DstPort		      1
     }
     Line {
       ZOrder		      956
+      Labels		      [0, 0]
       SrcBlock		      "Sort2"
       SrcPort		      1
       DstBlock		      "Terminator3"
@@ -7788,14 +9409,15 @@ Model {
     }
     Line {
       ZOrder		      957
+      Labels		      [0, 0]
       SrcBlock		      "Sort2"
       SrcPort		      2
-      DstBlock		      "Out40"
+      DstBlock		      "Out44"
       DstPort		      1
     }
     Line {
       ZOrder		      958
-      SrcBlock		      "In40"
+      SrcBlock		      "In44"
       SrcPort		      1
       DstBlock		      "Sort2"
       DstPort		      1
@@ -7809,7 +9431,7 @@ Model {
     }
     Line {
       ZOrder		      1006
-      SrcBlock		      "In41"
+      SrcBlock		      "In45"
       SrcPort		      1
       DstBlock		      "Sort4"
       DstPort		      1
@@ -7823,6 +9445,7 @@ Model {
     }
     Line {
       ZOrder		      1016
+      Labels		      [0, 0]
       SrcBlock		      "Sort4"
       SrcPort		      1
       DstBlock		      "Terminator4"
@@ -7830,6 +9453,7 @@ Model {
     }
     Line {
       ZOrder		      1017
+      Labels		      [0, 0]
       SrcBlock		      "Sort4"
       SrcPort		      2
       DstBlock		      "Terminator5"
@@ -7837,6 +9461,7 @@ Model {
     }
     Line {
       ZOrder		      748
+      Labels		      [0, 0]
       SrcBlock		      "Mux6"
       SrcPort		      1
       Points		      [9, 0; 0, 61; -158, 0; 0, -41]
@@ -7845,7 +9470,7 @@ Model {
     }
     Line {
       ZOrder		      874
-      SrcBlock		      "In45"
+      SrcBlock		      "In49"
       SrcPort		      1
       DstBlock		      "Product4"
       DstPort		      1
@@ -7865,7 +9490,7 @@ Model {
       Points		      [8, 0]
       Branch {
 	ZOrder			887
-	DstBlock		"Out43"
+	DstBlock		"Out47"
 	DstPort			1
       }
       Branch {
@@ -7877,14 +9502,14 @@ Model {
     }
     Line {
       ZOrder		      873
-      SrcBlock		      "In43"
+      SrcBlock		      "In47"
       SrcPort		      1
       DstBlock		      "Product3"
       DstPort		      1
     }
     Line {
       ZOrder		      875
-      SrcBlock		      "In44"
+      SrcBlock		      "In48"
       SrcPort		      1
       DstBlock		      "Product1"
       DstPort		      1
@@ -7910,7 +9535,7 @@ Model {
       }
       Branch {
 	ZOrder			888
-	DstBlock		"Out45"
+	DstBlock		"Out49"
 	DstPort			1
       }
       Branch {
@@ -7943,7 +9568,7 @@ Model {
       Points		      [23, 0]
       Branch {
 	ZOrder			890
-	DstBlock		"Out46"
+	DstBlock		"Out50"
 	DstPort			1
       }
       Branch {
@@ -7955,7 +9580,7 @@ Model {
     }
     Line {
       ZOrder		      876
-      SrcBlock		      "In46"
+      SrcBlock		      "In50"
       SrcPort		      1
       DstBlock		      "Product6"
       DstPort		      1
@@ -7988,13 +9613,13 @@ Model {
       }
       Branch {
 	ZOrder			899
-	DstBlock		"Out47"
+	DstBlock		"Out51"
 	DstPort			1
       }
     }
     Line {
       ZOrder		      902
-      SrcBlock		      "In47"
+      SrcBlock		      "In51"
       SrcPort		      1
       DstBlock		      "Product10"
       DstPort		      1
@@ -8050,13 +9675,13 @@ Model {
       }
       Branch {
 	ZOrder			908
-	DstBlock		"Out48"
+	DstBlock		"Out52"
 	DstPort			1
       }
     }
     Line {
       ZOrder		      911
-      SrcBlock		      "In48"
+      SrcBlock		      "In52"
       SrcPort		      1
       DstBlock		      "Product11"
       DstPort		      1
@@ -8095,12 +9720,12 @@ Model {
       ZOrder		      917
       SrcBlock		      "Product12"
       SrcPort		      1
-      DstBlock		      "Out49"
+      DstBlock		      "Out53"
       DstPort		      1
     }
     Line {
       ZOrder		      920
-      SrcBlock		      "In49"
+      SrcBlock		      "In53"
       SrcPort		      1
       Points		      [123, 0]
       Branch {
@@ -8162,7 +9787,7 @@ Model {
       ZOrder		      934
       SrcBlock		      "Gain"
       SrcPort		      1
-      DstBlock		      "Out39"
+      DstBlock		      "Out43"
       DstPort		      1
     }
     Line {
@@ -8177,7 +9802,7 @@ Model {
       }
       Branch {
 	ZOrder			951
-	DstBlock		"Out44"
+	DstBlock		"Out48"
 	DstPort			1
       }
     }
@@ -8191,6 +9816,7 @@ Model {
     }
     Line {
       ZOrder		      1023
+      Labels		      [0, 0]
       SrcBlock		      "Sort8"
       SrcPort		      1
       DstBlock		      "Terminator7"
@@ -8198,6 +9824,7 @@ Model {
     }
     Line {
       ZOrder		      1027
+      Labels		      [0, 0]
       SrcBlock		      "Sort8"
       SrcPort		      2
       DstBlock		      "Terminator8"
@@ -8205,7 +9832,7 @@ Model {
     }
     Line {
       ZOrder		      1025
-      SrcBlock		      "In42"
+      SrcBlock		      "In46"
       SrcPort		      1
       DstBlock		      "Sort8"
       DstPort		      1
@@ -8233,6 +9860,7 @@ Model {
     }
     Line {
       ZOrder		      1021
+      Labels		      [0, 0]
       SrcBlock		      "Sort8"
       SrcPort		      3
       DstBlock		      "Terminator9"
@@ -8240,13 +9868,15 @@ Model {
     }
     Line {
       ZOrder		      1035
+      Labels		      [0, 0]
       SrcBlock		      "Sort8"
       SrcPort		      8
-      DstBlock		      "Out42"
+      DstBlock		      "Out46"
       DstPort		      1
     }
     Line {
       ZOrder		      1018
+      Labels		      [0, 0]
       SrcBlock		      "Sort4"
       SrcPort		      3
       DstBlock		      "Terminator6"
@@ -8254,9 +9884,10 @@ Model {
     }
     Line {
       ZOrder		      1019
+      Labels		      [0, 0]
       SrcBlock		      "Sort4"
       SrcPort		      4
-      DstBlock		      "Out41"
+      DstBlock		      "Out45"
       DstPort		      1
     }
     Line {
@@ -8289,6 +9920,7 @@ Model {
     }
     Line {
       ZOrder		      1036
+      Labels		      [0, 0]
       SrcBlock		      "Sort8"
       SrcPort		      4
       DstBlock		      "Terminator10"
@@ -8296,6 +9928,7 @@ Model {
     }
     Line {
       ZOrder		      1038
+      Labels		      [0, 0]
       SrcBlock		      "Sort8"
       SrcPort		      5
       DstBlock		      "Terminator11"
@@ -8303,6 +9936,7 @@ Model {
     }
     Line {
       ZOrder		      1039
+      Labels		      [0, 0]
       SrcBlock		      "Sort8"
       SrcPort		      6
       DstBlock		      "Terminator12"
@@ -8310,6 +9944,7 @@ Model {
     }
     Line {
       ZOrder		      1041
+      Labels		      [0, 0]
       SrcBlock		      "Sort8"
       SrcPort		      7
       DstBlock		      "Terminator13"
@@ -8347,26 +9982,11 @@ Model {
     }
     Line {
       LineType		      "Connection"
-      ZOrder		      1094
-      SrcBlock		      "RConn3"
-      SrcPort		      RConn1
-      DstBlock		      "ConnectionRSplitInside"
-      DstPort		      RConn1
-    }
-    Line {
-      LineType		      "Connection"
       ZOrder		      1095
       SrcBlock		      "ConnectionRSplitInside"
       SrcPort		      LConn1
       DstBlock		      "LConn3"
       DstPort		      RConn1
-    }
-    Line {
-      LineType		      "Connection"
-      ZOrder		      1298
-      SrcBlock		      "ConnectionRSplitInside"
-      SrcPort		      RConn2
-      Points		      [37, 0]
     }
     Line {
       LineType		      "Connection"
@@ -8460,7 +10080,7 @@ Model {
       ZOrder		      1231
       SrcBlock		      "Simscape Bus3"
       SrcPort		      RConn1
-      Points		      [-34, 0; 0, 69; 205, 0; 0, -99]
+      Points		      [-29, 0; 0, 69; 205, 0; 0, -99]
       DstBlock		      "Simscape Bus2"
       DstPort		      RConn1
     }
@@ -8483,7 +10103,7 @@ Model {
     Line {
       LineType		      "Connection"
       ZOrder		      1232
-      SrcBlock		      "LConn10"
+      SrcBlock		      "LConn14"
       SrcPort		      RConn1
       DstBlock		      "Simscape Bus2"
       DstPort		      LConn1
@@ -8493,14 +10113,15 @@ Model {
       ZOrder		      1233
       SrcBlock		      "Simscape Bus3"
       SrcPort		      LConn3
-      DstBlock		      "RConn10"
+      DstBlock		      "RConn14"
       DstPort		      RConn1
     }
     Line {
       LineType		      "Connection"
       ZOrder		      1251
-      SrcBlock		      "LConn13"
+      SrcBlock		      "LConn12"
       SrcPort		      RConn1
+      Points		      [99, 0; 0, -15]
       DstBlock		      "Simscape Bus5"
       DstPort		      LConn2
     }
@@ -8509,7 +10130,7 @@ Model {
       ZOrder		      1249
       SrcBlock		      "Simscape Bus4"
       SrcPort		      LConn2
-      DstBlock		      "LConn12"
+      DstBlock		      "LConn11"
       DstPort		      RConn1
     }
     Line {
@@ -8517,7 +10138,7 @@ Model {
       ZOrder		      1248
       SrcBlock		      "Simscape Bus4"
       SrcPort		      LConn1
-      DstBlock		      "LConn11"
+      DstBlock		      "LConn10"
       DstPort		      RConn1
     }
     Line {
@@ -8525,6 +10146,7 @@ Model {
       ZOrder		      1250
       SrcBlock		      "Simscape Bus5"
       SrcPort		      LConn1
+      Points		      [-7, 0; 0, 15]
       DstBlock		      "Simscape Bus4"
       DstPort		      RConn1
     }
@@ -8537,39 +10159,8 @@ Model {
       DstPort		      RConn1
     }
     Line {
-      LineType		      "Connection"
-      ZOrder		      1253
-      SrcBlock		      "Simscape Bus6"
-      SrcPort		      LConn2
-      DstBlock		      "RConn13"
-      DstPort		      RConn1
-    }
-    Line {
-      LineType		      "Connection"
-      ZOrder		      1254
-      SrcBlock		      "Simscape Bus7"
-      SrcPort		      RConn1
-      DstBlock		      "Simscape Bus6"
-      DstPort		      LConn1
-    }
-    Line {
-      LineType		      "Connection"
-      ZOrder		      1255
-      SrcBlock		      "Simscape Bus7"
-      SrcPort		      LConn1
-      DstBlock		      "RConn11"
-      DstPort		      RConn1
-    }
-    Line {
-      LineType		      "Connection"
-      ZOrder		      1256
-      SrcBlock		      "Simscape Bus7"
-      SrcPort		      LConn2
-      DstBlock		      "RConn12"
-      DstPort		      RConn1
-    }
-    Line {
       ZOrder		      1260
+      Labels		      [0, 0]
       SrcBlock		      "Bus Creator4"
       SrcPort		      1
       DstBlock		      "Bus Creator5"
@@ -8577,6 +10168,7 @@ Model {
     }
     Line {
       ZOrder		      1261
+      Labels		      [0, 0]
       SrcBlock		      "Bus Creator5"
       SrcPort		      1
       DstBlock		      "Bus Selector5"
@@ -8602,6 +10194,7 @@ Model {
     }
     Line {
       ZOrder		      1267
+      Labels		      [0, 0]
       SrcBlock		      "In29"
       SrcPort		      1
       DstBlock		      "Bus Creator4"
@@ -8609,6 +10202,7 @@ Model {
     }
     Line {
       ZOrder		      1268
+      Labels		      [0, 0]
       SrcBlock		      "In28"
       SrcPort		      1
       DstBlock		      "Bus Creator4"
@@ -8616,6 +10210,7 @@ Model {
     }
     Line {
       ZOrder		      1272
+      Labels		      [0, 0]
       SrcBlock		      "Ground13"
       SrcPort		      1
       DstBlock		      "Bus Creator5"
@@ -8623,6 +10218,7 @@ Model {
     }
     Line {
       ZOrder		      1273
+      Labels		      [0, 0]
       SrcBlock		      "Ground14"
       SrcPort		      1
       DstBlock		      "Bus Creator2"
@@ -8648,6 +10244,7 @@ Model {
     }
     Line {
       ZOrder		      1293
+      Labels		      [0, 0]
       SrcBlock		      "Ground15"
       SrcPort		      1
       DstBlock		      "Bus Creator6"
@@ -8655,6 +10252,7 @@ Model {
     }
     Line {
       ZOrder		      1287
+      Labels		      [0, 0]
       SrcBlock		      "In30"
       SrcPort		      1
       DstBlock		      "Bus Creator6"
@@ -8662,6 +10260,7 @@ Model {
     }
     Line {
       ZOrder		      1294
+      Labels		      [0, 0]
       SrcBlock		      "Bus Creator6"
       SrcPort		      1
       DstBlock		      "Bus Selector4"
@@ -8669,6 +10268,7 @@ Model {
     }
     Line {
       ZOrder		      1292
+      Labels		      [0, 0]
       SrcBlock		      "Ground16"
       SrcPort		      1
       DstBlock		      "Bus Creator6"
@@ -8676,6 +10276,7 @@ Model {
     }
     Line {
       ZOrder		      1295
+      Labels		      [0, 0]
       SrcBlock		      "Bus Selector4"
       SrcPort		      1
       DstBlock		      "Bus Selector6"
@@ -8717,7 +10318,7 @@ Model {
     }
     Line {
       ZOrder		      1453
-      SrcBlock		      "In50"
+      SrcBlock		      "In54"
       SrcPort		      1
       DstBlock		      "Enabled"
       DstPort		      1
@@ -8727,7 +10328,7 @@ Model {
       ZOrder		      1455
       SrcBlock		      "Enabled"
       SrcPort		      LConn1
-      DstBlock		      "LConn14"
+      DstBlock		      "LConn15"
       DstPort		      RConn1
     }
     Line {
@@ -8740,6 +10341,7 @@ Model {
     }
     Line {
       ZOrder		      1458
+      Labels		      [0, 0]
       SrcBlock		      "Enabled"
       SrcPort		      1
       DstBlock		      "Triggered"
@@ -8755,6 +10357,7 @@ Model {
     }
     Line {
       ZOrder		      1460
+      Labels		      [0, 0]
       SrcBlock		      "Triggered"
       SrcPort		      1
       DstBlock		      "ActionElse"
@@ -8762,6 +10365,7 @@ Model {
     }
     Line {
       ZOrder		      1461
+      Labels		      [0, 0]
       SrcBlock		      "ActionElse"
       SrcPort		      1
       DstBlock		      "ActionIf"
@@ -8777,6 +10381,7 @@ Model {
     }
     Line {
       ZOrder		      1465
+      Labels		      [0, 0]
       SrcBlock		      "ActionIf"
       SrcPort		      1
       DstBlock		      "Resettable"
@@ -8795,46 +10400,44 @@ Model {
       ZOrder		      1467
       SrcBlock		      "Resettable"
       SrcPort		      RConn1
-      DstBlock		      "RConn14"
+      DstBlock		      "RConn15"
       DstPort		      RConn1
     }
     Line {
       ZOrder		      1468
+      Labels		      [0, 0]
       SrcBlock		      "Resettable"
       SrcPort		      1
-      DstBlock		      "Out50"
+      DstBlock		      "Out54"
       DstPort		      1
     }
     Line {
-      ZOrder		      1519
-      SrcBlock		      "Ground_18"
-      SrcPort		      1
-      DstBlock		      "ActionElse"
-      DstPort		      ifaction
-    }
-    Line {
       ZOrder		      1470
+      Labels		      [0, 0]
       SrcBlock		      "Ground_19"
       SrcPort		      1
-      DstBlock		      "StatePortHaving"
+      DstBlock		      "StatePortIntegrator"
       DstPort		      1
     }
     Line {
       ZOrder		      1471
-      SrcBlock		      "StatePortHaving"
+      Labels		      [0, 0]
+      SrcBlock		      "StatePortIntegrator"
       SrcPort		      1
       DstBlock		      "Terminator_17"
       DstPort		      1
     }
     Line {
       ZOrder		      1472
-      SrcBlock		      "StatePortHaving"
+      Labels		      [0, 0]
+      SrcBlock		      "StatePortIntegrator"
       SrcPort		      state
       DstBlock		      "Terminator_18"
       DstPort		      1
     }
     Line {
       ZOrder		      1473
+      Labels		      [0, 0]
       SrcBlock		      "Ground_20"
       SrcPort		      1
       DstBlock		      "Enabled"
@@ -8842,6 +10445,7 @@ Model {
     }
     Line {
       ZOrder		      1474
+      Labels		      [0, 0]
       SrcBlock		      "Ground_21"
       SrcPort		      1
       DstBlock		      "Triggered"
@@ -8849,6 +10453,7 @@ Model {
     }
     Line {
       ZOrder		      1475
+      Labels		      [0, 0]
       SrcBlock		      "Ground_22"
       SrcPort		      1
       DstBlock		      "Resettable"
@@ -8865,38 +10470,226 @@ Model {
     }
     Line {
       ZOrder		      1504
-      SrcBlock		      "In51"
+      SrcBlock		      "In55"
       SrcPort		      1
       DstBlock		      "Two-Way\nConnection"
       DstPort		      1
     }
     Line {
       ZOrder		      1505
-      SrcBlock		      "In52"
+      SrcBlock		      "In56"
       SrcPort		      1
       DstBlock		      "Two-Way\nConnection1"
       DstPort		      1
     }
     Line {
       ZOrder		      1506
+      Labels		      [0, 0]
       SrcBlock		      "Two-Way\nConnection"
       SrcPort		      1
-      DstBlock		      "Out51"
+      DstBlock		      "Out56"
       DstPort		      1
     }
     Line {
       ZOrder		      1507
+      Labels		      [0, 0]
       SrcBlock		      "Two-Way\nConnection1"
       SrcPort		      1
-      DstBlock		      "Out52"
+      DstBlock		      "Out55"
       DstPort		      1
     }
     Line {
-      ZOrder		      1520
-      SrcBlock		      "Ground_1"
-      SrcPort		      1
+      ZOrder		      1550
+      Labels		      [0, 0]
+      SrcBlock		      "If"
+      SrcPort		      2
       DstBlock		      "ActionIf"
       DstPort		      ifaction
+    }
+    Line {
+      ZOrder		      1551
+      Labels		      [0, 0]
+      SrcBlock		      "If"
+      SrcPort		      1
+      DstBlock		      "ActionElse"
+      DstPort		      ifaction
+    }
+    Line {
+      ZOrder		      1552
+      Labels		      [0, 0]
+      SrcBlock		      "Ground_1"
+      SrcPort		      1
+      DstBlock		      "If"
+      DstPort		      1
+    }
+    Line {
+      ZOrder		      1557
+      Labels		      [0, 0]
+      SrcBlock		      "Subsystem1"
+      SrcPort		      1
+      DstBlock		      "Subsystem"
+      DstPort		      1
+    }
+    Line {
+      ZOrder		      1558
+      Labels		      [0, 0]
+      SrcBlock		      "Subsystem"
+      SrcPort		      2
+      DstBlock		      "Out32"
+      DstPort		      1
+    }
+    Line {
+      ZOrder		      1559
+      Labels		      [0, 0]
+      SrcBlock		      "In31"
+      SrcPort		      1
+      DstBlock		      "Subsystem1"
+      DstPort		      1
+    }
+    Line {
+      ZOrder		      1560
+      Labels		      [0, 0]
+      SrcBlock		      "In32"
+      SrcPort		      1
+      DstBlock		      "Subsystem1"
+      DstPort		      2
+    }
+    Line {
+      ZOrder		      1561
+      Labels		      [0, 0]
+      SrcBlock		      "In33"
+      SrcPort		      1
+      DstBlock		      "Subsystem1"
+      DstPort		      3
+    }
+    Line {
+      ZOrder		      1562
+      Labels		      [0, 0]
+      SrcBlock		      "Subsystem"
+      SrcPort		      1
+      DstBlock		      "Out31"
+      DstPort		      1
+    }
+    Line {
+      ZOrder		      1563
+      Labels		      [0, 0]
+      SrcBlock		      "Subsystem"
+      SrcPort		      3
+      DstBlock		      "Out33"
+      DstPort		      1
+    }
+    Line {
+      ZOrder		      1564
+      Labels		      [0, 0]
+      SrcBlock		      "In34"
+      SrcPort		      1
+      DstBlock		      "Subsystem1"
+      DstPort		      4
+    }
+    Line {
+      ZOrder		      1565
+      Labels		      [0, 0]
+      SrcBlock		      "Subsystem"
+      SrcPort		      4
+      DstBlock		      "Out34"
+      DstPort		      1
+    }
+    Line {
+      LineType		      "Connection"
+      ZOrder		      1566
+      SrcBlock		      "LConn13"
+      SrcPort		      RConn1
+      DstBlock		      "Simscape Bus5"
+      DstPort		      LConn3
+    }
+    Line {
+      LineType		      "Connection"
+      ZOrder		      1567
+      SrcBlock		      "Simscape Bus7"
+      SrcPort		      LConn2
+      DstBlock		      "RConn13"
+      DstPort		      RConn1
+    }
+    Line {
+      LineType		      "Connection"
+      ZOrder		      1568
+      SrcBlock		      "Simscape Bus7"
+      SrcPort		      LConn1
+      DstBlock		      "RConn12"
+      DstPort		      RConn1
+    }
+    Line {
+      LineType		      "Connection"
+      ZOrder		      1570
+      SrcBlock		      "Simscape Bus6"
+      SrcPort		      LConn1
+      DstBlock		      "RConn10"
+      DstPort		      RConn1
+    }
+    Line {
+      LineType		      "Connection"
+      ZOrder		      1571
+      SrcBlock		      "Simscape Bus6"
+      SrcPort		      LConn2
+      Points		      [21, 0; 0, -15]
+      DstBlock		      "RConn11"
+      DstPort		      RConn1
+    }
+    Line {
+      LineType		      "Connection"
+      ZOrder		      1572
+      SrcBlock		      "Simscape Bus7"
+      SrcPort		      RConn1
+      Points		      [-7, 0; 0, 15]
+      DstBlock		      "Simscape Bus6"
+      DstPort		      LConn3
+    }
+    Line {
+      LineType		      "Connection"
+      ZOrder		      1580
+      SrcBlock		      "ConnectionRSplitInside"
+      SrcPort		      RConn2
+      Points		      [30, 0]
+    }
+    Line {
+      LineType		      "Connection"
+      ZOrder		      1585
+      SrcBlock		      "ConnectionRSplitInside"
+      SrcPort		      RConn1
+      DstBlock		      "RConn3"
+      DstPort		      RConn1
+    }
+    Line {
+      ZOrder		      1587
+      Labels		      [1, 1]
+      SrcBlock		      "Ground_2"
+      SrcPort		      1
+      DstBlock		      "StateReaderIntegrator"
+      DstPort		      1
+    }
+    Line {
+      ZOrder		      1588
+      Labels		      [0, 0]
+      SrcBlock		      "StateReaderIntegrator"
+      SrcPort		      1
+      DstBlock		      "Terminator_1"
+      DstPort		      1
+    }
+    Line {
+      ZOrder		      1589
+      Labels		      [0, 0]
+      SrcBlock		      "StateWriterIntegrator"
+      SrcPort		      1
+      DstBlock		      "Terminator_2"
+      DstPort		      1
+    }
+    Line {
+      ZOrder		      1590
+      Labels		      [1, 1]
+      SrcBlock		      "Ground_3"
+      SrcPort		      1
+      DstBlock		      "StateWriterIntegrator"
+      DstPort		      1
     }
     Annotation {
       SID		      "1150"
@@ -8944,7 +10737,7 @@ Model {
     Annotation {
       SID		      "499"
       Name		      "TODO: this is really easy, at least in the one direction it is"
-      Position		      [859, 1682, 1112, 1696]
+      Position		      [859, 1937, 1112, 1951]
       InternalMargins	      [0, 0, 0, 0]
       HorizontalAlignment     "left"
       VerticalAlignment	      "top"
@@ -8952,18 +10745,18 @@ Model {
     }
     Annotation {
       SID		      "496"
-      Name		      "[~, ps] = slQuery('#wiring / Inport')'; ps.Name = strcat('In_', ps.Port); ps.Name = strcat('In', ps"
-      ".Port);\n[~, ps] = slQuery('#wiring / Outport')'; ps.Name = strcat('Out_', ps.Port); ps.Name = strcat('Out', ps."
-      "Port);\nclear ps"
-      Position		      [868, -45, 1467, -7]
+      Name		      "x = slQuery('#slQuery_testmodel / Inport'); x(2).Name = strcat('_In', x(2).Port); x(2).Name = strca"
+      "t('In', x(2).Port);\nx = slQuery('#slQuery_testmodel / Outport'); x(2).Name = strcat('_Out', x(2).Port); x(2).Na"
+      "me = strcat('Out', x(2).Port);\nclear x"
+      Position		      [868, -45, 1533, -7]
       InternalMargins	      [0, 0, 0, 0]
       HorizontalAlignment     "left"
       VerticalAlignment	      "top"
       ForegroundColor	      "[0.000000, 0.000000, 0.501961]"
       ZOrder		      -1
-      ClickFcn		      "[~, ps] = slQuery('#wiring / Inport')'; ps.Name = strcat('In_', ps.Port); ps.Name = strcat('In'"
-      ", ps.Port);\n[~, ps] = slQuery('#wiring / Outport')'; ps.Name = strcat('Out_', ps.Port); ps.Name = strcat('Out',"
-      " ps.Port);\nclear ps"
+      ClickFcn		      "x = slQuery('#slQuery_testmodel / Inport'); x(2).Name = strcat('_In', x(2).Port); x(2).Name = s"
+      "trcat('In', x(2).Port);\nx = slQuery('#slQuery_testmodel / Outport'); x(2).Name = strcat('_Out', x(2).Port); x(2"
+      ").Name = strcat('Out', x(2).Port);\nclear x"
       UseDisplayTextAsClickCallback on
       FontName		      "Consolas"
     }
@@ -8971,7 +10764,7 @@ Model {
       SID		      "495"
       Name		      "Both of these offer the option of indexing vectors. if such is used, then this\nisn't pure routing "
       "but switching is involved"
-      Position		      [859, 1612, 1186, 1638]
+      Position		      [859, 1867, 1186, 1893]
       InternalMargins	      [0, 0, 0, 0]
       HorizontalAlignment     "left"
       VerticalAlignment	      "top"
@@ -8981,7 +10774,7 @@ Model {
       SID		      "494"
       Name		      "that's actually tough, because we need every signals exact dimensions\nto compute an index on the o"
       "ther side"
-      Position		      [859, 1542, 1173, 1568]
+      Position		      [859, 1797, 1173, 1823]
       InternalMargins	      [0, 0, 0, 0]
       HorizontalAlignment     "left"
       VerticalAlignment	      "top"
@@ -8999,7 +10792,7 @@ Model {
     Annotation {
       SID		      "477"
       Name		      "TODO: more vector/bus stuff"
-      Position		      [537, 1423, 667, 1437]
+      Position		      [537, 1678, 667, 1692]
       InternalMargins	      [0, 0, 0, 0]
       HorizontalAlignment     "left"
       VerticalAlignment	      "top"
@@ -9008,7 +10801,7 @@ Model {
     Annotation {
       SID		      "476"
       Name		      "Nonvirtual\n\"through-blocks\""
-      Position		      [535, 1126, 617, 1154]
+      Position		      [535, 1301, 617, 1329]
       InternalMargins	      [0, 0, 0, 0]
       FixedHeight	      on
       FixedWidth	      on
@@ -9024,7 +10817,7 @@ Model {
       "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-inden"
       "t:0px;\"><span style=\" font-size:10px;\">this is partially init-time dependent and thus hard</span></p></body><"
       "/html>"
-      Position		      [859, 1478, 1075, 1492]
+      Position		      [859, 1733, 1075, 1747]
       InternalMargins	      [0, 0, 0, 0]
       HorizontalAlignment     "left"
       VerticalAlignment	      "top"
@@ -9052,7 +10845,7 @@ Model {
     Annotation {
       SID		      "184"
       Name		      "Subsystems/Ports"
-      Position		      [535, 137, 617, 151]
+      Position		      [535, 147, 617, 161]
       InternalMargins	      [0, 0, 0, 0]
       HorizontalAlignment     "left"
       VerticalAlignment	      "top"
@@ -9061,7 +10854,7 @@ Model {
     Annotation {
       SID		      "183"
       Name		      "Lines"
-      Position		      [535, 103, 560, 117]
+      Position		      [535, 108, 560, 122]
       InternalMargins	      [0, 0, 0, 0]
       HorizontalAlignment     "left"
       VerticalAlignment	      "top"
@@ -9097,7 +10890,7 @@ Model {
     Annotation {
       SID		      "343"
       Name		      "BusCreator/Selector"
-      Position		      [535, 763, 627, 777]
+      Position		      [535, 768, 627, 782]
       InternalMargins	      [0, 0, 0, 0]
       HorizontalAlignment     "left"
       VerticalAlignment	      "top"
@@ -9106,7 +10899,7 @@ Model {
     Annotation {
       SID		      "410"
       Name		      "BusAssignment"
-      Position		      [535, 1033, 606, 1047]
+      Position		      [535, 1198, 606, 1212]
       InternalMargins	      [0, 0, 0, 0]
       HorizontalAlignment     "left"
       VerticalAlignment	      "top"
@@ -9124,7 +10917,7 @@ Model {
     Annotation {
       SID		      "519"
       Name		      "loops through nesting"
-      Position		      [535, 1302, 632, 1316]
+      Position		      [535, 1477, 632, 1491]
       InternalMargins	      [0, 0, 0, 0]
       HorizontalAlignment     "left"
       VerticalAlignment	      "top"
@@ -9244,7 +11037,7 @@ Model {
     Annotation {
       SID		      "1099"
       Name		      "nested"
-      Position		      [560, 813, 591, 827]
+      Position		      [560, 828, 591, 842]
       InternalMargins	      [0, 0, 0, 0]
       HorizontalAlignment     "left"
       VerticalAlignment	      "top"
@@ -9253,7 +11046,7 @@ Model {
     Annotation {
       SID		      "1100"
       Name		      "access nested"
-      Position		      [558, 893, 623, 907]
+      Position		      [558, 908, 623, 922]
       InternalMargins	      [0, 0, 0, 0]
       HorizontalAlignment     "left"
       VerticalAlignment	      "top"
@@ -9262,7 +11055,7 @@ Model {
     Annotation {
       SID		      "1126"
       Name		      "output as bus"
-      Position		      [560, 973, 621, 987]
+      Position		      [560, 988, 621, 1002]
       InternalMargins	      [0, 0, 0, 0]
       HorizontalAlignment     "left"
       VerticalAlignment	      "top"
@@ -9283,9 +11076,9 @@ Model {
       "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\np, li { white-space: pre-wrap; }"
       "\n</style></head><body align=\"left\" style=\" font-family:'Helvetica'; font-size:10px; font-weight:400; font-st"
       "yle:normal;\">\n<p align=\"left\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px;"
-      " -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:36px;\">Various Port Types</span></p></body></h"
-      "tml>"
-      Position		      [2975, -133, 3277, -90]
+      " -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:36px;\">Enable/Trigger/IfAction and Event/State"
+      " stuff</span></p></body></html>"
+      Position		      [2859, -133, 3571, -90]
       InternalMargins	      [0, 0, 0, 0]
       HorizontalAlignment     "left"
       VerticalAlignment	      "top"
@@ -9302,6 +11095,36 @@ Model {
       HorizontalAlignment     "left"
       VerticalAlignment	      "top"
       ZOrder		      20
+    }
+    Annotation {
+      SID		      "1963"
+      Name		      "Bus Element Port"
+      Position		      [535, 1083, 614, 1097]
+      InternalMargins	      [0, 0, 0, 0]
+      HorizontalAlignment     "left"
+      VerticalAlignment	      "top"
+      ZOrder		      -1
+    }
+    Annotation {
+      SID		      "2155"
+      Name		      "x = slQuery('#slQuery_testmodel / PMIOPort');\nportno = arrayfun(@str2double, x(2).Port);\nr = strc"
+      "mp(x(2).Side, 'Right');\nx(2, r).Name = arrayfun(@(i) {['_RConn', num2str(ceil(i/2))]}, portno(r));\nx(2, r).Nam"
+      "e = arrayfun(@(i) {['RConn', num2str(ceil(i/2))]}, portno(r));\nx(2, ~r).Name = arrayfun(@(i) {['_LConn', num2st"
+      "r(ceil(i/2))]}, portno(~r));\nx(2, ~r).Name = arrayfun(@(i) {['LConn', num2str(ceil(i/2))]}, portno(~r));\nclear"
+      " x portno r"
+      Position		      [1996, -81, 2414, 17]
+      InternalMargins	      [0, 0, 0, 0]
+      HorizontalAlignment     "left"
+      VerticalAlignment	      "top"
+      ForegroundColor	      "[0.000000, 0.000000, 0.501961]"
+      ZOrder		      21
+      ClickFcn		      "x = slQuery('#slQuery_testmodel / PMIOPort');\nportno = arrayfun(@str2double, x(2).Port);\nr = "
+      "strcmp(x(2).Side, 'Right');\nx(2, r).Name = arrayfun(@(i) {['_RConn', num2str(ceil(i/2))]}, portno(r));\nx(2, r)"
+      ".Name = arrayfun(@(i) {['RConn', num2str(ceil(i/2))]}, portno(r));\nx(2, ~r).Name = arrayfun(@(i) {['_LConn', nu"
+      "m2str(ceil(i/2))]}, portno(~r));\nx(2, ~r).Name = arrayfun(@(i) {['LConn', num2str(ceil(i/2))]}, portno(~r));\nc"
+      "lear x portno r"
+      UseDisplayTextAsClickCallback on
+      FontName		      "Consolas"
     }
   }
 }
