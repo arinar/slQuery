@@ -4,8 +4,8 @@ The slQuery Language
 The `slQuery` query language is used to search for patterns in Simulink models. As a language 
 it is a mix between
 
-* the _Select&Project_ aspect known from relational databases and SQL
 * the XPath- and jQuery-style _navigation_ along a chain of element selectors coupled with
+* the _Select&Project_ aspect known from relational databases and SQL
 
 _Unlike SQL_ `slQuery` does not strictly separate the &pi; and &sigma; operations: there are no 
 separate `SELECT ... FROM ...`- and `WHERE ...` clauses like SQL has them.

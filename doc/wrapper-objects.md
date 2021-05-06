@@ -126,7 +126,7 @@ rows 7 through 11
     {1x4 double}    {1x4 double}    {1x4 double}    {1x4 double}    {1x4 double}
 ```
 
-While still in the `slQuery` subscript expression, you can further explor any structured 
+While still in the `slQuery` subscript expression, you can further explore any structured 
 parameter values. `slQuery` will extract the struct member or array element at each 
 subscription stage and repack the results into an array again.
 
