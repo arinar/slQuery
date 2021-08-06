@@ -131,6 +131,7 @@ classdef slQuery < double
 								sel = slQuery.arrayfun( ...
 									@(h, n) { sprintf('<a href="matlab: hilite_system(%.15f);">%s</a>', h, n) } ...
 									, double(sel), names);
+								if iscell(sel) && isscalar(sel), sel = sel{1}; end
 								return
 								
 							case 'wrap' % TODO: is this cool?
@@ -180,9 +181,7 @@ classdef slQuery < double
 				end
 				% LEGACY. this isn't actually cool, because it breaks algorhitms that work with entire
 				% query-results, when those just happen to be scalars. TODO: need a way to decide this!
-				if iscell(sel) && isscalar(sel)
-					sel = sel{1};
-				end
+				if iscell(sel) && isscalar(sel), sel = sel{1}; end
 			end
 		end
 
@@ -223,13 +222,11 @@ classdef slQuery < double
 									value = cellfun(@(x) {squeeze(x)'}, value);
 								end
 						end
-						
-						slQuery.arrayfun(@set_param, double(sel), sub.subs, value);
-						
-					otherwise % they did something stupid
-						error('''%s'' not supported');
 				end
+			else % they did something stupid
+				error('''%s'' not supported');
 			end
+			slQuery.arrayfun(@set_param, double(sel), sub.subs, value);
 		end
 	end
 	methods(Access=public) % operators that are operations
@@ -434,8 +431,7 @@ classdef slQuery < double
 					end
 					
 					switch combinator.type
-						case ','
-							% info is the root of the previous block
+						case ',' % info is the root of the previous block
 							new = find_system(info, find_args{:})';
 						case ' ' % sibling of the current block
 							par = slQuery.get_ref(info, 'Parent');
