@@ -281,6 +281,12 @@ X = slQuery(children);
 assert(isequal(X.Parent.Position ...
 	, get_param(arr_param(children, 'Parent'), 'Position')'))
 
+%% set block parameter (indirect, string scalar)
+x = slQuery(children(1));
+fix = fix_param(get_param(children(1), 'Parent'), 'BackgroundColor'); %#ok<NASGU> dtor variable
+x.Parent.BackgroundColor = 'purple';
+assert(isequal(get_param(get_param(children(1), 'Parent'), 'BackgroundColor'), 'purple'));
+
 %% set block parameter (indirect, rectangle scalar)
 x = slQuery(children(1));
 fix = fix_param(get_param(children(1), 'Parent'), 'Position'); %#ok<NASGU> dtor variable
