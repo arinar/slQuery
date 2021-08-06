@@ -461,36 +461,50 @@ classdef slQuery < double
 							% this is more expensive: search from root 0 instead of bdroot
 							new = find_system(0, find_args{:}, 'ReferenceBlock', ['^' getfullname(info) '$'])';
 						case '-' % directly connected
-							pc = get_param(info, 'PortConnectivity');
-							pc(~strncmp({pc.Type}, 'RConn', 5)) = [];
-							if (combinator.sp)
-								pc(~strcmp({pc.Type}, ['RConn' num2str(combinator.sp)])) = [];
-							end
+							pc = get_param(info, 'PortConnectivity'); % for Simscape: PortConnectivity elements of type L/RConnX
+							if isempty(combinator.sp), sp = '\d+'; else, sp = num2str(combinator.sp); end
+							pc(arrayfun(@(t) isempty(regexp(t.Type, ['^[LR]Conn' sp], 'once')), pc)) = [];
 							ps = [pc.DstPort];
-							if combinator.dp
+							if ~isempty(combinator.dp) && isnumeric(combinator.dp)
 								ps(slQuery.get_param(ps, 'PortNumber') ~= combinator.dp) = [];
 							end
 							new = find_system(setdiff(slQuery.get_ref(ps, 'Parent'), info), 'SearchDepth', 0, find_args{:})';
 						case {'->', '<-'} % directly feeding
 							ps = double.empty(1, 0);
 							if strcmp(combinator.type, '->')
-								lines = slQuery.get_param(slQuery.get_ports(info, 'Outport', combinator.sp), 'line');
-								ps = [ps slQuery.get_ports(lines(lines ~= -1), 'DstPortHandle', combinator.dp)]; %#ok<AGROW>
+								ls = setdiff(slQuery.get_param(slQuery.get_ports(info, 'Outport', combinator.sp), 'line'), -1);
+								ps = [ps slQuery.get_ports(ls, 'DstPortHandle', combinator.dp)]; %#ok<AGROW>
 							end
 							if strcmp(combinator.type, '<-')
-								lines = slQuery.get_param(slQuery.get_ports(info, 'Inport', combinator.sp), 'line');
-								ps = [ps slQuery.get_ports(lines(lines ~= -1), 'SrcPortHandle', combinator.dp)]; %#ok<AGROW>
+								ls = setdiff(slQuery.get_param(slQuery.get_ports(info, 'Inport', combinator.sp), 'line'), -1);
+								ps = [ps slQuery.get_ports(ls, 'SrcPortHandle', combinator.dp)]; %#ok<AGROW>
 							end
 							new = find_system(slQuery.get_ref(ps, 'Parent'), 'SearchDepth', 0, find_args{:})';
-						case {  '~>', '~', '<~' ... indirectly wired, including virtual blocks (Subsystem-Levels, Goto/From, BusCreator/BusSelector, Mux/Demux)
-								'=>', '=', '<=' ... logically wired, excluding virtual blocks
-								'>>', '<>', '<<' ... signal slicing (any data dependencies)
-								}
+						case {'~', '=', '<>'}
 							ps = double.empty(1, 0);
-							virt = ismember(combinator.type, {'~>', '~', '<~', '<<', '<>', '>>'});
-							slic = ismember(combinator.type, {'<<', '<>', '>>'});
-							% make empty frontier for recursion breakpoints
-							front = containers.Map('KeyType', 'char', 'ValueType', 'logical');
+							virt = ismember(combinator.type, {'~', '<>'});
+							slic = strcmp(combinator.type, '<>');
+							front = containers.Map('KeyType', 'char', 'ValueType', 'logical'); % recursion stops (initially empty)
+							for port = [-info(strcmp(get_param(info, 'BlockType'), 'PMIOPort')) slQuery.get_ports(info, 'RConn', combinator.sp)]
+								ps = [ps slQuery.follow_physical(port, {}, front, virt, slic)]; %#ok<AGROW>
+							end
+							% filter by port handle number
+							if ~isempty(combinator.dp)
+								if isnumeric(combinator.dp)
+									ps = ps(slQuery.get_param(ps, 'PortNumber') == combinator.dp);
+								elseif ischar(combinator.dp) && isequal(combinator.dp, '!')
+									ps = ps(slQuery.get_param(ps, 'PortNumber') == combinator.dp);
+								end
+							end
+							% negative return values of follow are the handles of port blocks
+							new = [-ps(ps < 0), slQuery.get_ref(ps(ps>0), 'Parent')];
+							new = find_system(new, 'SearchDepth', 0, find_args{:})';
+							
+						case {'~>', '<~', '<=', '=>', '<<', '>>'}
+							ps = double.empty(1, 0);
+							virt = ismember(combinator.type, {'~>', '<~', '<<', '>>'});
+							slic = ismember(combinator.type, {'<<', '>>'});
+							front = containers.Map('KeyType', 'char', 'ValueType', 'logical'); % recursion stops (initially empty)
 							if ismember(combinator.type, {'~>', '~', '=>', '=', '>>', '<>'})
 								for port = [-info(ismember(get_param(info, 'BlockType'), {'Outport', 'Goto'})) slQuery.get_ports(info, 'Outport', combinator.sp)]
 									ps = [ps slQuery.follow_signal(port, {}, front, virt, slic)]; %#ok<AGROW>
@@ -501,13 +515,18 @@ classdef slQuery < double
 									ps = [ps slQuery.follow_signal(port, {}, front, virt, slic)]; %#ok<AGROW>
 								end
 							end
+							
 							% filter by port handle number
-							if ~isempty(combinator.dp)
-								if isnumeric(combinator.dp)
-									ps = ps(slQuery.get_param(ps, 'PortNumber') == combinator.dp);
-								elseif ischar(combinator.dp) && isequal(combinator.dp, '!')
-									ps = ps(slQuery.get_param(ps, 'PortNumber') == combinator.dp);
-								end
+							switch combinator.dp
+								case '?', ps = ps(strcmp(slQuery.get_param(ps, 'PortType'), 'enable'));
+								case '!', ps = ps(strcmp(slQuery.get_param(ps, 'PortType'), 'trigger'));
+								case '%', ps = ps(strcmp(slQuery.get_param(ps, 'PortType'), 'ifaction'));
+								case '°', ps = ps(strcmp(slQuery.get_param(ps, 'PortType'), 'Reset'));
+								case '^', ps = ps(strcmp(slQuery.get_param(ps, 'PortType'), 'state'));
+								otherwise
+									if ~isempty(combinator.dp) && isnumeric(combinator.dp)
+										ps = ps(slQuery.get_param(ps, 'PortNumber') == combinator.dp);
+									end
 							end
 							% negative return values of follow are the handles of port blocks
 							new = [-ps(ps < 0), slQuery.get_ref(ps(ps>0), 'Parent')];
@@ -645,7 +664,7 @@ classdef slQuery < double
 			assert(islogical(slic)); % whether to also follow data dependency (instead of only data flow)
 			
 			eps = []; % eps is the list of "end"-ports gathered from following bp to where it leads
-			if bp < 0 % non-wired connection as startpiont
+			if bp < 0 % non-wired connection as startpoint
 				if ~strcmp(get_param(-bp, 'Type'), 'block'), return, end % bail out at block diagram level
 				switch get_param(-bp, 'BlockType')
 					case {'Goto', 'Outport'}
@@ -655,17 +674,16 @@ classdef slQuery < double
 					otherwise
 						return % these blocks aren't non-wired
 				end
-				beps = slQuery.get_ports(-bp, edir, 1);
-			
+				beps = slQuery.get_ports(-bp, edir, 1)';
+				
 			else % this is a port handle ~> follow the lines
-				ls = get_param(bp, 'Line');
-				ls(ls == -1) = []; % don't follow unconnected lines
+				ls = setdiff(get_param(bp, 'Line'), -1); % all except unconnected lines
 				
 				% the 'PortType' determines the direction of following (upstream is true, downstream is false, )
 				if strcmp(get_param(bp, 'PortType'), 'inport')
-					[edir, pdir, beps] = deal('Outport', 'Inport', slQuery.get_ports(ls, 'SrcPortHandle'));
+					[edir, pdir, beps] = deal('Outport', 'Inport', slQuery.get_ports(ls, 'SrcPortHandle')');
 				else
-					[edir, pdir, beps] = deal('Inport', 'Outport', slQuery.get_ports(ls, 'DstPortHandle'));
+					[edir, pdir, beps] = deal('Inport', 'Outport', slQuery.get_ports(ls, 'DstPortHandle')');
 				end
 			end
 			
@@ -676,7 +694,7 @@ classdef slQuery < double
 			fibid(~an) = strcat('.', fibid(~an));
 			fibid = [fibid{:}];
 			
-			for ep = beps'
+			for ep = beps
 				b = slQuery.get_ref(ep, 'Parent');
 				
 				sigid = [char(typecast(ep, 'uint8')) ':' fibid];
@@ -688,11 +706,14 @@ classdef slQuery < double
 					case {'Inport', 'Outport'} % a port ~> follow it outside
 						s = slQuery.get_ref(b, 'Parent');
 						if strcmp(get_param(s, 'Type'), 'block')
-
-							if ~isempty(get_param(s, 'VariantControl')) % system is variant ~> skip to parent
-								% TODO: include the port block on VariantSystem level into neps
-								s = slQuery.get_ref(s, 'Parent');
+							% resolve addr in bus element port
+							if strcmp(get_param(b, 'IsBusElementPort'), 'on')
+								addr = [addr fliplr(strsplit(get_param(b, 'Element'), '.'))]; %#ok<AGROW>
 							end
+							
+							% system is variant ~> skip to parent, TODO: include the port block on VariantSystem level into neps
+							if ~isempty(get_param(s, 'VariantControl')), s = slQuery.get_ref(s, 'Parent'); end
+							
 							sp = slQuery.get_ports(s, pdir, str2double(get_param(b, 'Port')));
 							neps = slQuery.follow_signal(sp, addr, front, virt, slic);
 							
@@ -705,22 +726,22 @@ classdef slQuery < double
 						% skip events/actions/triggers (for now)
 						if ~ismember(get_param(ep, 'PortType'), {'inport', 'outport'}), continue; end
 						pn = num2str(get_param(ep, 'PortNumber'));
-
-						if strcmp(get_param(b, 'Variant'), 'on') % it's a variant sub-system and all variants must be followed
-							ss = setdiff(find_system(b, 'LookUnderMasks', 'all', 'FollowLinks', 'on', 'Variants', 'all', 'SearchDepth', 1, 'BlockType', 'SubSystem')', b);
-						else
-							ss = b;
-						end
-
 						neps = [];
-						for s = ss
-							pbs = find_system(s, 'LookUnderMasks', 'all', 'FollowLinks', 'on', 'SearchDepth', 1, 'BlockType', edir, 'Port', pn);
-							for bp = slQuery.get_ports(pbs, pdir, 1)
-								neps = [neps, slQuery.follow_signal(bp, addr, front, virt, slic)]; %#ok<AGROW>
+						if strcmp(get_param(b, 'Variant'), 'on') % it's a variant sub-system and all variants must be followed
+							b = setdiff(find_system(b, 'LookUnderMasks', 'all', 'FollowLinks', 'on', 'Variants', 'all', 'SearchDepth', 1, 'BlockType', 'SubSystem')', b);
+						end
+						for s = b
+							for pb = find_system(s, 'LookUnderMasks', 'all', 'FollowLinks', 'on', 'SearchDepth', 1, 'BlockType', edir, 'Port', pn)'
+								sl = 0;
+								if strcmp(get_param(pb, 'IsBusElementPort'), 'on')
+									path = fliplr(strsplit(get_param(pb, 'Element'), '.'));
+									sl = numel(path);
+									if numel(addr) < numel(path) || ~isequal(addr(end-sl+1:end), path), continue; end
+								end
+								if virt, neps(end+1) = -pb; end %#ok<AGROW>
+								neps = [neps, slQuery.follow_signal(slQuery.get_ports(pb, pdir, 1), addr(1:end-sl), front, virt, slic)]; %#ok<AGROW>
 							end
 						end
-
-						if virt, neps = [neps -pbs]; end %#ok<AGROW>
 						
 					case 'Goto' % ~> find corresponding From-blocks
 						tag_args = {'LookUnderMasks', 'all', 'FollowLinks', 'on', 'GotoTag', get_param(b, 'GotoTag')};
@@ -861,7 +882,7 @@ classdef slQuery < double
 								end
 							else % ~> add corresponding name tokens to addr
 								tokens = fliplr(strsplit(pathes{get_param(ep, 'PortNumber')}, '.'));
-								neps = slQuery.follow(slQuery.get_ports(b, 'Inport', 1), [addr tokens], front, virt, slic);
+								neps = slQuery.follow_signal(slQuery.get_ports(b, 'Inport', 1), [addr tokens], front, virt, slic);
 							end
 						end
 						
@@ -900,6 +921,126 @@ classdef slQuery < double
 							naddr = {};
 							
 							neps = [ep slQuery.listfun(@(bp) slQuery.follow_signal(bp, naddr, front, virt, slic), ...
+								slQuery.get_ports(b, pdir))]; % all ports of the other side
+							
+							front(sigid) = true;
+						else
+							neps = ep;
+						end
+				end
+				
+				% when including virtual routing, the immediate port pdir direction (ep) must also be counted
+				eps = unique([eps ep(virt) neps]);
+			end
+		end
+		
+		function eps = follow_physical(bp, addr, front, virt, slic)
+			% follow the physical connection of a port through lines and virtual blocks PMIOPort/Subsystem,
+			% Subsystem/PMIOPort, ConnLabel/ConnLabel, SimscapeBus
+			assert(isnumeric(bp) && isscalar(bp)); % bp - "begin"-port, whose line we want to follow
+			assert(iscell(addr)); % addr - the address of a compound signal (bus, array)
+			assert(islogical(virt)); % whether to include virtual routing blocks in the result
+			assert(islogical(slic)); % whether to also follow data dependency (instead of only data flow)
+			
+			% eps is the list of "end"-ports gathered from following bp to where it leads
+			eps = [];
+			if bp < 0 % non-wired connection as startpoint
+				if ~strcmp(get_param(-bp, 'Type'), 'block'), return, end % bail out at block diagram level
+				switch get_param(-bp, 'BlockType')
+					case 'ConnectionLabel'
+						beps = slQuery.get_ports(-bp, 'LConn', 1)';
+					case 'PMIOPort'
+						beps = slQuery.get_ports(-bp, 'RConn', 1)';
+					otherwise
+						return % these blocks aren't non-wired connections
+				end
+			else % this is a port handle ~> follow the lines
+				ls = setdiff(get_param(bp, 'Line'), -1); % all except unconnected lines
+				% follow connection (src and dst at the same time), but not this port
+				beps = setdiff([slQuery.get_ports(ls, 'DstPortHandle')' slQuery.get_ports(ls, 'SrcPortHandle')'], [-1, bp]);
+			end
+			
+			% construct 'signal fiber' identifier: addr tokens (names/mux-indices) as single string
+			fibid = addr;
+			an = cellfun(@isnumeric, fibid);
+			fibid(an) = cellfun(@(x) {['[' char(typecast(x, 'uint8')) ']']}, fibid(an));
+			fibid(~an) = strcat('.', fibid(~an));
+			fibid = [fibid{:}];
+			
+			for ep = beps
+				b = slQuery.get_ref(ep, 'Parent');
+				
+				sigid = [char(typecast(ep, 'uint8')) ':' fibid];
+				if front.isKey(sigid), continue, end % fully came around ~> prune traversal here
+				front(sigid) = true;
+				
+				% handle all the virtual (signal routing) blocks
+				switch get_param(b, 'BlockType')
+					case 'PMIOPort' % a port ~> follow it outside
+						s = slQuery.get_ref(b, 'Parent');
+						if strcmp(get_param(s, 'Type'), 'block')
+							% system is variant ~> skip to parent, TODO: include the port block on VariantSystem level into neps
+							if ~isempty(get_param(s, 'VariantControl')), s = slQuery.get_ref(s, 'Parent'); end
+							
+							side = get_param(b, 'Side');
+							ports = find_system(s, 'LookUnderMasks', 'all', 'FollowLinks', 'on', 'Variants', 'all', 'SearchDepth', 1, 'BlockType', 'PMIOPort', 'Side', side);
+							[~, I] = sort(arrayfun(@(h) str2double(get_param(h, 'Port')), ports));
+							sp = slQuery.get_ports(s, [side(1) 'Conn'], ports(I) == b);
+							neps = slQuery.follow_physical(sp, addr, front, virt, slic);
+						else % port is on the block_diagram level ~> cannot go beyond, done
+							neps = ep;
+						end
+						if virt, neps = [neps -s]; end %#ok<AGROW>
+						
+					case 'SubSystem' % ~> follow it inside
+						assert(strcmp(get_param(ep, 'PortType'), 'connection'))
+						pn = num2str(get_param(ep, 'PortNumber'));
+						if strcmp(get_param(b, 'Variant'), 'on') % it's a variant sub-system and all variants must be followed
+							b = setdiff(find_system(b, 'LookUnderMasks', 'all', 'FollowLinks', 'on', 'Variants', 'all', 'SearchDepth', 1, 'BlockType', 'SubSystem')', b);
+						end
+						neps = [];
+						for s = b
+							pbs = find_system(s, 'LookUnderMasks', 'all', 'FollowLinks', 'on', 'SearchDepth', 1, 'BlockType', 'PMIOPort', 'Port', pn);
+							for bp = slQuery.get_ports(pbs, 'RConn', 1)
+								neps = [neps, slQuery.follow_physical(bp, addr, front, virt, slic)]; %#ok<AGROW>
+							end
+						end
+						if virt, neps = [neps -pbs]; end %#ok<AGROW>
+						
+					case 'ConnectionLabel' % ~> find corresponding Label-blocks
+						lbs = setdiff(find_system(slQuery.get_ref(b, 'Parent'), 'LookUnderMasks', 'all', 'FollowLinks', 'on', 'SearchDepth', 1, 'BlockType', 'ConnectionLabel', 'Label', get_param(b, 'Label'))', b);
+						neps = slQuery.listfun(@(lp) slQuery.follow_physical(lp, addr, front, virt, slic), slQuery.get_ports(lbs, 'LConn', 1));
+						if virt, neps = [neps -lbs]; end %#ok<AGROW>
+						
+					case 'SimscapeBus'
+						conns = strsplit(get_param(b, 'HierarchyStrings'), ';');
+						if ismember(ep, slQuery.get_ports(b, 'LConn')) % line connected to bus element ~> add an address token and follow bus
+							neps = slQuery.follow_physical(slQuery.get_ports(b, 'RConn', 1), [addr conns(get(ep, 'PortNumber'))], front, virt, slic);
+							
+						elseif isempty(addr)
+							if slic % signal slicing ~> follow the opposite ports of this endpoint (even though, the bus is now many signals)
+								bps = slQuery.get_ports(b, pdir); % all ports of the other side
+								neps = slQuery.listfun(@(bp) slQuery.follow_physical(bp, addr, front, virt, slic), bps);
+								
+							else % no signal slicing ~> we're done (this block is it)
+								neps = ep;
+							end
+							
+						else % that addr token must be in the names
+							neps = slQuery.listfun(@(bp) slQuery.follow_physical(bp, addr(1:end-1), front, virt, slic), ...
+								slQuery.get_ports(b, 'LConn', strcmp(addr{end}, conns)));
+							
+						end
+						
+					otherwise
+						if slic % signal slicing ~> follow the opposite ports of this endpoint
+							
+							% addr should be emptied, because signal hierarchies don't relate to each other in the
+							% "otherwise" case. TODO: this is dependent on the block type and config (e.g. mux-signals of
+							% Gain in element-wise mode are decoupled)
+							naddr = {};
+							
+							neps = [ep slQuery.listfun(@(bp) slQuery.follow_physical(bp, naddr, front, virt, slic), ...
 								slQuery.get_ports(b, pdir))]; % all ports of the other side
 							
 							front(sigid) = true;
