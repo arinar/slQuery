@@ -59,8 +59,8 @@ assert(isequal(X.fullname, getfullname(blk23)));
 %% get block hyperlink (scalar selection)
 x = slQuery.gcb;
 link = x.hyperlink;
-assert(regexp(link{1}, '^<a[^>]+>[^<]+</a>$', 'once') == 1);
-assert(str2double(regexp(link{1}, '(?<=hilite_system\()\d+.\d+(?=\))', 'match', 'once')) == gcbh);
+assert(regexp(link, '^<a[^>]+>[^<]+</a>$', 'once') == 1);
+assert(str2double(regexp(link, '(?<=hilite_system\()\d+.\d+(?=\))', 'match', 'once')) == gcbh);
 
 %% get block hyperlink (nonscalar selection)
 X = slQuery(blk23);
@@ -71,7 +71,7 @@ assert(isequal(str2double(regexp(links, '(?<=hilite_system\()\d+.\d+(?=\))', 'ma
 %% get block hyperlink (scalar, name)
 x = slQuery.gcb;
 link = x.hyperlink('blabliblu');
-assert(regexp(link{1}, '^<a[^>]+>blabliblu</a>$', 'once') == 1);
+assert(regexp(link, '^<a[^>]+>blabliblu</a>$', 'once') == 1);
 
 %% get block hyperlink (nonscalar, uniform name)
 X = slQuery(blk23);
