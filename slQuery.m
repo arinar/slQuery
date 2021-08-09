@@ -1070,9 +1070,15 @@ classdef slQuery < double
 			else
 				ps = get_param(hs, 'PortHandles');
 				if iscell(ps), ps = [ps{:}]; end
-				if ~isstruct(ps)
+				if strcmp(type, 'connection')
+					ps = [ps.LConn ps.RConn];
+				elseif strcmp(type, 'Inport')
+					ps = [ps.Inport, ps.Enable, ps.Trigger, ps.Ifaction, ps.Reset];
+				elseif strcmp(type, 'Outport')
+					ps = [ps.Outport, ps.State];
+				else
+					error('unknown getports type');
 				end
-				ps = [ps.(type)]; % catted horizontally
 			end
 			
 			% filter by correct port index
@@ -1094,14 +1100,11 @@ classdef slQuery < double
 				elseif isequal(index, '°') % reset
 					ps = ps(strcmp(slQuery.get_param(ps, 'PortType'), 'Reset'));
 				else % char ~> filter by port name, when the block is a subsystem
-					if strcmp(type, 'Inport') || strcmp(type, 'DstPortHandle')
-						bt = 'Inport';
-					else
-						bt = 'Outport';
-					end
+					if strcmp(type, 'DstPortHandle'), type = 'Inport'; end
+					if strcmp(type, 'SrcPortHandle'), type = 'Outport'; end
 					
 					pbs = arrayfun( ...
-						@(p) find_system(get_param(p, 'Parent'), 'LookUnderMasks', 'all', 'FollowLinks', 'on', 'SearchDepth', 1, 'BlockType', bt, 'Port', num2str(get_param(p, 'PortNumber'))) ...
+						@(p) find_system(get_param(p, 'Parent'), 'LookUnderMasks', 'all', 'FollowLinks', 'on', 'SearchDepth', 1, 'BlockType', type, 'Port', num2str(get_param(p, 'PortNumber'))) ...
 						, ps, 'UniformOutput', false ...
 						);
 					
@@ -1110,7 +1113,7 @@ classdef slQuery < double
 				end
 			end
 			
-			if isempty(ps); ps = double.empty(1, 0); end
+			if isempty(ps); ps = double.empty(0, 1); end
 		end
 	end
 	methods(Static) % for convenience
