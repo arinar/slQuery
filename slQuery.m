@@ -1120,8 +1120,8 @@ classdef slQuery < double
 		function result = gcb, result = slQuery(gcbh); end
 		function result = gcs, result = slQuery(get_param(gcs, 'Handle')); end
 		function result = sel
-			result = find_system(get_param(gcs, 'Handle'), 'SearchDepth', 1, 'Selected', 'on');
-			result = slQuery(result(2:end)');
+			gcsh = get_param(gcs, 'Handle');
+			result = slQuery(setdiff(find_system(gcsh, 'SearchDepth', 1, 'Selected', 'on'), gcsh)');
 		end
 	end
 end
