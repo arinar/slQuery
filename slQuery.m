@@ -912,6 +912,13 @@ classdef slQuery < double
 					case {'DataTypeConversion', 'InitialCondition', 'SignalConversion', 'SignalSpecification'} % nonvirtual "through-blocks"
 						neps = slQuery.follow_signal(slQuery.get_ports(b, pdir, 1), addr, front, virt, slic);
 						
+					case 'TwoWayConnection' % transition briefly into physical connection domain
+						tweps = slQuery.follow_physical(slQuery.get_ports(b, 'connection', 1), addr, front, virt, slic);
+						assert(isscalar(tweps));
+						tw = get_param(get_param(tweps, 'Parent'), 'Handle');
+						assert(strcmp(get_param(tw, 'BlockType'), 'TwoWayConnection'));
+						neps = slQuery.follow_signal(slQuery.get_ports(tw, pdir, 1), addr, front, virt, slic);
+						
 					otherwise
 						if slic % signal slicing ~> follow the opposite ports of this endpoint
 							
