@@ -177,6 +177,18 @@ fix = fix_param(gcb, 'Position'); %#ok<NASGU> dtor variable
 x.Position = [100, 200, 300, 400];
 assert(isequal(get_param(gcb, 'Position'), [100, 200, 300, 400]));
 
+%% set block parameter (rectangle, vector, from cell-scalar)
+x = slQuery(blk13);
+fix = fix_param(blk13, 'Position'); %#ok<NASGU> dtor variable
+x.Position = { (1:4)*100 };
+assert(isequal(arr_param(blk13, 'Position'), repmat({ (1:4)*100 }, 1, 3)));
+
+%% set block parameter (rectangle, vector, from cell-vector)
+x = slQuery(blk13);
+fix = fix_param(blk13, 'Position'); %#ok<NASGU> dtor variable
+x.Position = { (1:4)*100 (5:8)*100 (9:12)*100 };
+assert(isequal(arr_param(blk13, 'Position'), { (1:4)*100 (5:8)*100 (9:12)*100 }));
+
 %% get block parameter (structure, scalar)
 x = slQuery(subs2i2o);
 assert(isequal(x.LineHandles, get_param(subs2i2o, 'LineHandles')));

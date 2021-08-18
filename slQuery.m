@@ -187,23 +187,12 @@ classdef slQuery < double
 		
 		function this = subsasgn(this, subs, value)
 			% TODO: support "this(select) = []" - syntax for dropping rows or columns
-			
+			% TODO: support "this.param(range) = [ ... ]" - syntax for assigning only part of a parameter
 			iasg = find(cellfun(@(s) isequal(s, 'tl'), {subs(1:end-1).subs 'tl'}), 1);
-			sub = subs(iasg);
 			sel = subsref(this, [subs(1:iasg-1) struct('type', '.', 'subs', 'wrap')]);
-			if strcmp(sub.type, '()') % slicing
-				if isa(sel, 'slQuery')
-					if isscalar(sub.subs) && isnumeric(sub.subs{1}) && ~isvector(sel)
-						sub.subs = [sub.subs, ':'];
-					elseif isscalar(sub.subs) && islogical(sub.subs{1})
-						sub.subs = [':', sub.subs];
-					end
-					sel = slQuery(builtin('subsref', double(sel), sub));
-				else
-					sel = builtin('subsref', sel, sub);
-				end
-				
-			elseif strcmp(sub.type, '.') && strcmp(sub.subs, 'tl') % TargetLink property ~> collect all items up for tl_set
+			sub = subs(iasg);
+			assert(strcmp(sub.type, '.'), '''%s'' not supported', sub.type);
+			if strcmp(sub.subs, 'tl') % TargetLink property ~> collect all items up for tl_set
 				if iasg < numel(subs)
 					tlprops = arrayfun(@(h) tl_get(h, 'blockdatastruct'), double(sel), 'UniformOutput', false);
 					tlprops = slQuery.arrayfun(@subsasgn, tlprops, {subs(iasg+1:end)}, value);
@@ -212,17 +201,13 @@ classdef slQuery < double
 				end
 				slQuery.arrayfun(@tl_set, double(sel), 'blockdatastruct', tlprops);
 				return
-				
-			elseif strcmp(sub.type, '.') % normal parameter
-				switch slQuery.get_paramtype(double(sel), sub.subs)
-					case {'rectangle', 'ports'} % homogenous array ~> pack last dimension into cell
-						if ~iscell(value)
-							value = num2cell(value, numel(size(value)));
-							value = cellfun(@(x) {squeeze(x)'}, value);
-						end
-				end
-			else % they did something stupid
-				error('''%s'' not supported');
+			end
+			switch slQuery.get_paramtype(double(sel), sub.subs)
+				case {'rectangle', 'ports'} % homogenous array ~> pack last dimension into cell
+					if ~iscell(value)
+						value = num2cell(value, numel(size(value)));
+						value = cellfun(@(x) {squeeze(x)'}, value);
+					end
 			end
 			slQuery.arrayfun(@set_param, double(sel), sub.subs, value);
 		end
