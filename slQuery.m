@@ -146,7 +146,7 @@ classdef slQuery < double
 							case 'wrap' % TODO: is this cool?
 								if ischar(sel)
 									sel = get_param(sel, 'Handle');
-								elseif iscellstr(sel)
+								elseif iscellstr(sel) %#ok<ISCLSTR> 
 									sel = cellfun(@(b) get_param(b, 'Handle'), sel);
 								end
 								sel = slQuery(sel);
@@ -179,7 +179,7 @@ classdef slQuery < double
 										sel = double(sel);
 									elseif ischar(sel) % possibly single block path.
 										sel = get_param(sel, 'Handle');
-									elseif iscellstr(sel) % possibly multiple block pathes (ReferenceBlock, Ancestor-Block, Parent, ...)
+									elseif iscellstr(sel) %#ok<ISCLSTR> % possibly multiple block pathes (ReferenceBlock, Ancestor-Block, Parent, ...)
 										sel = cellfun(@(h) get_param(h, 'Handle'), sel);
 									end
 									
@@ -231,7 +231,7 @@ classdef slQuery < double
 		function new = rdivide(sys, spec) % add blocks to subsystems
 			target = getfullname(double(sys));
 			% TODO: parse the spec entirely (param-specs, class)
-			if ischar(spec) || iscellstr(spec) % it's a block type spec
+			if ischar(spec) || iscellstr(spec) %#ok<ISCLSTR> % it's a block type spec
 				spec = regexp(spec, '(?<type>\w+)(#)?(?<name>(?(2)\w+))', 'names', 'once');
 				assert(~isempty(spec));
 				if isempty(spec.name), spec.name = ['slq_' spec.type]; end
@@ -598,14 +598,12 @@ classdef slQuery < double
 				[varargout{1:nargout}] = cellfun(fun, varargin{:});
 			end
 		end
-		
 		function res = get_param(hs, param)
 			% a vectorial get_param without scalar/empty-quirks
 			res = arrayfun(@(h) get_param(h, param), double(hs), 'UniformOutput', false);
-			if iscell(res) && ~iscellstr(res), res = vertcat(res{:}); end
+			if iscell(res) && ~iscellstr(res), res = vertcat(res{:}); end %#ok<ISCLSTR> 
 			if isempty(res), res = double.empty(1,0); end
 		end
-
 		function type = get_paramtype(sel, param)
 			% TODO: maybe check, that all blocks actually have this parameter
 			if isempty(sel)
@@ -700,8 +698,9 @@ classdef slQuery < double
 				switch get_param(b, 'BlockType')
 					case {'Inport', 'Outport'} % a port ~> follow it outside
 						s = slQuery.get_ref(b, 'Parent');
-						if strcmp(get_param(s, 'Type'), 'block_diagram') && ~isempty(mrstk) % go back to outer model
-							s = mrstk(end); mrstk(end) = [];
+						mrstk_ = mrstk;
+						if strcmp(get_param(s, 'Type'), 'block_diagram') && ~isempty(mrstk_) % go back to outer model
+							s = mrstk_(end); mrstk_(end) = [];
 						end
 						if strcmp(get_param(s, 'Type'), 'block')
 							% resolve addr in bus element port
@@ -713,9 +712,9 @@ classdef slQuery < double
 							if ~isempty(get_param(s, 'VariantControl')), s = slQuery.get_ref(s, 'Parent'); end
 							
 							sp = slQuery.get_ports(s, pdir, str2double(get_param(b, 'Port')));
-							neps = slQuery.follow_signal(sp, addr, mrstk, front, virt, slic);
+							neps = slQuery.follow_signal(sp, addr, mrstk_, front, virt, slic);
 							
-						else % port is on the block_diagram level and mrstk is empty ~> cannot go beyond, done
+						else % port is on the block_diagram level and mrstk_ is empty ~> cannot go beyond, done
 							neps = ep;
 						end
 						if virt, neps = [neps -s]; end %#ok<AGROW>
@@ -731,7 +730,7 @@ classdef slQuery < double
 						for s = b
 							mr = [];
 							if strcmp(get_param(s, 'BlockType'), 'ModelReference') % resolve model references
-								mr = s; s = slQuery.get_ref(s, 'ModelName');
+								mr = s; s = slQuery.get_ref(s, 'ModelName'); %#ok<FXSET> intended
 							end
 							for pb = find_system(s, slQuery.standard_find_args{:}, 'SearchDepth', 1, 'BlockType', edir, 'Port', pn)'
 								sl = 0;
@@ -987,8 +986,9 @@ classdef slQuery < double
 				switch get_param(b, 'BlockType')
 					case 'PMIOPort' % a port ~> follow it outside
 						s = slQuery.get_ref(b, 'Parent');
-						if strcmp(get_param(s, 'Type'), 'block_diagram') && ~isempty(mrstk) % go back to outer model
-							s = mrstk(end); mrstk(end) = [];
+						mrstk_ = mrstk;
+						if strcmp(get_param(s, 'Type'), 'block_diagram') && ~isempty(mrstk_) % go back to outer model
+							s = mrstk_(end); mrstk_(end) = [];
 						end
 						if strcmp(get_param(s, 'Type'), 'block')
 							% system is variant ~> skip to parent, TODO: include the port block on VariantSystem level into neps
@@ -998,38 +998,14 @@ classdef slQuery < double
 							ports = find_system(s, slQuery.standard_find_args{:}, 'BlockType', 'PMIOPort', 'Side', side);
 							[~, I] = sort(arrayfun(@(h) str2double(get_param(h, 'Port')), ports));
 							sp = slQuery.get_ports(s, [side(1) 'Conn'], ports(I) == b);
-							neps = slQuery.follow_physical(sp, addr, mrstk, front, virt, slic);
+							neps = slQuery.follow_physical(sp, addr, mrstk_, front, virt, slic);
 						else % port is on the block_diagram level and mrstk is empty ~> cannot go beyond, done
 							neps = ep;
 						end
 						if virt, neps = [neps -s]; end %#ok<AGROW>
 						
 					case {'SubSystem', 'ModelReference'} % ~> follow it inside
-						% skip events/actions/triggers (for now)
-						if ~ismember(get_param(ep, 'PortType'), {'inport', 'outport'}), continue; end
-						pn = num2str(get_param(ep, 'PortNumber'));
-						neps = [];
-						if strcmp(get_param(b, 'Variant'), 'on') % it's a variant sub-system and all variants must be followed
-							b = setdiff(find_system(b, 'LookUnderMasks', 'all', 'FollowLinks', 'on', 'Variants', 'all', 'SearchDepth', 1, 'Regexp', 'on', 'BlockType', 'SubSystem|ModelReference')', b);
-						end
-						for s = b
-							mr = [];
-							if strcmp(get_param(s, 'BlockType'), 'ModelReference') % resolve model references
-								mr = s; s = slQuery.get_ref(s, 'ModelName');
-							end
-							for pb = find_system(s, 'LookUnderMasks', 'all', 'FollowLinks', 'on', 'SearchDepth', 1, 'BlockType', edir, 'Port', pn)'
-								sl = 0;
-								if strcmp(get_param(pb, 'IsBusElementPort'), 'on')
-									path = fliplr(strsplit(get_param(pb, 'Element'), '.'));
-									sl = numel(path);
-									if numel(addr) < numel(path) || ~isequal(addr(end-sl+1:end), path), continue; end
-								end
-								if virt, neps(end+1) = -pb; end %#ok<AGROW>
-								neps = [neps, slQuery.follow_signal(slQuery.get_ports(pb, pdir, 1), addr(1:end-sl), [mrstk mr], front, virt, slic)]; %#ok<AGROW>
-							end
-						end
-						
-					case {'SubSystem', 'ModelReference'} % ~> follow it inside
+						mrstk_ = mrstk;
 						assert(strcmp(get_param(ep, 'PortType'), 'connection'));
 						pn = num2str(get_param(ep, 'PortNumber'));
 						if strcmp(get_param(b, 'Variant'), 'on') % it's a variant sub-system and all variants must be followed
@@ -1038,11 +1014,11 @@ classdef slQuery < double
 						neps = [];
 						for s = b
 							if strcmp(get_param(s, 'BlockType'), 'ModelReference') % resolve model references
-								mrstk(end+1) = s; s = slQuery.get_ref(s, 'ModelName');
+								mrstk_(end+1) = s; s = slQuery.get_ref(s, 'ModelName'); %#ok<FXSET,AGROW> intended
 							end
 							pbs = find_system(s, slQuery.standard_find_args{:}, 'SearchDepth', 1, 'BlockType', 'PMIOPort', 'Port', pn);
 							for bp = slQuery.get_ports(pbs, 'RConn', 1)
-								neps = [neps, slQuery.follow_physical(bp, addr, mrstk, front, virt, slic)]; %#ok<AGROW>
+								neps = [neps, slQuery.follow_physical(bp, addr, mrstk_, front, virt, slic)]; %#ok<AGROW>
 							end
 						end
 						if virt, neps = [neps -pbs]; end %#ok<AGROW>
