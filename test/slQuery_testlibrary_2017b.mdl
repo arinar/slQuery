@@ -1,9 +1,11 @@
 Library {
   Name			  "slQuery_testlibrary"
-  Version		  10.0
+  Version		  9.0
   SavedCharacterEncoding  "windows-1252"
+  DiagnosticSuppressor	  "on"
+  LogicAnalyzerPlugin	  "on"
+  SLCCPlugin		  "on"
   LibraryType		  "BlockLibrary"
-  EnableAccessToBaseWorkspace on
   ScopeRefreshTime	  0.035000
   OverrideScopeRefreshTime on
   DisableAllScopes	  off
@@ -19,7 +21,7 @@ Library {
       $ObjectID		      2
       $ClassName	      "Simulink.WindowInfo"
       IsActive		      [1]
-      Location		      [195.0, 120.0, 1862.0, 1100.0]
+      Location		      [133.0, 108.0, 1862.0, 1100.0]
       Object {
 	$PropName		"ModelBrowserInfo"
 	$ObjectID		3
@@ -29,7 +31,6 @@ Library {
 	Width			[50]
 	Height			[50]
 	Filter			[59]
-	Minimized		"Unset"
       }
       Object {
 	$PropName		"ExplorerBarInfo"
@@ -42,63 +43,49 @@ Library {
 	$ObjectID		5
 	$ClassName		"Simulink.EditorInfo"
 	IsActive		[1]
-	IsTabbed		[1]
 	ViewObjType		"SimulinkTopLevel"
 	LoadSaveID		"0"
-	Extents			[1822.0, 866.0]
-	ZoomFactor		[2.0154867256637168]
-	Offset			[41.546906187624813, -185.20896984453555]
-	SceneRectInView		[41.546906187624813, -185.20896984453555, 904.0, 429.67288693743143]
+	Extents			[1808.0, 858.0]
+	ZoomFactor		[0.6]
+	Offset			[-388, -309]
       }
-      Array {
-	Type			"Simulink.DockComponentInfo"
-	Dimension		1
-	Object {
-	  $ObjectID		  7
-	  Type			  "GLUE2:PropertyInspector"
-	  ID			  "Property Inspector"
-	  Visible		  [0]
-	  CreateCallback	  ""
-	  UserData		  ""
-	  Floating		  [0]
-	  DockPosition		  "Right"
-	  Width			  [640]
-	  Height		  [480]
-	  Minimized		  "Unset"
-	}
-	PropName		"DockComponentsInfo"
+      Object {
+	$PropName		"DockComponentsInfo"
+	$ObjectID		6
+	$ClassName		"Simulink.DockComponentInfo"
+	Type			"GLUE2:PropertyInspector"
+	ID			"Property Inspector"
+	Visible			[0]
+	CreateCallback		""
+	UserData		""
+	Floating		[0]
+	DockPosition		"Right"
+	Width			[640]
+	Height			[480]
       }
-      WindowState	      "AAAA/wAAAAD9AAAAAwAAAAAAAAC9AAAB+PwCAAAABPsAAAAWAEQAbwBjAGsAVwBpAGQAZwBlAHQAMwEAAAAxAAAB+AAAA"
+      WindowState	      "AAAA/wAAAAD9AAAAAgAAAAAAAAC9AAAB+PwCAAAAA/sAAAAWAEQAbwBjAGsAVwBpAGQAZwBlAHQAMwEAAAAxAAAB+AAAA"
       "AAAAAAA+wAAABYARABvAGMAawBXAGkAZABnAGUAdAA0AAAAAAD/////AAAAAAAAAAD7AAAAUgBHAEwAVQBFADIAIAB0AHIAZQBlACAAYwBvAG0Ac"
-      "ABvAG4AZQBuAHQALwBHAEwAVQBFADIAIAB0AHIAZQBlACAAYwBvAG0AcABvAG4AZQBuAHQAAAAAAP////8AAABgAP////sAAABgAFMAaQBtAHUAb"
-      "ABpAG4AawA6AEUAZABpAHQAbwByADoAUgBlAGYAZQByAGUAbgBjAGUAZABGAGkAbABlAHMALwBSAGUAZgBlAHIAZQBuAGMAZQBkACAARgBpAGwAZ"
-      "QBzAAAAAAD/////AAAAiQD///8AAAABAAAAAAAAAAD8AgAAAAH7AAAAVABHAEwAVQBFADIAOgBQAHIAbwBwAGUAcgB0AHkASQBuAHMAcABlAGMAd"
-      "ABvAHIALwBQAHIAbwBwAGUAcgB0AHkAIABJAG4AcwBwAGUAYwB0AG8AcgAAAAAA/////wAAAawA////AAAAAwAAAAAAAAAA/AEAAAAB+/////8AA"
-      "AAAAP////8AAAFZAP///wAAB0QAAAOfAAAAAQAAAAIAAAABAAAAAvwAAAABAAAAAgAAAAA="
-      Array {
-	Type			"Cell"
-	Dimension		0
-	PropName		"PersistedApps"
-      }
-      WindowUuid	      "e634236d-77c9-4612-b5ee-816643dfa8a5"
+      "ABvAG4AZQBuAHQALwBHAEwAVQBFADIAIAB0AHIAZQBlACAAYwBvAG0AcABvAG4AZQBuAHQAAAAAAP////8AAABjAP///wAAAAEAAAAAAAAAAPwCA"
+      "AAAAfsAAABUAEcATABVAEUAMgA6AFAAcgBvAHAAZQByAHQAeQBJAG4AcwBwAGUAYwB0AG8AcgAvAFAAcgBvAHAAZQByAHQAeQAgAEkAbgBzAHAAZ"
+      "QBjAHQAbwByAAAAAAD/////AAAAOQD///8AAAc2AAADlwAAAAEAAAACAAAAAQAAAAL8AAAAAA=="
     }
-    BDUuid		    "834cb9f5-fa76-41a0-b099-883c5f0fbb91"
   }
   HideAutomaticNames	  on
   Created		  "Tue Apr 17 09:43:10 2018"
-  Creator		  "arinar"
+  Creator		  "FO10C9R"
+  UpdateHistory		  "UpdateHistoryNever"
   ModifiedByFormat	  "%<Auto>"
-  LastModifiedBy	  "arinar"
+  LastModifiedBy	  "fo10c9r"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Thu Aug 03 08:48:23 2023"
-  ModelVersionFormat	  "1.%<AutoIncrement:0>"
+  LastModifiedDate	  "Wed Feb 12 13:08:57 2020"
+  RTWModifiedTimeStamp	  503413737
+  ModelVersionFormat	  "1.%<AutoIncrement:7>"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
   LibraryLinkDisplay	  "all"
   WideLines		  on
   ShowLineDimensions	  off
   ShowPortDataTypes	  on
-  ShowAllPropagatedSignalLabels	off
   PortDataTypeDisplayFormat "AliasTypeOnly"
   ShowEditTimeErrors	  on
   ShowEditTimeWarnings	  on
@@ -111,7 +98,9 @@ Library {
   ShowTestPointIcons	  on
   ShowSignalResolutionIcons on
   ShowViewerIcons	  on
+  SortedOrder		  off
   VariantCondition	  off
+  ExecutionContextIcon	  off
   ShowLinearizationAnnotations on
   ShowVisualizeInsertedRTB on
   ShowMarkup		  on
@@ -119,10 +108,11 @@ Library {
   BlockParametersDataTip  off
   BlockDescriptionStringDataTip	off
   BlockVariantConditionDataTip off
+  ToolBar		  on
+  StatusBar		  on
   BrowserShowLibraryLinks on
   FunctionConnectors	  off
   BrowserLookUnderMasks	  on
-  MultiThreadCoSim	  "on"
   SimulationMode	  "normal"
   PauseTimes		  "5"
   NumberOfSteps		  1
@@ -160,23 +150,22 @@ Library {
     Type		    "Handle"
     Dimension		    1
     Simulink.ConfigSet {
-      $ObjectID		      8
-      Version		      "19.1.1"
+      $ObjectID		      7
+      Version		      "1.17.1"
       DisabledProps	      []
       Description	      ""
       Array {
 	Type			"Handle"
 	Dimension		9
 	Simulink.SolverCC {
-	  $ObjectID		  9
-	  Version		  "19.1.1"
+	  $ObjectID		  8
+	  Version		  "1.17.1"
 	  DisabledProps		  []
 	  Description		  ""
 	  Components		  []
 	  StartTime		  "0.0"
 	  StopTime		  "10.0"
 	  AbsTol		  "auto"
-	  AutoScaleAbsTol	  on
 	  FixedStep		  "auto"
 	  InitialStep		  "auto"
 	  MaxOrder		  5
@@ -191,6 +180,7 @@ Library {
 	  RelTol		  "1e-3"
 	  EnableMultiTasking	  on
 	  ConcurrentTasks	  off
+	  Solver		  "VariableStepAuto"
 	  SolverName		  "VariableStepAuto"
 	  SolverJacobianMethodControl "auto"
 	  ShapePreserveControl	  "DisableAll"
@@ -206,12 +196,10 @@ Library {
 	  InsertRTBMode		  "Whenever possible"
 	  SampleTimeProperty	  []
 	  DecoupledContinuousIntegration off
-	  MinimalZcImpactIntegration off
-	  SolverOrder		  3
 	}
 	Simulink.DataIOCC {
-	  $ObjectID		  10
-	  Version		  "19.1.1"
+	  $ObjectID		  9
+	  Version		  "1.17.1"
 	  DisabledProps		  []
 	  Description		  ""
 	  Components		  []
@@ -224,7 +212,7 @@ Library {
 	  LoadExternalInput	  off
 	  LoadInitialState	  off
 	  SaveFinalState	  off
-	  SaveOperatingPoint	  off
+	  SaveCompleteFinalSimState off
 	  SaveFormat		  "Dataset"
 	  SignalLoggingSaveFormat "Dataset"
 	  SaveOutput		  on
@@ -252,8 +240,8 @@ Library {
 	  LoggingIntervals	  "[-inf, inf]"
 	}
 	Simulink.OptimizationCC {
-	  $ObjectID		  11
-	  Version		  "19.1.1"
+	  $ObjectID		  10
+	  Version		  "1.17.1"
 	  Array {
 	    Type		    "Cell"
 	    Dimension		    9
@@ -275,7 +263,6 @@ Library {
 	  ConditionallyExecuteInputs on
 	  DefaultParameterBehavior "Tunable"
 	  UseDivisionForNetSlopeComputation "off"
-	  GainParamInheritBuiltInType off
 	  UseFloatMulNetSlope	  off
 	  DefaultUnderspecifiedDataType	"double"
 	  UseSpecifiedMinMax	  off
@@ -315,18 +302,10 @@ Library {
 	  OptimizeDataStoreBuffers on
 	  BusAssignmentInplaceUpdate on
 	  DifferentSizesBufferReuse off
-	  UseRowMajorAlgorithm	  off
-	  OptimizationLevel	  "level2"
-	  OptimizationPriority	  "Balanced"
-	  OptimizationCustomize	  on
-	  LabelGuidedReuse	  off
-	  MultiThreadedLoops	  off
-	  DenormalBehavior	  "GradualUnderflow"
-	  EfficientTunableParamExpr off
 	}
 	Simulink.DebuggingCC {
-	  $ObjectID		  12
-	  Version		  "19.1.1"
+	  $ObjectID		  11
+	  Version		  "1.17.1"
 	  Array {
 	    Type		    "Cell"
 	    Dimension		    1
@@ -339,7 +318,6 @@ Library {
 	  ConsistencyChecking	  "none"
 	  ArrayBoundsChecking	  "none"
 	  SignalInfNanChecking	  "none"
-	  StringTruncationChecking "error"
 	  SignalRangeChecking	  "none"
 	  ReadBeforeWriteMsg	  "UseLocalSettings"
 	  WriteAfterWriteMsg	  "UseLocalSettings"
@@ -352,6 +330,7 @@ Library {
 	  UnderspecifiedInitializationDetection	"Simplified"
 	  MergeDetectMultiDrivingBlocksExec "error"
 	  CheckExecutionContextPreStartOutputMsg off
+	  CheckExecutionContextRuntimeOutputMsg	off
 	  SignalResolutionControl "UseLocalSettings"
 	  BlockPriorityViolationMsg "warning"
 	  MinStepSizeMsg	  "warning"
@@ -382,6 +361,7 @@ Library {
 	  UnderSpecifiedDataTypeMsg "none"
 	  UnnecessaryDatatypeConvMsg "none"
 	  VectorMatrixConversionMsg "none"
+	  InvalidFcnCallConnMsg	  "error"
 	  FcnCallInpInsideContextMsg "error"
 	  SignalLabelMismatchMsg  "none"
 	  UnconnectedInputMsg	  "warning"
@@ -405,10 +385,9 @@ Library {
 	  ModelReferenceSymbolNameMessage "warning"
 	  ModelReferenceExtraNoncontSigs "error"
 	  StateNameClashWarn	  "none"
-	  OperatingPointInterfaceChecksumMismatchMsg "warning"
-	  NonCurrentReleaseOperatingPointMsg "error"
-	  PregeneratedLibrarySubsystemCodeDiagnostic "warning"
-	  MatchCodeGenerationContextForUpdateDiagram "none"
+	  SimStateInterfaceChecksumMismatchMsg "warning"
+	  SimStateOlderReleaseMsg "error"
+	  ChecksumConsistencyForSSReuse	"none"
 	  InitInArrayFormatMsg	  "warning"
 	  StrictBusMsg		  "ErrorLevel1"
 	  BusNameAdapt		  "WarnAndRepair"
@@ -439,13 +418,10 @@ Library {
 	  RCSCObservableMsg	  "warning"
 	  ForceCombineOutputUpdateInSim	off
 	  UnitDatabase		  ""
-	  UnderSpecifiedDimensionMsg "none"
-	  DebugExecutionForFMUViaOutOfProcess off
-	  ArithmeticOperatorsInVariantConditions "warning"
 	}
 	Simulink.HardwareCC {
-	  $ObjectID		  13
-	  Version		  "19.1.1"
+	  $ObjectID		  12
+	  Version		  "1.17.1"
 	  DisabledProps		  []
 	  Description		  ""
 	  Components		  []
@@ -491,11 +467,10 @@ Library {
 	  ProdEqTarget		  on
 	  UseEmbeddedCoderFeatures on
 	  UseSimulinkCoderFeatures on
-	  HardwareBoardFeatureSet "EmbeddedCoderHSP"
 	}
 	Simulink.ModelReferenceCC {
-	  $ObjectID		  14
-	  Version		  "19.1.1"
+	  $ObjectID		  13
+	  Version		  "1.17.1"
 	  DisabledProps		  []
 	  Description		  ""
 	  Components		  []
@@ -514,8 +489,8 @@ Library {
 	  SupportModelReferenceSimTargetCustomCode off
 	}
 	Simulink.SFSimCC {
-	  $ObjectID		  15
-	  Version		  "19.1.1"
+	  $ObjectID		  14
+	  Version		  "1.17.1"
 	  DisabledProps		  []
 	  Description		  ""
 	  Components		  []
@@ -535,21 +510,18 @@ Library {
 	  SimIntegrity		  on
 	  SimUseLocalCustomCode	  off
 	  SimParseCustomCode	  on
-	  SimAnalyzeCustomCode	  off
+	  SimBuildMode		  "sf_incremental_build"
 	  SimGenImportedTypeDefs  off
 	  ModelFunctionsGlobalVisibility "on"
 	  CompileTimeRecursionLimit 50
 	  EnableRuntimeRecursion  on
 	  MATLABDynamicMemAlloc	  on
 	  MATLABDynamicMemAllocThreshold 65536
-	  CustomCodeFunctionArrayLayout	[]
-	  DefaultCustomCodeFunctionArrayLayout "NotSpecified"
-	  CustomCodeUndefinedFunction "UseInterfaceOnly"
 	}
 	Simulink.RTWCC {
 	  $BackupClass		  "Simulink.RTWCC"
-	  $ObjectID		  16
-	  Version		  "19.1.1"
+	  $ObjectID		  15
+	  Version		  "1.17.1"
 	  Array {
 	    Type		    "Cell"
 	    Dimension		    16
@@ -566,16 +538,14 @@ Library {
 	    Cell		    "GenerateMissedCodeReplacementReport"
 	    Cell		    "GenerateErtSFunction"
 	    Cell		    "CreateSILPILBlock"
+	    Cell		    "CodeExecutionProfiling"
+	    Cell		    "CodeProfilingSaveOptions"
 	    Cell		    "CodeProfilingInstrumentation"
-	    Cell		    "CodeStackProfiling"
-	    Cell		    "EmbeddedCoderDictionary"
 	    PropName		    "DisabledProps"
 	  }
 	  Description		  ""
 	  SystemTargetFile	  "grt.tlc"
 	  HardwareBoard		  "None"
-	  ShowCustomHardwareApp	  off
-	  ShowEmbeddedHardwareApp off
 	  TLCOptions		  ""
 	  GenCodeOnly		  off
 	  MakeCommand		  "make_rtw"
@@ -600,7 +570,6 @@ Library {
 	  CustomSource		  ""
 	  CustomLibrary		  ""
 	  CustomDefine		  ""
-	  CustomBLASCallback	  ""
 	  CustomLAPACKCallback	  ""
 	  CustomFFTCallback	  ""
 	  CustomInitializer	  ""
@@ -615,7 +584,7 @@ Library {
 	  CodeExecutionProfiling  off
 	  CodeExecutionProfileVariable "executionProfile"
 	  CodeProfilingSaveOptions "SummaryOnly"
-	  CodeProfilingInstrumentation "off"
+	  CodeProfilingInstrumentation off
 	  SILDebugging		  off
 	  TargetLang		  "C"
 	  IncludeBusHierarchyInRTWFileBlockHierarchyMap	off
@@ -637,8 +606,8 @@ Library {
 	    Type		    "Handle"
 	    Dimension		    2
 	    Simulink.CodeAppCC {
-	      $ObjectID		      17
-	      Version		      "19.1.1"
+	      $ObjectID		      16
+	      Version		      "1.17.1"
 	      Array {
 		Type			"Cell"
 		Dimension		29
@@ -714,7 +683,6 @@ Library {
 	      InsertBlockDesc	      off
 	      InsertPolySpaceComments off
 	      SimulinkBlockComments   on
-	      BlockCommentType	      "BlockPathComment"
 	      StateflowObjectComments on
 	      MATLABSourceComments    off
 	      EnableCustomComments    off
@@ -724,15 +692,14 @@ Library {
 	      ReqsInCode	      off
 	      UseSimReservedNames     off
 	      ReservedNameArray	      []
-	      EnumMemberNameClash     "error"
 	    }
 	    Simulink.GRTTargetCC {
 	      $BackupClass	      "Simulink.TargetCC"
-	      $ObjectID		      18
-	      Version		      "19.1.1"
+	      $ObjectID		      17
+	      Version		      "1.17.1"
 	      Array {
 		Type			"Cell"
-		Dimension		19
+		Dimension		16
 		Cell			"IncludeMdlTerminateFcn"
 		Cell			"SuppressErrorStatus"
 		Cell			"ERTCustomFileBanners"
@@ -749,9 +716,6 @@ Library {
 		Cell			"RemoveDisableFunc"
 		Cell			"RemoveResetFunc"
 		Cell			"PreserveStateflowLocalDataDimensions"
-		Cell			"ParenthesesLevel"
-		Cell			"ERTMultiwordTypeDef"
-		Cell			"MultiwordTypeDef"
 		PropName		"DisabledProps"
 	      }
 	      Description	      ""
@@ -765,7 +729,6 @@ Library {
 	      UtilityFuncGeneration   "Auto"
 	      MultiwordTypeDef	      "System defined"
 	      MultiwordLength	      2048
-	      DynamicStringBufferSize 256
 	      GenerateFullHeader      on
 	      InferredTypesCompatibility off
 	      ExistingSharedCode      ""
@@ -776,19 +739,20 @@ Library {
 	      CompOptLevelCompliant   on
 	      ConcurrentExecutionCompliant on
 	      IncludeMdlTerminateFcn  on
+	      GeneratePreprocessorConditionals "Use local settings"
 	      CombineOutputUpdateFcns on
 	      CombineSignalStateStructs	off
-	      GroupInternalDataByFunction off
 	      SuppressErrorStatus     off
 	      IncludeFileDelimiter    "Auto"
 	      ERTCustomFileBanners    off
 	      SupportAbsoluteTime     on
 	      LogVarNameModifier      "rt_"
 	      MatFileLogging	      on
+	      MultiInstanceERTCode    off
 	      CodeInterfacePackaging  "Nonreusable function"
-	      PurelyIntegerCode	      off
 	      SupportNonFinite	      on
 	      SupportComplex	      on
+	      PurelyIntegerCode	      off
 	      SupportContinuousTime   on
 	      SupportNonInlinedSFcns  on
 	      RemoveDisableFunc	      off
@@ -810,11 +774,6 @@ Library {
 	      LookupTableObjectStructAxisOrder "1,2,3,4,..."
 	      LUTObjectStructOrderExplicitValues "Size,Breakpoints,Table"
 	      LUTObjectStructOrderEvenSpacing "Size,Breakpoints,Table"
-	      ArrayLayout	      "Column-major"
-	      UnsupportedSFcnMsg      "error"
-	      ERTHeaderFileRootName   "$R$E"
-	      ERTSourceFileRootName   "$R$E"
-	      ERTDataFileRootName     "$R_data"
 	      UseMalloc		      off
 	      ExtMode		      off
 	      ExtModeStaticAlloc      off
@@ -835,8 +794,8 @@ Library {
 	  }
 	}
 	SlCovCC.ConfigComp {
-	  $ObjectID		  19
-	  Version		  "19.1.1"
+	  $ObjectID		  18
+	  Version		  "1.17.1"
 	  DisabledProps		  []
 	  Description		  "Simulink Coverage Configuration Component"
 	  Components		  []
@@ -852,6 +811,7 @@ Library {
 	  CovFilter		  ""
 	  CovHTMLOptions	  ""
 	  CovNameIncrementing	  off
+	  CovHtmlReporting	  on
 	  CovForceBlockReductionOff on
 	  CovEnableCumulative	  on
 	  CovSaveCumulativeToWorkspaceVar on
@@ -861,6 +821,7 @@ Library {
 	  CovSaveOutputData	  on
 	  CovOutputDir		  "slcov_output/$ModelName$"
 	  CovDataFileName	  "$ModelName$_cvdata"
+	  CovShowResultsExplorer  on
 	  CovReportOnPause	  on
 	  CovModelRefEnable	  "off"
 	  CovModelRefExcluded	  ""
@@ -943,7 +904,6 @@ Library {
     Block {
       BlockType		      Inport
       Port		      "1"
-      IconDisplay	      "Port number"
       OutputFunctionCall      off
       OutMin		      "[]"
       OutMax		      "[]"
@@ -964,20 +924,19 @@ Library {
       BlockType		      MinMax
       Function		      "min"
       Inputs		      "1"
-      InputSameDT	      off
+      InputSameDT	      on
       OutMin		      "[]"
       OutMax		      "[]"
       OutDataTypeStr	      "Inherit: Inherit via internal rule"
       LockScale		      off
       RndMeth		      "Floor"
-      SaturateOnIntegerOverflow	off
+      SaturateOnIntegerOverflow	on
       ZeroCross		      on
       SampleTime	      "-1"
     }
     Block {
       BlockType		      Outport
       Port		      "1"
-      IconDisplay	      "Port number"
       OutMin		      "[]"
       OutMax		      "[]"
       OutDataTypeStr	      "Inherit: auto"
@@ -1005,7 +964,7 @@ Library {
       PermitHierarchicalResolution "All"
       TreatAsAtomicUnit	      off
       MinAlgLoopOccurrences   off
-      ScheduleAs	      "Sample time"
+      PropExecContextOutsideSubsystem off
       SystemSampleTime	      "-1"
       RTWSystemCode	      "Auto"
       RTWFcnNameOpts	      "Auto"
@@ -1022,30 +981,24 @@ Library {
       DataTypeOverrideAppliesTo	"AllNumericTypes"
       MinMaxOverflowLogging   "UseLocalSettings"
       Opaque		      off
-      RequestExecContextInheritance off
       MaskHideContents	      off
       SFBlockType	      "NONE"
       Variant		      off
-      VariantControlMode      "expression"
       GeneratePreprocessorConditionals off
       AllowZeroVariantControls off
       PropagateVariantConditions off
       TreatAsGroupedWhenPropagatingVariantConditions on
       ContentPreviewEnabled   off
       IsWebBlock	      off
-      Latency		      "0"
-      AutoFrameSizeCalculation off
-      IsWebBlockPanel	      off
     }
   }
   System {
     Name		    "slQuery_testlibrary"
-    Location		    [195, 120, 2057, 1220]
+    Location		    [133, 108, 1995, 1208]
     Open		    off
     PortBlocksUseCompactNotation off
-    SetExecutionDomain	    off
-    ExecutionDomainType	    "Deduce"
     ModelBrowserVisibility  off
+    ModelBrowserWidth	    200
     ScreenColor		    "white"
     PaperOrientation	    "landscape"
     PaperPositionMode	    "auto"
@@ -1054,10 +1007,9 @@ Library {
     TiledPaperMargins	    [0.500000, 0.500000, 0.500000, 0.500000]
     TiledPageScale	    1
     ShowPageBoundaries	    off
-    ZoomFactor		    "202"
+    ZoomFactor		    "60"
     ReportName		    "simulink-default.rpt"
     SIDHighWatermark	    "304"
-    SimulinkSubDomain	    "Simulink"
     Block {
       BlockType		      SubSystem
       Name		      "Pairwise4"
@@ -1065,9 +1017,10 @@ Library {
       Ports		      [4, 4]
       Position		      [35, -149, 75, -61]
       ZOrder		      -196
+      RequestExecContextInheritance off
       Object {
 	$PropName		"MaskObject"
-	$ObjectID		20
+	$ObjectID		19
 	$ClassName		"Simulink.Mask"
 	Display			"disp(['1-4' 10 '2-3'])"
       }
@@ -1076,9 +1029,8 @@ Library {
 	Location		[66, -8, 1928, 1208]
 	Open			off
 	PortBlocksUseCompactNotation off
-	SetExecutionDomain	off
-	ExecutionDomainType	"Deduce"
 	ModelBrowserVisibility	off
+	ModelBrowserWidth	200
 	ScreenColor		"white"
 	PaperOrientation	"landscape"
 	PaperPositionMode	"auto"
@@ -1088,13 +1040,13 @@ Library {
 	TiledPageScale		1
 	ShowPageBoundaries	off
 	ZoomFactor		"175"
-	SimulinkSubDomain	"Simulink"
 	Block {
 	  BlockType		  Inport
 	  Name			  "In1"
 	  SID			  "213"
 	  Position		  [20, 18, 50, 32]
 	  ZOrder		  383
+	  IconDisplay		  "Port number"
 	}
 	Block {
 	  BlockType		  Inport
@@ -1103,6 +1055,7 @@ Library {
 	  Position		  [20, 73, 50, 87]
 	  ZOrder		  385
 	  Port			  "2"
+	  IconDisplay		  "Port number"
 	}
 	Block {
 	  BlockType		  Inport
@@ -1111,6 +1064,7 @@ Library {
 	  Position		  [20, 93, 50, 107]
 	  ZOrder		  386
 	  Port			  "3"
+	  IconDisplay		  "Port number"
 	}
 	Block {
 	  BlockType		  Inport
@@ -1119,6 +1073,7 @@ Library {
 	  Position		  [20, 38, 50, 52]
 	  ZOrder		  384
 	  Port			  "4"
+	  IconDisplay		  "Port number"
 	}
 	Block {
 	  BlockType		  Reference
@@ -1128,16 +1083,11 @@ Library {
 	  Position		  [70, 72, 115, 108]
 	  ZOrder		  381
 	  ShowName		  off
-	  LibraryVersion	  "1.7"
-	  SourceBlock		  "$bdroot/Sort2"
+	  LibraryVersion	  "1.6"
+	  SourceBlock		  "slQuery_testlibrary/Sort2"
 	  SourceType		  "Sort"
 	  ShowPortLabels	  "FromPortIcon"
 	  SystemSampleTime	  "-1"
-	  RTWMemSecFuncInitTerm	  "Inherit from model"
-	  RTWMemSecFuncExecute	  "Inherit from model"
-	  RTWMemSecDataConstants  "Inherit from model"
-	  RTWMemSecDataInternal	  "Inherit from model"
-	  RTWMemSecDataParameters "Inherit from model"
 	  GeneratePreprocessorConditionals off
 	  AllowZeroVariantControls off
 	  PropagateVariantConditions off
@@ -1153,16 +1103,11 @@ Library {
 	  Position		  [70, 17, 115, 53]
 	  ZOrder		  382
 	  ShowName		  off
-	  LibraryVersion	  "1.7"
-	  SourceBlock		  "$bdroot/Sort2"
+	  LibraryVersion	  "1.6"
+	  SourceBlock		  "slQuery_testlibrary/Sort2"
 	  SourceType		  "Sort"
 	  ShowPortLabels	  "FromPortIcon"
 	  SystemSampleTime	  "-1"
-	  RTWMemSecFuncInitTerm	  "Inherit from model"
-	  RTWMemSecFuncExecute	  "Inherit from model"
-	  RTWMemSecDataConstants  "Inherit from model"
-	  RTWMemSecDataInternal	  "Inherit from model"
-	  RTWMemSecDataParameters "Inherit from model"
 	  GeneratePreprocessorConditionals off
 	  AllowZeroVariantControls off
 	  PropagateVariantConditions off
@@ -1176,6 +1121,7 @@ Library {
 	  SID			  "217"
 	  Position		  [135, 18, 165, 32]
 	  ZOrder		  387
+	  IconDisplay		  "Port number"
 	}
 	Block {
 	  BlockType		  Outport
@@ -1184,6 +1130,7 @@ Library {
 	  Position		  [135, 73, 165, 87]
 	  ZOrder		  389
 	  Port			  "2"
+	  IconDisplay		  "Port number"
 	}
 	Block {
 	  BlockType		  Outport
@@ -1192,6 +1139,7 @@ Library {
 	  Position		  [135, 93, 165, 107]
 	  ZOrder		  390
 	  Port			  "3"
+	  IconDisplay		  "Port number"
 	}
 	Block {
 	  BlockType		  Outport
@@ -1200,6 +1148,7 @@ Library {
 	  Position		  [135, 38, 165, 52]
 	  ZOrder		  388
 	  Port			  "4"
+	  IconDisplay		  "Port number"
 	}
 	Line {
 	  ZOrder		  24
@@ -1266,9 +1215,10 @@ Library {
       Ports		      [6, 6]
       Position		      [115, -169, 155, -41]
       ZOrder		      385
+      RequestExecContextInheritance off
       Object {
 	$PropName		"MaskObject"
-	$ObjectID		21
+	$ObjectID		20
 	$ClassName		"Simulink.Mask"
 	Display			"disp(['1-6' 10 '2-5' 10 '3-4'])"
       }
@@ -1277,9 +1227,8 @@ Library {
 	Location		[66, -8, 1928, 1208]
 	Open			off
 	PortBlocksUseCompactNotation off
-	SetExecutionDomain	off
-	ExecutionDomainType	"Deduce"
 	ModelBrowserVisibility	off
+	ModelBrowserWidth	200
 	ScreenColor		"white"
 	PaperOrientation	"landscape"
 	PaperPositionMode	"auto"
@@ -1289,13 +1238,13 @@ Library {
 	TiledPageScale		1
 	ShowPageBoundaries	off
 	ZoomFactor		"175"
-	SimulinkSubDomain	"Simulink"
 	Block {
 	  BlockType		  Inport
 	  Name			  "In1"
 	  SID			  "223"
 	  Position		  [20, 18, 50, 32]
 	  ZOrder		  383
+	  IconDisplay		  "Port number"
 	}
 	Block {
 	  BlockType		  Inport
@@ -1304,6 +1253,7 @@ Library {
 	  Position		  [20, 73, 50, 87]
 	  ZOrder		  385
 	  Port			  "2"
+	  IconDisplay		  "Port number"
 	}
 	Block {
 	  BlockType		  Inport
@@ -1312,6 +1262,7 @@ Library {
 	  Position		  [20, 133, 50, 147]
 	  ZOrder		  392
 	  Port			  "3"
+	  IconDisplay		  "Port number"
 	}
 	Block {
 	  BlockType		  Inport
@@ -1320,6 +1271,7 @@ Library {
 	  Position		  [20, 153, 50, 167]
 	  ZOrder		  393
 	  Port			  "4"
+	  IconDisplay		  "Port number"
 	}
 	Block {
 	  BlockType		  Inport
@@ -1328,6 +1280,7 @@ Library {
 	  Position		  [20, 93, 50, 107]
 	  ZOrder		  386
 	  Port			  "5"
+	  IconDisplay		  "Port number"
 	}
 	Block {
 	  BlockType		  Inport
@@ -1336,6 +1289,7 @@ Library {
 	  Position		  [20, 38, 50, 52]
 	  ZOrder		  384
 	  Port			  "6"
+	  IconDisplay		  "Port number"
 	}
 	Block {
 	  BlockType		  Reference
@@ -1345,16 +1299,11 @@ Library {
 	  Position		  [70, 72, 115, 108]
 	  ZOrder		  381
 	  ShowName		  off
-	  LibraryVersion	  "1.7"
-	  SourceBlock		  "$bdroot/Sort2"
+	  LibraryVersion	  "1.6"
+	  SourceBlock		  "slQuery_testlibrary/Sort2"
 	  SourceType		  "Sort"
 	  ShowPortLabels	  "FromPortIcon"
 	  SystemSampleTime	  "-1"
-	  RTWMemSecFuncInitTerm	  "Inherit from model"
-	  RTWMemSecFuncExecute	  "Inherit from model"
-	  RTWMemSecDataConstants  "Inherit from model"
-	  RTWMemSecDataInternal	  "Inherit from model"
-	  RTWMemSecDataParameters "Inherit from model"
 	  GeneratePreprocessorConditionals off
 	  AllowZeroVariantControls off
 	  PropagateVariantConditions off
@@ -1370,16 +1319,11 @@ Library {
 	  Position		  [70, 132, 115, 168]
 	  ZOrder		  391
 	  ShowName		  off
-	  LibraryVersion	  "1.7"
-	  SourceBlock		  "$bdroot/Sort2"
+	  LibraryVersion	  "1.6"
+	  SourceBlock		  "slQuery_testlibrary/Sort2"
 	  SourceType		  "Sort"
 	  ShowPortLabels	  "FromPortIcon"
 	  SystemSampleTime	  "-1"
-	  RTWMemSecFuncInitTerm	  "Inherit from model"
-	  RTWMemSecFuncExecute	  "Inherit from model"
-	  RTWMemSecDataConstants  "Inherit from model"
-	  RTWMemSecDataInternal	  "Inherit from model"
-	  RTWMemSecDataParameters "Inherit from model"
 	  GeneratePreprocessorConditionals off
 	  AllowZeroVariantControls off
 	  PropagateVariantConditions off
@@ -1395,16 +1339,11 @@ Library {
 	  Position		  [70, 17, 115, 53]
 	  ZOrder		  382
 	  ShowName		  off
-	  LibraryVersion	  "1.7"
-	  SourceBlock		  "$bdroot/Sort2"
+	  LibraryVersion	  "1.6"
+	  SourceBlock		  "slQuery_testlibrary/Sort2"
 	  SourceType		  "Sort"
 	  ShowPortLabels	  "FromPortIcon"
 	  SystemSampleTime	  "-1"
-	  RTWMemSecFuncInitTerm	  "Inherit from model"
-	  RTWMemSecFuncExecute	  "Inherit from model"
-	  RTWMemSecDataConstants  "Inherit from model"
-	  RTWMemSecDataInternal	  "Inherit from model"
-	  RTWMemSecDataParameters "Inherit from model"
 	  GeneratePreprocessorConditionals off
 	  AllowZeroVariantControls off
 	  PropagateVariantConditions off
@@ -1418,6 +1357,7 @@ Library {
 	  SID			  "229"
 	  Position		  [135, 18, 165, 32]
 	  ZOrder		  387
+	  IconDisplay		  "Port number"
 	}
 	Block {
 	  BlockType		  Outport
@@ -1426,6 +1366,7 @@ Library {
 	  Position		  [135, 73, 165, 87]
 	  ZOrder		  389
 	  Port			  "2"
+	  IconDisplay		  "Port number"
 	}
 	Block {
 	  BlockType		  Outport
@@ -1434,6 +1375,7 @@ Library {
 	  Position		  [135, 133, 165, 147]
 	  ZOrder		  394
 	  Port			  "3"
+	  IconDisplay		  "Port number"
 	}
 	Block {
 	  BlockType		  Outport
@@ -1442,6 +1384,7 @@ Library {
 	  Position		  [135, 153, 165, 167]
 	  ZOrder		  395
 	  Port			  "4"
+	  IconDisplay		  "Port number"
 	}
 	Block {
 	  BlockType		  Outport
@@ -1450,6 +1393,7 @@ Library {
 	  Position		  [135, 93, 165, 107]
 	  ZOrder		  390
 	  Port			  "5"
+	  IconDisplay		  "Port number"
 	}
 	Block {
 	  BlockType		  Outport
@@ -1458,6 +1402,7 @@ Library {
 	  Position		  [135, 38, 165, 52]
 	  ZOrder		  388
 	  Port			  "6"
+	  IconDisplay		  "Port number"
 	}
 	Line {
 	  ZOrder		  1
@@ -1552,9 +1497,10 @@ Library {
       Ports		      [8, 8]
       Position		      [195, -182, 235, -18]
       ZOrder		      388
+      RequestExecContextInheritance off
       Object {
 	$PropName		"MaskObject"
-	$ObjectID		22
+	$ObjectID		21
 	$ClassName		"Simulink.Mask"
 	Display			"disp(['1-8' 10 '2-7' 10 '3-6' 10 '4-5'])"
       }
@@ -1563,9 +1509,8 @@ Library {
 	Location		[66, -8, 1928, 1208]
 	Open			off
 	PortBlocksUseCompactNotation off
-	SetExecutionDomain	off
-	ExecutionDomainType	"Deduce"
 	ModelBrowserVisibility	off
+	ModelBrowserWidth	200
 	ScreenColor		"white"
 	PaperOrientation	"landscape"
 	PaperPositionMode	"auto"
@@ -1575,13 +1520,13 @@ Library {
 	TiledPageScale		1
 	ShowPageBoundaries	off
 	ZoomFactor		"175"
-	SimulinkSubDomain	"Simulink"
 	Block {
 	  BlockType		  Inport
 	  Name			  "In1"
 	  SID			  "261"
 	  Position		  [20, 18, 50, 32]
 	  ZOrder		  383
+	  IconDisplay		  "Port number"
 	}
 	Block {
 	  BlockType		  Inport
@@ -1590,6 +1535,7 @@ Library {
 	  Position		  [20, 73, 50, 87]
 	  ZOrder		  385
 	  Port			  "2"
+	  IconDisplay		  "Port number"
 	}
 	Block {
 	  BlockType		  Inport
@@ -1598,6 +1544,7 @@ Library {
 	  Position		  [20, 133, 50, 147]
 	  ZOrder		  392
 	  Port			  "3"
+	  IconDisplay		  "Port number"
 	}
 	Block {
 	  BlockType		  Inport
@@ -1606,6 +1553,7 @@ Library {
 	  Position		  [20, 193, 50, 207]
 	  ZOrder		  397
 	  Port			  "4"
+	  IconDisplay		  "Port number"
 	}
 	Block {
 	  BlockType		  Inport
@@ -1614,6 +1562,7 @@ Library {
 	  Position		  [20, 213, 50, 227]
 	  ZOrder		  398
 	  Port			  "5"
+	  IconDisplay		  "Port number"
 	}
 	Block {
 	  BlockType		  Inport
@@ -1622,6 +1571,7 @@ Library {
 	  Position		  [20, 153, 50, 167]
 	  ZOrder		  393
 	  Port			  "6"
+	  IconDisplay		  "Port number"
 	}
 	Block {
 	  BlockType		  Inport
@@ -1630,6 +1580,7 @@ Library {
 	  Position		  [20, 93, 50, 107]
 	  ZOrder		  386
 	  Port			  "7"
+	  IconDisplay		  "Port number"
 	}
 	Block {
 	  BlockType		  Inport
@@ -1638,6 +1589,7 @@ Library {
 	  Position		  [20, 38, 50, 52]
 	  ZOrder		  384
 	  Port			  "8"
+	  IconDisplay		  "Port number"
 	}
 	Block {
 	  BlockType		  Reference
@@ -1647,16 +1599,11 @@ Library {
 	  Position		  [70, 72, 115, 108]
 	  ZOrder		  381
 	  ShowName		  off
-	  LibraryVersion	  "1.7"
-	  SourceBlock		  "$bdroot/Sort2"
+	  LibraryVersion	  "1.6"
+	  SourceBlock		  "slQuery_testlibrary/Sort2"
 	  SourceType		  "Sort"
 	  ShowPortLabels	  "FromPortIcon"
 	  SystemSampleTime	  "-1"
-	  RTWMemSecFuncInitTerm	  "Inherit from model"
-	  RTWMemSecFuncExecute	  "Inherit from model"
-	  RTWMemSecDataConstants  "Inherit from model"
-	  RTWMemSecDataInternal	  "Inherit from model"
-	  RTWMemSecDataParameters "Inherit from model"
 	  GeneratePreprocessorConditionals off
 	  AllowZeroVariantControls off
 	  PropagateVariantConditions off
@@ -1672,16 +1619,11 @@ Library {
 	  Position		  [70, 132, 115, 168]
 	  ZOrder		  391
 	  ShowName		  off
-	  LibraryVersion	  "1.7"
-	  SourceBlock		  "$bdroot/Sort2"
+	  LibraryVersion	  "1.6"
+	  SourceBlock		  "slQuery_testlibrary/Sort2"
 	  SourceType		  "Sort"
 	  ShowPortLabels	  "FromPortIcon"
 	  SystemSampleTime	  "-1"
-	  RTWMemSecFuncInitTerm	  "Inherit from model"
-	  RTWMemSecFuncExecute	  "Inherit from model"
-	  RTWMemSecDataConstants  "Inherit from model"
-	  RTWMemSecDataInternal	  "Inherit from model"
-	  RTWMemSecDataParameters "Inherit from model"
 	  GeneratePreprocessorConditionals off
 	  AllowZeroVariantControls off
 	  PropagateVariantConditions off
@@ -1697,9 +1639,10 @@ Library {
 	  Position		  [70, 192, 115, 228]
 	  ZOrder		  396
 	  ShowName		  off
+	  RequestExecContextInheritance	off
 	  Object {
 	    $PropName		    "MaskObject"
-	    $ObjectID		    23
+	    $ObjectID		    22
 	    $ClassName		    "Simulink.Mask"
 	    Type		    "Sort"
 	    Display		    "disp('O(1)')"
@@ -1709,9 +1652,8 @@ Library {
 	    Location		    [224, 162, 1223, 697]
 	    Open		    off
 	    PortBlocksUseCompactNotation off
-	    SetExecutionDomain	    off
-	    ExecutionDomainType	    "Deduce"
 	    ModelBrowserVisibility  off
+	    ModelBrowserWidth	    200
 	    ScreenColor		    "white"
 	    PaperOrientation	    "landscape"
 	    PaperPositionMode	    "auto"
@@ -1721,13 +1663,13 @@ Library {
 	    TiledPageScale	    1
 	    ShowPageBoundaries	    off
 	    ZoomFactor		    "150"
-	    SimulinkSubDomain	    "Simulink"
 	    Block {
 	      BlockType		      Inport
 	      Name		      "a"
 	      SID		      "282"
 	      Position		      [110, 68, 140, 82]
 	      ZOrder		      -1
+	      IconDisplay	      "Port number"
 	    }
 	    Block {
 	      BlockType		      Inport
@@ -1736,6 +1678,7 @@ Library {
 	      Position		      [110, 138, 140, 152]
 	      ZOrder		      2
 	      Port		      "2"
+	      IconDisplay	      "Port number"
 	    }
 	    Block {
 	      BlockType		      MinMax
@@ -1746,6 +1689,8 @@ Library {
 	      ZOrder		      4
 	      Function		      "max"
 	      Inputs		      "2"
+	      InputSameDT	      off
+	      SaturateOnIntegerOverflow	off
 	    }
 	    Block {
 	      BlockType		      MinMax
@@ -1755,6 +1700,8 @@ Library {
 	      Position		      [235, 122, 265, 153]
 	      ZOrder		      3
 	      Inputs		      "2"
+	      InputSameDT	      off
+	      SaturateOnIntegerOverflow	off
 	    }
 	    Block {
 	      BlockType		      Outport
@@ -1762,6 +1709,7 @@ Library {
 	      SID		      "286"
 	      Position		      [360, 78, 390, 92]
 	      ZOrder		      -2
+	      IconDisplay	      "Port number"
 	    }
 	    Block {
 	      BlockType		      Outport
@@ -1770,6 +1718,7 @@ Library {
 	      Position		      [360, 133, 390, 147]
 	      ZOrder		      1
 	      Port		      "2"
+	      IconDisplay	      "Port number"
 	    }
 	    Line {
 	      ZOrder		      1
@@ -1829,16 +1778,11 @@ Library {
 	  Position		  [70, 17, 115, 53]
 	  ZOrder		  382
 	  ShowName		  off
-	  LibraryVersion	  "1.7"
-	  SourceBlock		  "$bdroot/Sort2"
+	  LibraryVersion	  "1.6"
+	  SourceBlock		  "slQuery_testlibrary/Sort2"
 	  SourceType		  "Sort"
 	  ShowPortLabels	  "FromPortIcon"
 	  SystemSampleTime	  "-1"
-	  RTWMemSecFuncInitTerm	  "Inherit from model"
-	  RTWMemSecFuncExecute	  "Inherit from model"
-	  RTWMemSecDataConstants  "Inherit from model"
-	  RTWMemSecDataInternal	  "Inherit from model"
-	  RTWMemSecDataParameters "Inherit from model"
 	  GeneratePreprocessorConditionals off
 	  AllowZeroVariantControls off
 	  PropagateVariantConditions off
@@ -1852,6 +1796,7 @@ Library {
 	  SID			  "270"
 	  Position		  [135, 18, 165, 32]
 	  ZOrder		  387
+	  IconDisplay		  "Port number"
 	}
 	Block {
 	  BlockType		  Outport
@@ -1860,6 +1805,7 @@ Library {
 	  Position		  [135, 73, 165, 87]
 	  ZOrder		  389
 	  Port			  "2"
+	  IconDisplay		  "Port number"
 	}
 	Block {
 	  BlockType		  Outport
@@ -1868,6 +1814,7 @@ Library {
 	  Position		  [135, 133, 165, 147]
 	  ZOrder		  394
 	  Port			  "3"
+	  IconDisplay		  "Port number"
 	}
 	Block {
 	  BlockType		  Outport
@@ -1876,6 +1823,7 @@ Library {
 	  Position		  [135, 193, 165, 207]
 	  ZOrder		  399
 	  Port			  "4"
+	  IconDisplay		  "Port number"
 	}
 	Block {
 	  BlockType		  Outport
@@ -1884,6 +1832,7 @@ Library {
 	  Position		  [135, 213, 165, 227]
 	  ZOrder		  400
 	  Port			  "5"
+	  IconDisplay		  "Port number"
 	}
 	Block {
 	  BlockType		  Outport
@@ -1892,6 +1841,7 @@ Library {
 	  Position		  [135, 153, 165, 167]
 	  ZOrder		  395
 	  Port			  "6"
+	  IconDisplay		  "Port number"
 	}
 	Block {
 	  BlockType		  Outport
@@ -1900,6 +1850,7 @@ Library {
 	  Position		  [135, 93, 165, 107]
 	  ZOrder		  390
 	  Port			  "7"
+	  IconDisplay		  "Port number"
 	}
 	Block {
 	  BlockType		  Outport
@@ -1908,6 +1859,7 @@ Library {
 	  Position		  [135, 38, 165, 52]
 	  ZOrder		  388
 	  Port			  "8"
+	  IconDisplay		  "Port number"
 	}
 	Line {
 	  ZOrder		  1
@@ -2028,11 +1980,12 @@ Library {
       Name		      "Sort16"
       SID		      "78"
       Ports		      [16, 16]
-      Position		      [335, -130, 380, 190]
+      Position		      [330, -30, 375, 290]
       ZOrder		      377
+      RequestExecContextInheritance off
       Object {
 	$PropName		"MaskObject"
-	$ObjectID		24
+	$ObjectID		23
 	$ClassName		"Simulink.Mask"
 	Type			"Sort"
 	Display			"disp('>O(44)')"
@@ -2042,9 +1995,8 @@ Library {
 	Location		[66, -8, 1928, 1208]
 	Open			off
 	PortBlocksUseCompactNotation off
-	SetExecutionDomain	off
-	ExecutionDomainType	"Deduce"
 	ModelBrowserVisibility	off
+	ModelBrowserWidth	200
 	ScreenColor		"white"
 	PaperOrientation	"landscape"
 	PaperPositionMode	"auto"
@@ -2054,13 +2006,13 @@ Library {
 	TiledPageScale		1
 	ShowPageBoundaries	off
 	ZoomFactor		"100"
-	SimulinkSubDomain	"Simulink"
 	Block {
 	  BlockType		  Inport
 	  Name			  "In1"
 	  SID			  "79"
 	  Position		  [-60, 38, -30, 52]
 	  ZOrder		  374
+	  IconDisplay		  "Port number"
 	}
 	Block {
 	  BlockType		  Inport
@@ -2069,6 +2021,7 @@ Library {
 	  Position		  [-60, 88, -30, 102]
 	  ZOrder		  375
 	  Port			  "2"
+	  IconDisplay		  "Port number"
 	}
 	Block {
 	  BlockType		  Inport
@@ -2077,6 +2030,7 @@ Library {
 	  Position		  [-60, 138, -30, 152]
 	  ZOrder		  376
 	  Port			  "3"
+	  IconDisplay		  "Port number"
 	}
 	Block {
 	  BlockType		  Inport
@@ -2085,6 +2039,7 @@ Library {
 	  Position		  [-60, 188, -30, 202]
 	  ZOrder		  377
 	  Port			  "4"
+	  IconDisplay		  "Port number"
 	}
 	Block {
 	  BlockType		  Inport
@@ -2093,6 +2048,7 @@ Library {
 	  Position		  [-60, 243, -30, 257]
 	  ZOrder		  391
 	  Port			  "5"
+	  IconDisplay		  "Port number"
 	}
 	Block {
 	  BlockType		  Inport
@@ -2101,6 +2057,7 @@ Library {
 	  Position		  [-60, 293, -30, 307]
 	  ZOrder		  392
 	  Port			  "6"
+	  IconDisplay		  "Port number"
 	}
 	Block {
 	  BlockType		  Inport
@@ -2109,6 +2066,7 @@ Library {
 	  Position		  [-60, 343, -30, 357]
 	  ZOrder		  393
 	  Port			  "7"
+	  IconDisplay		  "Port number"
 	}
 	Block {
 	  BlockType		  Inport
@@ -2117,6 +2075,7 @@ Library {
 	  Position		  [-60, 393, -30, 407]
 	  ZOrder		  394
 	  Port			  "8"
+	  IconDisplay		  "Port number"
 	}
 	Block {
 	  BlockType		  Inport
@@ -2125,6 +2084,7 @@ Library {
 	  Position		  [-60, 453, -30, 467]
 	  ZOrder		  412
 	  Port			  "9"
+	  IconDisplay		  "Port number"
 	}
 	Block {
 	  BlockType		  Inport
@@ -2133,6 +2093,7 @@ Library {
 	  Position		  [-60, 503, -30, 517]
 	  ZOrder		  413
 	  Port			  "10"
+	  IconDisplay		  "Port number"
 	}
 	Block {
 	  BlockType		  Inport
@@ -2141,6 +2102,7 @@ Library {
 	  Position		  [-60, 553, -30, 567]
 	  ZOrder		  414
 	  Port			  "11"
+	  IconDisplay		  "Port number"
 	}
 	Block {
 	  BlockType		  Inport
@@ -2149,6 +2111,7 @@ Library {
 	  Position		  [-60, 603, -30, 617]
 	  ZOrder		  415
 	  Port			  "12"
+	  IconDisplay		  "Port number"
 	}
 	Block {
 	  BlockType		  Inport
@@ -2157,6 +2120,7 @@ Library {
 	  Position		  [-60, 658, -30, 672]
 	  ZOrder		  422
 	  Port			  "13"
+	  IconDisplay		  "Port number"
 	}
 	Block {
 	  BlockType		  Inport
@@ -2165,6 +2129,7 @@ Library {
 	  Position		  [-60, 708, -30, 722]
 	  ZOrder		  423
 	  Port			  "14"
+	  IconDisplay		  "Port number"
 	}
 	Block {
 	  BlockType		  Inport
@@ -2173,6 +2138,7 @@ Library {
 	  Position		  [-60, 758, -30, 772]
 	  ZOrder		  424
 	  Port			  "15"
+	  IconDisplay		  "Port number"
 	}
 	Block {
 	  BlockType		  Inport
@@ -2181,6 +2147,7 @@ Library {
 	  Position		  [-60, 808, -30, 822]
 	  ZOrder		  425
 	  Port			  "16"
+	  IconDisplay		  "Port number"
 	}
 	Block {
 	  BlockType		  Reference
@@ -2190,16 +2157,11 @@ Library {
 	  Position		  [155, 412, 200, 448]
 	  ZOrder		  465
 	  ShowName		  off
-	  LibraryVersion	  "1.7"
-	  SourceBlock		  "$bdroot/Sort2"
+	  LibraryVersion	  "1.6"
+	  SourceBlock		  "slQuery_testlibrary/Sort2"
 	  SourceType		  "Sort"
 	  ShowPortLabels	  "FromPortIcon"
 	  SystemSampleTime	  "-1"
-	  RTWMemSecFuncInitTerm	  "Inherit from model"
-	  RTWMemSecFuncExecute	  "Inherit from model"
-	  RTWMemSecDataConstants  "Inherit from model"
-	  RTWMemSecDataInternal	  "Inherit from model"
-	  RTWMemSecDataParameters "Inherit from model"
 	  GeneratePreprocessorConditionals off
 	  AllowZeroVariantControls off
 	  PropagateVariantConditions off
@@ -2215,16 +2177,11 @@ Library {
 	  Position		  [225, 412, 270, 448]
 	  ZOrder		  464
 	  ShowName		  off
-	  LibraryVersion	  "1.7"
-	  SourceBlock		  "$bdroot/Sort2"
+	  LibraryVersion	  "1.6"
+	  SourceBlock		  "slQuery_testlibrary/Sort2"
 	  SourceType		  "Sort"
 	  ShowPortLabels	  "FromPortIcon"
 	  SystemSampleTime	  "-1"
-	  RTWMemSecFuncInitTerm	  "Inherit from model"
-	  RTWMemSecFuncExecute	  "Inherit from model"
-	  RTWMemSecDataConstants  "Inherit from model"
-	  RTWMemSecDataInternal	  "Inherit from model"
-	  RTWMemSecDataParameters "Inherit from model"
 	  GeneratePreprocessorConditionals off
 	  AllowZeroVariantControls off
 	  PropagateVariantConditions off
@@ -2240,16 +2197,11 @@ Library {
 	  Position		  [5, 412, 50, 448]
 	  ZOrder		  467
 	  ShowName		  off
-	  LibraryVersion	  "1.7"
-	  SourceBlock		  "$bdroot/Sort2"
+	  LibraryVersion	  "1.6"
+	  SourceBlock		  "slQuery_testlibrary/Sort2"
 	  SourceType		  "Sort"
 	  ShowPortLabels	  "FromPortIcon"
 	  SystemSampleTime	  "-1"
-	  RTWMemSecFuncInitTerm	  "Inherit from model"
-	  RTWMemSecFuncExecute	  "Inherit from model"
-	  RTWMemSecDataConstants  "Inherit from model"
-	  RTWMemSecDataInternal	  "Inherit from model"
-	  RTWMemSecDataParameters "Inherit from model"
 	  GeneratePreprocessorConditionals off
 	  AllowZeroVariantControls off
 	  PropagateVariantConditions off
@@ -2265,16 +2217,11 @@ Library {
 	  Position		  [80, 412, 125, 448]
 	  ZOrder		  466
 	  ShowName		  off
-	  LibraryVersion	  "1.7"
-	  SourceBlock		  "$bdroot/Sort2"
+	  LibraryVersion	  "1.6"
+	  SourceBlock		  "slQuery_testlibrary/Sort2"
 	  SourceType		  "Sort"
 	  ShowPortLabels	  "FromPortIcon"
 	  SystemSampleTime	  "-1"
-	  RTWMemSecFuncInitTerm	  "Inherit from model"
-	  RTWMemSecFuncExecute	  "Inherit from model"
-	  RTWMemSecDataConstants  "Inherit from model"
-	  RTWMemSecDataInternal	  "Inherit from model"
-	  RTWMemSecDataParameters "Inherit from model"
 	  GeneratePreprocessorConditionals off
 	  AllowZeroVariantControls off
 	  PropagateVariantConditions off
@@ -2290,16 +2237,11 @@ Library {
 	  Position		  [455, 412, 500, 448]
 	  ZOrder		  469
 	  ShowName		  off
-	  LibraryVersion	  "1.7"
-	  SourceBlock		  "$bdroot/Sort2"
+	  LibraryVersion	  "1.6"
+	  SourceBlock		  "slQuery_testlibrary/Sort2"
 	  SourceType		  "Sort"
 	  ShowPortLabels	  "FromPortIcon"
 	  SystemSampleTime	  "-1"
-	  RTWMemSecFuncInitTerm	  "Inherit from model"
-	  RTWMemSecFuncExecute	  "Inherit from model"
-	  RTWMemSecDataConstants  "Inherit from model"
-	  RTWMemSecDataInternal	  "Inherit from model"
-	  RTWMemSecDataParameters "Inherit from model"
 	  GeneratePreprocessorConditionals off
 	  AllowZeroVariantControls off
 	  PropagateVariantConditions off
@@ -2315,16 +2257,11 @@ Library {
 	  Position		  [525, 412, 570, 448]
 	  ZOrder		  468
 	  ShowName		  off
-	  LibraryVersion	  "1.7"
-	  SourceBlock		  "$bdroot/Sort2"
+	  LibraryVersion	  "1.6"
+	  SourceBlock		  "slQuery_testlibrary/Sort2"
 	  SourceType		  "Sort"
 	  ShowPortLabels	  "FromPortIcon"
 	  SystemSampleTime	  "-1"
-	  RTWMemSecFuncInitTerm	  "Inherit from model"
-	  RTWMemSecFuncExecute	  "Inherit from model"
-	  RTWMemSecDataConstants  "Inherit from model"
-	  RTWMemSecDataInternal	  "Inherit from model"
-	  RTWMemSecDataParameters "Inherit from model"
 	  GeneratePreprocessorConditionals off
 	  AllowZeroVariantControls off
 	  PropagateVariantConditions off
@@ -2340,16 +2277,11 @@ Library {
 	  Position		  [305, 412, 350, 448]
 	  ZOrder		  471
 	  ShowName		  off
-	  LibraryVersion	  "1.7"
-	  SourceBlock		  "$bdroot/Sort2"
+	  LibraryVersion	  "1.6"
+	  SourceBlock		  "slQuery_testlibrary/Sort2"
 	  SourceType		  "Sort"
 	  ShowPortLabels	  "FromPortIcon"
 	  SystemSampleTime	  "-1"
-	  RTWMemSecFuncInitTerm	  "Inherit from model"
-	  RTWMemSecFuncExecute	  "Inherit from model"
-	  RTWMemSecDataConstants  "Inherit from model"
-	  RTWMemSecDataInternal	  "Inherit from model"
-	  RTWMemSecDataParameters "Inherit from model"
 	  GeneratePreprocessorConditionals off
 	  AllowZeroVariantControls off
 	  PropagateVariantConditions off
@@ -2365,16 +2297,11 @@ Library {
 	  Position		  [380, 412, 425, 448]
 	  ZOrder		  470
 	  ShowName		  off
-	  LibraryVersion	  "1.7"
-	  SourceBlock		  "$bdroot/Sort2"
+	  LibraryVersion	  "1.6"
+	  SourceBlock		  "slQuery_testlibrary/Sort2"
 	  SourceType		  "Sort"
 	  ShowPortLabels	  "FromPortIcon"
 	  SystemSampleTime	  "-1"
-	  RTWMemSecFuncInitTerm	  "Inherit from model"
-	  RTWMemSecFuncExecute	  "Inherit from model"
-	  RTWMemSecDataConstants  "Inherit from model"
-	  RTWMemSecDataInternal	  "Inherit from model"
-	  RTWMemSecDataParameters "Inherit from model"
 	  GeneratePreprocessorConditionals off
 	  AllowZeroVariantControls off
 	  PropagateVariantConditions off
@@ -2388,6 +2315,7 @@ Library {
 	  SID			  "99"
 	  Position		  [1080, 38, 1110, 52]
 	  ZOrder		  379
+	  IconDisplay		  "Port number"
 	}
 	Block {
 	  BlockType		  Outport
@@ -2396,6 +2324,7 @@ Library {
 	  Position		  [1080, 88, 1110, 102]
 	  ZOrder		  380
 	  Port			  "2"
+	  IconDisplay		  "Port number"
 	}
 	Block {
 	  BlockType		  Outport
@@ -2404,6 +2333,7 @@ Library {
 	  Position		  [1080, 138, 1110, 152]
 	  ZOrder		  381
 	  Port			  "3"
+	  IconDisplay		  "Port number"
 	}
 	Block {
 	  BlockType		  Outport
@@ -2412,6 +2342,7 @@ Library {
 	  Position		  [1080, 188, 1110, 202]
 	  ZOrder		  382
 	  Port			  "4"
+	  IconDisplay		  "Port number"
 	}
 	Block {
 	  BlockType		  Outport
@@ -2420,6 +2351,7 @@ Library {
 	  Position		  [1080, 243, 1110, 257]
 	  ZOrder		  395
 	  Port			  "5"
+	  IconDisplay		  "Port number"
 	}
 	Block {
 	  BlockType		  Outport
@@ -2428,6 +2360,7 @@ Library {
 	  Position		  [1080, 293, 1110, 307]
 	  ZOrder		  396
 	  Port			  "6"
+	  IconDisplay		  "Port number"
 	}
 	Block {
 	  BlockType		  Outport
@@ -2436,6 +2369,7 @@ Library {
 	  Position		  [1080, 343, 1110, 357]
 	  ZOrder		  397
 	  Port			  "7"
+	  IconDisplay		  "Port number"
 	}
 	Block {
 	  BlockType		  Outport
@@ -2444,6 +2378,7 @@ Library {
 	  Position		  [1080, 393, 1110, 407]
 	  ZOrder		  398
 	  Port			  "8"
+	  IconDisplay		  "Port number"
 	}
 	Block {
 	  BlockType		  Outport
@@ -2452,6 +2387,7 @@ Library {
 	  Position		  [1080, 453, 1110, 467]
 	  ZOrder		  416
 	  Port			  "9"
+	  IconDisplay		  "Port number"
 	}
 	Block {
 	  BlockType		  Outport
@@ -2460,6 +2396,7 @@ Library {
 	  Position		  [1080, 503, 1110, 517]
 	  ZOrder		  417
 	  Port			  "10"
+	  IconDisplay		  "Port number"
 	}
 	Block {
 	  BlockType		  Outport
@@ -2468,6 +2405,7 @@ Library {
 	  Position		  [1080, 553, 1110, 567]
 	  ZOrder		  418
 	  Port			  "11"
+	  IconDisplay		  "Port number"
 	}
 	Block {
 	  BlockType		  Outport
@@ -2476,6 +2414,7 @@ Library {
 	  Position		  [1080, 603, 1110, 617]
 	  ZOrder		  419
 	  Port			  "12"
+	  IconDisplay		  "Port number"
 	}
 	Block {
 	  BlockType		  Outport
@@ -2484,6 +2423,7 @@ Library {
 	  Position		  [1080, 658, 1110, 672]
 	  ZOrder		  426
 	  Port			  "13"
+	  IconDisplay		  "Port number"
 	}
 	Block {
 	  BlockType		  Outport
@@ -2492,6 +2432,7 @@ Library {
 	  Position		  [1080, 708, 1110, 722]
 	  ZOrder		  427
 	  Port			  "14"
+	  IconDisplay		  "Port number"
 	}
 	Block {
 	  BlockType		  Outport
@@ -2500,6 +2441,7 @@ Library {
 	  Position		  [1080, 758, 1110, 772]
 	  ZOrder		  428
 	  Port			  "15"
+	  IconDisplay		  "Port number"
 	}
 	Block {
 	  BlockType		  Outport
@@ -2508,6 +2450,7 @@ Library {
 	  Position		  [1080, 808, 1110, 822]
 	  ZOrder		  429
 	  Port			  "16"
+	  IconDisplay		  "Port number"
 	}
       }
     }
@@ -2518,9 +2461,10 @@ Library {
       Ports		      [2, 2]
       Position		      [30, 17, 75, 53]
       ZOrder		      369
+      RequestExecContextInheritance off
       Object {
 	$PropName		"MaskObject"
-	$ObjectID		25
+	$ObjectID		24
 	$ClassName		"Simulink.Mask"
 	Type			"Sort"
 	Display			"disp('O(1)')"
@@ -2530,9 +2474,8 @@ Library {
 	Location		[66, -8, 1928, 1208]
 	Open			off
 	PortBlocksUseCompactNotation off
-	SetExecutionDomain	off
-	ExecutionDomainType	"Deduce"
 	ModelBrowserVisibility	off
+	ModelBrowserWidth	200
 	ScreenColor		"white"
 	PaperOrientation	"landscape"
 	PaperPositionMode	"auto"
@@ -2542,13 +2485,13 @@ Library {
 	TiledPageScale		1
 	ShowPageBoundaries	off
 	ZoomFactor		"150"
-	SimulinkSubDomain	"Simulink"
 	Block {
 	  BlockType		  Inport
 	  Name			  "a"
 	  SID			  "2"
 	  Position		  [110, 68, 140, 82]
 	  ZOrder		  -1
+	  IconDisplay		  "Port number"
 	}
 	Block {
 	  BlockType		  Inport
@@ -2557,6 +2500,7 @@ Library {
 	  Position		  [110, 138, 140, 152]
 	  ZOrder		  2
 	  Port			  "2"
+	  IconDisplay		  "Port number"
 	}
 	Block {
 	  BlockType		  MinMax
@@ -2567,6 +2511,8 @@ Library {
 	  ZOrder		  4
 	  Function		  "max"
 	  Inputs		  "2"
+	  InputSameDT		  off
+	  SaturateOnIntegerOverflow off
 	}
 	Block {
 	  BlockType		  MinMax
@@ -2576,6 +2522,8 @@ Library {
 	  Position		  [235, 122, 265, 153]
 	  ZOrder		  3
 	  Inputs		  "2"
+	  InputSameDT		  off
+	  SaturateOnIntegerOverflow off
 	}
 	Block {
 	  BlockType		  Outport
@@ -2583,6 +2531,7 @@ Library {
 	  SID			  "6"
 	  Position		  [360, 78, 390, 92]
 	  ZOrder		  -2
+	  IconDisplay		  "Port number"
 	}
 	Block {
 	  BlockType		  Outport
@@ -2591,6 +2540,7 @@ Library {
 	  Position		  [360, 133, 390, 147]
 	  ZOrder		  1
 	  Port			  "2"
+	  IconDisplay		  "Port number"
 	}
 	Line {
 	  ZOrder		  1
@@ -2649,9 +2599,10 @@ Library {
       Ports		      [3, 3]
       Position		      [30, 70, 75, 130]
       ZOrder		      370
+      RequestExecContextInheritance off
       Object {
 	$PropName		"MaskObject"
-	$ObjectID		26
+	$ObjectID		25
 	$ClassName		"Simulink.Mask"
 	Type			"Sort"
 	Display			"disp('O(3)')"
@@ -2661,9 +2612,8 @@ Library {
 	Location		[224, 162, 1223, 697]
 	Open			off
 	PortBlocksUseCompactNotation off
-	SetExecutionDomain	off
-	ExecutionDomainType	"Deduce"
 	ModelBrowserVisibility	off
+	ModelBrowserWidth	200
 	ScreenColor		"white"
 	PaperOrientation	"landscape"
 	PaperPositionMode	"auto"
@@ -2673,13 +2623,13 @@ Library {
 	TiledPageScale		1
 	ShowPageBoundaries	off
 	ZoomFactor		"150"
-	SimulinkSubDomain	"Simulink"
 	Block {
 	  BlockType		  Inport
 	  Name			  "In1"
 	  SID			  "9"
 	  Position		  [20, 18, 50, 32]
 	  ZOrder		  525
+	  IconDisplay		  "Port number"
 	}
 	Block {
 	  BlockType		  Inport
@@ -2688,6 +2638,7 @@ Library {
 	  Position		  [20, 48, 50, 62]
 	  ZOrder		  526
 	  Port			  "2"
+	  IconDisplay		  "Port number"
 	}
 	Block {
 	  BlockType		  Inport
@@ -2696,6 +2647,7 @@ Library {
 	  Position		  [20, 78, 50, 92]
 	  ZOrder		  527
 	  Port			  "3"
+	  IconDisplay		  "Port number"
 	}
 	Block {
 	  BlockType		  Reference
@@ -2704,16 +2656,11 @@ Library {
 	  Ports			  [2, 2]
 	  Position		  [155, 41, 190, 99]
 	  ZOrder		  532
-	  LibraryVersion	  "1.7"
-	  SourceBlock		  "$bdroot/Sort2"
+	  LibraryVersion	  "1.6"
+	  SourceBlock		  "slQuery_testlibrary/Sort2"
 	  SourceType		  "Sort"
 	  ShowPortLabels	  "FromPortIcon"
 	  SystemSampleTime	  "-1"
-	  RTWMemSecFuncInitTerm	  "Inherit from model"
-	  RTWMemSecFuncExecute	  "Inherit from model"
-	  RTWMemSecDataConstants  "Inherit from model"
-	  RTWMemSecDataInternal	  "Inherit from model"
-	  RTWMemSecDataParameters "Inherit from model"
 	  GeneratePreprocessorConditionals off
 	  AllowZeroVariantControls off
 	  PropagateVariantConditions off
@@ -2728,16 +2675,11 @@ Library {
 	  Ports			  [2, 2]
 	  Position		  [90, 11, 125, 69]
 	  ZOrder		  531
-	  LibraryVersion	  "1.7"
-	  SourceBlock		  "$bdroot/Sort2"
+	  LibraryVersion	  "1.6"
+	  SourceBlock		  "slQuery_testlibrary/Sort2"
 	  SourceType		  "Sort"
 	  ShowPortLabels	  "FromPortIcon"
 	  SystemSampleTime	  "-1"
-	  RTWMemSecFuncInitTerm	  "Inherit from model"
-	  RTWMemSecFuncExecute	  "Inherit from model"
-	  RTWMemSecDataConstants  "Inherit from model"
-	  RTWMemSecDataInternal	  "Inherit from model"
-	  RTWMemSecDataParameters "Inherit from model"
 	  GeneratePreprocessorConditionals off
 	  AllowZeroVariantControls off
 	  PropagateVariantConditions off
@@ -2752,16 +2694,11 @@ Library {
 	  Ports			  [2, 2]
 	  Position		  [220, 11, 255, 69]
 	  ZOrder		  534
-	  LibraryVersion	  "1.7"
-	  SourceBlock		  "$bdroot/Sort2"
+	  LibraryVersion	  "1.6"
+	  SourceBlock		  "slQuery_testlibrary/Sort2"
 	  SourceType		  "Sort"
 	  ShowPortLabels	  "FromPortIcon"
 	  SystemSampleTime	  "-1"
-	  RTWMemSecFuncInitTerm	  "Inherit from model"
-	  RTWMemSecFuncExecute	  "Inherit from model"
-	  RTWMemSecDataConstants  "Inherit from model"
-	  RTWMemSecDataInternal	  "Inherit from model"
-	  RTWMemSecDataParameters "Inherit from model"
 	  GeneratePreprocessorConditionals off
 	  AllowZeroVariantControls off
 	  PropagateVariantConditions off
@@ -2775,6 +2712,7 @@ Library {
 	  SID			  "14"
 	  Position		  [290, 18, 320, 32]
 	  ZOrder		  528
+	  IconDisplay		  "Port number"
 	}
 	Block {
 	  BlockType		  Outport
@@ -2783,6 +2721,7 @@ Library {
 	  Position		  [290, 48, 320, 62]
 	  ZOrder		  529
 	  Port			  "2"
+	  IconDisplay		  "Port number"
 	}
 	Block {
 	  BlockType		  Outport
@@ -2791,6 +2730,7 @@ Library {
 	  Position		  [290, 78, 320, 92]
 	  ZOrder		  530
 	  Port			  "3"
+	  IconDisplay		  "Port number"
 	}
 	Line {
 	  ZOrder		  9
@@ -2864,9 +2804,10 @@ Library {
       Ports		      [4, 4]
       Position		      [30, 156, 75, 244]
       ZOrder		      -191
+      RequestExecContextInheritance off
       Object {
 	$PropName		"MaskObject"
-	$ObjectID		27
+	$ObjectID		26
 	$ClassName		"Simulink.Mask"
 	Type			"Sort"
 	Display			"disp('O(5)')"
@@ -2876,9 +2817,8 @@ Library {
 	Location		[66, -8, 1928, 1208]
 	Open			off
 	PortBlocksUseCompactNotation off
-	SetExecutionDomain	off
-	ExecutionDomainType	"Deduce"
 	ModelBrowserVisibility	off
+	ModelBrowserWidth	200
 	ScreenColor		"white"
 	PaperOrientation	"landscape"
 	PaperPositionMode	"auto"
@@ -2888,13 +2828,13 @@ Library {
 	TiledPageScale		1
 	ShowPageBoundaries	off
 	ZoomFactor		"125"
-	SimulinkSubDomain	"Simulink"
 	Block {
 	  BlockType		  Inport
 	  Name			  "In1"
 	  SID			  "26"
 	  Position		  [-55, 38, -25, 52]
 	  ZOrder		  374
+	  IconDisplay		  "Port number"
 	}
 	Block {
 	  BlockType		  Inport
@@ -2903,6 +2843,7 @@ Library {
 	  Position		  [-55, 88, -25, 102]
 	  ZOrder		  375
 	  Port			  "2"
+	  IconDisplay		  "Port number"
 	}
 	Block {
 	  BlockType		  Inport
@@ -2911,6 +2852,7 @@ Library {
 	  Position		  [-55, 138, -25, 152]
 	  ZOrder		  376
 	  Port			  "3"
+	  IconDisplay		  "Port number"
 	}
 	Block {
 	  BlockType		  Inport
@@ -2919,6 +2861,7 @@ Library {
 	  Position		  [-55, 188, -25, 202]
 	  ZOrder		  377
 	  Port			  "4"
+	  IconDisplay		  "Port number"
 	}
 	Block {
 	  BlockType		  Reference
@@ -2927,16 +2870,11 @@ Library {
 	  Ports			  [2, 2]
 	  Position		  [0, 41, 50, 99]
 	  ZOrder		  387
-	  LibraryVersion	  "1.7"
-	  SourceBlock		  "$bdroot/Sort2"
+	  LibraryVersion	  "1.6"
+	  SourceBlock		  "slQuery_testlibrary/Sort2"
 	  SourceType		  "Sort"
 	  ShowPortLabels	  "FromPortIcon"
 	  SystemSampleTime	  "-1"
-	  RTWMemSecFuncInitTerm	  "Inherit from model"
-	  RTWMemSecFuncExecute	  "Inherit from model"
-	  RTWMemSecDataConstants  "Inherit from model"
-	  RTWMemSecDataInternal	  "Inherit from model"
-	  RTWMemSecDataParameters "Inherit from model"
 	  GeneratePreprocessorConditionals off
 	  AllowZeroVariantControls off
 	  PropagateVariantConditions off
@@ -2951,16 +2889,11 @@ Library {
 	  Ports			  [2, 2]
 	  Position		  [0, 141, 50, 199]
 	  ZOrder		  386
-	  LibraryVersion	  "1.7"
-	  SourceBlock		  "$bdroot/Sort2"
+	  LibraryVersion	  "1.6"
+	  SourceBlock		  "slQuery_testlibrary/Sort2"
 	  SourceType		  "Sort"
 	  ShowPortLabels	  "FromPortIcon"
 	  SystemSampleTime	  "-1"
-	  RTWMemSecFuncInitTerm	  "Inherit from model"
-	  RTWMemSecFuncExecute	  "Inherit from model"
-	  RTWMemSecDataConstants  "Inherit from model"
-	  RTWMemSecDataInternal	  "Inherit from model"
-	  RTWMemSecDataParameters "Inherit from model"
 	  GeneratePreprocessorConditionals off
 	  AllowZeroVariantControls off
 	  PropagateVariantConditions off
@@ -2975,16 +2908,11 @@ Library {
 	  Ports			  [2, 2]
 	  Position		  [105, 41, 155, 99]
 	  ZOrder		  388
-	  LibraryVersion	  "1.7"
-	  SourceBlock		  "$bdroot/Sort2"
+	  LibraryVersion	  "1.6"
+	  SourceBlock		  "slQuery_testlibrary/Sort2"
 	  SourceType		  "Sort"
 	  ShowPortLabels	  "FromPortIcon"
 	  SystemSampleTime	  "-1"
-	  RTWMemSecFuncInitTerm	  "Inherit from model"
-	  RTWMemSecFuncExecute	  "Inherit from model"
-	  RTWMemSecDataConstants  "Inherit from model"
-	  RTWMemSecDataInternal	  "Inherit from model"
-	  RTWMemSecDataParameters "Inherit from model"
 	  GeneratePreprocessorConditionals off
 	  AllowZeroVariantControls off
 	  PropagateVariantConditions off
@@ -2999,16 +2927,11 @@ Library {
 	  Ports			  [2, 2]
 	  Position		  [105, 141, 155, 199]
 	  ZOrder		  389
-	  LibraryVersion	  "1.7"
-	  SourceBlock		  "$bdroot/Sort2"
+	  LibraryVersion	  "1.6"
+	  SourceBlock		  "slQuery_testlibrary/Sort2"
 	  SourceType		  "Sort"
 	  ShowPortLabels	  "FromPortIcon"
 	  SystemSampleTime	  "-1"
-	  RTWMemSecFuncInitTerm	  "Inherit from model"
-	  RTWMemSecFuncExecute	  "Inherit from model"
-	  RTWMemSecDataConstants  "Inherit from model"
-	  RTWMemSecDataInternal	  "Inherit from model"
-	  RTWMemSecDataParameters "Inherit from model"
 	  GeneratePreprocessorConditionals off
 	  AllowZeroVariantControls off
 	  PropagateVariantConditions off
@@ -3023,16 +2946,11 @@ Library {
 	  Ports			  [2, 2]
 	  Position		  [205, 91, 255, 149]
 	  ZOrder		  390
-	  LibraryVersion	  "1.7"
-	  SourceBlock		  "$bdroot/Sort2"
+	  LibraryVersion	  "1.6"
+	  SourceBlock		  "slQuery_testlibrary/Sort2"
 	  SourceType		  "Sort"
 	  ShowPortLabels	  "FromPortIcon"
 	  SystemSampleTime	  "-1"
-	  RTWMemSecFuncInitTerm	  "Inherit from model"
-	  RTWMemSecFuncExecute	  "Inherit from model"
-	  RTWMemSecDataConstants  "Inherit from model"
-	  RTWMemSecDataInternal	  "Inherit from model"
-	  RTWMemSecDataParameters "Inherit from model"
 	  GeneratePreprocessorConditionals off
 	  AllowZeroVariantControls off
 	  PropagateVariantConditions off
@@ -3046,6 +2964,7 @@ Library {
 	  SID			  "31"
 	  Position		  [285, 38, 315, 52]
 	  ZOrder		  379
+	  IconDisplay		  "Port number"
 	}
 	Block {
 	  BlockType		  Outport
@@ -3054,6 +2973,7 @@ Library {
 	  Position		  [285, 88, 315, 102]
 	  ZOrder		  380
 	  Port			  "2"
+	  IconDisplay		  "Port number"
 	}
 	Block {
 	  BlockType		  Outport
@@ -3062,6 +2982,7 @@ Library {
 	  Position		  [285, 138, 315, 152]
 	  ZOrder		  381
 	  Port			  "3"
+	  IconDisplay		  "Port number"
 	}
 	Block {
 	  BlockType		  Outport
@@ -3070,6 +2991,7 @@ Library {
 	  Position		  [285, 188, 315, 202]
 	  ZOrder		  382
 	  Port			  "4"
+	  IconDisplay		  "Port number"
 	}
 	Line {
 	  ZOrder		  37
@@ -3190,9 +3112,10 @@ Library {
       Ports		      [8, 8]
       Position		      [170, 49, 215, 211]
       ZOrder		      376
+      RequestExecContextInheritance off
       Object {
 	$PropName		"MaskObject"
-	$ObjectID		28
+	$ObjectID		27
 	$ClassName		"Simulink.Mask"
 	Type			"Sort"
 	Display			"disp('O(19)')"
@@ -3202,9 +3125,8 @@ Library {
 	Location		[66, -8, 1928, 1208]
 	Open			off
 	PortBlocksUseCompactNotation off
-	SetExecutionDomain	off
-	ExecutionDomainType	"Deduce"
 	ModelBrowserVisibility	off
+	ModelBrowserWidth	200
 	ScreenColor		"white"
 	PaperOrientation	"landscape"
 	PaperPositionMode	"auto"
@@ -3214,13 +3136,13 @@ Library {
 	TiledPageScale		1
 	ShowPageBoundaries	off
 	ZoomFactor		"125"
-	SimulinkSubDomain	"Simulink"
 	Block {
 	  BlockType		  Inport
 	  Name			  "In1"
 	  SID			  "44"
 	  Position		  [-400, 38, -370, 52]
 	  ZOrder		  374
+	  IconDisplay		  "Port number"
 	}
 	Block {
 	  BlockType		  Inport
@@ -3229,6 +3151,7 @@ Library {
 	  Position		  [-400, 88, -370, 102]
 	  ZOrder		  375
 	  Port			  "2"
+	  IconDisplay		  "Port number"
 	}
 	Block {
 	  BlockType		  Inport
@@ -3237,6 +3160,7 @@ Library {
 	  Position		  [-400, 138, -370, 152]
 	  ZOrder		  376
 	  Port			  "3"
+	  IconDisplay		  "Port number"
 	}
 	Block {
 	  BlockType		  Inport
@@ -3245,6 +3169,7 @@ Library {
 	  Position		  [-400, 188, -370, 202]
 	  ZOrder		  377
 	  Port			  "4"
+	  IconDisplay		  "Port number"
 	}
 	Block {
 	  BlockType		  Inport
@@ -3253,6 +3178,7 @@ Library {
 	  Position		  [-400, 238, -370, 252]
 	  ZOrder		  391
 	  Port			  "5"
+	  IconDisplay		  "Port number"
 	}
 	Block {
 	  BlockType		  Inport
@@ -3261,6 +3187,7 @@ Library {
 	  Position		  [-400, 288, -370, 302]
 	  ZOrder		  392
 	  Port			  "6"
+	  IconDisplay		  "Port number"
 	}
 	Block {
 	  BlockType		  Inport
@@ -3269,6 +3196,7 @@ Library {
 	  Position		  [-400, 338, -370, 352]
 	  ZOrder		  393
 	  Port			  "7"
+	  IconDisplay		  "Port number"
 	}
 	Block {
 	  BlockType		  Inport
@@ -3277,6 +3205,7 @@ Library {
 	  Position		  [-400, 388, -370, 402]
 	  ZOrder		  394
 	  Port			  "8"
+	  IconDisplay		  "Port number"
 	}
 	Block {
 	  BlockType		  SubSystem
@@ -3286,9 +3215,10 @@ Library {
 	  Position		  [-260, 223, -225, 417]
 	  ZOrder		  447
 	  ShowName		  off
+	  RequestExecContextInheritance	off
 	  Object {
 	    $PropName		    "MaskObject"
-	    $ObjectID		    29
+	    $ObjectID		    28
 	    $ClassName		    "Simulink.Mask"
 	    Display		    "disp(['1-4' 10 '2-3'])"
 	  }
@@ -3297,9 +3227,8 @@ Library {
 	    Location		    [66, -8, 1928, 1208]
 	    Open		    off
 	    PortBlocksUseCompactNotation off
-	    SetExecutionDomain	    off
-	    ExecutionDomainType	    "Deduce"
 	    ModelBrowserVisibility  off
+	    ModelBrowserWidth	    200
 	    ScreenColor		    "white"
 	    PaperOrientation	    "landscape"
 	    PaperPositionMode	    "auto"
@@ -3309,13 +3238,13 @@ Library {
 	    TiledPageScale	    1
 	    ShowPageBoundaries	    off
 	    ZoomFactor		    "175"
-	    SimulinkSubDomain	    "Simulink"
 	    Block {
 	      BlockType		      Inport
 	      Name		      "In1"
 	      SID		      "292"
 	      Position		      [20, 18, 50, 32]
 	      ZOrder		      383
+	      IconDisplay	      "Port number"
 	    }
 	    Block {
 	      BlockType		      Inport
@@ -3324,6 +3253,7 @@ Library {
 	      Position		      [20, 73, 50, 87]
 	      ZOrder		      385
 	      Port		      "2"
+	      IconDisplay	      "Port number"
 	    }
 	    Block {
 	      BlockType		      Inport
@@ -3332,6 +3262,7 @@ Library {
 	      Position		      [20, 93, 50, 107]
 	      ZOrder		      386
 	      Port		      "3"
+	      IconDisplay	      "Port number"
 	    }
 	    Block {
 	      BlockType		      Inport
@@ -3340,6 +3271,7 @@ Library {
 	      Position		      [20, 38, 50, 52]
 	      ZOrder		      384
 	      Port		      "4"
+	      IconDisplay	      "Port number"
 	    }
 	    Block {
 	      BlockType		      Reference
@@ -3349,16 +3281,11 @@ Library {
 	      Position		      [70, 72, 115, 108]
 	      ZOrder		      381
 	      ShowName		      off
-	      LibraryVersion	      "1.7"
-	      SourceBlock	      "$bdroot/Sort2"
+	      LibraryVersion	      "1.6"
+	      SourceBlock	      "slQuery_testlibrary/Sort2"
 	      SourceType	      "Sort"
 	      ShowPortLabels	      "FromPortIcon"
 	      SystemSampleTime	      "-1"
-	      RTWMemSecFuncInitTerm   "Inherit from model"
-	      RTWMemSecFuncExecute    "Inherit from model"
-	      RTWMemSecDataConstants  "Inherit from model"
-	      RTWMemSecDataInternal   "Inherit from model"
-	      RTWMemSecDataParameters "Inherit from model"
 	      GeneratePreprocessorConditionals off
 	      AllowZeroVariantControls off
 	      PropagateVariantConditions off
@@ -3374,16 +3301,11 @@ Library {
 	      Position		      [70, 17, 115, 53]
 	      ZOrder		      382
 	      ShowName		      off
-	      LibraryVersion	      "1.7"
-	      SourceBlock	      "$bdroot/Sort2"
+	      LibraryVersion	      "1.6"
+	      SourceBlock	      "slQuery_testlibrary/Sort2"
 	      SourceType	      "Sort"
 	      ShowPortLabels	      "FromPortIcon"
 	      SystemSampleTime	      "-1"
-	      RTWMemSecFuncInitTerm   "Inherit from model"
-	      RTWMemSecFuncExecute    "Inherit from model"
-	      RTWMemSecDataConstants  "Inherit from model"
-	      RTWMemSecDataInternal   "Inherit from model"
-	      RTWMemSecDataParameters "Inherit from model"
 	      GeneratePreprocessorConditionals off
 	      AllowZeroVariantControls off
 	      PropagateVariantConditions off
@@ -3397,6 +3319,7 @@ Library {
 	      SID		      "298"
 	      Position		      [135, 18, 165, 32]
 	      ZOrder		      387
+	      IconDisplay	      "Port number"
 	    }
 	    Block {
 	      BlockType		      Outport
@@ -3405,6 +3328,7 @@ Library {
 	      Position		      [135, 73, 165, 87]
 	      ZOrder		      389
 	      Port		      "2"
+	      IconDisplay	      "Port number"
 	    }
 	    Block {
 	      BlockType		      Outport
@@ -3413,6 +3337,7 @@ Library {
 	      Position		      [135, 93, 165, 107]
 	      ZOrder		      390
 	      Port		      "3"
+	      IconDisplay	      "Port number"
 	    }
 	    Block {
 	      BlockType		      Outport
@@ -3421,6 +3346,7 @@ Library {
 	      Position		      [135, 38, 165, 52]
 	      ZOrder		      388
 	      Port		      "4"
+	      IconDisplay	      "Port number"
 	    }
 	    Line {
 	      ZOrder		      1
@@ -3488,16 +3414,11 @@ Library {
 	  Position		  [-260, 23, -225, 217]
 	  ZOrder		  446
 	  ShowName		  off
-	  LibraryVersion	  "1.7"
-	  SourceBlock		  "$bdroot/Pairwise4"
+	  LibraryVersion	  "1.6"
+	  SourceBlock		  "slQuery_testlibrary/Pairwise4"
 	  SourceType		  ""
 	  ShowPortLabels	  "FromPortIcon"
 	  SystemSampleTime	  "-1"
-	  RTWMemSecFuncInitTerm	  "Inherit from model"
-	  RTWMemSecFuncExecute	  "Inherit from model"
-	  RTWMemSecDataConstants  "Inherit from model"
-	  RTWMemSecDataInternal	  "Inherit from model"
-	  RTWMemSecDataParameters "Inherit from model"
 	  GeneratePreprocessorConditionals off
 	  AllowZeroVariantControls off
 	  PropagateVariantConditions off
@@ -3513,16 +3434,11 @@ Library {
 	  Position		  [-335, 13, -300, 427]
 	  ZOrder		  445
 	  ShowName		  off
-	  LibraryVersion	  "1.7"
-	  SourceBlock		  "$bdroot/Pairwise8"
+	  LibraryVersion	  "1.6"
+	  SourceBlock		  "slQuery_testlibrary/Pairwise8"
 	  SourceType		  ""
 	  ShowPortLabels	  "FromPortIcon"
 	  SystemSampleTime	  "-1"
-	  RTWMemSecFuncInitTerm	  "Inherit from model"
-	  RTWMemSecFuncExecute	  "Inherit from model"
-	  RTWMemSecDataConstants  "Inherit from model"
-	  RTWMemSecDataInternal	  "Inherit from model"
-	  RTWMemSecDataParameters "Inherit from model"
 	  GeneratePreprocessorConditionals off
 	  AllowZeroVariantControls off
 	  PropagateVariantConditions off
@@ -3538,16 +3454,11 @@ Library {
 	  Position		  [-190, 222, -155, 318]
 	  ZOrder		  448
 	  ShowName		  off
-	  LibraryVersion	  "1.7"
-	  SourceBlock		  "$bdroot/Sort2"
+	  LibraryVersion	  "1.6"
+	  SourceBlock		  "slQuery_testlibrary/Sort2"
 	  SourceType		  "Sort"
 	  ShowPortLabels	  "FromPortIcon"
 	  SystemSampleTime	  "-1"
-	  RTWMemSecFuncInitTerm	  "Inherit from model"
-	  RTWMemSecFuncExecute	  "Inherit from model"
-	  RTWMemSecDataConstants  "Inherit from model"
-	  RTWMemSecDataInternal	  "Inherit from model"
-	  RTWMemSecDataParameters "Inherit from model"
 	  GeneratePreprocessorConditionals off
 	  AllowZeroVariantControls off
 	  PropagateVariantConditions off
@@ -3563,16 +3474,11 @@ Library {
 	  Position		  [-50, 147, -5, 183]
 	  ZOrder		  437
 	  ShowName		  off
-	  LibraryVersion	  "1.7"
-	  SourceBlock		  "$bdroot/Sort2"
+	  LibraryVersion	  "1.6"
+	  SourceBlock		  "slQuery_testlibrary/Sort2"
 	  SourceType		  "Sort"
 	  ShowPortLabels	  "FromPortIcon"
 	  SystemSampleTime	  "-1"
-	  RTWMemSecFuncInitTerm	  "Inherit from model"
-	  RTWMemSecFuncExecute	  "Inherit from model"
-	  RTWMemSecDataConstants  "Inherit from model"
-	  RTWMemSecDataInternal	  "Inherit from model"
-	  RTWMemSecDataParameters "Inherit from model"
 	  GeneratePreprocessorConditionals off
 	  AllowZeroVariantControls off
 	  PropagateVariantConditions off
@@ -3588,16 +3494,11 @@ Library {
 	  Position		  [-50, 257, -5, 293]
 	  ZOrder		  438
 	  ShowName		  off
-	  LibraryVersion	  "1.7"
-	  SourceBlock		  "$bdroot/Sort2"
+	  LibraryVersion	  "1.6"
+	  SourceBlock		  "slQuery_testlibrary/Sort2"
 	  SourceType		  "Sort"
 	  ShowPortLabels	  "FromPortIcon"
 	  SystemSampleTime	  "-1"
-	  RTWMemSecFuncInitTerm	  "Inherit from model"
-	  RTWMemSecFuncExecute	  "Inherit from model"
-	  RTWMemSecDataConstants  "Inherit from model"
-	  RTWMemSecDataInternal	  "Inherit from model"
-	  RTWMemSecDataParameters "Inherit from model"
 	  GeneratePreprocessorConditionals off
 	  AllowZeroVariantControls off
 	  PropagateVariantConditions off
@@ -3613,16 +3514,11 @@ Library {
 	  Position		  [30, 202, 75, 238]
 	  ZOrder		  440
 	  ShowName		  off
-	  LibraryVersion	  "1.7"
-	  SourceBlock		  "$bdroot/Sort2"
+	  LibraryVersion	  "1.6"
+	  SourceBlock		  "slQuery_testlibrary/Sort2"
 	  SourceType		  "Sort"
 	  ShowPortLabels	  "FromPortIcon"
 	  SystemSampleTime	  "-1"
-	  RTWMemSecFuncInitTerm	  "Inherit from model"
-	  RTWMemSecFuncExecute	  "Inherit from model"
-	  RTWMemSecDataConstants  "Inherit from model"
-	  RTWMemSecDataInternal	  "Inherit from model"
-	  RTWMemSecDataParameters "Inherit from model"
 	  GeneratePreprocessorConditionals off
 	  AllowZeroVariantControls off
 	  PropagateVariantConditions off
@@ -3638,16 +3534,11 @@ Library {
 	  Position		  [30, 317, 75, 353]
 	  ZOrder		  441
 	  ShowName		  off
-	  LibraryVersion	  "1.7"
-	  SourceBlock		  "$bdroot/Sort2"
+	  LibraryVersion	  "1.6"
+	  SourceBlock		  "slQuery_testlibrary/Sort2"
 	  SourceType		  "Sort"
 	  ShowPortLabels	  "FromPortIcon"
 	  SystemSampleTime	  "-1"
-	  RTWMemSecFuncInitTerm	  "Inherit from model"
-	  RTWMemSecFuncExecute	  "Inherit from model"
-	  RTWMemSecDataConstants  "Inherit from model"
-	  RTWMemSecDataInternal	  "Inherit from model"
-	  RTWMemSecDataParameters "Inherit from model"
 	  GeneratePreprocessorConditionals off
 	  AllowZeroVariantControls off
 	  PropagateVariantConditions off
@@ -3663,16 +3554,11 @@ Library {
 	  Position		  [30, 87, 75, 123]
 	  ZOrder		  439
 	  ShowName		  off
-	  LibraryVersion	  "1.7"
-	  SourceBlock		  "$bdroot/Sort2"
+	  LibraryVersion	  "1.6"
+	  SourceBlock		  "slQuery_testlibrary/Sort2"
 	  SourceType		  "Sort"
 	  ShowPortLabels	  "FromPortIcon"
 	  SystemSampleTime	  "-1"
-	  RTWMemSecFuncInitTerm	  "Inherit from model"
-	  RTWMemSecFuncExecute	  "Inherit from model"
-	  RTWMemSecDataConstants  "Inherit from model"
-	  RTWMemSecDataInternal	  "Inherit from model"
-	  RTWMemSecDataParameters "Inherit from model"
 	  GeneratePreprocessorConditionals off
 	  AllowZeroVariantControls off
 	  PropagateVariantConditions off
@@ -3688,16 +3574,11 @@ Library {
 	  Position		  [115, 152, 160, 188]
 	  ZOrder		  442
 	  ShowName		  off
-	  LibraryVersion	  "1.7"
-	  SourceBlock		  "$bdroot/Sort2"
+	  LibraryVersion	  "1.6"
+	  SourceBlock		  "slQuery_testlibrary/Sort2"
 	  SourceType		  "Sort"
 	  ShowPortLabels	  "FromPortIcon"
 	  SystemSampleTime	  "-1"
-	  RTWMemSecFuncInitTerm	  "Inherit from model"
-	  RTWMemSecFuncExecute	  "Inherit from model"
-	  RTWMemSecDataConstants  "Inherit from model"
-	  RTWMemSecDataInternal	  "Inherit from model"
-	  RTWMemSecDataParameters "Inherit from model"
 	  GeneratePreprocessorConditionals off
 	  AllowZeroVariantControls off
 	  PropagateVariantConditions off
@@ -3713,16 +3594,11 @@ Library {
 	  Position		  [115, 252, 160, 288]
 	  ZOrder		  443
 	  ShowName		  off
-	  LibraryVersion	  "1.7"
-	  SourceBlock		  "$bdroot/Sort2"
+	  LibraryVersion	  "1.6"
+	  SourceBlock		  "slQuery_testlibrary/Sort2"
 	  SourceType		  "Sort"
 	  ShowPortLabels	  "FromPortIcon"
 	  SystemSampleTime	  "-1"
-	  RTWMemSecFuncInitTerm	  "Inherit from model"
-	  RTWMemSecFuncExecute	  "Inherit from model"
-	  RTWMemSecDataConstants  "Inherit from model"
-	  RTWMemSecDataInternal	  "Inherit from model"
-	  RTWMemSecDataParameters "Inherit from model"
 	  GeneratePreprocessorConditionals off
 	  AllowZeroVariantControls off
 	  PropagateVariantConditions off
@@ -3738,16 +3614,11 @@ Library {
 	  Position		  [-190, 22, -155, 118]
 	  ZOrder		  450
 	  ShowName		  off
-	  LibraryVersion	  "1.7"
-	  SourceBlock		  "$bdroot/Sort2"
+	  LibraryVersion	  "1.6"
+	  SourceBlock		  "slQuery_testlibrary/Sort2"
 	  SourceType		  "Sort"
 	  ShowPortLabels	  "FromPortIcon"
 	  SystemSampleTime	  "-1"
-	  RTWMemSecFuncInitTerm	  "Inherit from model"
-	  RTWMemSecFuncExecute	  "Inherit from model"
-	  RTWMemSecDataConstants  "Inherit from model"
-	  RTWMemSecDataInternal	  "Inherit from model"
-	  RTWMemSecDataParameters "Inherit from model"
 	  GeneratePreprocessorConditionals off
 	  AllowZeroVariantControls off
 	  PropagateVariantConditions off
@@ -3763,16 +3634,11 @@ Library {
 	  Position		  [-190, 122, -155, 218]
 	  ZOrder		  449
 	  ShowName		  off
-	  LibraryVersion	  "1.7"
-	  SourceBlock		  "$bdroot/Sort2"
+	  LibraryVersion	  "1.6"
+	  SourceBlock		  "slQuery_testlibrary/Sort2"
 	  SourceType		  "Sort"
 	  ShowPortLabels	  "FromPortIcon"
 	  SystemSampleTime	  "-1"
-	  RTWMemSecFuncInitTerm	  "Inherit from model"
-	  RTWMemSecFuncExecute	  "Inherit from model"
-	  RTWMemSecDataConstants  "Inherit from model"
-	  RTWMemSecDataInternal	  "Inherit from model"
-	  RTWMemSecDataParameters "Inherit from model"
 	  GeneratePreprocessorConditionals off
 	  AllowZeroVariantControls off
 	  PropagateVariantConditions off
@@ -3788,16 +3654,11 @@ Library {
 	  Position		  [-190, 322, -155, 418]
 	  ZOrder		  432
 	  ShowName		  off
-	  LibraryVersion	  "1.7"
-	  SourceBlock		  "$bdroot/Sort2"
+	  LibraryVersion	  "1.6"
+	  SourceBlock		  "slQuery_testlibrary/Sort2"
 	  SourceType		  "Sort"
 	  ShowPortLabels	  "FromPortIcon"
 	  SystemSampleTime	  "-1"
-	  RTWMemSecFuncInitTerm	  "Inherit from model"
-	  RTWMemSecFuncExecute	  "Inherit from model"
-	  RTWMemSecDataConstants  "Inherit from model"
-	  RTWMemSecDataInternal	  "Inherit from model"
-	  RTWMemSecDataParameters "Inherit from model"
 	  GeneratePreprocessorConditionals off
 	  AllowZeroVariantControls off
 	  PropagateVariantConditions off
@@ -3811,6 +3672,7 @@ Library {
 	  SID			  "53"
 	  Position		  [190, 38, 220, 52]
 	  ZOrder		  379
+	  IconDisplay		  "Port number"
 	}
 	Block {
 	  BlockType		  Outport
@@ -3819,6 +3681,7 @@ Library {
 	  Position		  [190, 88, 220, 102]
 	  ZOrder		  380
 	  Port			  "2"
+	  IconDisplay		  "Port number"
 	}
 	Block {
 	  BlockType		  Outport
@@ -3827,6 +3690,7 @@ Library {
 	  Position		  [190, 138, 220, 152]
 	  ZOrder		  381
 	  Port			  "3"
+	  IconDisplay		  "Port number"
 	}
 	Block {
 	  BlockType		  Outport
@@ -3835,6 +3699,7 @@ Library {
 	  Position		  [190, 188, 220, 202]
 	  ZOrder		  382
 	  Port			  "4"
+	  IconDisplay		  "Port number"
 	}
 	Block {
 	  BlockType		  Outport
@@ -3843,6 +3708,7 @@ Library {
 	  Position		  [190, 238, 220, 252]
 	  ZOrder		  395
 	  Port			  "5"
+	  IconDisplay		  "Port number"
 	}
 	Block {
 	  BlockType		  Outport
@@ -3851,6 +3717,7 @@ Library {
 	  Position		  [190, 288, 220, 302]
 	  ZOrder		  396
 	  Port			  "6"
+	  IconDisplay		  "Port number"
 	}
 	Block {
 	  BlockType		  Outport
@@ -3859,6 +3726,7 @@ Library {
 	  Position		  [190, 338, 220, 352]
 	  ZOrder		  397
 	  Port			  "7"
+	  IconDisplay		  "Port number"
 	}
 	Block {
 	  BlockType		  Outport
@@ -3867,6 +3735,7 @@ Library {
 	  Position		  [190, 388, 220, 402]
 	  ZOrder		  398
 	  Port			  "8"
+	  IconDisplay		  "Port number"
 	}
 	Line {
 	  ZOrder		  193

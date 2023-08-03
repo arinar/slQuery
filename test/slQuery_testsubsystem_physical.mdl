@@ -6,7 +6,7 @@ Subsystem {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.2"
+    ComputedModelVersion    "1.3"
     NumModelReferences	    0
     NumTestPointedSignals   0
     NumProvidedFunctions    0
@@ -16,18 +16,10 @@ Subsystem {
     HasTerminateEvent	    0
     PreCompExecutionDomainType "Unset"
     IsExportFunctionModel   0
-    IsArchitectureModel	    0
-    IsAUTOSARArchitectureModel 0
     NumParameterArguments   0
     NumExternalFileReferences 0
     OrderedModelArguments   1
   }
-  DiagnosticSuppressor	  "on"
-  LogicAnalyzerPlugin	  "on"
-  SLCCPlugin		  "on"
-  AnimationPlugin	  "on"
-  WebScopes_FoundationPlugin "on"
-  NotesPlugin		  "on"
   EnableAccessToBaseWorkspace on
   ScopeRefreshTime	  0.035000
   OverrideScopeRefreshTime on
@@ -74,31 +66,36 @@ Subsystem {
 	IsTabbed		[1]
 	ViewObjType		"SimulinkTopLevel"
 	LoadSaveID		"0"
-	Extents			[942.0, 494.0]
+	Extents			[956.0, 525.0]
 	ZoomFactor		[1.0]
-	Offset			[0.0, 0.0]
-	SceneRectInView		[0.0, 0.0, 942.0, 494.0]
+	Offset			[-138.0, -54.0]
+	SceneRectInView		[-138.0, -54.0, 956.0, 525.0]
       }
-      Object {
-	$PropName		"DockComponentsInfo"
-	$ObjectID		6
-	$ClassName		"Simulink.DockComponentInfo"
-	Type			"GLUE2:PropertyInspector"
-	ID			"Property Inspector"
-	Visible			[0]
-	CreateCallback		""
-	UserData		""
-	Floating		[0]
-	DockPosition		"Right"
-	Width			[640]
-	Height			[480]
-	Minimized		"Unset"
+      Array {
+	Type			"Simulink.DockComponentInfo"
+	Dimension		1
+	Object {
+	  $ObjectID		  6
+	  Type			  "GLUE2:PropertyInspector"
+	  ID			  "Property Inspector"
+	  Visible		  [0]
+	  CreateCallback	  ""
+	  UserData		  ""
+	  Floating		  [0]
+	  DockPosition		  "Right"
+	  Width			  [640]
+	  Height		  [480]
+	  Minimized		  "Unset"
+	}
+	PropName		"DockComponentsInfo"
       }
-      WindowState	      "AAAA/wAAAAD9AAAAAgAAAAAAAAC9AAAB+PwCAAAAA/sAAAAWAEQAbwBjAGsAVwBpAGQAZwBlAHQAMwEAAAAxAAAB+AAAA"
+      WindowState	      "AAAA/wAAAAD9AAAAAwAAAAAAAAC9AAAB+PwCAAAABPsAAAAWAEQAbwBjAGsAVwBpAGQAZwBlAHQAMwEAAAAxAAAB+AAAA"
       "AAAAAAA+wAAABYARABvAGMAawBXAGkAZABnAGUAdAA0AAAAAAD/////AAAAAAAAAAD7AAAAUgBHAEwAVQBFADIAIAB0AHIAZQBlACAAYwBvAG0Ac"
-      "ABvAG4AZQBuAHQALwBHAEwAVQBFADIAIAB0AHIAZQBlACAAYwBvAG0AcABvAG4AZQBuAHQAAAAAAP////8AAABjAP///wAAAAEAAAAAAAAAAPwCA"
-      "AAAAfsAAABUAEcATABVAEUAMgA6AFAAcgBvAHAAZQByAHQAeQBJAG4AcwBwAGUAYwB0AG8AcgAvAFAAcgBvAHAAZQByAHQAeQAgAEkAbgBzAHAAZ"
-      "QBjAHQAbwByAAAAAAD/////AAAAOQD///8AAAPUAAACKwAAAAEAAAACAAAAAQAAAAL8AAAAAQAAAAIAAAAB/////wEAAAAA/////wAAAAAAAAAA"
+      "ABvAG4AZQBuAHQALwBHAEwAVQBFADIAIAB0AHIAZQBlACAAYwBvAG0AcABvAG4AZQBuAHQAAAAAAP////8AAABgAP////sAAABgAFMAaQBtAHUAb"
+      "ABpAG4AawA6AEUAZABpAHQAbwByADoAUgBlAGYAZQByAGUAbgBjAGUAZABGAGkAbABlAHMALwBSAGUAZgBlAHIAZQBuAGMAZQBkACAARgBpAGwAZ"
+      "QBzAAAAAAD/////AAAAiQD///8AAAABAAAAAAAAAAD8AgAAAAH7AAAAVABHAEwAVQBFADIAOgBQAHIAbwBwAGUAcgB0AHkASQBuAHMAcABlAGMAd"
+      "ABvAHIALwBQAHIAbwBwAGUAcgB0AHkAIABJAG4AcwBwAGUAYwB0AG8AcgAAAAAA/////wAAAawA////AAAAAwAAAAAAAAAA/AEAAAAB+/////8AA"
+      "AAAAP////8AAAFZAP///wAAA+IAAAJKAAAAAQAAAAIAAAABAAAAAvwAAAABAAAAAgAAAAA="
       Array {
 	Type			"Cell"
 	Dimension		0
@@ -106,18 +103,16 @@ Subsystem {
       }
       WindowUuid	      "d0b41de3-be08-4adf-9d65-a7f70c95583a"
     }
-    BDUuid		    "3e324055-5e30-4c54-bc71-199490733295"
+    BDUuid		    "4aab7820-2e1b-4b01-83f8-63560d232a9f"
   }
   HideAutomaticNames	  on
   Created		  "Thu Aug 19 00:47:51 2021"
-  Creator		  "FO10C9R"
-  UpdateHistory		  "UpdateHistoryNever"
+  Creator		  "arinar"
   ModifiedByFormat	  "%<Auto>"
-  LastModifiedBy	  "FO10C9R"
+  LastModifiedBy	  "arinar"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Thu Aug 19 00:54:29 2021"
-  RTWModifiedTimeStamp	  551235223
-  ModelVersionFormat	  "1.%<AutoIncrement:2>"
+  LastModifiedDate	  "Thu Aug 03 08:48:59 2023"
+  ModelVersionFormat	  "1.%<AutoIncrement:0>"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
   LibraryLinkDisplay	  "disabled"
@@ -137,10 +132,7 @@ Subsystem {
   ShowTestPointIcons	  on
   ShowSignalResolutionIcons on
   ShowViewerIcons	  on
-  SortedOrder		  off
   VariantCondition	  off
-  ShowSubsystemDomainSpec off
-  ExecutionContextIcon	  off
   ShowLinearizationAnnotations on
   ShowVisualizeInsertedRTB on
   ShowMarkup		  on
@@ -148,12 +140,10 @@ Subsystem {
   BlockParametersDataTip  off
   BlockDescriptionStringDataTip	off
   BlockVariantConditionDataTip off
-  ToolBar		  on
-  StatusBar		  on
   BrowserShowLibraryLinks off
   FunctionConnectors	  off
   BrowserLookUnderMasks	  off
-  MultiThreadCoSim	  on
+  MultiThreadCoSim	  "on"
   SimulationMode	  "normal"
   SILPILModeSetting	  "automated"
   SILPILSystemUnderTest	  "topmodel"
@@ -177,7 +167,7 @@ Subsystem {
   TryForcingSFcnDF	  off
   Object {
     $PropName		    "DataLoggingOverride"
-    $ObjectID		    7
+    $ObjectID		    8
     $ClassName		    "Simulink.SimulationData.ModelLoggingInfo"
     model_		    "slQuery_testsubsystem_physical"
     overrideMode_	    [0.0]
@@ -222,7 +212,7 @@ Subsystem {
     Type		    "Handle"
     Dimension		    1
     Simulink.ConfigSet {
-      $ObjectID		      8
+      $ObjectID		      9
       Version		      "19.1.1"
       DisabledProps	      []
       Description	      ""
@@ -230,7 +220,7 @@ Subsystem {
 	Type			"Handle"
 	Dimension		9
 	Simulink.SolverCC {
-	  $ObjectID		  9
+	  $ObjectID		  10
 	  Version		  "19.1.1"
 	  DisabledProps		  []
 	  Description		  ""
@@ -253,7 +243,6 @@ Subsystem {
 	  RelTol		  "1e-3"
 	  EnableMultiTasking	  off
 	  ConcurrentTasks	  off
-	  Solver		  "VariableStepAuto"
 	  SolverName		  "VariableStepAuto"
 	  SolverJacobianMethodControl "auto"
 	  ShapePreserveControl	  "DisableAll"
@@ -271,9 +260,10 @@ Subsystem {
 	  DecoupledContinuousIntegration off
 	  MinimalZcImpactIntegration off
 	  SolverOrder		  3
+	  Solver		  VariableStepAuto
 	}
 	Simulink.DataIOCC {
-	  $ObjectID		  10
+	  $ObjectID		  11
 	  Version		  "19.1.1"
 	  DisabledProps		  []
 	  Description		  ""
@@ -315,7 +305,7 @@ Subsystem {
 	  LoggingIntervals	  "[-inf, inf]"
 	}
 	Simulink.OptimizationCC {
-	  $ObjectID		  11
+	  $ObjectID		  12
 	  Version		  "19.1.1"
 	  Array {
 	    Type		    "Cell"
@@ -388,7 +378,7 @@ Subsystem {
 	  EfficientTunableParamExpr off
 	}
 	Simulink.DebuggingCC {
-	  $ObjectID		  12
+	  $ObjectID		  13
 	  Version		  "19.1.1"
 	  Array {
 	    Type		    "Cell"
@@ -415,7 +405,6 @@ Subsystem {
 	  UnderspecifiedInitializationDetection	"Simplified"
 	  MergeDetectMultiDrivingBlocksExec "error"
 	  CheckExecutionContextPreStartOutputMsg off
-	  CheckExecutionContextRuntimeOutputMsg	off
 	  SignalResolutionControl "UseLocalSettings"
 	  BlockPriorityViolationMsg "warning"
 	  MinStepSizeMsg	  "warning"
@@ -446,7 +435,6 @@ Subsystem {
 	  UnderSpecifiedDataTypeMsg "none"
 	  UnnecessaryDatatypeConvMsg "none"
 	  VectorMatrixConversionMsg "none"
-	  InvalidFcnCallConnMsg	  "error"
 	  FcnCallInpInsideContextMsg "error"
 	  SignalLabelMismatchMsg  "none"
 	  UnconnectedInputMsg	  "warning"
@@ -472,7 +460,6 @@ Subsystem {
 	  StateNameClashWarn	  "none"
 	  OperatingPointInterfaceChecksumMismatchMsg "warning"
 	  NonCurrentReleaseOperatingPointMsg "error"
-	  ChecksumConsistencyForSSReuse	"none"
 	  PregeneratedLibrarySubsystemCodeDiagnostic "warning"
 	  MatchCodeGenerationContextForUpdateDiagram "none"
 	  InitInArrayFormatMsg	  "warning"
@@ -510,7 +497,7 @@ Subsystem {
 	  ArithmeticOperatorsInVariantConditions "error"
 	}
 	Simulink.HardwareCC {
-	  $ObjectID		  13
+	  $ObjectID		  14
 	  Version		  "19.1.1"
 	  DisabledProps		  []
 	  Description		  ""
@@ -560,7 +547,7 @@ Subsystem {
 	  HardwareBoardFeatureSet "EmbeddedCoderHSP"
 	}
 	Simulink.ModelReferenceCC {
-	  $ObjectID		  14
+	  $ObjectID		  15
 	  Version		  "19.1.1"
 	  DisabledProps		  []
 	  Description		  ""
@@ -580,7 +567,7 @@ Subsystem {
 	  SupportModelReferenceSimTargetCustomCode off
 	}
 	Simulink.SFSimCC {
-	  $ObjectID		  15
+	  $ObjectID		  16
 	  Version		  "19.1.1"
 	  DisabledProps		  []
 	  Description		  ""
@@ -602,7 +589,6 @@ Subsystem {
 	  SimUseLocalCustomCode	  on
 	  SimParseCustomCode	  on
 	  SimAnalyzeCustomCode	  off
-	  SimBuildMode		  "sf_incremental_build"
 	  SimGenImportedTypeDefs  off
 	  ModelFunctionsGlobalVisibility "on"
 	  CompileTimeRecursionLimit 50
@@ -615,11 +601,11 @@ Subsystem {
 	}
 	Simulink.RTWCC {
 	  $BackupClass		  "Simulink.RTWCC"
-	  $ObjectID		  16
+	  $ObjectID		  17
 	  Version		  "19.1.1"
 	  Array {
 	    Type		    "Cell"
-	    Dimension		    16
+	    Dimension		    15
 	    Cell		    "IncludeHyperlinkInReport"
 	    Cell		    "GenerateTraceInfo"
 	    Cell		    "GenerateTraceReport"
@@ -633,9 +619,8 @@ Subsystem {
 	    Cell		    "GenerateMissedCodeReplacementReport"
 	    Cell		    "GenerateErtSFunction"
 	    Cell		    "CreateSILPILBlock"
-	    Cell		    "CodeExecutionProfiling"
-	    Cell		    "CodeProfilingSaveOptions"
 	    Cell		    "CodeProfilingInstrumentation"
+	    Cell		    "CodeStackProfiling"
 	    PropName		    "DisabledProps"
 	  }
 	  Description		  ""
@@ -704,7 +689,7 @@ Subsystem {
 	    Type		    "Handle"
 	    Dimension		    2
 	    Simulink.CodeAppCC {
-	      $ObjectID		      17
+	      $ObjectID		      18
 	      Version		      "19.1.1"
 	      Array {
 		Type			"Cell"
@@ -794,11 +779,11 @@ Subsystem {
 	    }
 	    Simulink.GRTTargetCC {
 	      $BackupClass	      "Simulink.TargetCC"
-	      $ObjectID		      18
+	      $ObjectID		      19
 	      Version		      "19.1.1"
 	      Array {
 		Type			"Cell"
-		Dimension		16
+		Dimension		19
 		Cell			"IncludeMdlTerminateFcn"
 		Cell			"SuppressErrorStatus"
 		Cell			"ERTCustomFileBanners"
@@ -815,6 +800,9 @@ Subsystem {
 		Cell			"RemoveDisableFunc"
 		Cell			"RemoveResetFunc"
 		Cell			"PreserveStateflowLocalDataDimensions"
+		Cell			"ParenthesesLevel"
+		Cell			"ERTMultiwordTypeDef"
+		Cell			"MultiwordTypeDef"
 		PropName		"DisabledProps"
 	      }
 	      Description	      ""
@@ -839,7 +827,6 @@ Subsystem {
 	      CompOptLevelCompliant   on
 	      ConcurrentExecutionCompliant on
 	      IncludeMdlTerminateFcn  on
-	      GeneratePreprocessorConditionals "Use local settings"
 	      CombineOutputUpdateFcns on
 	      CombineSignalStateStructs	off
 	      GroupInternalDataByFunction off
@@ -849,7 +836,6 @@ Subsystem {
 	      SupportAbsoluteTime     on
 	      LogVarNameModifier      "rt_"
 	      MatFileLogging	      on
-	      MultiInstanceERTCode    off
 	      CodeInterfacePackaging  "Nonreusable function"
 	      PurelyIntegerCode	      off
 	      SupportNonFinite	      on
@@ -861,7 +847,6 @@ Subsystem {
 	      SupportVariableSizeSignals off
 	      ParenthesesLevel	      "Nominal"
 	      CastingMode	      "Nominal"
-	      PreserveStateflowLocalDataDimensions off
 	      MATLABClassNameForMDSCustomization "Simulink.SoftwareTarget.GRTCustomization"
 	      ModelStepFunctionPrototypeControlCompliant off
 	      CPPClassGenCompliant    on
@@ -901,7 +886,7 @@ Subsystem {
 	  }
 	}
 	SlCovCC.ConfigComp {
-	  $ObjectID		  19
+	  $ObjectID		  20
 	  Version		  "19.1.1"
 	  DisabledProps		  []
 	  Description		  "Simulink Coverage Configuration Component"
@@ -918,7 +903,6 @@ Subsystem {
 	  CovFilter		  ""
 	  CovHTMLOptions	  ""
 	  CovNameIncrementing	  off
-	  CovHtmlReporting	  off
 	  CovForceBlockReductionOff on
 	  CovEnableCumulative	  on
 	  CovSaveCumulativeToWorkspaceVar off
@@ -928,7 +912,6 @@ Subsystem {
 	  CovSaveOutputData	  on
 	  CovOutputDir		  "slcov_output/$ModelName$"
 	  CovDataFileName	  "$ModelName$_cvdata"
-	  CovShowResultsExplorer  on
 	  CovReportOnPause	  on
 	  CovModelRefEnable	  "off"
 	  CovModelRefExcluded	  ""
@@ -952,11 +935,11 @@ Subsystem {
   }
   Simulink.ConfigSet {
     $PropName		    "ActiveConfigurationSet"
-    $ObjectID		    8
+    $ObjectID		    9
   }
   Object {
     $PropName		    "DataTransfer"
-    $ObjectID		    20
+    $ObjectID		    21
     $ClassName		    "Simulink.GlobalDataTransfer"
     DefaultTransitionBetweenSyncTasks "Ensure deterministic transfer (maximum delay)"
     DefaultTransitionBetweenAsyncTasks "Ensure data integrity only"
@@ -1034,7 +1017,6 @@ Subsystem {
     SetExecutionDomain	    off
     ExecutionDomainType	    "Deduce"
     ModelBrowserVisibility  off
-    ModelBrowserWidth	    200
     ScreenColor		    "white"
     PaperOrientation	    "landscape"
     PaperPositionMode	    "auto"
