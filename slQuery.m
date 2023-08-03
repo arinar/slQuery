@@ -150,13 +150,20 @@ classdef slQuery < double
 									sel = cellfun(@(b) get_param(b, 'Handle'), sel);
 								end
 								sel = slQuery(sel);
-
+							
+							case 'eval' % TODO: is this cool?
+								if ischar(sel)
+									sel = evalin('base', sel);
+								elseif iscellstr(sel) %#ok<ISCLSTR> 
+									sel = cellfun(@(s) evalin('base', s), sel);
+								end
+								
 							case 'fullname' % return the model path of all blocks
 								sel = getfullname(double(sel));
 								
 							case 'root' % return the block diagram root of all blocks
 								sel = bdroot(double(sel));
-
+								
 							case 'tl' % return a TargetLink property
 								subs(1:find(strcmp({subs.subs}, 'tl'))) = [];
 								sel = arrayfun(@(h) tl_get(h, 'blockdatastruct'), double(sel), 'UniformOutput', false);
@@ -165,15 +172,22 @@ classdef slQuery < double
 								end
 								if isscalar(sel), sel = sel{1}; end
 								break
-
+								
+							case 'positioncenter' % return rect-like with the absolute position
+								pos = arrayfun(@(h) get_param(h, 'Position'), double(sel), 'UniformOutput', false);
+								sel = cellfun(@(p) round(p([1 2 1 2])/2 + p([3 4 3 4])/2), pos, 'UniformOutput', false);
+							case 'positionsize' % return rect-like with only the block size
+								pos = arrayfun(@(h) get_param(h, 'Position'), double(sel), 'UniformOutput', false);
+								sel = cellfun(@(p) round(p([1 2 3 4])/2 + p([3 4 1 2])/2), pos, 'UniformOutput', false);
+								
 							otherwise % select a block parameter, field of a struct or property of an object
 								
 								if isstruct(sel) || (isobject(sel) && ~isa(sel, 'slQuery')) || all(all(ishandle(sel))) % field of a struct or property of an object
 									sel = arrayfun(@(h) h.(sub.subs), sel, 'UniformOutput', false);
-								
+									
 								elseif iscell(sel) && all(all(cellfun(@(s) isobject(s) | isstruct(s), sel))) % (hopefully) shared member of collection of different objects
 									sel = cellfun(@(h) h.(sub.subs), sel, 'UniformOutput', false);
-								
+									
 								else % something from simulink
 									if isa(sel, 'slQuery') % get_param of a handle
 										sel = double(sel);
