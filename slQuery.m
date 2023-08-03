@@ -235,13 +235,9 @@ classdef slQuery < double
 			slQuery.arrayfun(@set_param, double(sel), sub.subs, value);
 		end
 	end
-	methods(Access=public) % operators that are operations
-		function ps = properties(this)
-			ps = sort(fieldnames(get_param(double(this), 'ObjectParameters')));
-		end
-		function new = ldivide(spec, sys)
-			new = slQuery.rdivide(sys, spec);
-		end
+	methods(Access=public) % operators that are special operations
+		function ps = properties(this), ps = sort(fieldnames(get_param(double(this), 'ObjectParameters'))); end
+		function new = ldivide(spec, sys), new = slQuery.rdivide(sys, spec); end
 		function new = rdivide(sys, spec) % add blocks to subsystems
 			target = getfullname(double(sys));
 			% TODO: parse the spec entirely (param-specs, class)
@@ -260,7 +256,7 @@ classdef slQuery < double
 			end
 			new = slQuery(slQuery.arrayfun(@add_block, source, target, 'MakeNameUnique', 'on'));
 		end
-		function ps = colon(i, this, o) % retrieve port (or line) hanldes ~> x:1, -1:x
+		function ps = colon(i, this, o) % retrieve port (or line) handles ~> x:1, -1:x
 			% TODO: support port names for subsystems
 			
 			if nargin == 2, o = [];
@@ -1100,14 +1096,13 @@ classdef slQuery < double
 			else
 				ps = get_param(hs, 'PortHandles');
 				if iscell(ps), ps = [ps{:}]; end
-				if strcmp(type, 'connection')
-					ps = [ps.LConn ps.RConn];
-				elseif strcmp(type, 'Inport')
-					ps = [ps.Inport, ps.Enable, ps.Trigger, ps.Ifaction, ps.Reset];
-				elseif strcmp(type, 'Outport')
-					ps = [ps.Outport, ps.State];
-				else
-					error('unknown getports type');
+				switch type
+					case 'LConn', ps = ps.LConn;
+					case 'RConn', ps = ps.RConn;
+					case 'connection', ps = [ps.LConn ps.RConn];
+					case 'Inport', ps = [ps.Inport, ps.Enable, ps.Trigger, ps.Ifaction, ps.Reset];
+					case 'Outport', ps = [ps.Outport, ps.State];
+					otherwise, error('unknown get_ports type ''%s''', type);
 				end
 			end
 			
@@ -1121,25 +1116,24 @@ classdef slQuery < double
 					ps = ps(index);
 				elseif isnumeric(index)
 					ps = ps(arrayfun(@(p) get_param(p, 'PortNumber') == index, ps));
-				elseif isequal(index, '°') % reset
-					ps = ps(strcmp(slQuery.get_param(ps, 'PortType'), 'Reset'));
-				elseif isequal(index, '?') % enable
-					ps = ps(strcmp(slQuery.get_param(ps, 'PortType'), 'enable'));
-				elseif isequal(index, '!') % trigger
-					ps = ps(strcmp(slQuery.get_param(ps, 'PortType'), 'trigger'));
-				elseif isequal(index, '%') % ifaction
-					ps = ps(strcmp(slQuery.get_param(ps, 'PortType'), 'ifaction'));
-				else % char ~> filter by port name, when the block is a subsystem
-					if strcmp(type, 'DstPortHandle'), type = 'Inport'; end
-					if strcmp(type, 'SrcPortHandle'), type = 'Outport'; end
-					
-					pbs = arrayfun( ...
-						@(p) find_system(get_param(p, 'Parent'), slQuery.standard_find_args{:}, 'SearchDepth', 1, 'BlockType', type, 'Port', num2str(get_param(p, 'PortNumber'))) ...
-						, ps, 'UniformOutput', false ...
-						);
-					
-					ps = ps(~cellfun(@isempty, pbs)); pbs = [pbs{:}];
-					ps = ps(strcmp(get_param(pbs, 'Name'), index));
+				else
+					switch index
+						case '°', ps = ps(strcmp(slQuery.get_param(ps, 'PortType'), 'Reset'));
+						case '?', ps = ps(strcmp(slQuery.get_param(ps, 'PortType'), 'enable'));
+						case '!', ps = ps(strcmp(slQuery.get_param(ps, 'PortType'), 'trigger'));
+						case '%', ps = ps(strcmp(slQuery.get_param(ps, 'PortType'), 'ifaction'));
+						otherwise % char ~> filter by port name, when the block is a subsystem
+							if strcmp(type, 'DstPortHandle'), type = 'Inport'; end
+							if strcmp(type, 'SrcPortHandle'), type = 'Outport'; end
+							
+							pbs = arrayfun( ...
+								@(p) find_system(get_param(p, 'Parent'), slQuery.standard_find_args{:}, 'SearchDepth', 1, 'BlockType', type, 'Port', num2str(get_param(p, 'PortNumber'))) ...
+								, ps, 'UniformOutput', false ...
+								);
+							
+							ps = ps(~cellfun(@isempty, pbs)); pbs = [pbs{:}];
+							ps = ps(strcmp(get_param(pbs, 'Name'), index));
+					end
 				end
 			end
 			
