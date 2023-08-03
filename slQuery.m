@@ -1,3 +1,4 @@
+% slQuery ... easy-as-pie API to Simulink
 %{
                                _  ____
                            ___| |/ __ \ _   _  ___ _ __ _   _
