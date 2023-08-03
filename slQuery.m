@@ -364,6 +364,14 @@ classdef slQuery < double
 			end
 		end
 	end
+	methods(Access=public) % set-operations that just normal but need typecasting
+		function [C, ia] = setdiff(A, B, varargin), [C, ia] = slQuery.opfun(@setdiff, A, B, varargin{:}); end
+		function [C, ia, ib] = intersect(A, B, varargin), [C, ia, ib] = slQuery.opfun(@intersect, A, B, varargin{:}); end
+		function [C, ia, ib] = union(A, B, varargin), [C, ia, ib] = slQuery.opfun(@union, A, B, varargin{:}); end
+		function [C, ia, ib] = setxor(A, B, varargin), [C, ia, ib] = slQuery.opfun(@setxor, A, B, varargin{:}); end
+		function [Lia, Locb] = ismember(A, B, varargin), [Lia, Locb] = slQuery.opfun(@ismember, A, B, varargin{:}); end
+		function [C, ia, ic] = unique(A, varargin), [C, ia, ic] = slQuery.opfun(@unique, A, varargin{:}); end
+	end
 	methods(Access=private, Static)
 		function handles = select(query, varargin) % core "select" algorithm of slQuery
 			% split query along the combinators                                                                                                                             ( outside [] )
@@ -606,7 +614,11 @@ classdef slQuery < double
 				end
 			end
 		end
-		
+		function [varargout] = opfun(op, varargin) % wrapper helper for operators and simple functions
+			for i = find(cellfun(@(x) isa(x, 'slQuery'), varargin)), varargin{i} = double(varargin{i}); end
+			[varargout{1:nargout}] = op(varargin{:});
+			if isa(varargout{1}, 'double'), varargout{1} = slQuery(varargout{1}); end
+		end
 		function res = listfun(fun, varargin)
 			% perform an arrayfun call, where each call may return multiple handles and concat all the
 			% results into a single array
