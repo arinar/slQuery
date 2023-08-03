@@ -258,12 +258,16 @@ classdef slQuery < double
 		end
 		function ps = colon(i, this, o) % retrieve port (or line) handles ~> x:1, -1:x
 			% TODO: support port names for subsystems
-			
 			if nargin == 2, o = [];
 				if isa(i, 'slQuery'), o = this; this = i; i = []; end % rephrase the case "b:o" case as "[]:b:o"
 			end
 			assert(isempty(i) || isscalar(i) || isempty(o) || isscalar(o) || numel(i) == numel(o), ... so both sides can be combined
 				'input and output port spec cardinality must match (i=%d, o=%d)', numel(i), numel(o));
+			
+			if isempty(this)
+				ps = slQuery(double.empty(size(this, 1), size(this, 2), ~isempty(i) + ~isempty(o)));
+				return
+			end
 			
 			lhs = slQuery.get_param(double(this), 'LineHandles');
 			phs = slQuery.get_param(double(this), 'PortHandles');
