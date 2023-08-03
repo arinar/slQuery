@@ -22,6 +22,14 @@ see <http://www.gnu.org/licenses/>.
 %}
 classdef slQuery < double
 	%SLQUERY  easy-as-pie API to Simulink
+	properties(Constant)
+		standard_find_args = [
+			{ 'FollowLinks' 'on' 'LookUnderMasks' 'all' } ...
+			repmat({ 'MatchFilter' @Simulink.match.allVariants }, 1, ~verLessThan('matlab', '9.13')) ...
+			repmat({ 'Variants' 'All' }, 1, verLessThan('matlab', '9.13')) ...
+			repmat({ 'IncludeCommented' 'on' }, 1, ~verLessThan('matlab', '8')) ...
+		];
+	end
 	methods
 		function this = slQuery(query, varargin)
 			%if nargin == 0, return, end; % syntax for allocation
@@ -287,7 +295,8 @@ classdef slQuery < double
 			sys = slQuery.get_ref(slQuery.get_ref(double(sps), 'Parent'), 'Parent')';
 			ls = slQuery.arrayfun(@(dp) get_param(double(dp), 'line'), dps);
 			delete_line(ls(ls ~= -1));
-			ls = slQuery.arrayfun(@add_line, reshape(sys, 1, []), reshape(double(sps), 1, []), reshape(double(dps), 1, []), 'Autorouting', 'on');
+			ls = slQuery.arrayfun(@add_line, reshape(sys, 1, []), reshape(sps, 1, []), reshape(dps, 1, []), 'Autorouting', 'on');
+			
 			ls = slQuery(ls);
 		end
 		function mpower(target, hss) % ~> 'attach to void' []^x
@@ -331,8 +340,7 @@ classdef slQuery < double
 				if ~isnan(str2double(combinator.dp)), combinator.dp = str2double(combinator.dp); end
 				
 				% build the find_system filter from blockspec (all searches are reduced to this)
-				common_find_args = {'FollowLinks', 'on', 'LookUnderMasks', 'all', 'Variants', 'All', 'IncludeCommented', 'on', 'Regexp', 'on'};
-				if verLessThan('matlab', '8'), common_find_args(7:8) = []; end
+				common_find_args = [ slQuery.standard_find_args {'Regexp', 'on'} ];
 				
 				% combinators always represent a search relating to some set of properties from a row of blocks
 				% selected previously - the "hot" row. In order to avoid multiple seaches based on the same
@@ -518,10 +526,11 @@ classdef slQuery < double
 							new = [-ps(ps < 0), slQuery.get_ref(ps(ps>0), 'Parent')];
 							new = find_system(new, 'SearchDepth', 0, find_args{:})';
 					end
+					
 					new = reshape(unique(new), 1, []); % reshape for ML 2010b unique
 					group = handles(:, info_idx == i);
 					
-					% filter TargetLink properties via the tlattrs 
+					% filter TargetLink properties via the tlattrs
 					if ~isempty(tlattrs)
 						for attr = tlattrs
 							% new(arrayfun(@(h) ~isfield(get_param(h, 'ObjectParameters'), 'data'), new)) = [];
@@ -717,14 +726,14 @@ classdef slQuery < double
 						pn = num2str(get_param(ep, 'PortNumber'));
 						neps = [];
 						if strcmp(get_param(b, 'Variant'), 'on') % it's a variant sub-system and all variants must be followed
-							b = setdiff(find_system(b, 'LookUnderMasks', 'all', 'FollowLinks', 'on', 'Variants', 'all', 'SearchDepth', 1, 'Regexp', 'on', 'BlockType', 'SubSystem|ModelReference')', b);
+							b = setdiff(find_system(b, slQuery.standard_find_args{:}, 'SearchDepth', 1, 'Regexp', 'on', 'BlockType', 'SubSystem|ModelReference')', b);
 						end
 						for s = b
 							mr = [];
 							if strcmp(get_param(s, 'BlockType'), 'ModelReference') % resolve model references
 								mr = s; s = slQuery.get_ref(s, 'ModelName');
 							end
-							for pb = find_system(s, 'LookUnderMasks', 'all', 'FollowLinks', 'on', 'SearchDepth', 1, 'BlockType', edir, 'Port', pn)'
+							for pb = find_system(s, slQuery.standard_find_args{:}, 'SearchDepth', 1, 'BlockType', edir, 'Port', pn)'
 								sl = 0;
 								if strcmp(get_param(pb, 'IsBusElementPort'), 'on')
 									path = fliplr(strsplit(get_param(pb, 'Element'), '.'));
@@ -737,7 +746,7 @@ classdef slQuery < double
 						end
 						
 					case 'Goto' % ~> find corresponding From-blocks
-						tag_args = {'LookUnderMasks', 'all', 'FollowLinks', 'on', 'GotoTag', get_param(b, 'GotoTag')};
+						tag_args = [ slQuery.standard_find_args {'GotoTag', get_param(b, 'GotoTag')} ];
 						switch get_param(b, 'TagVisibility')
 							case 'local'
 								fbs = find_system(slQuery.get_ref(b, 'Parent'), 'SearchDepth', 1, tag_args{:}, 'BlockType', 'From');
@@ -772,7 +781,7 @@ classdef slQuery < double
 						if virt, neps = [neps -fbs']; end %#ok<AGROW>
 						
 					case 'From' % ~> find corresponding Goto-blocks
-						tag_args = {'LookUnderMasks', 'all', 'FollowLinks', 'on', 'GotoTag', get_param(b, 'GotoTag')};
+						tag_args = [ slQuery.standard_find_args {'GotoTag', get_param(b, 'GotoTag')} ];
 						
 						% determine earliest innermost Tag-Visibility
 						s = slQuery.get_ref(b, 'Parent');
@@ -986,7 +995,7 @@ classdef slQuery < double
 							if ~isempty(get_param(s, 'VariantControl')), s = slQuery.get_ref(s, 'Parent'); end
 							
 							side = get_param(b, 'Side');
-							ports = find_system(s, 'LookUnderMasks', 'all', 'FollowLinks', 'on', 'Variants', 'all', 'SearchDepth', 1, 'BlockType', 'PMIOPort', 'Side', side);
+							ports = find_system(s, slQuery.standard_find_args{:}, 'BlockType', 'PMIOPort', 'Side', side);
 							[~, I] = sort(arrayfun(@(h) str2double(get_param(h, 'Port')), ports));
 							sp = slQuery.get_ports(s, [side(1) 'Conn'], ports(I) == b);
 							neps = slQuery.follow_physical(sp, addr, mrstk, front, virt, slic);
@@ -1024,14 +1033,14 @@ classdef slQuery < double
 						assert(strcmp(get_param(ep, 'PortType'), 'connection'));
 						pn = num2str(get_param(ep, 'PortNumber'));
 						if strcmp(get_param(b, 'Variant'), 'on') % it's a variant sub-system and all variants must be followed
-							b = setdiff(find_system(b, 'LookUnderMasks', 'all', 'FollowLinks', 'on', 'Variants', 'all', 'SearchDepth', 1, 'BlockType', 'SubSystem')', b);
+							b = setdiff(find_system(b, slQuery.standard_find_args{:}, 'SearchDepth', 1, 'BlockType', 'SubSystem')', b);
 						end
 						neps = [];
 						for s = b
 							if strcmp(get_param(s, 'BlockType'), 'ModelReference') % resolve model references
 								mrstk(end+1) = s; s = slQuery.get_ref(s, 'ModelName');
 							end
-							pbs = find_system(s, 'LookUnderMasks', 'all', 'FollowLinks', 'on', 'SearchDepth', 1, 'BlockType', 'PMIOPort', 'Port', pn);
+							pbs = find_system(s, slQuery.standard_find_args{:}, 'SearchDepth', 1, 'BlockType', 'PMIOPort', 'Port', pn);
 							for bp = slQuery.get_ports(pbs, 'RConn', 1)
 								neps = [neps, slQuery.follow_physical(bp, addr, mrstk, front, virt, slic)]; %#ok<AGROW>
 							end
@@ -1039,7 +1048,7 @@ classdef slQuery < double
 						if virt, neps = [neps -pbs]; end %#ok<AGROW>
 						
 					case 'ConnectionLabel' % ~> find corresponding Label-blocks
-						lbs = setdiff(find_system(slQuery.get_ref(b, 'Parent'), 'LookUnderMasks', 'all', 'FollowLinks', 'on', 'SearchDepth', 1, 'BlockType', 'ConnectionLabel', 'Label', get_param(b, 'Label'))', b);
+						lbs = setdiff(find_system(slQuery.get_ref(b, 'Parent'), slQuery.standard_find_args{:}, 'SearchDepth', 1, 'BlockType', 'ConnectionLabel', 'Label', get_param(b, 'Label'))', b);
 						neps = slQuery.listfun(@(lp) slQuery.follow_physical(lp, addr, mrstk, front, virt, slic), slQuery.get_ports(lbs, 'LConn', 1));
 						if virt, neps = [neps -lbs]; end %#ok<AGROW>
 						
@@ -1135,7 +1144,7 @@ classdef slQuery < double
 					if strcmp(type, 'SrcPortHandle'), type = 'Outport'; end
 					
 					pbs = arrayfun( ...
-						@(p) find_system(get_param(p, 'Parent'), 'LookUnderMasks', 'all', 'FollowLinks', 'on', 'SearchDepth', 1, 'BlockType', type, 'Port', num2str(get_param(p, 'PortNumber'))) ...
+						@(p) find_system(get_param(p, 'Parent'), slQuery.standard_find_args{:}, 'SearchDepth', 1, 'BlockType', type, 'Port', num2str(get_param(p, 'PortNumber'))) ...
 						, ps, 'UniformOutput', false ...
 						);
 					
@@ -1152,7 +1161,7 @@ classdef slQuery < double
 		function result = gcs, result = slQuery(get_param(gcs, 'Handle')); end
 		function result = sel
 			gcsh = get_param(gcs, 'Handle');
-			result = slQuery(setdiff(find_system(gcsh, 'SearchDepth', 1, 'Selected', 'on'), gcsh)');
+			result = slQuery(setdiff(find_system(gcsh, slQuery.standard_find_args{:}, 'SearchDepth', 1, 'Selected', 'on'), gcsh)');
 		end
 	end
 end
