@@ -483,7 +483,7 @@ end
 
 %% port handle access (scalar, reset)
 for x = slQuery('SubSystem[Name^=Resettable]')
-	assert(x.PortHandles.Reset == '°':x)
+	assert(x.PortHandles.Reset == 'Â°':x)
 end
 
 %% port handle access (scalar, enable)
@@ -496,7 +496,7 @@ for x = slQuery('SubSystem[Name^=Triggered]')
 	assert(x.PortHandles.Trigger == '!':x)
 end
 
-%% port handle access (scalar, action)
+%% port handle access (scalar, ifaction)
 for x = slQuery('SubSystem[Name^=Action]')
 	assert(x.PortHandles.Ifaction == '%':x)
 end
@@ -520,7 +520,7 @@ end
 
 %% port handle access (scalar, reset line)
 for x = slQuery('SubSystem[Name^=Resettable]')
-	assert(x.LineHandles.Reset == '-°':x)
+	assert(x.LineHandles.Reset == '-Â°':x)
 end
 
 %% port handle access (scalar, enable line)
@@ -533,7 +533,7 @@ for x = slQuery('SubSystem[Name^=Triggered]')
 	assert(x.LineHandles.Trigger == '-!':x)
 end
 
-%% port handle access (scalar, action line)
+%% port handle access (scalar, ifaction line)
 for x = slQuery('SubSystem[Name^=Action]')
 	assert(x.LineHandles.Ifaction == '-%':x)
 end
@@ -857,12 +857,12 @@ for x = slQuery('*:% <- If')
 end
 
 %% signal line combinators with portspec (reset port)
-for x = slQuery('Ground -> °:*')
+for x = slQuery('Ground -> Â°:*')
 	assert(x(1).LineHandles.Outport == x(2).LineHandles.Reset);
 end
 
 %% signal line combinators with portspec (reset port, reverse)
-for x = slQuery('*:° <- Ground')
+for x = slQuery('*:Â° <- Ground')
 	assert(x(2).LineHandles.Outport == x(1).LineHandles.Reset);
 end
 
@@ -955,19 +955,15 @@ assert(isempty(X));
 
 % reference block
 
-%% resolved link to a library block (acute)
-[blk, lib] = slQuery('SubSystem ´ *')'; %#ok<RHSFN> it can do this
+%% resolved link to a library block
+[blk, lib] = slQuery('SubSystem -@ *')'; %#ok<RHSFN> it can do this
 assert(all(strcmp(blk.ReferenceBlock, lib.fullname)));
 
-%% all active links to a block (grave)
-[~, lib, blk] = slQuery('(1) // * ` SubSystem', {'slQuery_testlibrary'})'; %#ok<RHSFN> it can do this
+%% all active links to a block
+[~, lib, blk] = slQuery('(1) // * @- SubSystem', {'slQuery_testlibrary'})'; %#ok<RHSFN> it can do this
 assert(all(strcmp(blk.ReferenceBlock, lib.fullname)));
 
-%% resolved link to a library block (international)
-X = slQuery('SubSystem § *');
-assert(all(strcmp(X(1).ReferenceBlock, X(2).fullname)));
-
-%% all active links to a block (international)
+%% all active links to a block (legacy)
 X = slQuery('(1) // * @ SubSystem', {'slQuery_testlibrary'});
 assert(all(strcmp(X(3).ReferenceBlock, X(2).fullname)));
 

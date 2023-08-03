@@ -253,11 +253,11 @@ classdef slQuery < double
 			if ischar(i)
 				if i(1) == '-', hs = lhs; i(1) = []; else, hs = phs; end
 				switch i
-					case '!', f = 'Trigger';
+					case 'Â°', f = 'Reset';
 					case '?', f = 'Enable';
+					case '!', f = 'Trigger';
 					case '%', f = 'Ifaction';
-					case '°', f = 'Reset';
-					otherwise, error('left handle index must be real or imaginary integer or one of !, ?, %, °');
+					otherwise, error('left handle index must be real or imaginary integer or one of Â°, ?, !, %');
 				end
 				its(:, 1) = arrayfun(@(h) h.(f), hs);
 			elseif isreal(i)
@@ -317,14 +317,14 @@ classdef slQuery < double
 	methods(Access=private, Static)
 		function handles = select(query, varargin) % core "select" algorithm of slQuery
 			% split query along the combinators                                                                                                                             ( outside [] )
-			[selectors, combinators] = regexp(query, '\s*( |\\\\|\\|//|/|,|@|§|´|`|(:\s*(\w+|[?!%°^])\s*)?(->|-|<-|~>|~(?!=)|<~|=>|=|<=|>>|<>|<<)(\s*(\w+|[?!%°^])\s*:)?)\s*(?![^\[]*\])', 'split', 'match');
+			[selectors, combinators] = regexp(query, '\s*( |\\\\|\\|//|/|,|@-?|-@|(:\s*(\w+|[Â°?!%^])\s*)?(->|-|<-|~>|~(?!=)|<~|=>|=|<=|>>|<>|<<)(\s*(\w+|[Â°?!%^])\s*:)?)\s*(?![^\[]*\])', 'split', 'match');
 			
 			% start with the search root and combinator ',' for arbitrary position in this root
 			hot = get_param(bdroot, 'Handle'); % always search only in current model
 			handles = double.empty(0, 1);
 			for act = [',' combinators; selectors]
 				% parse the combinator:     '    (     colon with portspec     )...(                          combinator type (again)                             )...(      portspec with colon     )
-				combinator = regexp(act{1}, '^\s*(:)?(?<sp>(?(1)(\w+|[?!%°^])))?\s*(?<type>( |\\\\|\\|//|/|,|@|§|´|`|->|-|<-|~>|~|<~|=>|=|<=|>>|<>|<<(?![^\[]*\])))\s*(?<dp>(\w+|[?!%°^]))?\s*(?(4):)?\s*$', 'names');
+				combinator = regexp(act{1}, '^\s*(:)?(?<sp>(?(1)(\w+|[Â°?!%^])))?\s*(?<type>( |\\\\|\\|//|/|,|@-?|-@|->|-|<-|~>|~|<~|=>|=|<=|>>|<>|<<(?![^\[]*\])))\s*(?<dp>(\w+|[Â°?!%^]))?\s*(?(4):)?\s*$', 'names');
 				
 				% cast numeric port qualifiers
 				if ~isnan(str2double(combinator.sp)), combinator.sp = str2double(combinator.sp); end
@@ -345,7 +345,7 @@ classdef slQuery < double
 					case {'\', '\\'} % group by parent of the last blocks
 						% case {'\', '\\', ' '}  NOTE/TODO: the sibling-combinator ' ' can't be here included here because each block cannot be included amongst its own siblings
 						hinfos = slQuery.get_ref(hot, 'Parent');
-					case {'§', '´'}
+					case {'-@'}
 						hinfos = slQuery.get_ref(hot, 'ReferenceBlock');
 					otherwise % group only by block-handle itself
 						hinfos = hot;
@@ -356,12 +356,12 @@ classdef slQuery < double
 					new_handles = double.empty(size(handles, 1), 0); % height of result is the same
 					
 				else % selector is real ~> create structure
-					% parse as selector:       ^(*)(    parens around arg index    )(block type )(  hash with name  )( period with masktype )(    brackets and qualifier list   )(  plus and pseudo-class )$
 					assert(~isempty(act{2}), 'missing selector after ''%s''', act{1});
+					% parse as selector:       ^(*)(    parens around arg index    )(block type )(  hash with name  )( period with masktype )(    brackets and qualifier list   )(  plus and pseudo-class )$
 					selector = regexp(act{2}, '^\*?(\()?(?<argidx>(?(1)\d+))(?(1)\))(?<type>\w+)?(#)?(?<id>(?(5)\w+))(\.)?(?<class>(?(7)\w+))(\[)?(?<attributes>(?(9).+))(?(9)\])(\+)?(?<pseudo>(?(12)\w+))$', 'names');
 					assert(~isempty(selector), 'malformed selector ''%s''', act{2});
-					% split the attribute qualifiers:                 '(attribute )...(         operator          )...(       ref attribute        )(    value    )( comma? )
-					selector.attributes = regexp(selector.attributes, '(?<name>[\w.]+)\s*(?<operator>[\^\$\*~]?=)\s*(\$)?(?<ref>(?(3)\d+))(?(3)\.)(?<value>[^,]+)(\s*,\s*)?', 'names');
+					% split the attribute qualifiers:                 '(  attribute  )...(       operator       )...(       ref attribute        )(" )(          value         )(    ")( comma? )
+					selector.attributes = regexp(selector.attributes, '(?<name>[\w.]+)\s*(?<operator>[\^\$\*~]?=)\s*(\$)?(?<ref>(?(3)\d+))(?(3)\.)(")?(?<value>(?(6)[^"]|[^,])+)(?(6)")(\s*,\s*)?', 'names');
 					
 					if ~isempty(selector.id)
 						common_find_args = [common_find_args, 'Name', ['^' selector.id '$']]; %#ok<AGROW>
@@ -436,14 +436,14 @@ classdef slQuery < double
 							% filter by search-match
 							new = find_system(new, 'SearchDepth', 0, find_args{:})';
 							
-						case {'§', '´'} % the linked library block
+						case {'-@'} % the linked library block
 							% info is the reference block property already resolved
 							if info == -1
 								new = [];
 							else
 								new = find_system(info, 'SearchDepth', 0, find_args{:})';
 							end
-						case {'@', '`'} % model blocks linking this library block
+						case {'@', '@-'} % model blocks linking this library block
 							% this is more expensive: search from root 0 instead of bdroot
 							new = find_system(0, find_args{:}, 'ReferenceBlock', ['^' getfullname(info) '$'])';
 						case '-' % directly connected
@@ -504,10 +504,10 @@ classdef slQuery < double
 							
 							% filter by port handle number
 							switch combinator.dp
+								case 'Â°', ps = ps(strcmp(slQuery.get_param(ps, 'PortType'), 'reset'));
 								case '?', ps = ps(strcmp(slQuery.get_param(ps, 'PortType'), 'enable'));
 								case '!', ps = ps(strcmp(slQuery.get_param(ps, 'PortType'), 'trigger'));
 								case '%', ps = ps(strcmp(slQuery.get_param(ps, 'PortType'), 'ifaction'));
-								case '°', ps = ps(strcmp(slQuery.get_param(ps, 'PortType'), 'Reset'));
 								case '^', ps = ps(strcmp(slQuery.get_param(ps, 'PortType'), 'state'));
 								otherwise
 									if ~isempty(combinator.dp) && isnumeric(combinator.dp)
@@ -1122,14 +1122,14 @@ classdef slQuery < double
 					ps = ps(index);
 				elseif isnumeric(index)
 					ps = ps(arrayfun(@(p) get_param(p, 'PortNumber') == index, ps));
-				elseif isequal(index, '!') % trigger
-					ps = ps(strcmp(slQuery.get_param(ps, 'PortType'), 'trigger'));
+				elseif isequal(index, 'Â°') % reset
+					ps = ps(strcmp(slQuery.get_param(ps, 'PortType'), 'Reset'));
 				elseif isequal(index, '?') % enable
 					ps = ps(strcmp(slQuery.get_param(ps, 'PortType'), 'enable'));
+				elseif isequal(index, '!') % trigger
+					ps = ps(strcmp(slQuery.get_param(ps, 'PortType'), 'trigger'));
 				elseif isequal(index, '%') % ifaction
 					ps = ps(strcmp(slQuery.get_param(ps, 'PortType'), 'ifaction'));
-				elseif isequal(index, '°') % reset
-					ps = ps(strcmp(slQuery.get_param(ps, 'PortType'), 'Reset'));
 				else % char ~> filter by port name, when the block is a subsystem
 					if strcmp(type, 'DstPortHandle'), type = 'Inport'; end
 					if strcmp(type, 'SrcPortHandle'), type = 'Outport'; end

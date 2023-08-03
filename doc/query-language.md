@@ -123,7 +123,7 @@ A separate set of combinators is used for physical connection networks (Simscape
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Combinator&nbsp;&amp;&nbsp;Syntax&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Example&nbsp;&amp;&nbsp;Illustration&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Notes
 :-:|:-:|-
-library **linked blocks** <br/> `slQuery('* § *')` <br/> or **linking blocks** <br/> `slQuery('* @ *')` | ![library-links](combinators-library-links.svg) | the model block is linked to a block in a block library
+library **linked blocks** <br/> `slQuery('* -@ *')` <br/> or **linking blocks** <br/> `slQuery('* @- *')` <br/> `slQuery('* @ *')` | ![library-links](combinators-library-links.svg) | the model block is linked to a block in a block library
 **join** <br/> `slQuery('*, *')` | ![join](combinators-join.svg) | Any two blocks satisfy this combinator. Used on its own, it essentially yields the cartesian product of the subqueries on the left and on the right.<br />It's useful in combination with [back-references](#back-references)
 
 Port-Specifications in Signal & Connection Combinators
