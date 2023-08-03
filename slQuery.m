@@ -443,16 +443,10 @@ classdef slQuery < double
 							% value is the parameter '$1.param'
 							rinfos = [rinfos; handles(str2double(attr.ref), :)]; %#ok<AGROW>
 							rattrs = [rattrs attr]; %#ok<AGROW>
-
-						else % the value is a literal ~> translate & append to find_args/tlattr now
-							if numel(attr.value) >= 2 && attr.value(1) == '"' && attr.value(end) == '"' % strip quotes
-								attr.value = attr.value(2:end-1);
-							end
-							if strncmp(attr.name, 'tl.', 3) % is a TargetLink block property
-								tlattrs = [tlattrs attr]; %#ok<AGROW>
-							else
-								common_find_args = [common_find_args, attr.name, slQuery.wrap_find_arg(attr.operator, attr.value)]; %#ok<AGROW>
-							end
+						elseif strncmp(attr.name, 'tl.', 3) % is a TargetLink block property ~> append to tlattr filter
+							tlattrs = [tlattrs attr]; %#ok<AGROW>
+						else % is a normal property ~> append to find_args filter
+							common_find_args = [common_find_args, attr.name, slQuery.wrap_find_arg(attr.operator, attr.value)]; %#ok<AGROW>
 						end
 					end
 					if ~isempty(tlattrs), common_find_args = [common_find_args, 'data', '.*']; end %#ok<AGROW>
