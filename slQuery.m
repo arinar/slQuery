@@ -305,11 +305,38 @@ classdef slQuery < double
 			end
 			ps = slQuery([its ots]');
 		end
-		function ls = minus(sps, dps) % add a line between ports x:1 - 1:y
-			sys = slQuery.get_ref(slQuery.get_ref(double(sps), 'Parent'), 'Parent')';
-			ls = slQuery.arrayfun(@(dp) get_param(double(dp), 'line'), dps);
+		function ls = minus(sps, dps) % add a line
+			if isempty(sps) || isempty(dps), return, end
+			names = cell(1, numel(sps)); % keep names of existing lines (preference for name of [-dps])
+			
+			sps = double(sps);
+			% between line and port: x:-1 - 1:y ~> treat line as it's source port
+			il = strcmp(get_param(sps, 'Type')', 'line');
+			sps(il) = slQuery.get_param(sps(il), 'SrcPortHandle');
+			names(il) = slQuery.get_param(sps(il), 'name');
+			
+			% between port and line: x:1 - y:-1 ~> treat line as collection of it's destination ports
+			dps = double(dps);
+			il = strcmp(get_param(dps, 'Type')', 'line');
+			names(il) = slQuery.get_param(dps(il), 'name');
+			for i = fliplr(find(il))
+				ps = slQuery.get_param(dps(i), 'DstPortHandle');
+				dps = horzcat(dps(1:i-1), ps, dps(i+1:end));
+				sps = horzcat(sps(1:i-1), repmat(sps(i), 1, numel(ps)), sps(i+1:end));
+				names = horzcat(names(1:i-1), repmat(names(i), 1, numel(ps)), names(i+1:end));
+			end
+			
+			% between line and line?
+			
+			% between ports x:1 - 1:y
+			sys = slQuery.get_ref(slQuery.get_ref(sps, 'Parent'), 'Parent')';
+			ls = slQuery.arrayfun(@(dp) get_param(dp, 'line'), dps);
 			delete_line(ls(ls ~= -1));
 			ls = slQuery.arrayfun(@add_line, reshape(sys, 1, []), reshape(sps, 1, []), reshape(dps, 1, []), 'Autorouting', 'on');
+			
+			% restore names
+			in = ~cellfun(@isempty, names);
+			slQuery.arrayfun(@set_param, ls(in), 'name', names(in));
 			
 			ls = slQuery(ls);
 		end
