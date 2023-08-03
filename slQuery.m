@@ -677,10 +677,9 @@ classdef slQuery < double
 			if ischar(p), p = {p}; end
 			
 			% unset references will resolve to the handle -1
-			r = zeros(size(hs));
-			i = cellfun(@isempty, p);
-			r(i) = -1; 
-			r(~i) = cell2mat(get_param(p(~i), 'Handle'));
+			r = -ones(size(hs));
+			i = ~cellfun(@isempty, p);
+			r(i) = cell2mat(get_param(p(i), 'Handle'));
 		end
 		
 		function value = wrap_find_arg(operator, value)
@@ -1148,6 +1147,9 @@ classdef slQuery < double
 					otherwise, error('unknown get_ports type ''%s''', type);
 				end
 			end
+			
+			% filter out unconnected ports (-1)
+			ps(ps == -1) = [];
 			
 			% filter by correct port index
 			if nargin < 3 || strcmp(index, '') % no index ~> keep all handles
