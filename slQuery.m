@@ -542,12 +542,12 @@ classdef slQuery < double
 							virt = ismember(combinator.type, {'~>', '<~', '<<', '>>'});
 							slic = ismember(combinator.type, {'<<', '>>'});
 							front = containers.Map('KeyType', 'char', 'ValueType', 'logical'); % recursion stops (initially empty)
-							if ismember(combinator.type, {'~>', '~', '=>', '=', '>>', '<>'})
+							if ismember(combinator.type, {'~>', '=>', '>>'})
 								for port = [-info(ismember(get_param(info, 'BlockType'), {'Outport', 'Goto'})) slQuery.get_ports(info, 'Outport', combinator.sp)]
 									ps = [ps slQuery.follow_signal(port, {}, [], front, virt, slic)]; %#ok<AGROW>
 								end
 							end
-							if ismember(combinator.type, {'<~', '~', '<=', '=', '<<', '<>'})
+							if ismember(combinator.type, {'<~', '<=', '<<'})
 								for port = [-info(ismember(get_param(info, 'BlockType'), {'Inport', 'From'})) slQuery.get_ports(info, 'Inport', combinator.sp)]
 									ps = [ps slQuery.follow_signal(port, {}, [], front, virt, slic)]; %#ok<AGROW>
 								end
