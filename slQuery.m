@@ -275,11 +275,11 @@ classdef slQuery < double
 			if ischar(i)
 				if i(1) == '-', hs = lhs; i(1) = []; else, hs = phs; end
 				switch i
-					case 'Â°', f = 'Reset';
+					case '°', f = 'Reset';
 					case '?', f = 'Enable';
 					case '!', f = 'Trigger';
 					case '%', f = 'Ifaction';
-					otherwise, error('left handle index must be real or imaginary integer or one of Â°, ?, !, %');
+					otherwise, error('left handle index must be real or imaginary integer or one of °, ?, !, %');
 				end
 				its(:, 1) = arrayfun(@(h) h.(f), hs);
 			elseif isreal(i)
@@ -375,14 +375,14 @@ classdef slQuery < double
 	methods(Access=private, Static)
 		function handles = select(query, varargin) % core "select" algorithm of slQuery
 			% split query along the combinators                                                                                                                             ( outside [] )
-			[selectors, combinators] = regexp(query, '\s*( |\\\\|\\|//|/|,|@-?|-@|(:\s*(\w+|[Â°?!%^])\s*)?(->|-|<-|~>|~(?!=)|<~|=>|=|<=|>>|<>|<<)(\s*(\w+|[Â°?!%^])\s*:)?)\s*(?![^\[]*\])', 'split', 'match');
+			[selectors, combinators] = regexp(query, '\s*( |\\\\|\\|//|/|,|@-?|-@|(:\s*(\w+|[°?!%^])\s*)?(->|-|<-|~>|~(?!=)|<~|=>|=|<=|>>|<>|<<)(\s*(\w+|[°?!%^])\s*:)?)\s*(?![^\[]*\])', 'split', 'match');
 			
 			% start with the search root and combinator ',' for arbitrary position in this root
 			hot = get_param(bdroot, 'Handle'); % always search only in current model
 			handles = double.empty(0, 1);
 			for act = [',' combinators; selectors]
 				% parse the combinator:     '    (     colon with portspec     )...(                          combinator type (again)                             )...(      portspec with colon     )
-				combinator = regexp(act{1}, '^\s*(:)?(?<sp>(?(1)(\w+|[Â°?!%^])))?\s*(?<type>( |\\\\|\\|//|/|,|@-?|-@|->|-|<-|~>|~|<~|=>|=|<=|>>|<>|<<(?![^\[]*\])))\s*(?<dp>(\w+|[Â°?!%^]))?\s*(?(4):)?\s*$', 'names');
+				combinator = regexp(act{1}, '^\s*(:)?(?<sp>(?(1)(\w+|[°?!%^])))?\s*(?<type>( |\\\\|\\|//|/|,|@-?|-@|->|-|<-|~>|~|<~|=>|=|<=|>>|<>|<<(?![^\[]*\])))\s*(?<dp>(\w+|[°?!%^]))?\s*(?(4):)?\s*$', 'names');
 				
 				% cast numeric port qualifiers
 				if ~isnan(str2double(combinator.sp)), combinator.sp = str2double(combinator.sp); end
@@ -555,7 +555,7 @@ classdef slQuery < double
 							
 							% filter by port handle number
 							switch combinator.dp
-								case 'Â°', ps = ps(strcmp(slQuery.get_param(ps, 'PortType'), 'reset'));
+								case '°', ps = ps(strcmp(slQuery.get_param(ps, 'PortType'), 'reset'));
 								case '?', ps = ps(strcmp(slQuery.get_param(ps, 'PortType'), 'enable'));
 								case '!', ps = ps(strcmp(slQuery.get_param(ps, 'PortType'), 'trigger'));
 								case '%', ps = ps(strcmp(slQuery.get_param(ps, 'PortType'), 'ifaction'));
@@ -1157,7 +1157,7 @@ classdef slQuery < double
 					ps = ps(arrayfun(@(p) get_param(p, 'PortNumber') == index, ps));
 				else
 					switch index
-						case 'Â°', ps = ps(strcmp(slQuery.get_param(ps, 'PortType'), 'Reset'));
+						case '°', ps = ps(strcmp(slQuery.get_param(ps, 'PortType'), 'Reset'));
 						case '?', ps = ps(strcmp(slQuery.get_param(ps, 'PortType'), 'enable'));
 						case '!', ps = ps(strcmp(slQuery.get_param(ps, 'PortType'), 'trigger'));
 						case '%', ps = ps(strcmp(slQuery.get_param(ps, 'PortType'), 'ifaction'));

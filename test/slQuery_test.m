@@ -396,7 +396,7 @@ end
 
 %% port handle access (scalar, reset)
 for x = slQuery('SubSystem[Name^=Resettable]')
-	assert(x.PortHandles.Reset == 'Â°':x)
+	assert(x.PortHandles.Reset == '°':x)
 end
 
 %% port handle access (scalar, enable)
@@ -433,7 +433,7 @@ end
 
 %% port handle access (scalar, reset line)
 for x = slQuery('SubSystem[Name^=Resettable]')
-	assert(x.LineHandles.Reset == '-Â°':x)
+	assert(x.LineHandles.Reset == '-°':x)
 end
 
 %% port handle access (scalar, enable line)
@@ -774,12 +774,13 @@ for x = slQuery('*:% <- If')
 end
 
 %% signal line combinators with portspec (reset port)
-for x = slQuery('Ground -> Â°:*')
+
+for x = slQuery('Ground -> °:*')
 	assert(x(1).LineHandles.Outport == x(2).LineHandles.Reset);
 end
 
 %% signal line combinators with portspec (reset port, reverse)
-for x = slQuery('*:Â° <- Ground')
+for x = slQuery('*:° <- Ground')
 	assert(x(2).LineHandles.Outport == x(1).LineHandles.Reset);
 end
 
